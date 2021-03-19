@@ -4,4 +4,4 @@
 npx pretty-quick --staged
 npx nx lint nx-stylelint
 npx nx test nx-stylelint
-npx nx e2e nx-stylelint
+npx nx e2e nx-stylelint-e2e
