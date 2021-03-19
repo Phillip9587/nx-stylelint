@@ -8,7 +8,7 @@
 Stylelint executors and generators for Nx.
 
 [![Build](https://img.shields.io/github/workflow/status/phillip9587/nx-stylelint/CI?label=build&style=flat-square)](https://github.com/Phillip9587/nx-stylelint/actions/workflows/ci.yml)
-[![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/nx-stylelint?style=flat-square)](https://www.npmjs.com/package/nx-stylelint)
 
 </div>
