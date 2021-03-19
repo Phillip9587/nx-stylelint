@@ -1,0 +1,34 @@
+{
+  "name": "nx-stylelint",
+  "version": "0.0.2",
+  "description": "Stylelint Plugin for Nx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Phillip9587/nx-stylelint.git"
+  },
+  "keywords": [
+    "Monorepo",
+    "Nx",
+    "Nrwl",
+    "Plugin",
+    "Web",
+    "Lint",
+    "Stylelint"
+  ],
+  "author": "Phillip Barta",
+  "homepage": "https://github.com/Phillip9587/nx-stylelint/",
+  "bugs": {
+    "url": "https://github.com/Phillip9587/nx-stylelint/issues"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "dependencies": {
+    "@nrwl/devkit": "^11.5.0",
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "stylelint": "^13.12.0"
+  }
+}

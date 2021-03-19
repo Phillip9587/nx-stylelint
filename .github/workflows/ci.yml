@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build, Lint and Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 15.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        if: ${{ always() }}
+        run: npx nx lint nx-stylelint
+
+      - name: Test
+        if: ${{ always() }}
+        run: npx nx test nx-stylelint
+
+      - name: E2E
+        if: ${{ always() }}
+        run: npx nx e2e nx-stylelint-e2e
+
+      - name: Build
+        if: ${{ always() }}
+        run: npx nx build nx-stylelint

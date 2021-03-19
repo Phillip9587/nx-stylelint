@@ -1,0 +1,36 @@
+{
+  "$schema": "https://raw.githubusercontent.com/conventional-changelog/conventional-changelog-config-spec/master/versions/2.1.0/schema.json",
+  "types": [
+    { "type": "build", "hidden": true },
+    { "type": "chore", "section": "Others" },
+    { "type": "ci", "hidden": true },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "perf", "section": "Performance Improvements" },
+    { "type": "refactor", "hidden": true },
+    { "type": "revert", "hidden": true },
+    { "type": "style", "hidden": true },
+    { "type": "test", "hidden": true }
+  ],
+  "packageFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    }
+  ],
+  "bumpFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    },
+    {
+      "filename": "package-lock.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/nx-stylelint/package.json",
+      "type": "json"
+    }
+  ]
+}
