@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readJson, updateJson, writeJson, logger } from '@nrwl/devkit';
+import { Tree, readJson, updateJson, writeJson, logger, NxJsonConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
 import { InitGeneratorSchema } from './schema';
@@ -86,12 +86,79 @@ describe('nx-stylelint:init generator', () => {
     expect(nxConfig.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
   });
 
-  it('should add stylelint vscode extensions to vscode extension recommendations when they exist', async () => {
+  it('should add stylelint vscode extension to vscode extension recommendations when they exist', async () => {
     writeJson(tree, '.vscode/extensions.json', { recommendations: [] });
 
     await generator(tree, defaultOptions);
 
     const extensions = readJson(tree, '.vscode/extensions.json');
     expect(extensions.recommendations).toContain('stylelint.vscode-stylelint');
+  });
+
+  it('should add stylelint vscode extension and recommendations array to vscode extension file if it exists', async () => {
+    writeJson(tree, '.vscode/extensions.json', {});
+
+    await generator(tree, defaultOptions);
+
+    const extensions = readJson(tree, '.vscode/extensions.json');
+    expect(extensions.recommendations).toContain('stylelint.vscode-stylelint');
+  });
+
+  it('should not add stylelint vscode extension to vscode extension recommendations when it the extension already exists in recommendations', async () => {
+    writeJson(tree, '.vscode/extensions.json', { recommendations: ['stylelint.vscode-stylelint'] });
+
+    await generator(tree, defaultOptions);
+
+    const extensions = readJson(tree, '.vscode/extensions.json');
+    expect(extensions.recommendations).toHaveLength(1);
+    expect(extensions.recommendations).toContain('stylelint.vscode-stylelint');
+  });
+
+  it('should add cacheableOperations array with stylelin target to default taks runner in nx.json if it does not exist', async () => {
+    updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
+      const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
+      if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = undefined;
+      return json;
+    });
+    await generator(tree, defaultOptions);
+
+    const nxjson: NxJsonConfiguration = readJson(tree, 'nx.json');
+    expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toContain('stylelint');
+  });
+
+  it('should not add stylelint targer to cacheableOperations when it already exists', async () => {
+    updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
+      const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
+      if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = ['stylelint'];
+      return json;
+    });
+
+    await generator(tree, defaultOptions);
+
+    const nxjson: NxJsonConfiguration = readJson(tree, 'nx.json');
+    expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toHaveLength(1);
+    expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toContain('stylelint');
+  });
+
+  it('should print warning when the default task runner in nx.json does not exist', async () => {
+    logger.warn = jest.fn();
+    updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
+      if (json.tasksRunnerOptions) json.tasksRunnerOptions = undefined;
+      return json;
+    });
+
+    await generator(tree, defaultOptions);
+
+    expect(logger.warn).toBeCalledWith(
+      "Default Task Runner not found. Please add 'stylelint' target to cacheable operations of your task runner!"
+    );
+  });
+
+  it('should not create nx.json if it does not exist', async () => {
+    tree.delete('nx.json');
+
+    await generator(tree, defaultOptions);
+
+    expect(tree.exists('nx.json')).toBeFalsy();
   });
 });

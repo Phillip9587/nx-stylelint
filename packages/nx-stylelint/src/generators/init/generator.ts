@@ -82,8 +82,11 @@ function updateNxConfiguration(host: Tree) {
     // Add Stylelint Target to cacheableOperations
     const defaultTaskRunner = config.tasksRunnerOptions?.['default'];
     if (defaultTaskRunner) {
-      const cacheableOperations = (defaultTaskRunner.options.cacheableOperations as Array<string>) || [];
-      if (!cacheableOperations.includes('stylelint')) cacheableOperations.push('stylelint');
+      const cacheableOperations = defaultTaskRunner.options.cacheableOperations || [];
+      if (!cacheableOperations.includes('stylelint')) {
+        cacheableOperations.push('stylelint');
+        defaultTaskRunner.options.cacheableOperations = cacheableOperations;
+      }
     } else {
       logger.warn(
         "Default Task Runner not found. Please add 'stylelint' target to cacheable operations of your task runner!"
