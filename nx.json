@@ -1,9 +1,14 @@
 {
   "npmScope": "nx-stylelint",
-  "affected": { "defaultBase": "main" },
+  "affected": {
+    "defaultBase": "main"
+  },
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -11,13 +16,26 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "ZTJkODA2YmItNmQ2NS00MjYyLTk5NDUtZTYzMmU3MzFkODk4fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
     }
   },
   "projects": {
-    "nx-stylelint": { "tags": [] },
-    "nx-stylelint-e2e": { "tags": [], "implicitDependencies": ["nx-stylelint"] }
+    "nx-stylelint": {
+      "tags": []
+    },
+    "nx-stylelint-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-stylelint"]
+    }
   },
-  "workspaceLayout": { "appsDir": "e2e", "libsDir": "packages" }
+  "workspaceLayout": {
+    "appsDir": "e2e",
+    "libsDir": "packages"
+  }
 }
