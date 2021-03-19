@@ -2,7 +2,8 @@
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
   "id": "StylelintProject",
-  "title": "Add Jest Configuration to a project",
+  "title": "Add Stylelint Configuration to a project",
+  "description": "Add Stylelint Configuration to a project",
   "type": "object",
   "additionalProperties": false,
   "properties": {
