@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v1.0.2...v1.1.0) (2021-03-19)
+
+### Features
+
+- added init and configuration generators and renamed executor to lint ([f3748f8](https://github.com/Phillip9587/nx-stylelint/commit/f3748f86e3d148947148033dc6c920d1e4fb2451))
+
+### Bug Fixes
+
+- **generator:** fix typo in configuration generator schema ([91fca03](https://github.com/Phillip9587/nx-stylelint/commit/91fca03418cbf8de03519da7f52650fa0ad4edfb))
+
+### Others
+
+- updated readme ([68adf54](https://github.com/Phillip9587/nx-stylelint/commit/68adf542e9f2a085ece1837f9e83812d32e373d6))
+
 ### [1.0.2](https://github.com/Phillip9587/nx-stylelint/compare/v1.0.1...v1.0.2) (2021-03-19)
 
 ### Bug Fixes
