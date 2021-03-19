@@ -48,6 +48,6 @@ export default async function runExecutor(
   if (totalWarnings === 0 && totalErrors === 0 && !options.silent) logger.info('\nAll files pass linting.');
 
   return {
-    success: options.force || result.errored || options.maxWarnings === -1 || totalWarnings <= options.maxWarnings,
+    success: options.force || !result.errored || (options.maxWarnings !== -1 && totalWarnings <= options.maxWarnings),
   };
 }
