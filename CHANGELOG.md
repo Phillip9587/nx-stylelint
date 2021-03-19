@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/Phillip9587/nx-stylelint/compare/v1.0.1...v1.0.2) (2021-03-19)
+
+### Bug Fixes
+
+- **executor:** fixed the sucess status of the executor ([5814700](https://github.com/Phillip9587/nx-stylelint/commit/5814700ef4b60d87655c9287592065bcca770e7e))
+
+### Others
+
+- **npm:** updated typescript to 4.2.3 ([4f20dce](https://github.com/Phillip9587/nx-stylelint/commit/4f20dce5e4d2d300a3cd1b0f6537ef1f431c2a5f))
+
 ### [1.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v1.0.0...v1.0.1) (2021-03-19)
 
 ### Bug Fixes
