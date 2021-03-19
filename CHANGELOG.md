@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v1.1.0...v1.1.1) (2021-03-19)
+
+### Bug Fixes
+
+- fixed creation of the cacheableOperations in nx.json when not set before run and added tests ([3b27705](https://github.com/Phillip9587/nx-stylelint/commit/3b27705d96f5c3c63fa7aba29df966211e74a06a))
+
+### Others
+
+- **deps:** pin dependencies ([#3](https://github.com/Phillip9587/nx-stylelint/issues/3)) ([6aad285](https://github.com/Phillip9587/nx-stylelint/commit/6aad2858afcd1bb3af522e7a24d6de8f0713d7df))
+- **deps:** update nrwl monorepo to v11.5.2 ([#4](https://github.com/Phillip9587/nx-stylelint/issues/4)) ([a1e9d5e](https://github.com/Phillip9587/nx-stylelint/commit/a1e9d5e892fff6a34a1fd6d3f287f29165330ecb))
+
 ## [1.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v1.0.2...v1.1.0) (2021-03-19)
 
 ### Features
