@@ -1,12 +1,13 @@
-import { StylelintExecutorSchema } from './schema';
+import { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
 import { ExecutorContext } from '@nrwl/devkit';
 import { LinterResult } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
+import { stylelintConfigFile } from '../../defaults';
 
-const defaultOptions: StylelintExecutorSchema = {
-  config: '.stylelintrc.json',
+const defaultOptions: LintExecutorSchema = {
+  config: stylelintConfigFile,
   lintFilePatterns: ['styles.scss'],
   format: 'string',
   silent: false,
@@ -33,19 +34,18 @@ import executor from './executor';
 function setupMocks() {
   jest.resetModules();
   jest.clearAllMocks();
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  jest.spyOn(process, 'chdir').mockImplementation(() => {});
+  jest.spyOn(process, 'chdir').mockImplementation(jest.fn());
   logger.warn = jest.fn();
   logger.error = jest.fn();
   logger.info = jest.fn();
 }
 
-describe('executor', () => {
+describe('lint executor', () => {
   let mockContext: ExecutorContext;
 
   beforeEach(() => {
     mockContext = {
-      projectName: 'proj',
+      projectName: undefined,
       root: '/root',
       cwd: '/root',
       workspace: {
@@ -64,7 +64,7 @@ describe('executor', () => {
     setupMocks();
     await executor(defaultOptions, mockContext);
     expect(mockLint).toHaveBeenCalledWith({
-      configFile: '.stylelintrc.json',
+      configFile: stylelintConfigFile,
       configBasedir: '/root',
       files: ['styles.scss'],
       reportNeedlessDisables: true,
@@ -78,7 +78,7 @@ describe('executor', () => {
     setupMocks();
     await executor({ ...defaultOptions, silent: true }, mockContext);
 
-    expect(logger.info).not.toHaveBeenCalledWith('\nLinting Styles "proj"...');
+    expect(logger.info).not.toHaveBeenCalledWith('\nLinting Styles "<???>"...');
     expect(logger.error).not.toHaveBeenCalledWith('\nLint errors found in the listed files.');
     expect(logger.warn).not.toHaveBeenCalledWith('\nLint warnings found in the listed files.');
     expect(logger.info).not.toHaveBeenCalledWith('\nAll files pass linting.');
@@ -89,7 +89,7 @@ describe('executor', () => {
     setupMocks();
     await executor(defaultOptions, mockContext);
 
-    expect(logger.info).toHaveBeenCalledWith('\nLinting Styles "proj"...');
+    expect(logger.info).toHaveBeenCalledWith('\nLinting Styles "<???>"...');
     expect(logger.error).not.toHaveBeenCalledWith('\nLint errors found in the listed files.');
     expect(logger.warn).not.toHaveBeenCalledWith('\nLint warnings found in the listed files.');
     expect(logger.info).toHaveBeenCalledWith('\nAll files pass linting.');

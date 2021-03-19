@@ -2,5 +2,18 @@
   "$schema": "http://json-schema.org/schema",
   "name": "nx-stylelint",
   "version": "0.0.1",
-  "generators": {}
+  "generators": {
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the nx-stylelint plugin",
+      "aliases": ["ng-add"],
+      "hidden": true
+    },
+    "configuration": {
+      "factory": "./src/generators/configuration/generator",
+      "schema": "./src/generators/configuration/schema.json",
+      "description": "Add Stylelint configuration to a project"
+    }
+  }
 }

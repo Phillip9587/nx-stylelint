@@ -3,18 +3,10 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts", "*.js"],
       "parserOptions": {
         "project": ["packages/nx-stylelint/tsconfig.*?.json"]
       },
-      "rules": {}
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
       "rules": {}
     }
   ]

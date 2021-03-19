@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "title": "Stylelint executor",
-  "description": "",
+  "title": "Stylelint Lint Target",
+  "description": "Stylelint Lint Target",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -24,7 +24,7 @@
       "default": "string",
       "anyOf": [
         {
-          "enum": ["compact", "json", "string", "unix", "verbose"]
+          "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
         },
         {
           "minLength": 1
@@ -56,5 +56,5 @@
       "description": "File to write report to."
     }
   },
-  "required": ["config", "lintFilePatterns"]
+  "required": ["lintFilePatterns"]
 }

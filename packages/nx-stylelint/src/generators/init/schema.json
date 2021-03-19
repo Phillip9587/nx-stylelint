@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "id": "StylelintInit",
+  "title": "Nx Stylelint Init",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "skipFormat": {
+      "description": "Skip formatting files",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": []
+}

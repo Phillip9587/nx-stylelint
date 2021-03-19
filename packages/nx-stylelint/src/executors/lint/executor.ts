@@ -1,26 +1,30 @@
-import { StylelintExecutorSchema } from './schema';
-import { lint, LinterResult } from 'stylelint';
+import { LintExecutorSchema } from './schema';
 import { ExecutorContext, logger } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
+import { loadStylelint } from './utils';
 
 export default async function runExecutor(
-  options: StylelintExecutorSchema,
+  options: LintExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
   process.chdir(context.cwd);
 
   const projectName = context.projectName || '<???>';
-  const workspaceRoot = context.root;
+  const projectRoot = context.projectName ? context.workspace.projects[projectName].root : context.root;
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  const result: LinterResult = await lint({
+  const stylelint = await loadStylelint();
+
+  const result = await stylelint.lint({
     configFile: options.config,
-    configBasedir: workspaceRoot,
+    configBasedir: projectRoot,
     files: options.lintFilePatterns,
     reportNeedlessDisables: true,
-    formatter: options.format,
+    // Cast to any to support stylelint tap formatter which is not included in the outdated stylelint types
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    formatter: options.format as any,
     fix: options.fix,
   });
 

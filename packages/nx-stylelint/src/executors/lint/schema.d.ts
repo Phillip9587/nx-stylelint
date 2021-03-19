@@ -1,4 +1,4 @@
-export interface StylelintExecutorSchema {
+export interface LintExecutorSchema {
   config: string;
   lintFilePatterns: string[];
   format: Formatter;
@@ -9,4 +9,4 @@ export interface StylelintExecutorSchema {
   outputFile?: string;
 }
 
-type Formatter = 'compact' | 'json' | 'string' | 'unix' | 'verbose';
+type Formatter = 'compact' | 'json' | 'string' | 'tap' | 'unix' | 'verbose';
