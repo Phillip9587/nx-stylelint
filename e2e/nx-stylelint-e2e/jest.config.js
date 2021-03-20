@@ -7,8 +7,8 @@ module.exports = {
     },
   },
   transform: {
-    '^.+\\.[tj]s$': 'ts-jest',
+    '^.+/.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/e2e\nx-stylelint-e2e',
+  coverageDirectory: '../../coverage/e2e/nx-stylelint-e2e',
 };
