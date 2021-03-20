@@ -30,12 +30,10 @@
             "main": "packages/nx-stylelint/src/index.ts",
             "assets": [
               "README.md",
-              "CHANGELOG.md",
               "LICENSE",
-              "packages/nx-stylelint/*.md",
               {
                 "input": "./packages/nx-stylelint/src",
-                "glob": "**/*.!(ts)",
+                "glob": "**/schema.{json,d.ts}",
                 "output": "./src"
               },
               {
