@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v1.1.1...v11.0.0) (2021-03-20)
+
+### Others
+
+- follow the nx versioning scheme ([57206aa](https://github.com/Phillip9587/nx-stylelint/commit/57206aa79d9102512749eb47e3838667432aafdd))
+- **deps:** update actions/setup-node action to v2 ([#5](https://github.com/Phillip9587/nx-stylelint/issues/5)) ([a6c72d3](https://github.com/Phillip9587/nx-stylelint/commit/a6c72d3c70aedc50704d9bb34496c43d9b8094f1))
+- **renovate:** moved renovate config to .github folder ([d85a196](https://github.com/Phillip9587/nx-stylelint/commit/d85a1960f930f0dd535ea30aef13990e8716371d))
+
 ### [1.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v1.1.0...v1.1.1) (2021-03-19)
 
 ### Bug Fixes
