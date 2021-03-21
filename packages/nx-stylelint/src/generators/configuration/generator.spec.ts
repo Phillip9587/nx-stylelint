@@ -34,6 +34,7 @@ describe('nx-stylelint:configuration generator', () => {
     expect(config.targets.stylelint).toBeDefined();
     expect(config.targets.stylelint.executor).toBe('nx-stylelint:lint');
     expect(config.targets.stylelint.options.config).toBe(projectStylelint);
+    expect(config.targets.stylelint.options.format).toBeUndefined();
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
@@ -56,5 +57,17 @@ describe('nx-stylelint:configuration generator', () => {
     } catch (error) {
       expect(error.message).toBe("Project 'test' already has a stylelint target.");
     }
+  });
+
+  it('should add a stylelint target with the specified formatter', async () => {
+    await libraryGenerator(tree, { name: 'test' });
+    await generator(tree, { ...defaultOptions, format: 'json' });
+
+    const config = readProjectConfiguration(tree, 'test');
+
+    expect(config).toBeDefined();
+    expect(config.targets.stylelint).toBeDefined();
+    expect(config.targets.stylelint.executor).toBe('nx-stylelint:lint');
+    expect(config.targets.stylelint.options.format).toBe('json');
   });
 });

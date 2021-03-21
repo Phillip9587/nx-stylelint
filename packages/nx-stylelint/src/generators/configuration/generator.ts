@@ -55,6 +55,8 @@ function addStylelintTarget(host: Tree, options: NormalizedSchema) {
     lintFilePatterns: [joinPathFragments(normalizePath(options.projectRoot), '**', '*.{css,scss,sass,less}')],
   };
 
+  if (options.format !== 'string') targetOptions.format = options.format;
+
   projectConfig.targets.stylelint = { ...defaultTargetConfiguration, options: targetOptions };
   updateProjectConfiguration(host, options.project, projectConfig);
 }

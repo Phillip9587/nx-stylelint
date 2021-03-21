@@ -9,4 +9,4 @@ export interface LintExecutorSchema {
   outputFile?: string;
 }
 
-type Formatter = 'compact' | 'json' | 'string' | 'tap' | 'unix' | 'verbose';
+export type Formatter = 'compact' | 'json' | 'string' | 'tap' | 'unix' | 'verbose';
