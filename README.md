@@ -1,5 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/nx-stylelint.png"/>
-</p>
+<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/nx-stylelint.png" width="600" /></p>
 
 <div align="center">
 
@@ -13,7 +12,7 @@ Stylelint executors and generators for Nx.
 
 </div>
 
-<hr/><br/>
+<hr/>
 
 # 🚀 Features
 
