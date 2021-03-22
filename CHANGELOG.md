@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.2.0](https://github.com/Phillip9587/nx-stylelint/compare/v11.1.1...v11.2.0) (2021-03-22)
+
+
+### Features
+
+* **init:** should skip installation of dependencies needed for recommended configuration ([f627d06](https://github.com/Phillip9587/nx-stylelint/commit/f627d065a4fdc4304e3dc711eee3925af52ceaff))
+
 ### [11.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v11.1.0...v11.1.1) (2021-03-22)
 
 
