@@ -150,15 +150,7 @@ describe('nx-stylelint:init generator', () => {
     await generator(tree, defaultOptions);
 
     expect(logger.warn).toBeCalledWith(
-      "Default Task Runner not found. Please add 'stylelint' target to cacheable operations of your task runner!"
+      "Default Task Runner not found. Please add 'stylelint' target to cacheableOperations of your task runner!"
     );
-  });
-
-  it('should not create nx.json if it does not exist', async () => {
-    tree.delete('nx.json');
-
-    await generator(tree, defaultOptions);
-
-    expect(tree.exists('nx.json')).toBeFalsy();
   });
 });

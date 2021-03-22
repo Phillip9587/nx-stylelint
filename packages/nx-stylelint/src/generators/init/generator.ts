@@ -6,7 +6,9 @@ import {
   GeneratorCallback,
   formatFiles,
   logger,
-  NxJsonConfiguration,
+  readWorkspaceConfiguration,
+  updateWorkspaceConfiguration,
+  WorkspaceConfiguration,
 } from '@nrwl/devkit';
 import {
   rootStylelintConfiguration,
@@ -32,7 +34,7 @@ export default async function (host: Tree, options: InitGeneratorSchema): Promis
   const installTask = updateDependencies(host);
 
   createStylelintConfig(host);
-  updateNxConfiguration(host);
+  addStylelintToWorkspaceConfiguration(host);
   updateExtensions(host);
 
   if (!options.skipFormat) await formatFiles(host);
@@ -65,36 +67,36 @@ function updateExtensions(host: Tree) {
   updateJson(host, VSCodeExtensionsFilePath, (json) => {
     json.recommendations = json.recommendations || [];
 
-    if (!json.recommendations.includes(stylelintVSCodeExtension)) json.recommendations.push(stylelintVSCodeExtension);
+    if (Array.isArray(json.recommendations) && !json.recommendations.includes(stylelintVSCodeExtension))
+      json.recommendations.push(stylelintVSCodeExtension);
 
     return json;
   });
 }
 
-function updateNxConfiguration(host: Tree) {
-  if (!host.exists('nx.json')) return;
+function addStylelintToWorkspaceConfiguration(host: Tree) {
+  const workspace: WorkspaceConfiguration = readWorkspaceConfiguration(host);
 
-  updateJson(host, 'nx.json', (config: NxJsonConfiguration) => {
-    // Add Stylelint config File to implicit dependencies
-    config.implicitDependencies = config.implicitDependencies || {};
-    config.implicitDependencies[stylelintConfigFile] = '*';
+  // Add root .stylelintrc.json to implicit dependencies
+  workspace.implicitDependencies = workspace.implicitDependencies || {};
+  workspace.implicitDependencies[stylelintConfigFile] = '*';
 
-    // Add Stylelint Target to cacheableOperations
-    const defaultTaskRunner = config.tasksRunnerOptions?.['default'];
-    if (defaultTaskRunner) {
-      const cacheableOperations = defaultTaskRunner.options.cacheableOperations || [];
-      if (!cacheableOperations.includes('stylelint')) {
-        cacheableOperations.push('stylelint');
-        defaultTaskRunner.options.cacheableOperations = cacheableOperations;
-      }
-    } else {
-      logger.warn(
-        "Default Task Runner not found. Please add 'stylelint' target to cacheable operations of your task runner!"
-      );
+  // Add stylelint target to cacheableOperations
+  if (workspace.tasksRunnerOptions && workspace.tasksRunnerOptions.default) {
+    workspace.tasksRunnerOptions.default.options = workspace.tasksRunnerOptions.default.options || {};
+
+    workspace.tasksRunnerOptions.default.options.cacheableOperations =
+      workspace.tasksRunnerOptions.default.options.cacheableOperations || [];
+    if (!workspace.tasksRunnerOptions.default.options.cacheableOperations.includes('stylelint')) {
+      workspace.tasksRunnerOptions.default.options.cacheableOperations.push('stylelint');
     }
+  } else {
+    logger.warn(
+      "Default Task Runner not found. Please add 'stylelint' target to cacheableOperations of your task runner!"
+    );
+  }
 
-    return config;
-  });
+  updateWorkspaceConfiguration(host, workspace);
 }
 
 function createStylelintConfig(host: Tree) {
