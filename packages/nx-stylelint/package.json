@@ -30,6 +30,7 @@
   },
   "peerDependencies": {
     "@nrwl/workspace": "^11.0.0",
-    "stylelint": ">=13.0.0"
+    "stylelint": ">=13.0.0",
+    "stylelint-config-prettier": ">=8.0.0"
   }
 }

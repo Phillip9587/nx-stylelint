@@ -8,7 +8,6 @@ export const stylelintConfigFile = '.stylelintrc.json';
 export const stylelintVersion = '^13.12.0';
 export const stylelintConfigPrettierVersion = '^8.0.0';
 export const stylelintConfigStandardVersion = '^21.0.0';
-export const stylelintConfigIdiomaticOrderVersion = '^8.1.0';
 
 /** Stylelint Visual Studio Code plugin identifier */
 export const stylelintVSCodeExtension = 'stylelint.vscode-stylelint';
@@ -17,11 +16,8 @@ export const VSCodeExtensionsFilePath = '.vscode/extensions.json';
 
 /** Root Stylelint configuration that will be added on Init */
 export const rootStylelintConfiguration: Partial<StylelintConfiguration> = {
-  extends: ['stylelint-config-standard', 'stylelint-config-idiomatic-order', 'stylelint-config-prettier'],
+  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   ignoreFiles: ['node_modules/**', 'dist/**'],
-  rules: {
-    'order/properties-alphabetical-order': null,
-  },
 };
 
 /** Default target configuration for projects */

@@ -9,11 +9,11 @@ import {
   readWorkspaceConfiguration,
   updateWorkspaceConfiguration,
   WorkspaceConfiguration,
+  readJson,
 } from '@nrwl/devkit';
 import {
   rootStylelintConfiguration,
   stylelintConfigFile,
-  stylelintConfigIdiomaticOrderVersion,
   stylelintConfigPrettierVersion,
   stylelintConfigStandardVersion,
   stylelintVersion,
@@ -24,16 +24,11 @@ import { InitGeneratorSchema } from './schema';
 
 /** nx-stylelint:init generator */
 export default async function (host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
-  if (host.exists(stylelintConfigFile)) {
-    logger.info('Stylelint root configuration found! Skipping init!\n');
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    return () => {};
-  }
+  const installTask = checkDependenciesInstalled(host);
 
-  removeStylelintFromDeps(host);
-  const installTask = updateDependencies(host);
+  if (!host.exists(stylelintConfigFile)) createStylelintConfig(host);
+  else logger.info(`Stylelint root configuration found! Skipping creation of ${stylelintConfigFile}!`);
 
-  createStylelintConfig(host);
   addStylelintToWorkspaceConfiguration(host);
   updateExtensions(host);
 
@@ -41,24 +36,29 @@ export default async function (host: Tree, options: InitGeneratorSchema): Promis
   return installTask;
 }
 
-function updateDependencies(host: Tree): GeneratorCallback {
-  const devDeps = {
-    stylelint: stylelintVersion,
-    'stylelint-config-prettier': stylelintConfigPrettierVersion,
-    'stylelint-config-standard': stylelintConfigStandardVersion,
-    'stylelint-config-idiomatic-order': stylelintConfigIdiomaticOrderVersion,
-  };
+function checkDependenciesInstalled(host: Tree) {
+  const packageJson = readJson(host, 'package.json');
+  const devDependencies: { [index: string]: string } = {};
 
-  return addDependenciesToPackageJson(host, {}, devDeps);
-}
+  packageJson.dependencies = packageJson.dependencies || {};
+  packageJson.devDependencices = packageJson.devDependencices || {};
 
-function removeStylelintFromDeps(host: Tree) {
-  updateJson(host, 'package.json', (json) => {
-    if (json.dependencies && json.dependencies['stylelint']) {
-      delete json.dependencies['stylelint'];
-    }
-    return json;
-  });
+  if (!packageJson.dependencies['stylelint'] && !packageJson.devDependencies['stylelint'])
+    devDependencies['stylelint'] = stylelintVersion;
+
+  if (
+    !packageJson.dependencies['stylelint-config-prettier'] &&
+    !packageJson.devDependencies['stylelint-config-prettier']
+  )
+    devDependencies['stylelint-config-prettier'] = stylelintConfigPrettierVersion;
+
+  if (
+    !packageJson.dependencies['stylelint-config-standard'] &&
+    !packageJson.devDependencies['stylelint-config-standard']
+  )
+    devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
+
+  return addDependenciesToPackageJson(host, {}, devDependencies);
 }
 
 function updateExtensions(host: Tree) {
