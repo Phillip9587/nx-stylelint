@@ -7,7 +7,7 @@ module.exports = {
     },
   },
   transform: {
-    '^.+/.[tj]s?$': 'ts-jest',
+    '^.+\\.[tj]s?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js'],
   coverageDirectory: '../../coverage/packages/nx-stylelint',
