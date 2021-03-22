@@ -4,7 +4,7 @@
     "lint": {
       "implementation": "./src/executors/lint/executor",
       "schema": "./src/executors/lint/schema.json",
-      "description": "Run Stylelint for a project"
+      "description": "Run stylelint on a project"
     }
   }
 }

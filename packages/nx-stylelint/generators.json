@@ -6,14 +6,13 @@
     "init": {
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
-      "description": "Initialize the nx-stylelint plugin",
-      "aliases": ["ng-add"],
+      "description": "Add stylelint configuration and dependencies to the workspace",
       "hidden": true
     },
     "configuration": {
       "factory": "./src/generators/configuration/generator",
       "schema": "./src/generators/configuration/schema.json",
-      "description": "Add Stylelint configuration to a project"
+      "description": "Add stylelint configuration to a project"
     }
   }
 }

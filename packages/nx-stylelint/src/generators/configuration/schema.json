@@ -1,23 +1,16 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "id": "StylelintProject",
-  "title": "Add Stylelint Configuration to a project",
-  "description": "Add Stylelint Configuration to a project",
+  "id": "NxStylelintProjectConfiguration",
+  "title": "Add stylelint configuration to a project",
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "project": {
-      "type": "string",
-      "description": "The name of the project.",
-      "$default": {
-        "$source": "projectName"
-      }
-    },
     "format": {
       "type": "string",
-      "description": "Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
+      "description": "Stylelint output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
       "default": "string",
+      "enum": ["compact", "json", "string", "tap", "unix", "verbose"],
       "x-prompt": {
         "message": "Which formatter would you like to use?",
         "type": "list",
@@ -32,7 +25,7 @@
           },
           {
             "value": "string",
-            "label": "string"
+            "label": "string (default)"
           },
           {
             "value": "tap",
@@ -49,11 +42,18 @@
         ]
       }
     },
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
     "skipFormat": {
-      "description": "Skip formatting files",
+      "description": "Skip formatting files.",
       "type": "boolean",
       "default": false
     }
   },
-  "required": []
+  "required": ["project"]
 }

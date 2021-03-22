@@ -1,7 +1,7 @@
 import { Formatter } from '../../executors/lint/schema';
 
 export interface ConfigurationGeneratorSchema {
-  project: string;
   format?: Formatter;
+  project: string;
   skipFormat: boolean;
 }

@@ -2,13 +2,28 @@
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
   "title": "Stylelint Lint Target",
-  "description": "Stylelint Lint Target",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "config": {
       "type": "string",
-      "description": "Stylelint configuration file"
+      "description": "Path of the stylelint configuration file."
+    },
+    "fix": {
+      "type": "boolean",
+      "description": "Fixes linting errors (may overwrite linted files).",
+      "default": false
+    },
+    "force": {
+      "type": "boolean",
+      "description": "Succeeds even if there were linting errors.",
+      "default": false
+    },
+    "format": {
+      "type": "string",
+      "description": "Stylelint output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
+      "default": "string",
+      "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
     },
     "lintFilePatterns": {
       "type": "array",
@@ -18,43 +33,20 @@
         "type": "string"
       }
     },
-    "format": {
-      "type": "string",
-      "description": "Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
-      "default": "string",
-      "anyOf": [
-        {
-          "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
-        },
-        {
-          "minLength": 1
-        }
-      ]
-    },
-    "silent": {
-      "type": "boolean",
-      "description": "Hide output text.",
-      "default": false
-    },
-    "force": {
-      "type": "boolean",
-      "description": "Succeeds even if there were linting errors.",
-      "default": false
-    },
-    "fix": {
-      "type": "boolean",
-      "description": "Fixes linting errors (may overwrite linted files).",
-      "default": false
-    },
     "maxWarnings": {
       "type": "number",
-      "description": "Number of warnings to trigger nonzero exit code - default: -1",
+      "description": "Number of warnings to trigger nonzero exit code.",
       "default": -1
     },
     "outputFile": {
       "type": "string",
       "description": "File to write report to."
+    },
+    "silent": {
+      "type": "boolean",
+      "description": "Hide output text.",
+      "default": false
     }
   },
-  "required": ["lintFilePatterns"]
+  "required": ["config", "lintFilePatterns"]
 }
