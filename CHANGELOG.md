@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v11.1.0...v11.1.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* restore removed backslash from jest.config.js ([ebb804d](https://github.com/Phillip9587/nx-stylelint/commit/ebb804dfd3ad3f74228392d6b5b2f48366d87761))
+
+
+### Documentation
+
+* updated logo to display in github dark mode ([ea2a321](https://github.com/Phillip9587/nx-stylelint/commit/ea2a3216e9e32b5ae26a75d662e7c6e8beab70f8))
+
 ## [11.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v11.0.0...v11.1.0) (2021-03-22)
 
 
