@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v11.0.0...v11.1.0) (2021-03-22)
+
+
+### Features
+
+* added the option to select a formatter to the configuration generator ([67c9ca7](https://github.com/Phillip9587/nx-stylelint/commit/67c9ca76594c29b78a51b248e5ead5de4c1985bf))
+
+
+### Bug Fixes
+
+* reduce bundle size by removing Changelog and test files ([009e1a1](https://github.com/Phillip9587/nx-stylelint/commit/009e1a1570a18606d1210fefe9292e8dbbff402f))
+* removed somehow generated backslashes from configuration files ([96933cd](https://github.com/Phillip9587/nx-stylelint/commit/96933cd2ddf8f6067779d278aab9defb33719345))
+
+
+### Others
+
+* **deps:** update dependency husky to v5.2.0 ([#6](https://github.com/Phillip9587/nx-stylelint/issues/6)) ([02181a6](https://github.com/Phillip9587/nx-stylelint/commit/02181a66e0122222c562f5fcaa614199bd5ad009))
+
 ## [11.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v1.1.1...v11.0.0) (2021-03-20)
 
 ### Others
