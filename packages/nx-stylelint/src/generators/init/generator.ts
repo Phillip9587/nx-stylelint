@@ -12,8 +12,9 @@ import {
   readJson,
 } from '@nrwl/devkit';
 import {
-  rootStylelintConfiguration,
+  recommendedRootStylelintConfiguration,
   stylelintConfigFile,
+  stylelintConfigIdiomaticOrderVersion,
   stylelintConfigPrettierVersion,
   stylelintConfigStandardVersion,
   stylelintVersion,
@@ -24,10 +25,11 @@ import { InitGeneratorSchema } from './schema';
 
 /** nx-stylelint:init generator */
 export default async function (host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
-  const installTask = checkDependenciesInstalled(host);
+  const rootConfigExists = host.exists(stylelintConfigFile);
+  const installTask = checkDependenciesInstalled(host, rootConfigExists);
 
-  if (!host.exists(stylelintConfigFile)) createStylelintConfig(host);
-  else logger.info(`Stylelint root configuration found! Skipping creation of ${stylelintConfigFile}!`);
+  if (!rootConfigExists) createRecommendedStylelintConfiguration(host);
+  else logger.info(`Stylelint root configuration found! Skipping creation of root ${stylelintConfigFile}!`);
 
   addStylelintToWorkspaceConfiguration(host);
   updateExtensions(host);
@@ -36,7 +38,7 @@ export default async function (host: Tree, options: InitGeneratorSchema): Promis
   return installTask;
 }
 
-function checkDependenciesInstalled(host: Tree) {
+function checkDependenciesInstalled(host: Tree, rootConfigExists: boolean) {
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
@@ -46,17 +48,26 @@ function checkDependenciesInstalled(host: Tree) {
   if (!packageJson.dependencies['stylelint'] && !packageJson.devDependencies['stylelint'])
     devDependencies['stylelint'] = stylelintVersion;
 
-  if (
-    !packageJson.dependencies['stylelint-config-prettier'] &&
-    !packageJson.devDependencies['stylelint-config-prettier']
-  )
-    devDependencies['stylelint-config-prettier'] = stylelintConfigPrettierVersion;
+  // When root configuration does not exists install packages for recommended stylelint configuration
+  if (!rootConfigExists) {
+    if (
+      !packageJson.dependencies['stylelint-config-idiomatic-order'] &&
+      !packageJson.devDependencies['stylelint-config-idiomatic-order']
+    )
+      devDependencies['stylelint-config-idiomatic-order'] = stylelintConfigIdiomaticOrderVersion;
 
-  if (
-    !packageJson.dependencies['stylelint-config-standard'] &&
-    !packageJson.devDependencies['stylelint-config-standard']
-  )
-    devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
+    if (
+      !packageJson.dependencies['stylelint-config-prettier'] &&
+      !packageJson.devDependencies['stylelint-config-prettier']
+    )
+      devDependencies['stylelint-config-prettier'] = stylelintConfigPrettierVersion;
+
+    if (
+      !packageJson.dependencies['stylelint-config-standard'] &&
+      !packageJson.devDependencies['stylelint-config-standard']
+    )
+      devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
+  }
 
   return addDependenciesToPackageJson(host, {}, devDependencies);
 }
@@ -99,6 +110,6 @@ function addStylelintToWorkspaceConfiguration(host: Tree) {
   updateWorkspaceConfiguration(host, workspace);
 }
 
-function createStylelintConfig(host: Tree) {
-  writeJson(host, stylelintConfigFile, rootStylelintConfiguration);
+function createRecommendedStylelintConfiguration(host: Tree) {
+  writeJson(host, stylelintConfigFile, recommendedRootStylelintConfiguration);
 }

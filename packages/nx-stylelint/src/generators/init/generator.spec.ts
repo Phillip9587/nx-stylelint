@@ -15,28 +15,39 @@ describe('nx-stylelint:init generator', () => {
     tree = createTreeWithEmptyWorkspace();
   });
 
-  it('should add dependencies', async () => {
+  it('should add dependencies and create recommended root configuration', async () => {
     await generator(tree, defaultOptions);
 
     const packagejson = readJson(tree, 'package.json');
     expect(packagejson.devDependencies['stylelint']).toBe('^13.12.0');
+    expect(packagejson.devDependencies['stylelint-config-idiomatic-order']).toBe('^8.1.0');
     expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^21.0.0');
     expect(packagejson.devDependencies['stylelint-config-prettier']).toBe('^8.0.0');
+
+    const stylelintrc = readJson(tree, '.stylelintrc.json');
+    expect(stylelintrc.extends).toContain('stylelint-config-standard');
+    expect(stylelintrc.extends).toContain('stylelint-config-idiomatic-order');
+    expect(stylelintrc.extends).toContain('stylelint-config-prettier');
+    expect(stylelintrc.ignoreFiles).toContain('node_modules/**');
+    expect(stylelintrc.ignoreFiles).toContain('dist/**');
+    expect(stylelintrc.rules['order/properties-alphabetical-order']).toBeNull();
   });
 
-  it('should skip creation of .stylelintrc.json when already present', async () => {
+  it('should skip creation of .stylelintrc.json and recommended dependencies when already present', async () => {
     logger.info = jest.fn();
     writeJson(tree, '.stylelintrc.json', {});
 
     await generator(tree, defaultOptions);
 
     expect(logger.info).toHaveBeenCalledWith(
-      'Stylelint root configuration found! Skipping creation of .stylelintrc.json!'
+      'Stylelint root configuration found! Skipping creation of root .stylelintrc.json!'
     );
+
     const packagejson = readJson(tree, 'package.json');
     expect(packagejson.devDependencies['stylelint']).toBe('^13.12.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^21.0.0');
-    expect(packagejson.devDependencies['stylelint-config-prettier']).toBe('^8.0.0');
+    expect(packagejson.devDependencies['stylelint-config-idiomatic-order']).toBeUndefined();
+    expect(packagejson.devDependencies['stylelint-config-prettier']).toBeUndefined();
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBeUndefined();
   });
 
   it('should not add stylelint to devDependencies when present in dependencies', async () => {
@@ -53,19 +64,6 @@ describe('nx-stylelint:init generator', () => {
     packagejson = readJson(tree, 'package.json');
     expect(packagejson.dependencies['stylelint']).toBe('x.x.x');
     expect(packagejson.devDependencies['stylelint']).toBeUndefined();
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^21.0.0');
-    expect(packagejson.devDependencies['stylelint-config-prettier']).toBe('^8.0.0');
-  });
-
-  it('should create root .stylelintrc.json with default config', async () => {
-    await generator(tree, defaultOptions);
-
-    const stylelintrc = readJson(tree, '.stylelintrc.json');
-    expect(stylelintrc.extends).toContain('stylelint-config-standard');
-    expect(stylelintrc.extends).toContain('stylelint-config-prettier');
-    expect(stylelintrc.ignoreFiles).toContain('node_modules/**');
-    expect(stylelintrc.ignoreFiles).toContain('dist/**');
-    expect(stylelintrc.rules).toBeUndefined();
   });
 
   it('should add stylelint config to implicitDependencies in nx.json', async () => {
