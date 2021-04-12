@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v11.2.1...v12.0.0) (2021-04-12)
+
+
+### Features
+
+* update peerDependency @nrwl/workspace to 12.0.0 ([0a2d9b7](https://github.com/Phillip9587/nx-stylelint/commit/0a2d9b740a7f85dbd07b155396cf1ccfe0aa4e5d))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nrwl/devkit to v12 ([#22](https://github.com/Phillip9587/nx-stylelint/issues/22)) ([dc07c2e](https://github.com/Phillip9587/nx-stylelint/commit/dc07c2e519f0cd26ac6482bcbd2296e5d4a828ba))
+
+
+### Others
+
+* **deps:** update nrwl monorepo to v12 (major) ([3103199](https://github.com/Phillip9587/nx-stylelint/commit/3103199072beb5770b095d58321d2ec7b7e1a8bd))
+
 ### [11.2.1](https://github.com/Phillip9587/nx-stylelint/compare/v11.2.0...v11.2.1) (2021-04-12)
 
 
