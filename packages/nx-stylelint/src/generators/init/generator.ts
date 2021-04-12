@@ -42,8 +42,8 @@ function checkDependenciesInstalled(host: Tree, rootConfigExists: boolean) {
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  packageJson.dependencies = packageJson.dependencies || {};
-  packageJson.devDependencices = packageJson.devDependencices || {};
+  packageJson.dependencies = packageJson.dependencies ?? {};
+  packageJson.devDependencices = packageJson.devDependencices ?? {};
 
   if (!packageJson.dependencies['stylelint'] && !packageJson.devDependencies['stylelint'])
     devDependencies['stylelint'] = stylelintVersion;
@@ -76,7 +76,7 @@ function updateExtensions(host: Tree) {
   if (!host.exists(VSCodeExtensionsFilePath)) return;
 
   updateJson(host, VSCodeExtensionsFilePath, (json) => {
-    json.recommendations = json.recommendations || [];
+    json.recommendations = json.recommendations ?? [];
 
     if (Array.isArray(json.recommendations) && !json.recommendations.includes(stylelintVSCodeExtension))
       json.recommendations.push(stylelintVSCodeExtension);
@@ -89,18 +89,20 @@ function addStylelintToWorkspaceConfiguration(host: Tree) {
   const workspace: WorkspaceConfiguration = readWorkspaceConfiguration(host);
 
   // Add root .stylelintrc.json to implicit dependencies
-  workspace.implicitDependencies = workspace.implicitDependencies || {};
+  workspace.implicitDependencies = workspace.implicitDependencies ?? {};
   workspace.implicitDependencies[stylelintConfigFile] = '*';
 
   // Add stylelint target to cacheableOperations
-  if (workspace.tasksRunnerOptions && workspace.tasksRunnerOptions.default) {
-    workspace.tasksRunnerOptions.default.options = workspace.tasksRunnerOptions.default.options || {};
+  if (workspace.tasksRunnerOptions?.default) {
+    const taskRunner = workspace.tasksRunnerOptions?.default;
+    taskRunner.options = taskRunner.options ?? {};
 
-    workspace.tasksRunnerOptions.default.options.cacheableOperations =
-      workspace.tasksRunnerOptions.default.options.cacheableOperations || [];
-    if (!workspace.tasksRunnerOptions.default.options.cacheableOperations.includes('stylelint')) {
-      workspace.tasksRunnerOptions.default.options.cacheableOperations.push('stylelint');
-    }
+    taskRunner.options.cacheableOperations = taskRunner.options.cacheableOperations ?? [];
+
+    if (!taskRunner.options.cacheableOperations.includes('stylelint'))
+      taskRunner.options.cacheableOperations.push('stylelint');
+
+    workspace.tasksRunnerOptions.default = taskRunner;
   } else {
     logger.warn(
       "Default Task Runner not found. Please add 'stylelint' target to cacheableOperations of your task runner!"
