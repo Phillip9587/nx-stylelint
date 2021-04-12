@@ -3,6 +3,7 @@ import { ExecutorContext, logger } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
 import { loadStylelint } from './utils';
+import { LinterOptions, LinterResult } from 'stylelint';
 
 export default async function runExecutor(
   options: LintExecutorSchema,
@@ -17,7 +18,7 @@ export default async function runExecutor(
 
   const stylelint = await loadStylelint();
 
-  const result = await stylelint.lint({
+  const stylelintOptions: Partial<LinterOptions> = {
     configFile: options.config,
     configBasedir: projectRoot,
     files: options.lintFilePatterns,
@@ -26,32 +27,30 @@ export default async function runExecutor(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     formatter: options.format as any,
     fix: options.fix,
-  });
+  };
 
-  let totalErrors = 0;
-  let totalWarnings = 0;
+  const result: LinterResult = await stylelint.lint(stylelintOptions);
 
-  for (const r of result.results) {
-    for (const w of r.warnings) {
-      if (w.severity === 'error') totalErrors++;
-      else totalWarnings++;
-    }
-  }
+  const totalWarnings = result.results
+    .map((r) => r.warnings.filter((w) => w.severity === 'warning'))
+    .reduce((prev, r) => prev + r.length, 0);
 
   if (options.outputFile) {
     const outputFilePath = join(context.root, options.outputFile);
     writeFileSync(outputFilePath, result.output);
-  } else {
+  } else if (!options.silent) {
     logger.info(result.output);
   }
 
   if (totalWarnings > 0 && !options.silent) logger.warn('\nLint warnings found in the listed files.');
 
-  if (totalErrors > 0 && !options.silent) logger.error('\nLint errors found in the listed files.');
+  if (result.errored && !options.silent) logger.error('\nLint errors found in the listed files.');
 
-  if (totalWarnings === 0 && totalErrors === 0 && !options.silent) logger.info('\nAll files pass linting.');
+  if (totalWarnings === 0 && !result.errored && !options.silent) logger.info('\nAll files pass linting.');
 
   return {
-    success: options.force || !result.errored || (options.maxWarnings !== -1 && totalWarnings <= options.maxWarnings),
+    success:
+      options.force ||
+      (result.errored === false && (options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
   };
 }
