@@ -1,5 +1,4 @@
 import {
-  Tree,
   updateJson,
   addDependenciesToPackageJson,
   writeJson,
@@ -8,9 +7,9 @@ import {
   logger,
   readWorkspaceConfiguration,
   updateWorkspaceConfiguration,
-  WorkspaceConfiguration,
   readJson,
 } from '@nrwl/devkit';
+import type { Tree, WorkspaceConfiguration } from '@nrwl/devkit';
 import {
   recommendedRootStylelintConfiguration,
   stylelintConfigFile,
@@ -21,7 +20,7 @@ import {
   stylelintVSCodeExtension,
   VSCodeExtensionsFilePath,
 } from '../../defaults';
-import { InitGeneratorSchema } from './schema';
+import type { InitGeneratorSchema } from './schema';
 
 /** nx-stylelint:init generator */
 export default async function (host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
@@ -34,7 +33,7 @@ export default async function (host: Tree, options: InitGeneratorSchema): Promis
   addStylelintToWorkspaceConfiguration(host);
   updateExtensions(host);
 
-  if (!options.skipFormat) await formatFiles(host);
+  if (options.skipFormat !== true) await formatFiles(host);
   return installTask;
 }
 

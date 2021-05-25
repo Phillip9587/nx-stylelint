@@ -1,7 +1,7 @@
-import { LintExecutorSchema } from './schema';
+import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
-import { ExecutorContext } from '@nrwl/devkit';
-import { LinterResult } from 'stylelint';
+import type { ExecutorContext } from '@nrwl/devkit';
+import type { LinterResult } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
 import { stylelintConfigFile } from '../../defaults';

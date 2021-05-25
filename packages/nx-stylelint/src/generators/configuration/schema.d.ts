@@ -1,4 +1,4 @@
-import { Formatter } from '../../executors/lint/schema';
+import type { Formatter } from '../../executors/lint/schema';
 
 export interface ConfigurationGeneratorSchema {
   format?: Formatter;

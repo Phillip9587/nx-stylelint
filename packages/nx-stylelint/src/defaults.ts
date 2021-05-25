@@ -1,5 +1,5 @@
-import { TargetConfiguration } from '@nrwl/devkit';
-import { Configuration as StylelintConfiguration } from 'stylelint';
+import type { TargetConfiguration } from '@nrwl/devkit';
+import type { Configuration as StylelintConfiguration } from 'stylelint';
 
 /** Name of the stylelint configuration file */
 export const stylelintConfigFile = '.stylelintrc.json';

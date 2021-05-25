@@ -1,8 +1,8 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readJson, updateJson, writeJson, logger, NxJsonConfiguration } from '@nrwl/devkit';
-
+import { readJson, updateJson, writeJson, logger } from '@nrwl/devkit';
+import type { Tree, NxJsonConfiguration } from '@nrwl/devkit';
 import generator from './generator';
-import { InitGeneratorSchema } from './schema';
+import type { InitGeneratorSchema } from './schema';
 
 const defaultOptions: InitGeneratorSchema = {
   skipFormat: false,

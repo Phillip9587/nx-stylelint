@@ -4,15 +4,15 @@ import {
   normalizePath,
   offsetFromRoot,
   readProjectConfiguration,
-  Tree,
   updateProjectConfiguration,
   writeJson,
   logger,
 } from '@nrwl/devkit';
-import { Configuration as StylelintConfiguration } from 'stylelint';
-import { ConfigurationGeneratorSchema } from './schema';
+import type { Tree } from '@nrwl/devkit';
+import type { Configuration as StylelintConfiguration } from 'stylelint';
+import type { ConfigurationGeneratorSchema } from './schema';
 import init from '../init/generator';
-import { LintExecutorSchema } from '../../executors/lint/schema';
+import type { LintExecutorSchema } from '../../executors/lint/schema';
 import { defaultTargetConfiguration, stylelintConfigFile } from '../../defaults';
 
 interface NormalizedSchema extends ConfigurationGeneratorSchema {

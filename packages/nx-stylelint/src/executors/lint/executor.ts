@@ -1,9 +1,10 @@
-import { LintExecutorSchema } from './schema';
-import { ExecutorContext, logger } from '@nrwl/devkit';
+import type { LintExecutorSchema } from './schema';
+import { logger } from '@nrwl/devkit';
+import type { ExecutorContext } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
 import { loadStylelint } from './utils';
-import { LinterOptions, LinterResult } from 'stylelint';
+import type { LinterOptions, LinterResult } from 'stylelint';
 
 export default async function runExecutor(
   options: LintExecutorSchema,
