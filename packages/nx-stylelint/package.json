@@ -21,6 +21,9 @@
     "url": "https://github.com/Phillip9587/nx-stylelint/issues"
   },
   "license": "MIT",
+  "engines": {
+    "node": "^12.0.0 || >=14.0.0"
+  },
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
