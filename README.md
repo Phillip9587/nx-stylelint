@@ -1,6 +1,6 @@
-<p style="text-align: center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/nx-stylelint.png" width="600" alt="Nx Stylelint Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/nx-stylelint.png" width="600" alt="Nx Stylelint Logo"/></p>
 
-<div style="text-align: center">
+<div align="center">
 
 # Nx Stylelint
 
