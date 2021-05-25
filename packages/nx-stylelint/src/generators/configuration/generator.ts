@@ -1,7 +1,6 @@
 import {
   formatFiles,
   joinPathFragments,
-  normalizePath,
   offsetFromRoot,
   readProjectConfiguration,
   updateProjectConfiguration,
@@ -51,8 +50,8 @@ function addStylelintTarget(host: Tree, options: NormalizedSchema) {
   const projectConfig = readProjectConfiguration(host, options.project);
 
   const targetOptions: Partial<LintExecutorSchema> = {
-    config: joinPathFragments(normalizePath(options.projectRoot), stylelintConfigFile),
-    lintFilePatterns: [joinPathFragments(normalizePath(options.projectRoot), '**', '*.{css,scss,sass,less}')],
+    config: joinPathFragments(options.projectRoot, stylelintConfigFile),
+    lintFilePatterns: [joinPathFragments(options.projectRoot, '**', '*.{css,scss,sass,less}')],
   };
 
   if (options.format !== 'string') targetOptions.format = options.format;
@@ -66,5 +65,5 @@ function createStylelintConfig(host: Tree, options: NormalizedSchema) {
     extends: [joinPathFragments(offsetFromRoot(options.projectRoot), stylelintConfigFile)],
   };
 
-  writeJson(host, joinPathFragments(normalizePath(options.projectRoot), stylelintConfigFile), config);
+  writeJson(host, joinPathFragments(options.projectRoot, stylelintConfigFile), config);
 }
