@@ -84,4 +84,4 @@ jobs:
         run: npm ci
 
       - name: E2E
-        run: npx nx e2e nx-stylelint-e2e
+        run: npx nx e2e nx-stylelint-e2e --skip-nx-cache
