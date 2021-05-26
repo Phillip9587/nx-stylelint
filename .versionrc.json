@@ -3,15 +3,15 @@
   "types": [
     { "type": "build", "hidden": true },
     { "type": "chore", "section": "Others" },
-    { "type": "ci", "hidden": true },
+    { "type": "ci", "section": "CI" },
     { "type": "docs", "section": "Documentation" },
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
     { "type": "perf", "section": "Performance Improvements" },
-    { "type": "refactor", "hidden": true },
+    { "type": "refactor", "section": "Refactorings" },
     { "type": "revert", "hidden": true },
     { "type": "style", "hidden": true },
-    { "type": "test", "hidden": true }
+    { "type": "test", "section": "Tests" }
   ],
   "packageFiles": [
     {
