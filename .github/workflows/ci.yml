@@ -45,10 +45,43 @@ jobs:
         if: ${{ always() }}
         run: npx nx test nx-stylelint
 
+      - name: Build
+        if: ${{ always() }}
+        run: npx nx build nx-stylelint
+
       - name: E2E
         if: ${{ always() }}
         run: npx nx e2e nx-stylelint-e2e
 
-      - name: Build
-        if: ${{ always() }}
-        run: npx nx build nx-stylelint
+  e2e:
+    name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        node-version:
+          - 12.x
+          - 14.x
+      fail-fast: false
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: E2E
+        run: npx nx e2e nx-stylelint-e2e
