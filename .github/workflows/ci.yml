@@ -49,10 +49,6 @@ jobs:
         if: ${{ always() }}
         run: npx nx build nx-stylelint
 
-      - name: E2E
-        if: ${{ always() }}
-        run: npx nx e2e nx-stylelint-e2e
-
   e2e:
     name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
     runs-on: ${{ matrix.os }}
@@ -66,6 +62,7 @@ jobs:
         node-version:
           - 12.x
           - 14.x
+          - 16.x
       fail-fast: false
 
     steps:
