@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.0-beta.0...v12.1.0) (2021-05-26)
+
+
+### Documentation
+
+* documented the style option of the configuration generator and fixed some typos ([eca9df8](https://github.com/Phillip9587/nx-stylelint/commit/eca9df89e3e8f4c5f1f38bebf55640992b521a33))
+
+
+### Tests
+
+* **e2e:** increase e2e test timeout from 60s to 90s ([3453993](https://github.com/Phillip9587/nx-stylelint/commit/34539938a9be9a95b938f2d56ea77595654e910a))
+
+
+### Others
+
+* **changelog:** updated conventional changelog configuration to show additional sections ([1b1845f](https://github.com/Phillip9587/nx-stylelint/commit/1b1845f15dcb091e86533753bb695798034bdba1))
+
 ## [12.1.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.0.0...v12.1.0-beta.0) (2021-05-26)
 
 
