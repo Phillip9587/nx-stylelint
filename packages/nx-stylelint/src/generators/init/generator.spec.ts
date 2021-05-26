@@ -144,7 +144,7 @@ describe('nx-stylelint:init generator', () => {
     await generator(tree, defaultOptions);
 
     expect(logger.warn).toBeCalledWith(
-      "Default Task Runner not found. Please add 'stylelint' target to cacheableOperations of your task runner!"
+      "Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!\nSee: https://nx.dev/latest/node/core-concepts/configuration#tasks-runner-options"
     );
   });
 });

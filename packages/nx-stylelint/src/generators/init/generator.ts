@@ -2,14 +2,12 @@ import {
   updateJson,
   addDependenciesToPackageJson,
   writeJson,
-  GeneratorCallback,
   formatFiles,
   logger,
-  readWorkspaceConfiguration,
-  updateWorkspaceConfiguration,
   readJson,
+  stripIndents,
 } from '@nrwl/devkit';
-import type { Tree, WorkspaceConfiguration } from '@nrwl/devkit';
+import type { Tree, NxJsonConfiguration, GeneratorCallback } from '@nrwl/devkit';
 import {
   recommendedRootStylelintConfiguration,
   stylelintConfigFile,
@@ -25,46 +23,35 @@ import type { InitGeneratorSchema } from './schema';
 /** nx-stylelint:init generator */
 export default async function (host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
   const rootConfigExists = host.exists(stylelintConfigFile);
-  const installTask = checkDependenciesInstalled(host, rootConfigExists);
+  const installTask = updateDependencies(host, rootConfigExists);
 
   if (!rootConfigExists) createRecommendedStylelintConfiguration(host);
   else logger.info(`Stylelint root configuration found! Skipping creation of root ${stylelintConfigFile}!`);
 
-  addStylelintToWorkspaceConfiguration(host);
+  updateNxJson(host);
   updateExtensions(host);
 
   if (options.skipFormat !== true) await formatFiles(host);
   return installTask;
 }
 
-function checkDependenciesInstalled(host: Tree, rootConfigExists: boolean) {
+function updateDependencies(host: Tree, rootConfigExists: boolean) {
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  packageJson.dependencies = packageJson.dependencies ?? {};
-  packageJson.devDependencices = packageJson.devDependencices ?? {};
+  packageJson.dependencies ??= {};
 
-  if (!packageJson.dependencies['stylelint'] && !packageJson.devDependencies['stylelint'])
-    devDependencies['stylelint'] = stylelintVersion;
+  if (!packageJson.dependencies.stylelint) devDependencies.stylelint = stylelintVersion;
 
-  // When root configuration does not exists install packages for recommended stylelint configuration
+  // If the root configuration does not exists install packages for a recommended stylelint configuration
   if (!rootConfigExists) {
-    if (
-      !packageJson.dependencies['stylelint-config-idiomatic-order'] &&
-      !packageJson.devDependencies['stylelint-config-idiomatic-order']
-    )
+    if (!packageJson.dependencies['stylelint-config-idiomatic-order'])
       devDependencies['stylelint-config-idiomatic-order'] = stylelintConfigIdiomaticOrderVersion;
 
-    if (
-      !packageJson.dependencies['stylelint-config-prettier'] &&
-      !packageJson.devDependencies['stylelint-config-prettier']
-    )
+    if (!packageJson.dependencies['stylelint-config-prettier'])
       devDependencies['stylelint-config-prettier'] = stylelintConfigPrettierVersion;
 
-    if (
-      !packageJson.dependencies['stylelint-config-standard'] &&
-      !packageJson.devDependencies['stylelint-config-standard']
-    )
+    if (!packageJson.dependencies['stylelint-config-standard'])
       devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
   }
 
@@ -75,7 +62,7 @@ function updateExtensions(host: Tree) {
   if (!host.exists(VSCodeExtensionsFilePath)) return;
 
   updateJson(host, VSCodeExtensionsFilePath, (json) => {
-    json.recommendations = json.recommendations ?? [];
+    json.recommendations ??= [];
 
     if (Array.isArray(json.recommendations) && !json.recommendations.includes(stylelintVSCodeExtension))
       json.recommendations.push(stylelintVSCodeExtension);
@@ -84,31 +71,32 @@ function updateExtensions(host: Tree) {
   });
 }
 
-function addStylelintToWorkspaceConfiguration(host: Tree) {
-  const workspace: WorkspaceConfiguration = readWorkspaceConfiguration(host);
+function updateNxJson(host: Tree) {
+  updateJson<NxJsonConfiguration>(host, 'nx.json', (nxJson) => {
+    // Add root .stylelintrc.json to implicit dependencies
+    nxJson.implicitDependencies ??= {};
+    nxJson.implicitDependencies[stylelintConfigFile] = '*';
 
-  // Add root .stylelintrc.json to implicit dependencies
-  workspace.implicitDependencies = workspace.implicitDependencies ?? {};
-  workspace.implicitDependencies[stylelintConfigFile] = '*';
+    // Add stylelint target to cacheableOperations
+    if (nxJson.tasksRunnerOptions?.default) {
+      const taskRunner = nxJson.tasksRunnerOptions?.default;
 
-  // Add stylelint target to cacheableOperations
-  if (workspace.tasksRunnerOptions?.default) {
-    const taskRunner = workspace.tasksRunnerOptions?.default;
-    taskRunner.options = taskRunner.options ?? {};
+      taskRunner.options ??= {};
+      taskRunner.options.cacheableOperations ??= [];
 
-    taskRunner.options.cacheableOperations = taskRunner.options.cacheableOperations ?? [];
+      if (!taskRunner.options.cacheableOperations.includes('stylelint'))
+        taskRunner.options.cacheableOperations.push('stylelint');
 
-    if (!taskRunner.options.cacheableOperations.includes('stylelint'))
-      taskRunner.options.cacheableOperations.push('stylelint');
+      nxJson.tasksRunnerOptions.default = taskRunner;
+    } else {
+      logger.warn(
+        stripIndents`Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!
+          See: https://nx.dev/latest/node/core-concepts/configuration#tasks-runner-options`
+      );
+    }
 
-    workspace.tasksRunnerOptions.default = taskRunner;
-  } else {
-    logger.warn(
-      "Default Task Runner not found. Please add 'stylelint' target to cacheableOperations of your task runner!"
-    );
-  }
-
-  updateWorkspaceConfiguration(host, workspace);
+    return nxJson;
+  });
 }
 
 function createRecommendedStylelintConfiguration(host: Tree) {
