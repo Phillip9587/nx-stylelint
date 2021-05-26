@@ -3,21 +3,26 @@ import { logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
-import { loadStylelint } from './utils';
+import { loadStylelint } from '../../utils/stylelint';
 import type { LinterOptions, LinterResult } from 'stylelint';
+import { isFormatter, defaultFormatter } from '../../utils/formatter';
 
 export default async function runExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  process.chdir(context.cwd);
+  let stylelint;
+  try {
+    stylelint = await loadStylelint();
+  } catch (error) {
+    logger.error(error instanceof Error ? error.message : error);
+    return { success: false };
+  }
 
   const projectName = context.projectName || '<???>';
   const projectRoot = context.projectName ? context.workspace.projects[projectName].root : context.root;
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
-
-  const stylelint = await loadStylelint();
 
   const stylelintOptions: Partial<LinterOptions> = {
     configFile: options.config,
@@ -26,7 +31,7 @@ export default async function runExecutor(
     reportNeedlessDisables: true,
     // Cast to any to support stylelint tap formatter which is not included in the outdated stylelint types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formatter: options.format as any,
+    formatter: isFormatter(options.format) ? (options.format as any) : defaultFormatter,
     fix: options.fix,
   };
 

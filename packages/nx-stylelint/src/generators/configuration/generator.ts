@@ -13,6 +13,8 @@ import type { ConfigurationGeneratorSchema } from './schema';
 import init from '../init/generator';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
 import { defaultTargetConfiguration, stylelintConfigFile } from '../../defaults';
+import { isStyleExtension } from '../../utils/style-extension';
+import { isFormatter, defaultFormatter } from '../../utils/formatter';
 
 interface NormalizedSchema extends ConfigurationGeneratorSchema {
   projectRoot: string;
@@ -25,15 +27,17 @@ export default async function (host: Tree, options: ConfigurationGeneratorSchema
 
   const normalizedOptions = normalizeSchema(host, options);
 
-  if (normalizedOptions.stylelintTargetExists)
-    throw new Error(`Project '${options.project}' already has a stylelint target.`);
+  if (normalizedOptions.stylelintTargetExists) {
+    logger.error(`Project '${options.project}' already has a stylelint target.`);
+    return;
+  }
 
   logger.info(`Adding Stylelint configuration and target to '${options.project}' ...\n`);
 
   createStylelintConfig(host, normalizedOptions);
   addStylelintTarget(host, normalizedOptions);
 
-  if (options.skipFormat == false) await formatFiles(host);
+  if (options.skipFormat !== true) await formatFiles(host);
 }
 
 function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): NormalizedSchema {
@@ -41,17 +45,23 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
 
   return {
     ...options,
+    format: isFormatter(options.format) ? options.format : defaultFormatter,
     projectRoot: projectConfig.root,
     stylelintTargetExists: projectConfig.targets.stylelint != null,
+    style: isStyleExtension(options.style) ? options.style : 'css',
   };
 }
 
 function addStylelintTarget(host: Tree, options: NormalizedSchema) {
   const projectConfig = readProjectConfiguration(host, options.project);
 
+  const lintFilePatterns: string[] = [joinPathFragments(options.projectRoot, '**', '*.css')];
+  if (options.style !== 'css')
+    lintFilePatterns.push(joinPathFragments(options.projectRoot, '**', `*.${options.style}`));
+
   const targetOptions: Partial<LintExecutorSchema> = {
     config: joinPathFragments(options.projectRoot, stylelintConfigFile),
-    lintFilePatterns: [joinPathFragments(options.projectRoot, '**', '*.{css,scss,sass,less}')],
+    lintFilePatterns,
   };
 
   if (options.format !== 'string') targetOptions.format = options.format;

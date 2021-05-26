@@ -1,3 +1,4 @@
+import type { Formatter } from '../../utils/formatter';
 export interface LintExecutorSchema {
   config: string;
   fix: boolean;
@@ -8,5 +9,3 @@ export interface LintExecutorSchema {
   outputFile?: string;
   silent: boolean;
 }
-
-export type Formatter = 'compact' | 'json' | 'string' | 'tap' | 'unix' | 'verbose';

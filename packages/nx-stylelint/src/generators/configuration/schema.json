@@ -53,6 +53,29 @@
       "description": "Skip formatting files.",
       "type": "boolean",
       "default": false
+    },
+    "style": {
+      "description": "The style extension which is used for style files. Will be added to the lintFilePatterns which contains CSS files as a default value.",
+      "type": "string",
+      "default": "css",
+      "x-prompt": {
+        "message": "Which stylesheet format do you use for this project?",
+        "type": "list",
+        "items": [
+          {
+            "value": "css",
+            "label": "CSS (.css) (default)"
+          },
+          {
+            "value": "scss",
+            "label": "SASS (.scss) [ http://sass-lang.com ]"
+          },
+          {
+            "value": "less",
+            "label": "LESS (.css)  [ http://lesscss.org   ]"
+          }
+        ]
+      }
     }
   },
   "required": ["project"]
