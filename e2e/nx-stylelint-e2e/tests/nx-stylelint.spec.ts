@@ -6,9 +6,8 @@ import {
   updateFile,
   cleanup,
   uniq,
-  runPackageManagerInstall,
 } from '@nrwl/nx-plugin/testing';
-import { NxJsonConfiguration, WorkspaceJsonConfiguration } from '@nrwl/devkit';
+import type { NxJsonConfiguration, WorkspaceJsonConfiguration } from '@nrwl/devkit';
 
 describe('nx-stylelint e2e', () => {
   describe('nx-stylelint:init', () => {
@@ -46,7 +45,7 @@ describe('nx-stylelint e2e', () => {
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
       expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
-    }, 60000);
+    }, 90000);
 
     it('should not update .stylelintrc.json if present', async () => {
       updateFile(
@@ -77,7 +76,7 @@ describe('nx-stylelint e2e', () => {
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
       expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
-    }, 60000);
+    }, 90000);
   });
 
   describe('nx-stylelint:configuration', () => {
@@ -140,7 +139,7 @@ describe('nx-stylelint e2e', () => {
           lintFilePatterns: [`libs/${projName}/**/*.css`],
         },
       });
-    }, 60000);
+    }, 90000);
 
     describe('--format', () => {
       it('should add a stylelint configuration to a project and set the specified formatter', async () => {
@@ -195,7 +194,7 @@ describe('nx-stylelint e2e', () => {
             format: 'json',
           },
         });
-      }, 60000);
+      }, 90000);
     });
 
     describe('--style', () => {
@@ -250,7 +249,7 @@ describe('nx-stylelint e2e', () => {
             lintFilePatterns: [`libs/${projName}/**/*.css`, `libs/${projName}/**/*.scss`],
           },
         });
-      }, 60000);
+      }, 90000);
     });
   });
 });
