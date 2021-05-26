@@ -108,7 +108,7 @@ describe('nx-stylelint:init generator', () => {
     expect(extensions.recommendations).toContain('stylelint.vscode-stylelint');
   });
 
-  it('should add cacheableOperations array with stylelin target to default taks runner in nx.json if it does not exist', async () => {
+  it('should add cacheableOperations array with stylelint target to default taks runner in nx.json if it does not exist', async () => {
     updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
       const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
       if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = undefined;
@@ -120,7 +120,7 @@ describe('nx-stylelint:init generator', () => {
     expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toContain('stylelint');
   });
 
-  it('should not add stylelint targer to cacheableOperations when it already exists', async () => {
+  it('should not add stylelint target to cacheableOperations when it already exists', async () => {
     updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
       const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
       if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = ['stylelint'];

@@ -116,6 +116,16 @@ Type: `boolean`
 
 Default: `false`
 
+#### `style`
+
+The style extension which is used for style files. Will be added to the lintFilePatterns which contains CSS files as a default value.
+
+Type: `string`
+
+Possible values: `css`, `scss`, `less`
+
+Default: `css`
+
 ## `nx-stylelint:lint` executor
 
 Run stylelint on a project.
