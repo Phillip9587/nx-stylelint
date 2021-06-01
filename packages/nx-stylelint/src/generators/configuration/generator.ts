@@ -23,7 +23,7 @@ interface NormalizedSchema extends ConfigurationGeneratorSchema {
 
 /** nx-stylelint:configuration generator */
 export default async function (host: Tree, options: ConfigurationGeneratorSchema): Promise<void> {
-  await init(host, { skipFormat: options.skipFormat });
+  await (await init(host, { skipFormat: options.skipFormat }))();
 
   const normalizedOptions = normalizeSchema(host, options);
 
