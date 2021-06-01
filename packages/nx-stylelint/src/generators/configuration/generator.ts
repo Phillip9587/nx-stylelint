@@ -7,7 +7,7 @@ import {
   writeJson,
   logger,
 } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
+import type { Tree, GeneratorCallback } from '@nrwl/devkit';
 import type { Configuration as StylelintConfiguration } from 'stylelint';
 import type { ConfigurationGeneratorSchema } from './schema';
 import init from '../init/generator';
@@ -22,8 +22,8 @@ interface NormalizedSchema extends ConfigurationGeneratorSchema {
 }
 
 /** nx-stylelint:configuration generator */
-export default async function (host: Tree, options: ConfigurationGeneratorSchema): Promise<void> {
-  await (await init(host, { skipFormat: options.skipFormat }))();
+export default async function (host: Tree, options: ConfigurationGeneratorSchema): Promise<void | GeneratorCallback> {
+  const initGenerator = await init(host, { skipFormat: options.skipFormat });
 
   const normalizedOptions = normalizeSchema(host, options);
 
@@ -38,6 +38,8 @@ export default async function (host: Tree, options: ConfigurationGeneratorSchema
   addStylelintTarget(host, normalizedOptions);
 
   if (options.skipFormat !== true) await formatFiles(host);
+
+  return initGenerator;
 }
 
 function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): NormalizedSchema {
