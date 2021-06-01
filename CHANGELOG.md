@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.0...v12.1.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **configuration generator:** run install step during configuration ([fbe9be3](https://github.com/Phillip9587/nx-stylelint/commit/fbe9be3e21f7ebd15e474eeb7d4ade0d138a9878)), closes [#70](https://github.com/Phillip9587/nx-stylelint/issues/70)
+
+
+### Others
+
+* **deps:** update dependency @nrwl/nx-cloud to v12.1.3 ([#65](https://github.com/Phillip9587/nx-stylelint/issues/65)) ([bc6d58e](https://github.com/Phillip9587/nx-stylelint/commit/bc6d58e62abe74e5a8c69825840bf1bc58929ec5))
+* **deps:** update dependency @types/stylelint to v13 ([#68](https://github.com/Phillip9587/nx-stylelint/issues/68)) ([3338f12](https://github.com/Phillip9587/nx-stylelint/commit/3338f128d837d128aa39f0823305e9d1e9904544))
+* **deps:** update nrwl monorepo to v12.3.5 ([#67](https://github.com/Phillip9587/nx-stylelint/issues/67)) ([4d122dc](https://github.com/Phillip9587/nx-stylelint/commit/4d122dc5ad8d620a709ea866d45cc2b631b25f0d))
+* **deps:** update typescript-eslint monorepo to v4.26.0 ([#60](https://github.com/Phillip9587/nx-stylelint/issues/60)) ([f4ea276](https://github.com/Phillip9587/nx-stylelint/commit/f4ea2765968debe55b0b58731be990f0589b729e))
+
 ## [12.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.0-beta.0...v12.1.0) (2021-05-26)
 
 
