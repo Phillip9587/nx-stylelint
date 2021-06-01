@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.1...v12.1.2) (2021-06-01)
+
+
+### Refactorings
+
+* **configuration generator:** improve install step during configuration ([a1b2fc8](https://github.com/Phillip9587/nx-stylelint/commit/a1b2fc84b7c233dcc8c616797e20fe105b04392d))
+
+
+### CI
+
+* **github:** added actions/cache step to cache the npm cache dir ([002932b](https://github.com/Phillip9587/nx-stylelint/commit/002932b3366c9d12c0d78d9040a375e4afc4cf38))
+
 ### [12.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.0...v12.1.1) (2021-06-01)
 
 
