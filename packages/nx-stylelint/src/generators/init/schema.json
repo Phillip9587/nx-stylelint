@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
+  "$id": "NxStylelintInit",
   "cli": "nx",
-  "id": "NxStylelintInit",
   "title": "Add stylelint configuration and dependencies to the workspace",
   "type": "object",
   "additionalProperties": false,
