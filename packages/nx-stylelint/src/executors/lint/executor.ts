@@ -1,5 +1,5 @@
 import type { LintExecutorSchema } from './schema';
-import { logger } from '@nrwl/devkit';
+import { convertNxExecutor, logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
@@ -7,7 +7,7 @@ import { loadStylelint } from '../../utils/stylelint';
 import type { LinterOptions, LinterResult } from 'stylelint';
 import { isFormatter, defaultFormatter } from '../../utils/formatter';
 
-export default async function runExecutor(
+export async function lintExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
@@ -60,3 +60,6 @@ export default async function runExecutor(
       (result.errored === false && (options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
   };
 }
+
+export default lintExecutor;
+export const lintBuilder = convertNxExecutor(lintExecutor);

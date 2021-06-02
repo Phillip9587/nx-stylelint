@@ -6,6 +6,7 @@ import {
   logger,
   readJson,
   stripIndents,
+  convertNxGenerator,
 } from '@nrwl/devkit';
 import type { Tree, NxJsonConfiguration, GeneratorCallback } from '@nrwl/devkit';
 import {
@@ -21,7 +22,7 @@ import {
 import type { InitGeneratorSchema } from './schema';
 
 /** nx-stylelint:init generator */
-export default async function (host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
+export async function initGenerator(host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
   const rootConfigExists = host.exists(stylelintConfigFile);
   const installTask = updateDependencies(host, rootConfigExists);
 
@@ -34,6 +35,9 @@ export default async function (host: Tree, options: InitGeneratorSchema): Promis
   if (options.skipFormat !== true) await formatFiles(host);
   return installTask;
 }
+
+export default initGenerator;
+export const initSchematic = convertNxGenerator(initGenerator);
 
 function updateDependencies(host: Tree, rootConfigExists: boolean) {
   const packageJson = readJson(host, 'package.json');

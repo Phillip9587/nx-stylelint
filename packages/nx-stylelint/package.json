@@ -25,8 +25,8 @@
     "node": "^12.0.0 || >=14.0.0"
   },
   "main": "src/index.js",
-  "generators": "./generators.json",
-  "executors": "./executors.json",
+  "schematics": "./generators.json",
+  "builders": "./executors.json",
   "dependencies": {
     "@nrwl/devkit": "^12.0.0",
     "tslib": "^2.2.0"

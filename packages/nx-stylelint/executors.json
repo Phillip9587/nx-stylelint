@@ -6,5 +6,12 @@
       "schema": "./src/executors/lint/schema.json",
       "description": "Run stylelint on a project"
     }
+  },
+  "builders": {
+    "lint": {
+      "implementation": "./src/executors/lint/executor#lintBuilder",
+      "schema": "./src/executors/lint/schema.json",
+      "description": "Run stylelint on a project"
+    }
   }
 }
