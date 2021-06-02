@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.2.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.2...v12.2.0) (2021-06-02)
+
+
+### Features
+
+* added schematics and builders support ([f0b1e19](https://github.com/Phillip9587/nx-stylelint/commit/f0b1e197a5fda8697342ee50320ff361424f5f77))
+
+
+### Bug Fixes
+
+* updated schema id to use  field instead of the deprecated id field ([960844b](https://github.com/Phillip9587/nx-stylelint/commit/960844b36fd5852ee2f2e28599b1279c00c3026e))
+
+
+### Others
+
+* **deps:** update dependency @nrwl/nx-cloud to v12.1.4 ([#71](https://github.com/Phillip9587/nx-stylelint/issues/71)) ([16eef8c](https://github.com/Phillip9587/nx-stylelint/commit/16eef8c6f073cee1be1175114aaaeefc54385011))
+* **deps:** update dependency @types/node to v14.17.2 ([#72](https://github.com/Phillip9587/nx-stylelint/issues/72)) ([7ea69de](https://github.com/Phillip9587/nx-stylelint/commit/7ea69defe4f05e0256e29160203ade543a5baf38))
+
 ### [12.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.1...v12.1.2) (2021-06-01)
 
 
