@@ -63,7 +63,7 @@
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "dotenv": "8.2.0",
-    "eslint": "7.28.0",
+    "eslint": "7.29.0",
     "eslint-config-prettier": "8.3.0",
     "husky": "6.0.0",
     "is-ci": "3.0.0",
