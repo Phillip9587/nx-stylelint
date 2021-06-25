@@ -4,9 +4,6 @@
   "overrides": [
     {
       "files": ["*.ts", "*.js"],
-      "parserOptions": {
-        "project": ["packages/nx-stylelint/tsconfig.*?.json"]
-      },
       "rules": {}
     }
   ]
