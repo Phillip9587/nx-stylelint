@@ -67,7 +67,7 @@
     "eslint-config-prettier": "8.3.0",
     "husky": "6.0.0",
     "is-ci": "3.0.0",
-    "jest": "27.0.5",
+    "jest": "27.0.6",
     "prettier": "2.2.1",
     "pretty-quick": "3.1.1",
     "standard-version": "9.3.0",
