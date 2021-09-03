@@ -56,7 +56,7 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
     ...options,
     format: isFormatter(options.format) ? options.format : defaultFormatter,
     projectRoot: projectConfig.root,
-    stylelintTargetExists: projectConfig.targets.stylelint != null,
+    stylelintTargetExists: projectConfig.targets?.stylelint != null,
     style: isStyleExtension(options.style) ? options.style : 'css',
   };
 }
@@ -75,7 +75,7 @@ function addStylelintTarget(host: Tree, options: NormalizedSchema) {
 
   if (options.format !== 'string') targetOptions.format = options.format;
 
-  projectConfig.targets.stylelint = { ...defaultTargetConfiguration, options: targetOptions };
+  projectConfig.targets = { stylelint: { ...defaultTargetConfiguration, options: targetOptions } };
   updateProjectConfiguration(host, options.project, projectConfig);
 }
 

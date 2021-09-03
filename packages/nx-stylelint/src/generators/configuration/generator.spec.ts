@@ -33,11 +33,11 @@ describe('nx-stylelint:configuration generator', () => {
     const config = readProjectConfiguration(tree, 'test');
 
     expect(config).toBeDefined();
-    expect(config.targets.stylelint).toBeDefined();
-    expect(config.targets.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets.stylelint.options.config).toBe(projectStylelint);
-    expect(config.targets.stylelint.options.format).toBeUndefined();
-    expect(config.targets.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
+    expect(config.targets?.stylelint).toBeDefined();
+    expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
+    expect(config.targets?.stylelint.options.config).toBe(projectStylelint);
+    expect(config.targets?.stylelint.options.format).toBeUndefined();
+    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
@@ -53,7 +53,7 @@ describe('nx-stylelint:configuration generator', () => {
     await generator(tree, defaultOptions);
 
     const config = readProjectConfiguration(tree, 'test');
-    expect(config.targets.stylelint).toBeDefined();
+    expect(config.targets?.stylelint).toBeDefined();
 
     await generator(tree, defaultOptions);
 
@@ -68,9 +68,9 @@ describe('nx-stylelint:configuration generator', () => {
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
-      expect(config.targets.stylelint).toBeDefined();
-      expect(config.targets.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets.stylelint.options.format).toBe('json');
+      expect(config.targets?.stylelint).toBeDefined();
+      expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
+      expect(config.targets?.stylelint.options.format).toBe('json');
     });
   });
 
@@ -82,10 +82,10 @@ describe('nx-stylelint:configuration generator', () => {
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
-      expect(config.targets.stylelint).toBeDefined();
-      expect(config.targets.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
-      expect(config.targets.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.scss');
+      expect(config.targets?.stylelint).toBeDefined();
+      expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
+      expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
+      expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.scss');
     });
   });
 });

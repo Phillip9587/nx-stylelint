@@ -60,8 +60,6 @@
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "nx-stylelint:build",
-            "npmPackageName": "nx-stylelint",
-            "pluginOutputPath": "dist/packages/nx-stylelint",
             "jestConfig": "e2e/nx-stylelint-e2e/jest.config.js"
           }
         }
