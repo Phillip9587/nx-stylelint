@@ -70,7 +70,7 @@
     "jest": "27.0.6",
     "prettier": "2.3.2",
     "pretty-quick": "3.1.1",
-    "standard-version": "9.3.0",
+    "standard-version": "9.3.1",
     "stylelint": "13.13.1",
     "ts-jest": "27.0.3",
     "ts-node": "9.1.1",
