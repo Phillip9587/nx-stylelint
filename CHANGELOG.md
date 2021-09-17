@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.3.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.2.0...v12.3.0) (2021-09-17)
+
+
+### Features
+
+* **core:** update supported range of node version to only include LTS and current versions ([47deacc](https://github.com/Phillip9587/nx-stylelint/commit/47deacce731dbcc2071b336f7b13f000a0b13a2c))
+
+
+### Bug Fixes
+
+* should fix Nx using the architect instead of the executor ([f88cf42](https://github.com/Phillip9587/nx-stylelint/commit/f88cf4239e652a835f50ca8bb612919ad972987e)), closes [#110](https://github.com/Phillip9587/nx-stylelint/issues/110)
+
+
+### Others
+
+* **deps:** migrated to Nx 12.4.0 ([2feb700](https://github.com/Phillip9587/nx-stylelint/commit/2feb700c446d7a1b078ecc573f543b517b6fc2c6))
+* **deps:** migrated to Nx 12.9.0 ([c2d23e0](https://github.com/Phillip9587/nx-stylelint/commit/c2d23e023536365a2666adfb2abd051d90616a3c))
+* **deps:** pin dependency @angular-devkit/architect to 0.1202.4 ([#122](https://github.com/Phillip9587/nx-stylelint/issues/122)) ([9a69a9e](https://github.com/Phillip9587/nx-stylelint/commit/9a69a9e103283e76886dffec4645a97d90a07fcc))
+* **deps:** update commitlint monorepo to v13 ([#111](https://github.com/Phillip9587/nx-stylelint/issues/111)) ([039c189](https://github.com/Phillip9587/nx-stylelint/commit/039c189bfc15170ab0d9b326233a657712354f9c))
+* **deps:** update dependency @nrwl/nx-cloud to v12.1.6 ([#73](https://github.com/Phillip9587/nx-stylelint/issues/73)) ([d2fe823](https://github.com/Phillip9587/nx-stylelint/commit/d2fe8230c593521d6b4ca9dc71c73c644bb47b6a))
+* **deps:** update dependency @nrwl/nx-cloud to v12.1.8 ([#74](https://github.com/Phillip9587/nx-stylelint/issues/74)) ([8c0469d](https://github.com/Phillip9587/nx-stylelint/commit/8c0469ddd65bd16899c467d8c4c18a69ba72c510))
+* **deps:** update dependency @nrwl/nx-cloud to v12.2.1 ([#80](https://github.com/Phillip9587/nx-stylelint/issues/80)) ([4792804](https://github.com/Phillip9587/nx-stylelint/commit/4792804b8da567cd9e9a267173acac9af0a4f208))
+* **deps:** update dependency @nrwl/nx-cloud to v12.2.4 ([#85](https://github.com/Phillip9587/nx-stylelint/issues/85)) ([5572750](https://github.com/Phillip9587/nx-stylelint/commit/5572750f49d7044068c1ab30f5f38005c23c0c0f))
+* **deps:** update dependency @types/node to v14.17.3 ([#79](https://github.com/Phillip9587/nx-stylelint/issues/79)) ([d42b8d1](https://github.com/Phillip9587/nx-stylelint/commit/d42b8d1da57e16c63cbfb3e7810b20f3e7121f4b))
+* **deps:** update dependency @types/node to v14.17.4 ([#93](https://github.com/Phillip9587/nx-stylelint/issues/93)) ([5d94298](https://github.com/Phillip9587/nx-stylelint/commit/5d94298cec48c5d63e81be5c9c8966a27fa878fd))
+* **deps:** update dependency @types/node to v14.17.5 ([#105](https://github.com/Phillip9587/nx-stylelint/issues/105)) ([33dec47](https://github.com/Phillip9587/nx-stylelint/commit/33dec4779c6f248a756b654f3c7b66d6ea81f61c))
+* **deps:** update dependency @types/stylelint to v13.13.2 ([#119](https://github.com/Phillip9587/nx-stylelint/issues/119)) ([2bfdfd5](https://github.com/Phillip9587/nx-stylelint/commit/2bfdfd5b28ef92b24e037f8114cf20861be078b0))
+* **deps:** update dependency eslint to v7.28.0 ([#76](https://github.com/Phillip9587/nx-stylelint/issues/76)) ([88ca798](https://github.com/Phillip9587/nx-stylelint/commit/88ca7981c4be92e0fbba819a149e97cffd8ac944))
+* **deps:** update dependency eslint to v7.29.0 ([#90](https://github.com/Phillip9587/nx-stylelint/issues/90)) ([ecd1fd0](https://github.com/Phillip9587/nx-stylelint/commit/ecd1fd02c30572d34cdf13f9f7e2c2ddeb93c324))
+* **deps:** update dependency eslint to v7.31.0 ([#102](https://github.com/Phillip9587/nx-stylelint/issues/102)) ([82aa455](https://github.com/Phillip9587/nx-stylelint/commit/82aa455c988777472892c5484001b26b6625ebb1))
+* **deps:** update dependency eslint to v7.32.0 ([#113](https://github.com/Phillip9587/nx-stylelint/issues/113)) ([2b4fd8a](https://github.com/Phillip9587/nx-stylelint/commit/2b4fd8a075f29aaa0f366cb9d8c7c1bc4c76540d))
+* **deps:** update dependency pretty-quick to v3.1.1 ([#89](https://github.com/Phillip9587/nx-stylelint/issues/89)) ([9abd18f](https://github.com/Phillip9587/nx-stylelint/commit/9abd18f43498148b6ea6518927f5634acf9a951e))
+* **deps:** update nrwl monorepo to v12.3.6 ([#75](https://github.com/Phillip9587/nx-stylelint/issues/75)) ([6d40d18](https://github.com/Phillip9587/nx-stylelint/commit/6d40d181acbfcbf10cc8fc537aced0b06b3b40d9))
+* **deps:** update typescript-eslint monorepo to v4.26.1 ([#78](https://github.com/Phillip9587/nx-stylelint/issues/78)) ([a6b32ea](https://github.com/Phillip9587/nx-stylelint/commit/a6b32ea2bda3cb686b7b41ff105a9eda1c7a7061))
+* **deps:** update typescript-eslint monorepo to v4.27.0 ([#84](https://github.com/Phillip9587/nx-stylelint/issues/84)) ([346b945](https://github.com/Phillip9587/nx-stylelint/commit/346b94520fdd327ccc1e65769ec9ec8eff4fbb4b))
+* **deps:** update typescript-eslint monorepo to v4.28.0 ([#91](https://github.com/Phillip9587/nx-stylelint/issues/91)) ([3edbc3e](https://github.com/Phillip9587/nx-stylelint/commit/3edbc3e34df80ff1e51e6ba1558a034621cdc675))
+* **deps:** update typescript-eslint monorepo to v4.28.3 ([#96](https://github.com/Phillip9587/nx-stylelint/issues/96)) ([b8a55fd](https://github.com/Phillip9587/nx-stylelint/commit/b8a55fdadc6f9ba284f442ece4105a4045a259f9))
+* **deps:** update typescript-eslint monorepo to v4.29.0 ([#107](https://github.com/Phillip9587/nx-stylelint/issues/107)) ([ef475bb](https://github.com/Phillip9587/nx-stylelint/commit/ef475bba6a2e1fe0aa5f64e6553af062129779f8))
+* **deps:** updated deps ([89b2960](https://github.com/Phillip9587/nx-stylelint/commit/89b29602e368c7e8d2a58cdf5322b4da7875769c))
+* **deps:** updated deps ([f2de34b](https://github.com/Phillip9587/nx-stylelint/commit/f2de34b4da0bfedaaec50b635fd00b8aac524dc0))
+
 ## [12.2.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.1.2...v12.2.0) (2021-06-02)
 
 
