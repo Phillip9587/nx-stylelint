@@ -1,5 +1,5 @@
 import type { LintExecutorSchema } from './schema';
-import { convertNxExecutor, logger } from '@nrwl/devkit';
+import { logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
 import { join } from 'path';
 import { writeFileSync } from 'fs';
@@ -62,4 +62,3 @@ export async function lintExecutor(
 }
 
 export default lintExecutor;
-export const lintBuilder = convertNxExecutor(lintExecutor);

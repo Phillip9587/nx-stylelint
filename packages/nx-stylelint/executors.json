@@ -9,7 +9,7 @@
   },
   "builders": {
     "lint": {
-      "implementation": "./src/executors/lint/executor#lintBuilder",
+      "implementation": "./src/executors/lint/compat",
       "schema": "./src/executors/lint/schema.json",
       "description": "Run stylelint on a project"
     }

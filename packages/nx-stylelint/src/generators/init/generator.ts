@@ -6,7 +6,6 @@ import {
   logger,
   readJson,
   stripIndents,
-  convertNxGenerator,
 } from '@nrwl/devkit';
 import type { Tree, NxJsonConfiguration, GeneratorCallback } from '@nrwl/devkit';
 import {
@@ -37,7 +36,6 @@ export async function initGenerator(host: Tree, options: InitGeneratorSchema): P
 }
 
 export default initGenerator;
-export const initSchematic = convertNxGenerator(initGenerator);
 
 function updateDependencies(host: Tree, rootConfigExists: boolean) {
   const packageJson = readJson(host, 'package.json');

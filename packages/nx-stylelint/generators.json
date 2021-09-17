@@ -19,14 +19,14 @@
   },
   "schematics": {
     "init": {
-      "factory": "./src/generators/init/generator#initSchematic",
+      "factory": "./src/generators/init/compat",
       "schema": "./src/generators/init/schema.json",
       "description": "Add stylelint configuration and dependencies to the workspace",
       "aliases": ["ng-add"],
       "hidden": true
     },
     "configuration": {
-      "factory": "./src/generators/configuration/generator#configurationSchematic",
+      "factory": "./src/generators/configuration/compat",
       "schema": "./src/generators/configuration/schema.json",
       "description": "Add stylelint configuration to a project",
       "aliases": ["config"]
