@@ -43,7 +43,7 @@
     "release": "standard-version --no-verify"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1202.6",
+    "@angular-devkit/architect": "0.1202.7",
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
     "@nrwl/cli": "12.9.0",
