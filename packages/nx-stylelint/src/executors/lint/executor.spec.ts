@@ -84,6 +84,7 @@ describe('nx-stylelint:lint executor', () => {
     root: '/root',
     cwd: '/root',
     workspace: {
+      npmScope: '',
       version: 2,
       projects: {},
     },

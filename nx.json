@@ -3,6 +3,10 @@
   "affected": {
     "defaultBase": "main"
   },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  },
+  "defaultProject": "nx-stylelint",
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -20,15 +24,6 @@
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
-    }
-  },
-  "projects": {
-    "nx-stylelint": {
-      "tags": []
-    },
-    "nx-stylelint-e2e": {
-      "tags": [],
-      "implicitDependencies": ["nx-stylelint"]
     }
   },
   "workspaceLayout": {

@@ -50,7 +50,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "nx-stylelint-e2e": {
       "projectType": "application",
@@ -64,11 +65,9 @@
             "jestConfig": "e2e/nx-stylelint-e2e/jest.config.js"
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["nx-stylelint"]
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  },
-  "defaultProject": "nx-stylelint"
+  }
 }

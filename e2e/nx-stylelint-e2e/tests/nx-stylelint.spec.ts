@@ -7,7 +7,7 @@ import {
   cleanup,
   uniq,
 } from '@nrwl/nx-plugin/testing';
-import type { NxJsonConfiguration, WorkspaceJsonConfiguration } from '@nrwl/devkit';
+import type { NxJsonConfiguration, ProjectConfiguration, WorkspaceJsonConfiguration } from '@nrwl/devkit';
 
 describe('nx-stylelint e2e', () => {
   describe('nx-stylelint:init', () => {
@@ -130,9 +130,9 @@ describe('nx-stylelint e2e', () => {
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
       expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
 
-      const workspaceJson: WorkspaceJsonConfiguration = readJson('workspace.json');
+      const projectJson: ProjectConfiguration = readJson(`libs/${projName}/project.json`);
 
-      expect(workspaceJson.projects[projName].targets.stylelint).toMatchObject({
+      expect(projectJson.targets.stylelint).toMatchObject({
         executor: 'nx-stylelint:lint',
         options: {
           config: `libs/${projName}/.stylelintrc.json`,
@@ -184,9 +184,9 @@ describe('nx-stylelint e2e', () => {
         expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
         expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
 
-        const workspaceJson: WorkspaceJsonConfiguration = readJson('workspace.json');
+        const projectJson: ProjectConfiguration = readJson(`libs/${projName}/project.json`);
 
-        expect(workspaceJson.projects[projName].targets.stylelint).toMatchObject({
+        expect(projectJson.targets.stylelint).toMatchObject({
           executor: 'nx-stylelint:lint',
           options: {
             config: `libs/${projName}/.stylelintrc.json`,
@@ -240,9 +240,9 @@ describe('nx-stylelint e2e', () => {
         expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
         expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
 
-        const workspaceJson: WorkspaceJsonConfiguration = readJson('workspace.json');
+        const projectJson: ProjectConfiguration = readJson(`libs/${projName}/project.json`);
 
-        expect(workspaceJson.projects[projName].targets.stylelint).toMatchObject({
+        expect(projectJson.targets.stylelint).toMatchObject({
           executor: 'nx-stylelint:lint',
           options: {
             config: `libs/${projName}/.stylelintrc.json`,
