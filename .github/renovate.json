@@ -6,6 +6,7 @@
   "packageRules": [
     {
       "matchPackagePrefixes": ["@nrwl/"],
+      "excludePackageNames": ["@nrwl/nx-cloud"],
       "enabled": false
     }
   ]
