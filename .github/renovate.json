@@ -5,7 +5,7 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchPackagePrefixes": ["nrwl"],
+      "matchPackagePrefixes": ["@nrwl/"],
       "enabled": false
     }
   ]
