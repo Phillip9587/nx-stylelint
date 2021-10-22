@@ -2,5 +2,11 @@
   "extends": ["config:base"],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackagePrefixes": ["nrwl"],
+      "enabled": false
+    }
+  ]
 }
