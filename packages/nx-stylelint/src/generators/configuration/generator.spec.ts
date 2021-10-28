@@ -1,5 +1,5 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { readProjectConfiguration, readJson, logger } from '@nrwl/devkit';
+import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
 import { libraryGenerator } from '@nrwl/node';
 import type { Configuration as StylelintConfiguration } from 'stylelint';
@@ -33,6 +33,39 @@ describe('nx-stylelint:configuration generator', () => {
     const config = readProjectConfiguration(tree, 'test');
 
     expect(config).toBeDefined();
+    expect(config.targets?.stylelint).toBeDefined();
+    expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
+    expect(config.targets?.stylelint.options.config).toBe(projectStylelint);
+    expect(config.targets?.stylelint.options.format).toBeUndefined();
+    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
+    expect(tree.exists('.stylelintrc.json')).toBeTruthy();
+    expect(tree.exists(projectStylelint)).toBeTruthy();
+
+    const projectStylelintConfig: Partial<StylelintConfiguration> = readJson(tree, projectStylelint);
+    expect(projectStylelintConfig.extends).toHaveLength(1);
+    expect(projectStylelintConfig.extends).toContain('../../.stylelintrc.json');
+  });
+
+  it('should add stylelint target alongside other targets, run init generator and create project .stylelinrrc.json', async () => {
+    const projectStylelint = `libs/test/.stylelintrc.json`;
+
+    await libraryGenerator(tree, { name: 'test' });
+
+    let config = readProjectConfiguration(tree, 'test');
+    config.targets = {
+      package: {
+        executor: '@nrwl/node:package',
+      },
+    };
+    updateProjectConfiguration(tree, 'test', config);
+
+    await generator(tree, defaultOptions);
+
+    config = readProjectConfiguration(tree, 'test');
+
+    expect(config).toBeDefined();
+    expect(config.targets?.package).toBeDefined();
+    expect(config.targets?.package.executor).toBe('@nrwl/node:package');
     expect(config.targets?.stylelint).toBeDefined();
     expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
     expect(config.targets?.stylelint.options.config).toBe(projectStylelint);
