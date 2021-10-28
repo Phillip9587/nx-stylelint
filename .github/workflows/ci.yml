@@ -98,10 +98,10 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
 
-      - name: Use Node.js LTS 14.x
+      - name: Use Node.js LTS 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://registry.npmjs.org
           check-latest: true
           cache: npm
