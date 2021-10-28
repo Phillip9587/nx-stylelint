@@ -1,6 +1,6 @@
 {
   "name": "nx-stylelint-src",
-  "version": "12.3.0",
+  "version": "12.3.1",
   "description": "Stylelint Plugin for Nx",
   "author": "Phillip Barta",
   "private": true,
@@ -79,4 +79,3 @@
     "typescript": "4.4.4"
   }
 }
-

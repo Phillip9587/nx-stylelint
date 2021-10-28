@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.1](https://github.com/Phillip9587/nx-stylelint/compare/v12.3.0...v12.3.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* updated stylelint peer dependency version to only support stylelint 13 ([499c4da](https://github.com/Phillip9587/nx-stylelint/commit/499c4daae14fe9eb22890a6c22874fe291818d26))
+* **configuration:** fixed configuration generator removing all other targets of the project ([8a37fc3](https://github.com/Phillip9587/nx-stylelint/commit/8a37fc31cb26d2f04e9bf5f42785a09631b79669)), closes [#145](https://github.com/Phillip9587/nx-stylelint/issues/145)
+
+
+### CI
+
+* **github:** merge workflows ([362a2b4](https://github.com/Phillip9587/nx-stylelint/commit/362a2b4218fa999dca1d21d3ed191e831928c9b4))
+
+
+### Others
+
+* **deps:** migrate to Nx 13.1.2 ([99f30a6](https://github.com/Phillip9587/nx-stylelint/commit/99f30a6488140f284aaba48b6eb1c26c5bdba16e))
+* updated supported node.js versions ([8124b7e](https://github.com/Phillip9587/nx-stylelint/commit/8124b7ed3e03b0651ed54dce9da3a9486d3f3333))
+* **deps:** migration to Nx 13 ([e7e4e8b](https://github.com/Phillip9587/nx-stylelint/commit/e7e4e8b65536529ad1c5f6b49c86eeec74f1c2a8))
+* **deps:** update commitlint monorepo ([#130](https://github.com/Phillip9587/nx-stylelint/issues/130)) ([9e04fdb](https://github.com/Phillip9587/nx-stylelint/commit/9e04fdbf5b3cba65c6ebdd43521cbd735eecb1f1))
+* **deps:** update dependency @nrwl/nx-cloud to v12.3.11 ([#126](https://github.com/Phillip9587/nx-stylelint/issues/126)) ([9e2aad5](https://github.com/Phillip9587/nx-stylelint/commit/9e2aad5e8dc92f49d11c2c7c3f50c21537ac5c0a))
+* **deps:** update dependency @nrwl/nx-cloud to v12.3.14 ([#128](https://github.com/Phillip9587/nx-stylelint/issues/128)) ([7e626a7](https://github.com/Phillip9587/nx-stylelint/commit/7e626a792e36285bc1861a7a449b43659f44dbd3))
+* **deps:** update dependency @types/jest to v27.0.2 ([#127](https://github.com/Phillip9587/nx-stylelint/issues/127)) ([91fa9ac](https://github.com/Phillip9587/nx-stylelint/commit/91fa9ac32214fa8ffa75f80fd34b0cfc730fe760))
+* **deps:** update dependency jest to v27.2.1 ([#120](https://github.com/Phillip9587/nx-stylelint/issues/120)) ([e7a8212](https://github.com/Phillip9587/nx-stylelint/commit/e7a8212c4e2c5d8e64f23aa5ef3c6ef297a55e3c))
+* **deps:** update dependency jest to v27.2.5 ([#129](https://github.com/Phillip9587/nx-stylelint/issues/129)) ([349d3c1](https://github.com/Phillip9587/nx-stylelint/commit/349d3c16f191efd676bd730e42a023f0af7a4f7a))
+* **deps:** update dependency standard-version to v9.3.2 ([#137](https://github.com/Phillip9587/nx-stylelint/issues/137)) ([e64212e](https://github.com/Phillip9587/nx-stylelint/commit/e64212e56ca3ec8dd9ade6d4e1dc37b34c733d28))
+* **deps:** update dependency ts-jest to v27.0.7 ([#135](https://github.com/Phillip9587/nx-stylelint/issues/135)) ([b5d890c](https://github.com/Phillip9587/nx-stylelint/commit/b5d890c07c3e9636c95d2012c68e33aa9396ce4a))
+* **deps:** update dependency typescript to v4.4.4 ([#134](https://github.com/Phillip9587/nx-stylelint/issues/134)) ([26ffd83](https://github.com/Phillip9587/nx-stylelint/commit/26ffd83810b080f8001d5f909f7472362133c19d))
+* **renovate:** exclude `@nrwl/nx-cloud` from disabled ([ae78747](https://github.com/Phillip9587/nx-stylelint/commit/ae78747c7ba60c5e5c88e1489a791550bf3d7c77))
+* **renovate:** fixed prefix pattern for [@nrwl](https://github.com/nrwl) packages ([113d035](https://github.com/Phillip9587/nx-stylelint/commit/113d03563f01b770c8d13cb5fa118b17deeb263d))
+* **renovate:** renovate should ignore [@nrwl](https://github.com/nrwl) package updates ([b9427ba](https://github.com/Phillip9587/nx-stylelint/commit/b9427ba61b64781813f3792420ab4d4f110700cf))
+
 ## [12.3.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.2.0...v12.3.0) (2021-09-17)
 
 
