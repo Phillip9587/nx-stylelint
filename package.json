@@ -58,7 +58,7 @@
     "@nrwl/workspace": "13.1.2",
     "@types/jest": "27.0.2",
     "@types/node": "16.11.3",
-    "@types/stylelint": "13.13.2",
+    "@types/stylelint": "13.13.3",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
     "commitizen": "4.2.4",
