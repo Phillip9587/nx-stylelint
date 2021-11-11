@@ -57,7 +57,7 @@
     "@nrwl/tao": "13.1.2",
     "@nrwl/workspace": "13.1.2",
     "@types/jest": "27.0.2",
-    "@types/node": "16.11.3",
+    "@types/node": "16.11.7",
     "@types/stylelint": "13.13.2",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
