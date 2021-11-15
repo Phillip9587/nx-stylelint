@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-beta.4](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.3...v13.0.0-beta.4) (2021-11-15)
+
+
+### Bug Fixes
+
+* **migrations:** always add the packages to package.json ([757c496](https://github.com/Phillip9587/nx-stylelint/commit/757c4962e51aa3a781fd67a7dad2ad5e12ca2467))
+
 ## [13.0.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.2...v13.0.0-beta.3) (2021-11-15)
 
 
