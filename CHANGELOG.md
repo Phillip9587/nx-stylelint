@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.4...v13.0.0) (2021-11-15)
+
+
+### Documentation
+
+* added scss generator and ignore markdown files for CI runs ([e841f2d](https://github.com/Phillip9587/nx-stylelint/commit/e841f2d8214ca536332e46e4cce6414b50dc76ae))
+
 ## [13.0.0-beta.4](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.3...v13.0.0-beta.4) (2021-11-15)
 
 
