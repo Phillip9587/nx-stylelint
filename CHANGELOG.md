@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.1...v13.0.0-beta.2) (2021-11-15)
+
+
+### Features
+
+* **executor:** let stylelint resolve config file when not explicitly defined in target config ([b46d88b](https://github.com/Phillip9587/nx-stylelint/commit/b46d88b7c530952df063c38596c1c92fa240a37a))
+
+
+### Bug Fixes
+
+* fixed glob patters for generated .stylelintrc.json configs ([d971ccb](https://github.com/Phillip9587/nx-stylelint/commit/d971ccbf6fecbf511944b82eddac0a688e5dafab))
+
+
+### Others
+
+* **deps:** update dependency stylelint-config-prettier to v9 ([#149](https://github.com/Phillip9587/nx-stylelint/issues/149)) ([894af57](https://github.com/Phillip9587/nx-stylelint/commit/894af575221d926c57f076f3bcc7a1ca3c781ff6))
+
 ## [13.0.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.0...v13.0.0-beta.1) (2021-11-15)
 
 
