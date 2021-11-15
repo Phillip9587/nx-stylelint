@@ -51,7 +51,7 @@ describe('addOutputs', () => {
       ignoreFiles: ['**/*'],
       overrides: [
         {
-          files: ['*.css'],
+          files: ['**/*.css'],
           extends: [
             'stylelint-config-standard',
             'stylelint-config-sass-guidelines',
@@ -61,7 +61,7 @@ describe('addOutputs', () => {
           rules: {},
         },
         {
-          files: ['*.scss'],
+          files: ['**/*.scss'],
           extends: [
             'stylelint-config-standard-scss',
             'stylelint-config-sass-guidelines',
@@ -82,11 +82,11 @@ describe('addOutputs', () => {
       ignoreFiles: ['!**/*'],
       overrides: [
         {
-          files: ['*.css'],
+          files: ['**/*.css'],
           rules: {},
         },
         {
-          files: ['*.scss'],
+          files: ['**/*.scss'],
           rules: {},
         },
       ],

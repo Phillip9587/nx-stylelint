@@ -22,12 +22,12 @@ function updateRootStylelintConfig(host: Tree): void {
 
     json.overrides ??= [];
     json.overrides.unshift({
-      files: ['*.scss'],
+      files: ['**/*.scss'],
       extends: getExtendsWithoutDuplicates(json, 'stylelint-config-standard-scss', ['stylelint-config-standard']),
       rules: {},
     });
     json.overrides.unshift({
-      files: ['*.css'],
+      files: ['**/*.css'],
       extends: getExtendsWithoutDuplicates(json, 'stylelint-config-standard', []),
       rules: {},
     });
@@ -66,11 +66,11 @@ function updateProjectStylelintConfigs(host: Tree): void {
 
           json.overrides ??= [];
           json.overrides.unshift({
-            files: ['*.scss'],
+            files: ['**/*.scss'],
             rules: {},
           });
           json.overrides.unshift({
-            files: ['*.css'],
+            files: ['**/*.css'],
             rules: {},
           });
 

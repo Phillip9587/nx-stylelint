@@ -11,13 +11,13 @@ import {
 } from '@nrwl/devkit';
 import type { Tree, GeneratorCallback, WorkspaceConfiguration } from '@nrwl/devkit';
 import {
-  recommendedRootStylelintConfiguration,
   stylelintConfigPrettierVersion,
   stylelintConfigStandardVersion,
   stylelintVersion,
   stylelintVSCodeExtension,
-} from '../../defaults';
+} from '../../utils/versions';
 import type { InitGeneratorSchema } from './schema';
+import type { Config } from 'stylelint';
 
 /** nx-stylelint:init generator */
 export async function initGenerator(host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
@@ -105,5 +105,15 @@ function updateWorkspace(host: Tree) {
 }
 
 function createRecommendedStylelintConfiguration(host: Tree) {
-  writeJson(host, '.stylelintrc.json', recommendedRootStylelintConfiguration);
+  writeJson<Config>(host, '.stylelintrc.json', {
+    ignoreFiles: ['**/*'],
+    overrides: [
+      {
+        files: ['**/*.css'],
+        extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+        rules: {},
+      },
+    ],
+    rules: {},
+  });
 }

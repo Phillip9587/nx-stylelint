@@ -10,7 +10,7 @@ import {
 } from '@nrwl/devkit';
 import type { ProjectConfiguration, Tree } from '@nrwl/devkit';
 import type { Config } from 'stylelint';
-import { recommendedScssOverrideConfiguration, stylelintConfigStandardScssVersion } from '../../defaults';
+import { stylelintConfigStandardScssVersion } from '../../utils/versions';
 import type { ScssGeneratorSchema } from './schema';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
 
@@ -73,7 +73,11 @@ function ensureRootScssConfiguration(tree: Tree) {
         return false;
       })
     ) {
-      config.overrides.push(recommendedScssOverrideConfiguration);
+      config.overrides.push({
+        files: ['**/*.scss'],
+        extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier'],
+        rules: {},
+      });
     }
 
     return config;
@@ -93,19 +97,23 @@ function updateProjectConfig(tree: Tree, options: NormalizedSchema) {
 
   updateProjectConfiguration(tree, options.project, projectConfig);
 
-  updateJson<Config, Config>(tree, targetOptions.config, (config) => {
+  const configFilePath = targetOptions.config
+    ? targetOptions.config
+    : joinPathFragments(projectConfig.root, '.stylelintrc.json');
+
+  updateJson<Config, Config>(tree, configFilePath, (config) => {
     config.overrides ??= [];
 
     if (
       !config.overrides.some((v) => {
         if (typeof v.files === 'string') {
-          if (v.files.includes('*.scss')) return true;
-        } else if (v.files.some((v) => v.includes('*.scss'))) return true;
+          if (v.files.includes('**/*.scss')) return true;
+        } else if (v.files.some((v) => v.includes('**/*.scss'))) return true;
         return false;
       })
     ) {
       config.overrides.push({
-        files: ['*.scss'],
+        files: ['**/*.scss'],
         rules: {},
       });
     }

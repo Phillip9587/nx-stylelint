@@ -29,7 +29,7 @@ describe('nx-stylelint-e2e', () => {
         ignoreFiles: ['**/*'],
         overrides: [
           {
-            files: ['*.css'],
+            files: ['**/*.css'],
             extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
             rules: {},
           },
@@ -73,7 +73,7 @@ describe('nx-stylelint-e2e', () => {
         ignoreFiles: ['**/*'],
         overrides: [
           {
-            files: ['*.css'],
+            files: ['**/*.css'],
             extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
             rules: {},
           },
@@ -87,7 +87,7 @@ describe('nx-stylelint-e2e', () => {
         ignoreFiles: ['!**/*'],
         overrides: [
           {
-            files: ['*.css'],
+            files: ['**/*.css'],
             rules: {},
           },
         ],
@@ -139,7 +139,7 @@ describe('nx-stylelint-e2e', () => {
           ignoreFiles: ['**/*'],
           overrides: [
             {
-              files: ['*.css'],
+              files: ['**/*.css'],
               extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
               rules: {},
             },
@@ -153,7 +153,7 @@ describe('nx-stylelint-e2e', () => {
           ignoreFiles: ['!**/*'],
           overrides: [
             {
-              files: ['*.css'],
+              files: ['**/*.css'],
               rules: {},
             },
           ],
@@ -209,12 +209,12 @@ describe('nx-stylelint-e2e', () => {
         ignoreFiles: ['**/*'],
         overrides: [
           {
-            files: ['*.css'],
+            files: ['**/*.css'],
             extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
             rules: {},
           },
           {
-            files: ['*.scss'],
+            files: ['**/*.scss'],
             extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier'],
             rules: {},
           },
@@ -228,11 +228,11 @@ describe('nx-stylelint-e2e', () => {
         ignoreFiles: ['!**/*'],
         overrides: [
           {
-            files: ['*.css'],
+            files: ['**/*.css'],
             rules: {},
           },
           {
-            files: ['*.scss'],
+            files: ['**/*.scss'],
             rules: {},
           },
         ],

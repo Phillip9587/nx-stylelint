@@ -86,7 +86,7 @@ function createStylelintConfig(host: Tree, options: NormalizedSchema) {
     ignoreFiles: ['!**/*'],
     overrides: [
       {
-        files: ['*.css'],
+        files: ['**/*.css'],
         rules: {},
       },
     ],

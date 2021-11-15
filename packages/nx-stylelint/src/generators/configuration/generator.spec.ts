@@ -46,7 +46,7 @@ describe('nx-stylelint:configuration generator', () => {
     expect(projectStylelintConfig.ignoreFiles).toContain('!**/*');
     expect(projectStylelintConfig.overrides).toStrictEqual<ConfigOverride[]>([
       {
-        files: ['*.css'],
+        files: ['**/*.css'],
         rules: {},
       },
     ]);
