@@ -9,7 +9,7 @@ on:
       - v*
 
 env:
-  NX_BRANCH: ${{ github.event.number }}
+  NX_BRANCH: ${{ github.event.number || github.ref }}
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
