@@ -43,6 +43,11 @@
             "input": "./packages/nx-stylelint",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/nx-stylelint",
+            "glob": "migrations.json",
+            "output": "."
           }
         ]
       }
