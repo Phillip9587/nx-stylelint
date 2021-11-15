@@ -10,11 +10,12 @@ describe('update-stylelint-targets', () => {
     tree = createTreeWithEmptyWorkspace();
 
     addProjectConfiguration(tree, 'proj', {
-      root: 'proj',
+      root: 'libs/proj',
       targets: {
         target1: {
           executor: 'nx-stylelint:lint',
           options: {
+            config: 'libs/proj/.stylelintrc.json',
             format: 'json',
           },
         },
@@ -22,6 +23,7 @@ describe('update-stylelint-targets', () => {
           executor: 'nx-stylelint:lint',
           outputs: ['dist'],
           options: {
+            config: 'libs/proj/configs/.stylelintrc.json',
             format: 'string',
           },
         },
@@ -42,7 +44,7 @@ describe('update-stylelint-targets', () => {
     await updateStylelintTargets(tree);
 
     expect(readProjectConfiguration(tree, 'proj')).toStrictEqual<ProjectConfiguration>({
-      root: 'proj',
+      root: 'libs/proj',
       targets: {
         target1: {
           executor: 'nx-stylelint:lint',
@@ -54,6 +56,7 @@ describe('update-stylelint-targets', () => {
         target2: {
           executor: 'nx-stylelint:lint',
           options: {
+            config: 'libs/proj/configs/.stylelintrc.json',
             formatter: 'string',
           },
           outputs: ['dist', '{options.outputFile}'],

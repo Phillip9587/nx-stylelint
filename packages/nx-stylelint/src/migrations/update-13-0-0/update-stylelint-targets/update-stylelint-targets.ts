@@ -1,4 +1,4 @@
-import { formatFiles, getProjects, updateProjectConfiguration } from '@nrwl/devkit';
+import { formatFiles, getProjects, joinPathFragments, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
 
 function addOutputs(host: Tree) {
@@ -34,9 +34,24 @@ function changeFormatToFormatter(host: Tree) {
   }
 }
 
+function removeConfigTargetOption(host: Tree) {
+  for (const [projectName, project] of getProjects(host)) {
+    if (!project.targets) {
+      continue;
+    }
+
+    for (const target of Object.values(project.targets).filter((t) => t.executor === 'nx-stylelint:lint')) {
+      if (target.options.config === joinPathFragments(project.root, '.stylelintrc.json')) delete target.options.config;
+    }
+
+    updateProjectConfiguration(host, projectName, project);
+  }
+}
+
 export default async function updateStylelintTargets(host: Tree) {
   addOutputs(host);
   changeFormatToFormatter(host);
+  removeConfigTargetOption(host);
 
   await formatFiles(host);
 }
