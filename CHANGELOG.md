@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.2...v13.0.0-beta.3) (2021-11-15)
+
+
+### Features
+
+* added migration to remove config target option if it is in project root ([15862f3](https://github.com/Phillip9587/nx-stylelint/commit/15862f3271e58e63e80ac67821aac98f9dee5fe2))
+
 ## [13.0.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.1...v13.0.0-beta.2) (2021-11-15)
 
 
