@@ -7,7 +7,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* Stylelint 13 Support removed. Only Stylelint 14 supported. Format option has been renamed to formatter to match stylelint.
+* Stylelint 13 Support removed. Only Stylelint 14 supported. 
+* **nx-stylelint:lint executor:** Format option has been renamed to formatter to match stylelint.
+* **nx-stylelint:configuration generator:** Format option has been renamed to formatter to match stylelint.
+* **nx-stylelint:configuration generator:** Style option removed. Please use the `nx-stylelint:scss` generator to add scss support. Other syntaxes must be configured manually
 
 ### CI
 
