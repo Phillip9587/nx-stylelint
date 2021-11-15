@@ -64,7 +64,6 @@ function addStylelintTarget(host: Tree, options: NormalizedSchema) {
   const projectConfig = readProjectConfiguration(host, options.project);
 
   const targetOptions: Partial<LintExecutorSchema> = {
-    config: joinPathFragments(options.projectRoot, '.stylelintrc.json'),
     lintFilePatterns: [joinPathFragments(options.projectRoot, '**', '*.css')],
     formatter: options.formatter === 'string' ? undefined : options.formatter,
   };

@@ -103,7 +103,6 @@ describe('nx-stylelint-e2e', () => {
       expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
-          config: `libs/${projName}/.stylelintrc.json`,
           lintFilePatterns: [`libs/${projName}/**/*.css`],
         },
         outputs: ['{options.outputFile}'],
@@ -169,7 +168,6 @@ describe('nx-stylelint-e2e', () => {
         expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
           executor: 'nx-stylelint:lint',
           options: {
-            config: `libs/${projName}/.stylelintrc.json`,
             lintFilePatterns: [`libs/${projName}/**/*.css`],
             formatter: 'json',
           },
@@ -248,7 +246,6 @@ describe('nx-stylelint-e2e', () => {
       expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
-          config: `libs/${projName}/.stylelintrc.json`,
           lintFilePatterns: [`libs/${projName}/**/*.css`, `libs/${projName}/**/*.scss`],
         },
         outputs: ['{options.outputFile}'],

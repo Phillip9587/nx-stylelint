@@ -1,7 +1,7 @@
 import type { FormatterType } from 'stylelint';
 
 export interface LintExecutorSchema {
-  config: string;
+  config?: string;
   fix: boolean;
   force: boolean;
   formatter: FormatterType;

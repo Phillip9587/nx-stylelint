@@ -51,6 +51,12 @@
           }
         ]
       }
+    },
+    "e2e": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx nx run nx-stylelint-e2e:e2e"
+      }
     }
   },
   "tags": []

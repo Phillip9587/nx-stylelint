@@ -47,5 +47,5 @@
       "default": false
     }
   },
-  "required": ["config", "lintFilePatterns"]
+  "required": ["lintFilePatterns"]
 }

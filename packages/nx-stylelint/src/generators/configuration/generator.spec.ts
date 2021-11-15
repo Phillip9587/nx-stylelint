@@ -34,7 +34,6 @@ describe('nx-stylelint:configuration generator', () => {
     expect(config).toBeDefined();
     expect(config.targets?.stylelint).toBeDefined();
     expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.stylelint.options.config).toBe(projectStylelint);
     expect(config.targets?.stylelint.options.format).toBeUndefined();
     expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
@@ -74,7 +73,6 @@ describe('nx-stylelint:configuration generator', () => {
     expect(config.targets?.package.executor).toBe('@nrwl/node:package');
     expect(config.targets?.stylelint).toBeDefined();
     expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.stylelint.options.config).toBe(projectStylelint);
     expect(config.targets?.stylelint.options.format).toBeUndefined();
     expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();

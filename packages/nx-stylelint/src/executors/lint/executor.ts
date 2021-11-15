@@ -11,6 +11,8 @@ export async function lintExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
+  process.chdir(context.cwd);
+
   let stylelint: StylelintPublicApi;
   try {
     stylelint = await loadStylelint();
@@ -20,9 +22,8 @@ export async function lintExecutor(
   }
 
   const projectName = context.projectName || '<???>';
-  const projectRoot = context.projectName ? context.workspace.projects[projectName].root : context.root;
 
-  if (!existsSync(options.config)) {
+  if (options.config && !existsSync(options.config)) {
     logger.error('The given stylelint config file does not exist.');
     return { success: false };
   }
@@ -35,11 +36,8 @@ export async function lintExecutor(
 
   const stylelintOptions: LinterOptions = {
     configFile: options.config,
-    configBasedir: projectRoot,
     files: options.lintFilePatterns,
     reportNeedlessDisables: true,
-    // Cast to any to support stylelint tap formatter which is not included in the outdated stylelint types
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     formatter: validFormatter ? options.formatter : defaultFormatter,
     fix: options.fix,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,

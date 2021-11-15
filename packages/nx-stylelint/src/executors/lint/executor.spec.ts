@@ -122,7 +122,6 @@ describe('nx-stylelint:lint executor', () => {
     expect(success).toBeTruthy();
     expect(mockLint).toHaveBeenCalledWith({
       configFile: '.stylelintrc.json',
-      configBasedir: '/root',
       files: ['styles.scss'],
       reportNeedlessDisables: true,
       formatter: 'string',
