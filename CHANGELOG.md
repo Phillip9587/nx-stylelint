@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.0...v13.0.0-beta.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* add migrations.json to assets ([37f8889](https://github.com/Phillip9587/nx-stylelint/commit/37f888980f1f201868148746a5b1514f1b2a8c64))
+
+
+### Others
+
+* mention breaking changes correct ([e2c687f](https://github.com/Phillip9587/nx-stylelint/commit/e2c687f5a8703d7478b77ade2a27375ac521ac22))
+
+
+### CI
+
+* **github:** set NX_BRANCH environment variable correct ([484e245](https://github.com/Phillip9587/nx-stylelint/commit/484e245dca63faa0d507b58144ef0838334d086d))
+* **github:** updated workflow to support npm beta releases ([eba24b8](https://github.com/Phillip9587/nx-stylelint/commit/eba24b89690233f286a318b5e9d9eea3cd595c33))
+
 ## [13.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.3.1...v13.0.0-beta.0) (2021-11-15)
 
 
