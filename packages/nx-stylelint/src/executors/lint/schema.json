@@ -19,7 +19,7 @@
       "description": "Succeeds even if there were linting errors.",
       "default": false
     },
-    "format": {
+    "formatter": {
       "type": "string",
       "description": "Stylelint output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
       "default": "string",
@@ -35,8 +35,7 @@
     },
     "maxWarnings": {
       "type": "number",
-      "description": "Number of warnings to trigger nonzero exit code.",
-      "default": -1
+      "description": "Number of warnings to trigger nonzero exit code."
     },
     "outputFile": {
       "type": "string",

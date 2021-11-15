@@ -1,17 +1,17 @@
 import type { LintExecutorSchema } from './schema';
 import { logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
-import { join } from 'path';
-import { writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
-import type { LinterOptions, LinterResult } from 'stylelint';
+import type { LinterOptions, LinterResult, PublicApi as StylelintPublicApi } from 'stylelint';
 import { isFormatter, defaultFormatter } from '../../utils/formatter';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ): Promise<{ success: boolean }> {
-  let stylelint;
+  let stylelint: StylelintPublicApi;
   try {
     stylelint = await loadStylelint();
   } catch (error) {
@@ -22,17 +22,27 @@ export async function lintExecutor(
   const projectName = context.projectName || '<???>';
   const projectRoot = context.projectName ? context.workspace.projects[projectName].root : context.root;
 
+  if (!existsSync(options.config)) {
+    logger.error('The given stylelint config file does not exist.');
+    return { success: false };
+  }
+
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  const stylelintOptions: Partial<LinterOptions> = {
+  const validFormatter = isFormatter(options.formatter);
+  if (!validFormatter)
+    logger.warn(`Configured format is not a valid stylelint formatter. Falling back to the default formatter.`);
+
+  const stylelintOptions: LinterOptions = {
     configFile: options.config,
     configBasedir: projectRoot,
     files: options.lintFilePatterns,
     reportNeedlessDisables: true,
     // Cast to any to support stylelint tap formatter which is not included in the outdated stylelint types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formatter: isFormatter(options.format) ? (options.format as any) : defaultFormatter,
+    formatter: validFormatter ? options.formatter : defaultFormatter,
     fix: options.fix,
+    maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);
@@ -43,6 +53,7 @@ export async function lintExecutor(
 
   if (options.outputFile) {
     const outputFilePath = join(context.root, options.outputFile);
+    mkdirSync(dirname(outputFilePath), { recursive: true });
     writeFileSync(outputFilePath, result.output);
   } else if (!options.silent) {
     logger.info(result.output);
@@ -57,7 +68,8 @@ export async function lintExecutor(
   return {
     success:
       options.force ||
-      (result.errored === false && (options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
+      (result.errored === false &&
+        (options.maxWarnings === undefined || options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
   };
 }
 

@@ -1,11 +1,12 @@
-import type { Formatter } from '../../utils/formatter';
+import type { FormatterType } from 'stylelint';
+
 export interface LintExecutorSchema {
   config: string;
   fix: boolean;
   force: boolean;
-  format: Formatter;
+  formatter: FormatterType;
   lintFilePatterns: string[];
-  maxWarnings: number;
+  maxWarnings?: number;
   outputFile?: string;
   silent: boolean;
 }

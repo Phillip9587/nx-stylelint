@@ -33,6 +33,15 @@
   },
   "peerDependencies": {
     "@nrwl/workspace": ">=12.0.0",
-    "stylelint": "^13.0.0"
+    "stylelint": "^14.0.0",
+    "stylelint-config-prettier": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "stylelint-config-prettier": {
+      "optional": true
+    }
+  },
+  "nx-migrations": {
+    "migrations": "./migrations.json"
   }
 }

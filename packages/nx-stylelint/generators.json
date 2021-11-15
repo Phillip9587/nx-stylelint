@@ -15,6 +15,11 @@
       "schema": "./src/generators/configuration/schema.json",
       "description": "Add stylelint configuration to a project",
       "aliases": ["config"]
+    },
+    "scss": {
+      "factory": "./src/generators/scss/generator",
+      "schema": "./src/generators/scss/schema.json",
+      "description": "Add scss support to a nx-stylelint configuration"
     }
   },
   "schematics": {
@@ -30,6 +35,11 @@
       "schema": "./src/generators/configuration/schema.json",
       "description": "Add stylelint configuration to a project",
       "aliases": ["config"]
+    },
+    "scss": {
+      "factory": "./src/generators/scss/compat",
+      "schema": "./src/generators/scss/schema.json",
+      "description": "Add scss support to a nx-stylelint configuration"
     }
   }
 }

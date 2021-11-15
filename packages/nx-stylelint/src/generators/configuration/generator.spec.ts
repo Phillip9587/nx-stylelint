@@ -2,7 +2,7 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
 import { libraryGenerator } from '@nrwl/node';
-import type { Configuration as StylelintConfiguration } from 'stylelint';
+import { Config, ConfigOverride, FormatterType } from 'stylelint';
 
 import generator from './generator';
 import { ConfigurationGeneratorSchema } from './schema';
@@ -10,7 +10,6 @@ import { ConfigurationGeneratorSchema } from './schema';
 const defaultOptions: ConfigurationGeneratorSchema = {
   project: 'test',
   skipFormat: false,
-  style: 'css',
 };
 
 describe('nx-stylelint:configuration generator', () => {
@@ -41,9 +40,16 @@ describe('nx-stylelint:configuration generator', () => {
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
-    const projectStylelintConfig: Partial<StylelintConfiguration> = readJson(tree, projectStylelint);
+    const projectStylelintConfig = readJson<Config>(tree, projectStylelint);
     expect(projectStylelintConfig.extends).toHaveLength(1);
     expect(projectStylelintConfig.extends).toContain('../../.stylelintrc.json');
+    expect(projectStylelintConfig.ignoreFiles).toContain('!**/*');
+    expect(projectStylelintConfig.overrides).toStrictEqual<ConfigOverride[]>([
+      {
+        files: ['*.css'],
+        rules: {},
+      },
+    ]);
   });
 
   it('should add stylelint target alongside other targets, run init generator and create project .stylelinrrc.json', async () => {
@@ -74,7 +80,7 @@ describe('nx-stylelint:configuration generator', () => {
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
-    const projectStylelintConfig: Partial<StylelintConfiguration> = readJson(tree, projectStylelint);
+    const projectStylelintConfig = readJson<Config>(tree, projectStylelint);
     expect(projectStylelintConfig.extends).toHaveLength(1);
     expect(projectStylelintConfig.extends).toContain('../../.stylelintrc.json');
   });
@@ -93,32 +99,33 @@ describe('nx-stylelint:configuration generator', () => {
     expect(logger.error).toHaveBeenCalledWith(`Project 'test' already has a stylelint target.`);
   });
 
-  describe('--format', () => {
+  describe('--formatter', () => {
     it('should add a stylelint target with the specified formatter', async () => {
       await libraryGenerator(tree, { name: 'test' });
-      await generator(tree, { ...defaultOptions, format: 'json' });
+      await generator(tree, { ...defaultOptions, formatter: 'json' });
 
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
       expect(config.targets?.stylelint).toBeDefined();
       expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets?.stylelint.options.format).toBe('json');
+      expect(config.targets?.stylelint.options.formatter).toBe('json');
     });
-  });
 
-  describe('--style', () => {
-    it('should add a a glob pattern for the specified style extension', async () => {
+    it('should print a error if the format is not defined', async () => {
+      logger.error = jest.fn();
       await libraryGenerator(tree, { name: 'test' });
-      await generator(tree, { ...defaultOptions, format: 'json', style: 'scss' });
+      await generator(tree, { ...defaultOptions, formatter: 'test' as unknown as FormatterType });
 
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
       expect(config.targets?.stylelint).toBeDefined();
       expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
-      expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.scss');
+      expect(config.targets?.stylelint.options.formatter).toBeUndefined();
+      expect(logger.error).toHaveBeenCalledWith(
+        `Given formatter 'test' does not exist. Falling back to 'string' formatter.`
+      );
     });
   });
 });

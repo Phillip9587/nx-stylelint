@@ -1,9 +1,7 @@
-import type { Formatter } from '../../utils/formatter';
-import type { StyleExtension } from '../../utils/style-extension';
+import type { FormatterType } from 'stylelint';
 
 export interface ConfigurationGeneratorSchema {
-  format?: Formatter;
+  formatter?: FormatterType;
   project: string;
   skipFormat: boolean;
-  style: StyleExtension;
 }

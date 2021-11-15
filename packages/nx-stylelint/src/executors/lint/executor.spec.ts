@@ -1,23 +1,22 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
 import type { ExecutorContext } from '@nrwl/devkit';
-import type { LinterResult } from 'stylelint';
+import type { LinterResult, PublicApi } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
-import { stylelintConfigFile } from '../../defaults';
 import executor from './executor';
 
 const defaultOptions: LintExecutorSchema = {
-  config: stylelintConfigFile,
+  config: '.stylelintrc.json',
   lintFilePatterns: ['styles.scss'],
-  format: 'string',
+  formatter: 'string',
   silent: false,
   force: false,
   fix: false,
-  maxWarnings: -1,
 };
 
 const defaultMockResult: LinterResult = {
+  reportedDisables: [],
   errored: false,
   output: 'Output',
   results: [],
@@ -37,6 +36,7 @@ const mockResultWithWarnings: LinterResult = {
       ignored: false,
       invalidOptionWarnings: [],
       source: '',
+      parseErrors: [],
     },
   ],
 };
@@ -55,6 +55,7 @@ const mockResultWithErrors: LinterResult = {
       ignored: false,
       invalidOptionWarnings: [],
       source: '',
+      parseErrors: [],
     },
   ],
 };
@@ -74,6 +75,7 @@ const mockResultWithErrorsAndWarnings: LinterResult = {
       ignored: false,
       invalidOptionWarnings: [],
       source: '',
+      parseErrors: [],
     },
   ],
 };
@@ -95,7 +97,7 @@ describe('nx-stylelint:lint executor', () => {
 
   const mockLint = jest.fn().mockImplementation(() => mockResult);
 
-  jest.mock('stylelint', () => {
+  jest.mock('stylelint', (): Partial<PublicApi> => {
     return {
       lint: mockLint,
     };
@@ -106,6 +108,7 @@ describe('nx-stylelint:lint executor', () => {
     jest.clearAllMocks();
     jest.restoreAllMocks();
     jest.spyOn(process, 'chdir').mockImplementation();
+    jest.spyOn(fs, 'existsSync').mockImplementation((path) => (path === '.stylelintrc.json' ? true : false));
     logger.warn = jest.fn();
     logger.error = jest.fn();
     logger.info = jest.fn();
@@ -118,7 +121,7 @@ describe('nx-stylelint:lint executor', () => {
 
     expect(success).toBeTruthy();
     expect(mockLint).toHaveBeenCalledWith({
-      configFile: stylelintConfigFile,
+      configFile: '.stylelintrc.json',
       configBasedir: '/root',
       files: ['styles.scss'],
       reportNeedlessDisables: true,
@@ -184,6 +187,10 @@ describe('nx-stylelint:lint executor', () => {
 
   it('should fail when maxWarnings exceeded', async () => {
     mockResult = mockResultWithWarnings;
+    mockResult.maxWarningsExceeded = {
+      foundWarnings: 14,
+      maxWarnings: 10,
+    };
 
     const { success } = await executor({ ...defaultOptions, maxWarnings: 2 }, mockContext);
 

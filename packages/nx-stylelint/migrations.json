@@ -1,0 +1,34 @@
+{
+  "generators": {
+    "update-to-stylelint-14": {
+      "version": "13.0.0-beta.0",
+      "description": "Updates the .stylelintrc.json configurations.",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-13-0-0/update-configs/update-configs"
+    },
+    "update-stylelint-targets": {
+      "version": "13.0.0-beta.0",
+      "description": "Updates the Stylelint targets.",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-13-0-0/update-stylelint-targets/update-stylelint-targets"
+    }
+  },
+  "packageJsonUpdates": {
+    "13.0.0": {
+      "version": "13.0.0-beta.0",
+      "packages": {
+        "stylelint": {
+          "version": "^14.0.0"
+        },
+        "stylelint-config-standard": {
+          "version": "^23.0.0",
+          "alwaysAddToPackageJson": false
+        },
+        "stylelint-config-standard-scss": {
+          "version": "^2.0.0",
+          "alwaysAddToPackageJson": false
+        }
+      }
+    }
+  }
+}

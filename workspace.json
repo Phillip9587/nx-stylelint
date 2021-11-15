@@ -1,73 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "nx-stylelint": {
-      "root": "packages/nx-stylelint",
-      "sourceRoot": "packages/nx-stylelint/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["packages/nx-stylelint/**/*.ts"]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/nx-stylelint"],
-          "options": {
-            "jestConfig": "packages/nx-stylelint/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/packages/nx-stylelint",
-            "tsConfig": "packages/nx-stylelint/tsconfig.lib.json",
-            "packageJson": "packages/nx-stylelint/package.json",
-            "main": "packages/nx-stylelint/src/index.ts",
-            "assets": [
-              "README.md",
-              "LICENSE",
-              {
-                "input": "./packages/nx-stylelint/src",
-                "glob": "**/schema.{json,d.ts}",
-                "output": "./src"
-              },
-              {
-                "input": "./packages/nx-stylelint",
-                "glob": "generators.json",
-                "output": "."
-              },
-              {
-                "input": "./packages/nx-stylelint",
-                "glob": "executors.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      },
-      "tags": []
-    },
-    "nx-stylelint-e2e": {
-      "projectType": "application",
-      "root": "e2e/nx-stylelint-e2e",
-      "sourceRoot": "e2e/nx-stylelint-e2e/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/nx-plugin:e2e",
-          "options": {
-            "target": "nx-stylelint:build",
-            "jestConfig": "e2e/nx-stylelint-e2e/jest.config.js"
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["nx-stylelint"]
-    }
+    "nx-stylelint": "packages/nx-stylelint",
+    "nx-stylelint-e2e": "e2e/nx-stylelint-e2e"
   }
 }

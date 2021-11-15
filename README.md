@@ -92,7 +92,7 @@ Add configuration to a project:
 
 ### Options
 
-#### `format`
+#### `formatter`
 
 Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).
 
@@ -116,21 +116,13 @@ Type: `boolean`
 
 Default: `false`
 
-#### `style`
-
-The style extension which is used for style files. Will be added to the lintFilePatterns which contains CSS files as a default value.
-
-Type: `string`
-
-Possible values: `css`, `scss`, `less`
-
-Default: `css`
-
 ## `nx-stylelint:lint` executor
 
 Run stylelint on a project.
 
-Options can be configured in `workspace.json` when defining the executor, or when invoking it.
+Target Options can be configured in `project.json` or `workspace.json` when defining the target, or when invoking it.
+
+See: https://nx.dev/l/n/core-concepts/configuration#targets
 
 ### Options
 
@@ -158,7 +150,7 @@ Type: `boolean`
 
 Default: `false`
 
-#### `format`
+#### `formatter`
 
 Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).
 
@@ -179,8 +171,6 @@ Type: `array`
 Number of warnings to trigger a nonzero exit code.
 
 Type: `number`
-
-Default: `-1`
 
 #### `outputFile`
 

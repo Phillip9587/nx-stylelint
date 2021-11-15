@@ -1,9 +1,9 @@
-const Formatters = ['compact', 'json', 'string', 'tap', 'unix', 'verbose'] as const;
-export type Formatter = typeof Formatters[number];
+import { formatters } from 'stylelint';
+import type { FormatterType } from 'stylelint';
 
-export const defaultFormatter: Formatter = 'string';
+export const defaultFormatter: FormatterType = 'string';
 
-export function isFormatter(formatter: unknown): formatter is Formatter {
+export function isFormatter(formatter: unknown): formatter is FormatterType {
   if (typeof formatter !== 'string') return false;
-  return Formatters.includes(formatter as Formatter);
+  return Object.keys(formatters).includes(formatter);
 }
