@@ -18,15 +18,16 @@
       "version": "13.0.0-beta.0",
       "packages": {
         "stylelint": {
-          "version": "^14.0.0"
+          "version": "^14.0.0",
+          "alwaysAddToPackageJson": true
         },
         "stylelint-config-standard": {
           "version": "^23.0.0",
-          "alwaysAddToPackageJson": false
+          "alwaysAddToPackageJson": true
         },
         "stylelint-config-standard-scss": {
           "version": "^2.0.0",
-          "alwaysAddToPackageJson": false
+          "alwaysAddToPackageJson": true
         }
       }
     }
