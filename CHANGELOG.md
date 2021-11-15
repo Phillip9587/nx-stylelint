@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v12.3.1...v13.0.0-beta.0) (2021-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Stylelint 13 Support removed. Only Stylelint 14 supported. Format option has been renamed to formatter to match stylelint.
+
+### CI
+
+* **github:** use node.js 16 (Active LTS) to build and publish the npm package ([6ba178f](https://github.com/Phillip9587/nx-stylelint/commit/6ba178f000d394fe85e8eefe4c9b2f6e0c22c7db))
+
+
+### Others
+
+* **deps:** update dependency @nrwl/nx-cloud to v12.5.2 ([#139](https://github.com/Phillip9587/nx-stylelint/issues/139)) ([d009af3](https://github.com/Phillip9587/nx-stylelint/commit/d009af3066fa47a0005a933682de2a8affedaf56))
+* **deps:** update dependency @types/node to v16.11.6 ([#143](https://github.com/Phillip9587/nx-stylelint/issues/143)) ([6f65b87](https://github.com/Phillip9587/nx-stylelint/commit/6f65b87d6812fb0b5843fb49edd1a81ac724643b))
+
+
+### feature
+
+* Stylelint 14 support ([e8ea536](https://github.com/Phillip9587/nx-stylelint/commit/e8ea5360a57fd9d6fa13bbf130d2353038c4a2d2)), closes [#146](https://github.com/Phillip9587/nx-stylelint/issues/146)
+
 ### [12.3.1](https://github.com/Phillip9587/nx-stylelint/compare/v12.3.0...v12.3.1) (2021-10-28)
 
 
