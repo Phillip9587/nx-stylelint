@@ -7,6 +7,8 @@ on:
       - main
     tags:
       - v*
+    paths-ignore:
+      - '**/*.md'
 
 env:
   NX_BRANCH: ${{ github.event.number || github.ref }}

@@ -116,6 +116,30 @@ Type: `boolean`
 
 Default: `false`
 
+## `nx-stylelint:scss` generator
+
+Add scss support to a nx-stylelint configuration.
+
+### Usage
+
+`nx g nx-stylelint:scss --project projectName`
+
+### Options
+
+#### `project`
+
+The name of the project.
+
+Type: `string`
+
+#### `skipFormat`
+
+Skip formatting files.
+
+Type: `boolean`
+
+Default: `false`
+
 ## `nx-stylelint:lint` executor
 
 Run stylelint on a project.
