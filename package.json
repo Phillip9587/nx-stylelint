@@ -43,8 +43,8 @@
     "release": "standard-version --no-verify"
   },
   "devDependencies": {
-    "@commitlint/cli": "13.2.1",
-    "@commitlint/config-conventional": "13.2.0",
+    "@commitlint/cli": "15.0.0",
+    "@commitlint/config-conventional": "15.0.0",
     "@nrwl/cli": "13.1.4",
     "@nrwl/devkit": "13.1.4",
     "@nrwl/eslint-plugin-nx": "13.1.4",
