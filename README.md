@@ -150,6 +150,14 @@ See: https://nx.dev/l/n/core-concepts/configuration#targets
 
 ### Options
 
+#### `allowEmptyInput`
+
+The executor exits without throwing an error when 'lintFilePatterns' match no files.
+
+Type: `boolean`
+
+Default: `true`
+
 #### `config`
 
 Path of the stylelint configuration file.
