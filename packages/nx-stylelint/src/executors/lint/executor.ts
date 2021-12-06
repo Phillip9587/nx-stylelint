@@ -41,6 +41,7 @@ export async function lintExecutor(
     formatter: validFormatter ? options.formatter : defaultFormatter,
     fix: options.fix,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
+    allowEmptyInput: options.allowEmptyInput
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);

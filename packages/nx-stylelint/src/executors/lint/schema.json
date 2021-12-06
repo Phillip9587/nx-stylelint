@@ -5,6 +5,11 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "allowEmptyInput": {
+      "type": "boolean",
+      "description": "The executor exits without throwing an error when 'lintFilePatterns' match no files.",
+      "default": true
+    },
     "config": {
       "type": "string",
       "description": "Path of the stylelint configuration file."

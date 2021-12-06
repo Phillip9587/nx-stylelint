@@ -7,6 +7,7 @@ import { normalize } from 'path';
 import executor from './executor';
 
 const defaultOptions: LintExecutorSchema = {
+  allowEmptyInput: true,
   config: '.stylelintrc.json',
   lintFilePatterns: ['styles.scss'],
   formatter: 'string',
@@ -121,6 +122,7 @@ describe('nx-stylelint:lint executor', () => {
 
     expect(success).toBeTruthy();
     expect(mockLint).toHaveBeenCalledWith({
+      allowEmptyInput: true,
       configFile: '.stylelintrc.json',
       files: ['styles.scss'],
       reportNeedlessDisables: true,
