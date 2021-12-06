@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0...v13.1.0) (2021-12-06)
+
+### Features
+
+- **executor:** add the allow-empty-input option of stylelint ([05c4337](https://github.com/Phillip9587/nx-stylelint/commit/05c4337b5b7d24d5f8f4248b3fcc54ed99d0ba17))
+
+### CI
+
+- **github:** fixed expression for beta releases ([61274f5](https://github.com/Phillip9587/nx-stylelint/commit/61274f51a2c72cface032b335fe3deef92ed6c30))
+
+### Others
+
+- **deps:** update commitlint monorepo to v15 ([9de9b91](https://github.com/Phillip9587/nx-stylelint/commit/9de9b91aa5d2fe4603b8c3aa402418429e06a6a7))
+- **deps:** update dependency jest to v27.4.3 ([53fe91a](https://github.com/Phillip9587/nx-stylelint/commit/53fe91ac4b90091f9ba5be2ce6784dcf98d91625))
+- **deps:** update dependency ts-jest to v27.1.0 ([08cd71d](https://github.com/Phillip9587/nx-stylelint/commit/08cd71de856e56d2230273c724ef97f7158762a3))
+- format changelog after standard-version modifies it ([43d1405](https://github.com/Phillip9587/nx-stylelint/commit/43d1405dbe43d489081c5ae34996d21ef861b66b))
+- **deps:** update dependecy prettier to 2.5.1 ([60bd0e8](https://github.com/Phillip9587/nx-stylelint/commit/60bd0e864f9297a95336caa14f8eda8cc19bb39f))
+- **deps:** update dependency @nrwl/nx-cloud to v12.5.4 ([67cc953](https://github.com/Phillip9587/nx-stylelint/commit/67cc9530d86a9d443b5fc5990f498a20a45999cb))
+- **deps:** update dependency @types/jest to v27.0.3 ([ac2b89a](https://github.com/Phillip9587/nx-stylelint/commit/ac2b89aa74b280487185de089697304e91a6aeb8))
+- **deps:** update dependency @types/node to v16.11.11 ([da994bc](https://github.com/Phillip9587/nx-stylelint/commit/da994bc8d316ef82e199acba6ff13511eea9042c))
+- **deps:** update dependency @types/node to v16.11.9 ([9840d2d](https://github.com/Phillip9587/nx-stylelint/commit/9840d2d319a4f14d7e9941063084ecabb5fdff6b))
+- **deps:** update dependency jest to v27.4.0 ([8c2a2fa](https://github.com/Phillip9587/nx-stylelint/commit/8c2a2fa54e930ef0b2c64d47cfabc5248b974aa4))
+- **deps:** update dependency jest to v27.4.2 ([e6afef7](https://github.com/Phillip9587/nx-stylelint/commit/e6afef7113396082ac606f633f22e42438adce18))
+- **deps:** update dependency pretty-quick to v3.1.2 ([#150](https://github.com/Phillip9587/nx-stylelint/issues/150)) ([75f5632](https://github.com/Phillip9587/nx-stylelint/commit/75f5632f74a2a7d7bdcdfb37eae4c7ef997389da))
+- **deps:** update Nx to 12.2.3 ([2de9d3f](https://github.com/Phillip9587/nx-stylelint/commit/2de9d3f44db5c2bd1b92045d98944aca51efd304))
+- **husky:** removed e2e test from pre-commit hook ([a468341](https://github.com/Phillip9587/nx-stylelint/commit/a468341a5dd56f388229d95b2b8a7d4528d8fc25))
+
+### Tests
+
+- increase test timeout to fix failing CI runs ([c44b0a1](https://github.com/Phillip9587/nx-stylelint/commit/c44b0a16888a3536fbede05a3fb40030e09ee046))
+
 ## [13.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.0.0-beta.4...v13.0.0) (2021-11-15)
 
 ### Documentation
