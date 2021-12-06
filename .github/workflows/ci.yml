@@ -117,7 +117,7 @@ jobs:
         run: npx nx build nx-stylelint
 
       - name: Publish to NPM
-        if: ${{ env.IS_BETA_RELEASE == false }}
+        if: ${{ env.IS_BETA_RELEASE == 'false' }}
         run: |
           cd dist/packages/nx-stylelint/
           npm publish --access public
@@ -125,7 +125,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Beta to NPM
-        if: ${{ env.IS_BETA_RELEASE == true }}
+        if: ${{ env.IS_BETA_RELEASE == 'true' }}
         run: |
           cd dist/packages/nx-stylelint/
           npm publish --access public --tag beta
