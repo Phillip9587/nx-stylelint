@@ -250,6 +250,6 @@ describe('nx-stylelint-e2e', () => {
         },
         outputs: ['{options.outputFile}'],
       });
-    }, 90000);
+    }, 120000);
   });
 });
