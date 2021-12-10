@@ -23,6 +23,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nx-stylelint",
+        "deleteOutputPath": true,
         "tsConfig": "packages/nx-stylelint/tsconfig.lib.json",
         "packageJson": "packages/nx-stylelint/package.json",
         "main": "packages/nx-stylelint/src/index.ts",
