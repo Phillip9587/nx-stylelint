@@ -43,7 +43,7 @@
     "release": "standard-version --no-verify"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.0.1",
+    "@commitlint/cli": "16.0.2",
     "@commitlint/config-conventional": "16.0.0",
     "@nrwl/cli": "13.3.0",
     "@nrwl/devkit": "13.3.0",
