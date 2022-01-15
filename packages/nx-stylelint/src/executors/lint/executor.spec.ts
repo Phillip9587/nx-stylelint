@@ -17,6 +17,7 @@ const defaultOptions: LintExecutorSchema = {
 };
 
 const defaultMockResult: LinterResult = {
+  cwd: '',
   reportedDisables: [],
   errored: false,
   output: 'Output',
