@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/nx-stylelint.png" width="600" alt="Nx Stylelint Logo"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/banner.svg" alt="Nx Stylelint Banner"/></p>
 
 <div align="center">
 
