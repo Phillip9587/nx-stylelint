@@ -4,9 +4,10 @@
 
 # Nx Stylelint
 
-Stylelint executors and generators for Nx.
+**Stylelint executors and generators for Nx.**
 
-[![Nx Peer Dependency Version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/@nrwl/workspace?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
+[![Nx peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/@nrwl/workspace?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
+[![Stylelint peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/stylelint?label=Stylelint&logo=stylelint&style=flat-square)](https://stylelint.io)
 [![CI](https://img.shields.io/github/workflow/status/phillip9587/nx-stylelint/CI?label=CI&style=flat-square&logo=github)](https://github.com/Phillip9587/nx-stylelint/actions/workflows/ci.yml)
 [![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
