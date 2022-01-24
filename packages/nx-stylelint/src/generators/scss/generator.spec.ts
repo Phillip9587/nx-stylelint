@@ -44,7 +44,7 @@ describe('scss generator', () => {
 
     const packageJson = readJson(tree, 'package.json');
 
-    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBe('^2.0.0');
+    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBe('^3.0.0');
   });
 
   it('should update root and project stylelint configurations', async () => {
