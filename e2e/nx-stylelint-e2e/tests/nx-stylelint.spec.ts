@@ -41,7 +41,7 @@ describe('nx-stylelint-e2e', () => {
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
       expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
-    }, 90000);
+    }, 120000);
   });
 
   describe('nx-stylelint:configuration', () => {
@@ -107,7 +107,7 @@ describe('nx-stylelint-e2e', () => {
         },
         outputs: ['{options.outputFile}'],
       });
-    }, 90000);
+    }, 120000);
 
     describe('--formatter', () => {
       it('should add a stylelint configuration to a project and set the specified formatter', async () => {
@@ -173,7 +173,7 @@ describe('nx-stylelint-e2e', () => {
           },
           outputs: ['{options.outputFile}'],
         });
-      }, 90000);
+      }, 120000);
     });
   });
 
@@ -250,6 +250,6 @@ describe('nx-stylelint-e2e', () => {
         },
         outputs: ['{options.outputFile}'],
       });
-    }, 120000);
+    }, 150000);
   });
 });
