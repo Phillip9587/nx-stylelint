@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.1.1...v13.1.2) (2022-01-24)
+
+### Bug Fixes
+
+- update generators to install newer versions of configs and stylelint and added migration ([9230df4](https://github.com/Phillip9587/nx-stylelint/commit/9230df4e9fb9fdc51385a96e99a61bd5daa597e1))
+
 ### [13.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.1.0...v13.1.1) (2022-01-24)
 
 ### Bug Fixes
