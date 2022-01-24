@@ -29,19 +29,19 @@ Nx Stylelint provides a set of power ups on [Nx](https://nx.dev) to lint your pr
 
 # 📦 Installation
 
-**using `npm`**
+**using [npm](https://npmjs.com)**
 
 ```shell
 npm i -D nx-stylelint
 ```
 
-**using `yarn`**
+**using [yarn](https://yarnpkg.com)**
 
 ```shell
 yarn add -D nx-stylelint
 ```
 
-**using `pnpm`**
+**using [pnpm](https://pnpm.io)**
 
 ```shell
 pnpm add -D nx-stylelint
