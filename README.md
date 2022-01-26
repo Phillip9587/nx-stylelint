@@ -195,6 +195,14 @@ Possible values: `compact`, `json`, `string`, `tap`, `unix`, `verbose`
 
 Default: `string`
 
+#### `ignoreDisables`
+
+Ignore `stylelint-disable` comments.
+
+Type: `boolean`
+
+Default: `false`
+
 #### `lintFilePatterns`
 
 One or more files/dirs/globs to pass directly to Stylelint's lint() method.

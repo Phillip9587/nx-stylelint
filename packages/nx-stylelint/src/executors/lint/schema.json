@@ -30,6 +30,11 @@
       "default": "string",
       "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
     },
+    "ignoreDisables": {
+      "type": "boolean",
+      "description": "Ignore stylelint-disable comments.",
+      "default": false
+    },
     "lintFilePatterns": {
       "type": "array",
       "description": "One or more files/dirs/globs to pass directly to Stylelint's lint() method.",
