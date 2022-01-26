@@ -21,10 +21,12 @@
           "version": "^14.0.0"
         },
         "stylelint-config-standard": {
-          "version": "^23.0.0"
+          "version": "^23.0.0",
+          "alwaysAddToPackageJson": false
         },
         "stylelint-config-standard-scss": {
-          "version": "^2.0.0"
+          "version": "^2.0.0",
+          "alwaysAddToPackageJson": false
         }
       }
     },
@@ -35,13 +37,16 @@
           "version": "^14.3.0"
         },
         "stylelint-config-prettier": {
-          "version": "^9.0.3"
+          "version": "^9.0.3",
+          "alwaysAddToPackageJson": false
         },
         "stylelint-config-standard": {
-          "version": "^24.0.0"
+          "version": "^24.0.0",
+          "alwaysAddToPackageJson": false
         },
         "stylelint-config-standard-scss": {
-          "version": "^3.0.0"
+          "version": "^3.0.0",
+          "alwaysAddToPackageJson": false
         }
       }
     }
