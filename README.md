@@ -221,6 +221,14 @@ File to write the report to.
 
 Type: `string`
 
+#### `reportDescriptionlessDisables`
+
+Report `stylelint-disable` comments without a description.
+
+Type: `boolean`
+
+Default: `false`
+
 #### `reportNeedlessDisables`
 
 Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.

@@ -43,6 +43,7 @@ export async function lintExecutor(
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
     allowEmptyInput: options.allowEmptyInput,
     ignoreDisables: options.ignoreDisables,
+    reportDescriptionlessDisables: options.reportDescriptionlessDisables,
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);

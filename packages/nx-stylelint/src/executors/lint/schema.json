@@ -51,6 +51,11 @@
       "type": "string",
       "description": "File to write report to."
     },
+    "reportDescriptionlessDisables": {
+      "type": "boolean",
+      "description": "Report stylelint-disable comments without a description.",
+      "default": false
+    },
     "reportNeedlessDisables": {
       "type": "boolean",
       "description": "Report stylelint-disable comments that don't actually match any lints that need to be disabled.",

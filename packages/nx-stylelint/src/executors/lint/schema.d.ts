@@ -10,6 +10,7 @@ export interface LintExecutorSchema {
   lintFilePatterns: string[];
   maxWarnings?: number;
   outputFile?: string;
+  reportDescriptionlessDisables: boolean;
   reportNeedlessDisables: boolean;
   silent: boolean;
 }

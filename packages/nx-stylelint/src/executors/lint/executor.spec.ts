@@ -16,6 +16,7 @@ const defaultOptions: LintExecutorSchema = {
   fix: false,
   reportNeedlessDisables: true,
   ignoreDisables: false,
+  reportDescriptionlessDisables: false,
 };
 
 const defaultMockResult: LinterResult = {
@@ -132,6 +133,7 @@ describe('nx-stylelint:lint executor', () => {
       formatter: 'string',
       fix: false,
       ignoreDisables: false,
+      reportDescriptionlessDisables: false,
     });
     expect(logger.info).toHaveBeenCalledWith('\nAll files pass linting.');
   });
