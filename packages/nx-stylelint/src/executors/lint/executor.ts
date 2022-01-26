@@ -37,11 +37,11 @@ export async function lintExecutor(
   const stylelintOptions: LinterOptions = {
     configFile: options.config,
     files: options.lintFilePatterns,
-    reportNeedlessDisables: true,
+    reportNeedlessDisables: options.reportNeedlessDisables,
     formatter: validFormatter ? options.formatter : defaultFormatter,
     fix: options.fix,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
-    allowEmptyInput: options.allowEmptyInput
+    allowEmptyInput: options.allowEmptyInput,
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);

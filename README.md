@@ -213,6 +213,14 @@ File to write the report to.
 
 Type: `string`
 
+#### `reportNeedlessDisables`
+
+Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.
+
+Type: `boolean`
+
+Default: `true`
+
 #### `silent`
 
 Hide output text.

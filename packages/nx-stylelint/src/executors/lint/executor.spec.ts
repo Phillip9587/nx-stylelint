@@ -14,6 +14,7 @@ const defaultOptions: LintExecutorSchema = {
   silent: false,
   force: false,
   fix: false,
+  reportNeedlessDisables: true,
 };
 
 const defaultMockResult: LinterResult = {
