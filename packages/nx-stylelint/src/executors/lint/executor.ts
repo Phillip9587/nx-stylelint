@@ -44,6 +44,7 @@ export async function lintExecutor(
     allowEmptyInput: options.allowEmptyInput,
     ignoreDisables: options.ignoreDisables,
     reportDescriptionlessDisables: options.reportDescriptionlessDisables,
+    reportInvalidScopeDisables: options.reportInvalidScopeDisables,
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);

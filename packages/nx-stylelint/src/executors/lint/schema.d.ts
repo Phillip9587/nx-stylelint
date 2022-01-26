@@ -11,6 +11,7 @@ export interface LintExecutorSchema {
   maxWarnings?: number;
   outputFile?: string;
   reportDescriptionlessDisables: boolean;
+  reportInvalidScopeDisables: boolean;
   reportNeedlessDisables: boolean;
   silent: boolean;
 }

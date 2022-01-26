@@ -229,6 +229,14 @@ Type: `boolean`
 
 Default: `false`
 
+#### `reportInvalidScopeDisables`
+
+Report `stylelint-disable` comments that don't match rules that are specified in the configuration object.
+
+Type: `boolean`
+
+Default: `false`
+
 #### `reportNeedlessDisables`
 
 Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.

@@ -56,6 +56,11 @@
       "description": "Report stylelint-disable comments without a description.",
       "default": false
     },
+    "reportInvalidScopeDisables": {
+      "type": "boolean",
+      "description": "Report stylelint-disable comments that don't match rules that are specified in the configuration object.",
+      "default": false
+    },
     "reportNeedlessDisables": {
       "type": "boolean",
       "description": "Report stylelint-disable comments that don't actually match any lints that need to be disabled.",
