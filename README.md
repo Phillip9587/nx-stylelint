@@ -147,9 +147,9 @@ Default: `false`
 
 Run stylelint on a project.
 
-Target Options can be configured in `project.json` or `workspace.json` when defining the target, or when invoking it.
+Target Options can be configured in `project.json` or `workspace.json`/`angular.json` when defining the target, or when invoking it.
 
-See: https://nx.dev/l/n/core-concepts/configuration#targets
+See: https://nx.dev/configuration/projectjson#targets
 
 ### Options
 
