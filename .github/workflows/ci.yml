@@ -12,43 +12,29 @@ on:
 
 jobs:
   build:
-    name: Build, Lint and Test (Node ${{ matrix.node-version }})
+    name: Build, Lint and Test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 12
-          - 14
-          - 16
-          - 17
-      fail-fast: false
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js LTS 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           check-latest: true
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-
       - name: Lint
         if: always()
-        run: npx nx affected --target=lint
+        run: npx nx lint nx-stylelint
 
       - name: Test
         if: always()
-        run: npx nx affected --target=test
+        run: npx nx test nx-stylelint
 
       - name: Build
         if: always()
