@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.3...v13.2.0) (2022-01-27)
+
+### Documentation
+
+- add readme section for custom formatters ([df54d95](https://github.com/Phillip9587/nx-stylelint/commit/df54d9579762c6915ea10ec3a84a4109b2ecc854))
+
 ## [13.2.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.2...v13.2.0-beta.3) (2022-01-27)
 
 ### Features
