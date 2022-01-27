@@ -4,7 +4,7 @@ import type { ExecutorContext } from '@nrwl/devkit';
 import { join, dirname } from 'path';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
-import { defaultFormatter, loadFormatter } from '../../utils/formatter';
+import { loadFormatter } from '../../utils/formatter';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
@@ -29,10 +29,12 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  let resolvedFormatter = loadFormatter(options.formatter);
-  if (!resolvedFormatter) {
-    logger.warn(`Configured format is not a valid stylelint formatter. Falling back to the default formatter.`);
-    resolvedFormatter = defaultFormatter;
+  let resolvedFormatter;
+  try {
+    resolvedFormatter = loadFormatter(options.formatter, context.cwd);
+  } catch (err) {
+    logger.error(`Invalid Formatter. More Details: \n`);
+    throw err;
   }
 
   const result = await stylelint.lint({

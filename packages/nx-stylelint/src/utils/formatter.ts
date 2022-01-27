@@ -1,3 +1,4 @@
+import * as path from 'path';
 import type { Formatter, FormatterType } from 'stylelint';
 
 export const defaultFormatter: FormatterType = 'string';
@@ -8,9 +9,21 @@ export function isCoreFormatter(formatter: unknown): formatter is FormatterType 
   return formatters.includes(formatter);
 }
 
-export function loadFormatter(formatter: unknown): FormatterType | Formatter | null {
-  if (!formatter || typeof formatter !== 'string') return null;
-  if (isCoreFormatter(formatter)) return formatter;
+const npmPackageRegex = /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/;
 
-  return require(require.resolve(formatter));
+export function loadFormatter(formatter: unknown, cwd: string): FormatterType | Formatter {
+  if (!formatter || typeof formatter !== 'string') throw new Error('Formatter must be a string!');
+  const normalizedFormatter: string = formatter.trim().replace(/\\/gu, '/');
+  if (isCoreFormatter(normalizedFormatter)) return normalizedFormatter;
+
+  const isNpmPackage = npmPackageRegex.test(normalizedFormatter);
+
+  try {
+    return require(isNpmPackage ? normalizedFormatter : path.join(cwd, normalizedFormatter));
+  } catch (err) {
+    if (isNpmPackage && !normalizedFormatter.includes('@')) {
+      return require(path.join(cwd, normalizedFormatter));
+    }
+    throw err;
+  }
 }
