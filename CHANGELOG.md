@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.0...v13.2.0-beta.1) (2022-01-27)
+
+### CI
+
+- automatically create a github release ([0f538b6](https://github.com/Phillip9587/nx-stylelint/commit/0f538b6096b0c6ea36d0af0a21a3589a812a9c8d))
+
 ## [13.2.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.1.2...v13.2.0-beta.0) (2022-01-27)
 
 ### Features
