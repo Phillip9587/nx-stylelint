@@ -221,6 +221,14 @@ File to write the report to.
 
 Type: `string`
 
+#### `quiet`
+
+Only register problems for rules with an "error"-level severity (ignore "warning"-level).
+
+Type: `boolean`
+
+Default: `false`
+
 #### `reportDescriptionlessDisables`
 
 Report `stylelint-disable` comments without a description.

@@ -51,6 +51,11 @@
       "type": "string",
       "description": "File to write report to."
     },
+    "quiet": {
+      "type": "boolean",
+      "description": "Only register problems for rules with an \"error\"-level severity (ignore \"warning\"-level).",
+      "default": false
+    },
     "reportDescriptionlessDisables": {
       "type": "boolean",
       "description": "Report stylelint-disable comments without a description.",
