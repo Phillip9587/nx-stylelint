@@ -2,6 +2,8 @@ import type { FormatterType } from 'stylelint';
 
 export interface LintExecutorSchema {
   allowEmptyInput: boolean;
+  cache: boolean;
+  cacheLocation?: string;
   config?: string;
   fix: boolean;
   force: boolean;

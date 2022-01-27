@@ -161,6 +161,20 @@ Type: `boolean`
 
 Default: `true`
 
+#### `cache`
+
+Store the results of processed files so that Stylelint only operates on the changed ones.
+
+Type: `boolean`
+
+Default: `false`
+
+#### `cacheLocation`
+
+Path to a file or directory for the cache location.
+
+Type: `string`
+
 #### `config`
 
 Path of the stylelint configuration file.

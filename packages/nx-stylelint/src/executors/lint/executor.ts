@@ -47,6 +47,8 @@ export async function lintExecutor(
     reportInvalidScopeDisables: options.reportInvalidScopeDisables,
     quiet: options.quiet,
     ignorePath: options.ignorePath,
+    cache: options.cache,
+    cacheLocation: options.cacheLocation,
   };
 
   const result: LinterResult = await stylelint.lint(stylelintOptions);

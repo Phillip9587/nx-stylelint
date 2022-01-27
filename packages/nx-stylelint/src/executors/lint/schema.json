@@ -10,6 +10,15 @@
       "description": "The executor exits without throwing an error when 'lintFilePatterns' match no files.",
       "default": true
     },
+    "cache": {
+      "type": "boolean",
+      "description": "Store the results of processed files so that Stylelint only operates on the changed ones.",
+      "default": false
+    },
+    "cacheLocation": {
+      "type": "string",
+      "description": "Path to a file or directory for the cache location."
+    },
     "config": {
       "type": "string",
       "description": "Path of the stylelint configuration file."
