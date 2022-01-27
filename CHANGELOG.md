@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.1.2...v13.2.0-beta.0) (2022-01-27)
+
+### Features
+
+- **executor:** add `cache` and `cacheLocation` option ([1bb119d](https://github.com/Phillip9587/nx-stylelint/commit/1bb119d25e4918e0a15726c19b513c932d197be1))
+- **executor:** add `ignoreDisables` option ([85a19e7](https://github.com/Phillip9587/nx-stylelint/commit/85a19e77c6ffeb4d3d3cd12dc34a63efdfc1f4f5))
+- **executor:** add `ignorePath` option ([542581e](https://github.com/Phillip9587/nx-stylelint/commit/542581ec987e5f110173349a8a03d8a6e2bb44b4))
+- **executor:** add `quiet` option ([1933307](https://github.com/Phillip9587/nx-stylelint/commit/193330752ced04a93d694b5134ae3fdb8cb02bf4))
+- **executor:** add `reportInvalidScopeDisables` option ([0e5f465](https://github.com/Phillip9587/nx-stylelint/commit/0e5f46543c05ba04672b51b4cb35c49cef9e6df4))
+- **executor:** add `reportNeedlessDisables` option ([1f3bc6e](https://github.com/Phillip9587/nx-stylelint/commit/1f3bc6e7b334d175b560b61e11094f29b13f8b0d))
+- **executor:** add `reportNeedlessDisables` option ([d9bce5b](https://github.com/Phillip9587/nx-stylelint/commit/d9bce5b8e37b4ff31d68077c4f410a045955f4bc))
+- **executor:** add support for custom formatters ([9e73921](https://github.com/Phillip9587/nx-stylelint/commit/9e739212849cdc8c146e6e0de5a71b39aa007081))
+
+### Bug Fixes
+
+- add stylelint-config-standard and stylelint-config-standard-scss as optional peer dpendencies ([091ed0c](https://github.com/Phillip9587/nx-stylelint/commit/091ed0cb464f7e5e69fa79f6a3b252a70a8da06d))
+- **migrations:** fixed migrations so that optional dependencies are not always added to package.json ([9d836d4](https://github.com/Phillip9587/nx-stylelint/commit/9d836d411994617263bde832bf5a4a651fd4666a))
+
+### Tests
+
+- **e2e:** increase e2e test timeouts ([667e869](https://github.com/Phillip9587/nx-stylelint/commit/667e8698d0bc50584958b6102e423795d0cb2e8b))
+
+### Documentation
+
+- replaced link to nx target configuration ([85c4ddc](https://github.com/Phillip9587/nx-stylelint/commit/85c4ddc56636191aba02322e888eaf2a61035839))
+
+### Others
+
+- added beta release script ([52994b6](https://github.com/Phillip9587/nx-stylelint/commit/52994b6326563d5981c48db6706bad1032d592a7))
+- **deps:** update Nx to 13.5.2 ([50db974](https://github.com/Phillip9587/nx-stylelint/commit/50db974c3fb40974820e38935d3fcee5d8be8c49))
+- **deps:** updated Nx to 13.5.3 ([83be547](https://github.com/Phillip9587/nx-stylelint/commit/83be547f66bcdfd74f48e9d006b44d52c61030a4))
+- updated readme ([c912253](https://github.com/Phillip9587/nx-stylelint/commit/c912253091d9a3e81bd8d4b10671fea07a627888))
+- updated readme ([f071a82](https://github.com/Phillip9587/nx-stylelint/commit/f071a8233f356c711bbdf5ce1314f50ca471e7ff))
+- updated readme badges ([4ad0cf9](https://github.com/Phillip9587/nx-stylelint/commit/4ad0cf9ef863a781c5d1309bd0c744ad9c2c50e6))
+
+### Refactorings
+
+- **executor:** cleanup options and removed unnecessary test ([35c2045](https://github.com/Phillip9587/nx-stylelint/commit/35c2045a02df19fef8bebfd11a8ef73557262222))
+- rename the config option to configFile to align with the stylelint nodejs API ([ea5c96a](https://github.com/Phillip9587/nx-stylelint/commit/ea5c96ace0c785ee95429c3678975bad5285e2f2))
+
 ### [13.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.1.1...v13.1.2) (2022-01-24)
 
 ### Bug Fixes
