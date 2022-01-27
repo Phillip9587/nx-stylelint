@@ -39,13 +39,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
       - name: Lint
         if: always()
-        run: npx nx lint nx-stylelint
+        run: npx nx affected --target=lint
 
       - name: Test
         if: always()
-        run: npx nx test nx-stylelint
+        run: npx nx affected --target=test
 
       - name: Build
         if: always()
@@ -84,8 +87,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
       - name: E2E
-        run: npx nx e2e nx-stylelint-e2e --skip-nx-cache
+        run: npx nx affected --target=e2e --skip-nx-cache
 
   publish:
     name: Publish to NPM
