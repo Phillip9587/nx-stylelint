@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.1...v13.2.0-beta.2) (2022-01-27)
+
+### Bug Fixes
+
+- **executor:** use require.resolve for loadFormatters ([9e07bb4](https://github.com/Phillip9587/nx-stylelint/commit/9e07bb454ba2e85d227c4e00425e18a5422d503a))
+
 ## [13.2.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.0...v13.2.0-beta.1) (2022-01-27)
 
 ### CI
