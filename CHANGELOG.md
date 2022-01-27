@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.2.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.2...v13.2.0-beta.3) (2022-01-27)
+
+### Features
+
+- **executor:** support local customFormatters and customFormatters from node_modules ([df06e55](https://github.com/Phillip9587/nx-stylelint/commit/df06e55ef0e54d425642446c17db211a100f3e34))
+
+### CI
+
+- use nx affected commands ([a8dc5c7](https://github.com/Phillip9587/nx-stylelint/commit/a8dc5c7da6e3ff31e80f8f729180f5ab503b362e))
+
 ## [13.2.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.1...v13.2.0-beta.2) (2022-01-27)
 
 ### Bug Fixes
