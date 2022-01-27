@@ -35,6 +35,10 @@
       "description": "Ignore stylelint-disable comments.",
       "default": false
     },
+    "ignorePath": {
+      "type": "string",
+      "description": "A path to a file containing patterns describing files to ignore. "
+    },
     "lintFilePatterns": {
       "type": "array",
       "description": "One or more files/dirs/globs to pass directly to Stylelint's lint() method.",
