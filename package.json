@@ -40,7 +40,8 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "postinstall": "is-ci || husky install",
-    "release": "standard-version --no-verify"
+    "release": "standard-version --no-verify",
+    "release:beta": "standard-version --no-verify --prerelease beta"
   },
   "devDependencies": {
     "@commitlint/cli": "16.1.0",
