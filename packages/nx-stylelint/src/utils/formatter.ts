@@ -1,4 +1,3 @@
-import * as path from 'path';
 import type { Formatter, FormatterType } from 'stylelint';
 
 export const defaultFormatter: FormatterType = 'string';
@@ -9,9 +8,9 @@ export function isCoreFormatter(formatter: unknown): formatter is FormatterType 
   return formatters.includes(formatter);
 }
 
-export function loadFormatter(formatter: unknown, root: string): FormatterType | Formatter | null {
+export function loadFormatter(formatter: unknown): FormatterType | Formatter | null {
   if (!formatter || typeof formatter !== 'string') return null;
   if (isCoreFormatter(formatter)) return formatter;
 
-  return require(path.resolve(root, formatter));
+  return require(require.resolve(formatter));
 }

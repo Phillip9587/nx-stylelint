@@ -29,7 +29,7 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  let resolvedFormatter = loadFormatter(options.formatter, context.root);
+  let resolvedFormatter = loadFormatter(options.formatter);
   if (!resolvedFormatter) {
     logger.warn(`Configured format is not a valid stylelint formatter. Falling back to the default formatter.`);
     resolvedFormatter = defaultFormatter;
