@@ -205,7 +205,7 @@ Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#format
 
 Type: `string`
 
-Possible values: `compact`, `json`, `string`, `tap`, `unix`, `verbose`
+Possible values: `compact`, `json`, `string`, `tap`, `unix`, `verbose`, a npm package (e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty)) or a path to a local formatter (e.g. `tools/stylelint-formatter.js`)
 
 Default: `string`
 
@@ -280,3 +280,58 @@ Hide output text.
 Type: `boolean`
 
 Default: `false`
+
+# Custom Formatters
+
+Nx Stylelint supports custom Stylelint Formatters. You can either install them with your Package Manager or write your own formatter.
+
+For a guide on writing custom formatters see: https://stylelint.io/developer-guide/formatters
+
+For a list of installable formatters take a look at:
+
+- https://github.com/stylelint/awesome-stylelint#formatters
+- https://www.npmjs.com/search?q=stylelint-formatter
+
+## Usage
+
+To use a custom formatter you have to configure the `formatter` option of your `stylelint` target. Target Options can be configured in the `project.json` file of your project or `workspace.json`/`angular.json`, when defining the target or when invoking it (https://nx.dev/configuration/projectjson#targets).
+
+You can provide a path to your custom formatter:
+
+```json
+{
+  "projectType": "library",
+  "root": "libs/styles",
+  "sourceRoot": "libs/styles/src",
+  "targets": {
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/styles/**/*.css"],
+        "formatter": "tools/my-own-stylelint-formatter.js"
+      }
+    }
+  }
+}
+```
+
+Or the name of your installed formatter package e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty). Scoped packages are also supported:
+
+```json
+{
+  "projectType": "library",
+  "root": "libs/styles",
+  "sourceRoot": "libs/styles/src",
+  "targets": {
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/styles/**/*.css"],
+        "formatter": "stylelint-formatter-pretty"
+      }
+    }
+  }
+}
+```
