@@ -175,7 +175,7 @@ Path to a file or directory for the cache location.
 
 Type: `string`
 
-#### `config`
+#### `configFile`
 
 Path of the stylelint configuration file.
 

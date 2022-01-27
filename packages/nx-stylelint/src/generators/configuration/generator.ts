@@ -49,7 +49,7 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
   const projectConfig = readProjectConfiguration(tree, options.project);
 
   const validFormatter = isCoreFormatter(options.formatter);
-  if (!validFormatter) {
+  if (options.formatter && !validFormatter) {
     logger.error(
       `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to 'string' formatter.`
     );

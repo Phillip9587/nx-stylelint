@@ -4,7 +4,7 @@ export interface LintExecutorSchema {
   allowEmptyInput: boolean;
   cache: boolean;
   cacheLocation?: string;
-  config?: string;
+  configFile?: string;
   fix: boolean;
   force: boolean;
   formatter: FormatterType | string;

@@ -19,7 +19,7 @@
       "type": "string",
       "description": "Path to a file or directory for the cache location."
     },
-    "config": {
+    "configFile": {
       "type": "string",
       "description": "Path of the stylelint configuration file."
     },

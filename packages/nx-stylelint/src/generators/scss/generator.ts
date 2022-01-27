@@ -97,9 +97,7 @@ function updateProjectConfig(tree: Tree, options: NormalizedSchema) {
 
   updateProjectConfiguration(tree, options.project, projectConfig);
 
-  const configFilePath = targetOptions.config
-    ? targetOptions.config
-    : joinPathFragments(projectConfig.root, '.stylelintrc.json');
+  const configFilePath = targetOptions.configFile ?? joinPathFragments(projectConfig.root, '.stylelintrc.json');
 
   updateJson<Config, Config>(tree, configFilePath, (config) => {
     config.overrides ??= [];

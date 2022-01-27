@@ -11,6 +11,12 @@
       "description": "Updates the Stylelint targets.",
       "cli": "nx",
       "implementation": "./src/migrations/update-13-0-0/update-stylelint-targets/update-stylelint-targets"
+    },
+    "rename-config-option": {
+      "version": "13.2.0-beta.0",
+      "description": "Rename the config option to configFile to align with the stylelint Node.js API",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-13-2-0/rename-config-option/rename-config-option"
     }
   },
   "packageJsonUpdates": {

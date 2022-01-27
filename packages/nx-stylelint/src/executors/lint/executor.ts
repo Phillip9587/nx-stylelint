@@ -23,7 +23,7 @@ export async function lintExecutor(
 
   const projectName = context.projectName || '<???>';
 
-  if (options.config && !existsSync(options.config)) {
+  if (options.configFile && !existsSync(options.configFile)) {
     logger.error('The given stylelint config file does not exist.');
     return { success: false };
   }
@@ -37,7 +37,7 @@ export async function lintExecutor(
   }
 
   const stylelintOptions: LinterOptions = {
-    configFile: options.config,
+    configFile: options.configFile,
     files: options.lintFilePatterns,
     reportNeedlessDisables: options.reportNeedlessDisables,
     formatter: resolvedFormatter,
