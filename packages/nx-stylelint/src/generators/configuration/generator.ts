@@ -12,7 +12,7 @@ import type { Config } from 'stylelint';
 import type { ConfigurationGeneratorSchema } from './schema';
 import { initGenerator } from '../init/generator';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
-import { isFormatter, defaultFormatter } from '../../utils/formatter';
+import { isCoreFormatter, defaultFormatter } from '../../utils/formatter';
 
 interface NormalizedSchema extends ConfigurationGeneratorSchema {
   projectRoot: string;
@@ -48,13 +48,16 @@ export default configurationGenerator;
 function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): NormalizedSchema {
   const projectConfig = readProjectConfiguration(tree, options.project);
 
-  if (options.formatter && !isFormatter(options.formatter)) {
-    logger.error(`Given formatter '${options.formatter}' does not exist. Falling back to 'string' formatter.`);
+  const validFormatter = isCoreFormatter(options.formatter);
+  if (!validFormatter) {
+    logger.error(
+      `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to 'string' formatter.`
+    );
   }
 
   return {
     ...options,
-    formatter: isFormatter(options.formatter) ? options.formatter : defaultFormatter,
+    formatter: validFormatter ? options.formatter : defaultFormatter,
     projectRoot: projectConfig.root,
     stylelintTargetExists: projectConfig.targets?.stylelint != null,
   };

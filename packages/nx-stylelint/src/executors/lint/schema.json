@@ -37,7 +37,14 @@
       "type": "string",
       "description": "Stylelint output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
       "default": "string",
-      "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
+      "anyOf": [
+        {
+          "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
+        },
+        {
+          "minLength": 1
+        }
+      ]
     },
     "ignoreDisables": {
       "type": "boolean",

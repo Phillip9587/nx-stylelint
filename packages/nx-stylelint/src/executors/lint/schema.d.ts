@@ -7,7 +7,7 @@ export interface LintExecutorSchema {
   config?: string;
   fix: boolean;
   force: boolean;
-  formatter: FormatterType;
+  formatter: FormatterType | string;
   ignoreDisables: boolean;
   ignorePath?: string;
   lintFilePatterns: string[];

@@ -122,7 +122,7 @@ describe('nx-stylelint:configuration generator', () => {
       expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
       expect(config.targets?.stylelint.options.formatter).toBeUndefined();
       expect(logger.error).toHaveBeenCalledWith(
-        `Given formatter 'test' does not exist. Falling back to 'string' formatter.`
+        `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`
       );
     });
   });

@@ -5,7 +5,7 @@ import { join, dirname } from 'path';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
 import type { LinterOptions, LinterResult, PublicApi as StylelintPublicApi } from 'stylelint';
-import { isFormatter, defaultFormatter } from '../../utils/formatter';
+import { defaultFormatter, loadFormatter } from '../../utils/formatter';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
@@ -30,15 +30,17 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  const validFormatter = isFormatter(options.formatter);
-  if (!validFormatter)
+  let resolvedFormatter = loadFormatter(options.formatter, context.root);
+  if (!resolvedFormatter) {
     logger.warn(`Configured format is not a valid stylelint formatter. Falling back to the default formatter.`);
+    resolvedFormatter = defaultFormatter;
+  }
 
   const stylelintOptions: LinterOptions = {
     configFile: options.config,
     files: options.lintFilePatterns,
     reportNeedlessDisables: options.reportNeedlessDisables,
-    formatter: validFormatter ? options.formatter : defaultFormatter,
+    formatter: resolvedFormatter,
     fix: options.fix,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
     allowEmptyInput: options.allowEmptyInput,
