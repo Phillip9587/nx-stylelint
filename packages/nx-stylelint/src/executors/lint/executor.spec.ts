@@ -123,22 +123,9 @@ describe('nx-stylelint:lint executor', () => {
     mockResult = defaultMockResult;
   });
 
-  it('should invoke the linter with the options that were passed to the executor', async () => {
+  it('should succeed', async () => {
     const { success } = await executor(defaultOptions, mockContext);
-
     expect(success).toBeTruthy();
-    expect(mockLint).toHaveBeenCalledWith({
-      allowEmptyInput: true,
-      files: ['styles.scss'],
-      reportNeedlessDisables: true,
-      formatter: 'string',
-      fix: false,
-      ignoreDisables: false,
-      reportDescriptionlessDisables: false,
-      reportInvalidScopeDisables: false,
-      quiet: false,
-      cache: false,
-    });
     expect(logger.info).toHaveBeenCalledWith('\nAll files pass linting.');
   });
 

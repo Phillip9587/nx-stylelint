@@ -4,7 +4,6 @@ import type { ExecutorContext } from '@nrwl/devkit';
 import { join, dirname } from 'path';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
-import type { LinterOptions, LinterResult, PublicApi as StylelintPublicApi } from 'stylelint';
 import { defaultFormatter, loadFormatter } from '../../utils/formatter';
 
 export async function lintExecutor(
@@ -13,7 +12,7 @@ export async function lintExecutor(
 ): Promise<{ success: boolean }> {
   process.chdir(context.cwd);
 
-  let stylelint: StylelintPublicApi;
+  let stylelint: typeof import('stylelint');
   try {
     stylelint = await loadStylelint();
   } catch (error) {
@@ -36,24 +35,12 @@ export async function lintExecutor(
     resolvedFormatter = defaultFormatter;
   }
 
-  const stylelintOptions: LinterOptions = {
-    configFile: options.configFile,
+  const result = await stylelint.lint({
+    ...options,
     files: options.lintFilePatterns,
-    reportNeedlessDisables: options.reportNeedlessDisables,
     formatter: resolvedFormatter,
-    fix: options.fix,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
-    allowEmptyInput: options.allowEmptyInput,
-    ignoreDisables: options.ignoreDisables,
-    reportDescriptionlessDisables: options.reportDescriptionlessDisables,
-    reportInvalidScopeDisables: options.reportInvalidScopeDisables,
-    quiet: options.quiet,
-    ignorePath: options.ignorePath,
-    cache: options.cache,
-    cacheLocation: options.cacheLocation,
-  };
-
-  const result: LinterResult = await stylelint.lint(stylelintOptions);
+  });
 
   const totalWarnings = result.results
     .map((r) => r.warnings.filter((w) => w.severity === 'warning'))

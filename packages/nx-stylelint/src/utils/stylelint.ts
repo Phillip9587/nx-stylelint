@@ -1,6 +1,4 @@
-import type * as stylelint from 'stylelint';
-
-export async function loadStylelint(): Promise<stylelint.PublicApi> {
+export async function loadStylelint(): Promise<typeof import('stylelint')> {
   try {
     return await import('stylelint');
   } catch {
