@@ -335,3 +335,13 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
   }
 }
 ```
+
+# Compatibility with Nx and Stylelint
+
+**Nx Stylelint** depends on **Nx** and **Stylelint**. This table provides the compatibility matrix between versions of **Nx Stylelint**, **Nx** and **Stylelint**.
+
+| Nx Stylelint Version | Nx Version | Stylelint Version |
+| -------------------- | ---------- | ----------------- |
+| `^13.0.0`            | `>=12.0.0` | `^14.0.0`         |
+| `^12.0.0`            | `>=12.0.0` | `^13.0.0`         |
+| `^11.0.0`            | `^11.0.0`  | `^13.0.0`         |
