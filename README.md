@@ -4,7 +4,7 @@
 
 # Nx Stylelint
 
-**Stylelint executors and generators for Nx.**
+**Nx plugin to use [Stylelint](https://stylelint.io) in your Nx workspace.**
 
 [![Nx peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/@nrwl/workspace?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
 [![Stylelint peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/stylelint?label=Stylelint&logo=stylelint&style=flat-square)](https://stylelint.io)
@@ -19,11 +19,11 @@
 
 # 🚀 Features
 
-Nx Stylelint provides a set of power ups on [Nx](https://nx.dev) to lint your projects with [Stylelint](https://stylelint.io).
+Nx Stylelint provides a set of power-ups for [Nx](https://nx.dev) to lint your projects with [Stylelint](https://stylelint.io).
 
-- **Executor**: Provides a executor to lint your styles with stylelint.
+- **Executor**: Provides an executor to lint your styles with Stylelint.
 - **Generators**: Helping you to configure your projects.
-- **Configuration**: Per Project configuration of stylelint extending a workspace configuration.
+- **Configuration**: Per Project configuration of Stylelint extending a workspace configuration.
 - **Only Affected**: Uses Nx to support linting only affected projects.
 - **Cache**: Uses Nx to cache already linted projects.
 
