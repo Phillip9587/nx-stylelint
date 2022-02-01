@@ -12,6 +12,7 @@
 [![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
 [![npm](https://img.shields.io/npm/dt/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPhillip9587%2Fnx-stylelint.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPhillip9587%2Fnx-stylelint?ref=badge_shield)
 
 </div>
 
@@ -345,3 +346,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 | `^13.0.0`            | `>=12.0.0` | `^14.0.0`         |
 | `^12.0.0`            | `>=12.0.0` | `^13.0.0`         |
 | `^11.0.0`            | `^11.0.0`  | `^13.0.0`         |
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPhillip9587%2Fnx-stylelint.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FPhillip9587%2Fnx-stylelint?ref=badge_large)
