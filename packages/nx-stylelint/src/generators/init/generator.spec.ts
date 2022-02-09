@@ -20,8 +20,8 @@ describe('nx-stylelint:init generator', () => {
     await generator(tree, defaultOptions);
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^14.3.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^24.0.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^14.4.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^25.0.0');
     expect(packagejson.devDependencies['stylelint-config-prettier']).toBe('^9.0.3');
 
     const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
@@ -44,7 +44,7 @@ You can then migrate your custom rule configuration into the created stylelint c
     );
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^14.3.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^14.4.0');
   });
 
   it('should not add stylelint to devDependencies when present in dependencies', async () => {
