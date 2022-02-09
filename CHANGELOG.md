@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.2.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0...v13.2.1) (2022-02-09)
+
+### CI
+
+- run build job only on Node.js 16 ([55ff800](https://github.com/Phillip9587/nx-stylelint/commit/55ff800f33821008db940385b9c299d3429dda6e))
+
+### Documentation
+
+- added a compatibility table ([bf3791c](https://github.com/Phillip9587/nx-stylelint/commit/bf3791c2c1c36775ae3b7d88caf1ac5d312e995d))
+- changed headline and fixed typos ([9048ba5](https://github.com/Phillip9587/nx-stylelint/commit/9048ba5e27ae70f3024e384beea9f3a4e1a2a69c))
+
+### Others
+
+- **deps:** update dependency @nrwl/nx-cloud to v13.1.4 ([21798b4](https://github.com/Phillip9587/nx-stylelint/commit/21798b4ca814e3f0a6b96364f2497642c0dc4d0e))
+- **deps:** update dependency @types/node to v16.11.22 ([b89f58e](https://github.com/Phillip9587/nx-stylelint/commit/b89f58e65f9548a42b1207aebff8c0bc7aa60ac2))
+- **deps:** update dependency eslint to v8.8.0 ([f7faae2](https://github.com/Phillip9587/nx-stylelint/commit/f7faae2f02d81c480ea625f6cd64d6cfa71a2151))
+- **deps:** update dependency jest to v27.5.0 ([c843f72](https://github.com/Phillip9587/nx-stylelint/commit/c843f7239c0d98acf0fc6240025c8f4f1ea5923c))
+- **deps:** update dependency jest to v27.5.1 ([f71b35a](https://github.com/Phillip9587/nx-stylelint/commit/f71b35aec1b2e1f45a76e80fbc6a33ad172a4205))
+- **deps:** update dependency stylelint to v14.4.0 ([9f69875](https://github.com/Phillip9587/nx-stylelint/commit/9f69875a441f1dbc919aabb29ee03ee418d9f869))
+- **deps:** update dependency stylelint-config-standard to v25 ([778d513](https://github.com/Phillip9587/nx-stylelint/commit/778d513d0cea2f8174d33e952917d0bf9c553036))
+- **deps:** update Nx to 13.6.0 ([08c6dd9](https://github.com/Phillip9587/nx-stylelint/commit/08c6dd9374e1459dd49547fa63a3eb799ad2385e))
+- **deps:** update Nx to 13.7.1 ([1c3c445](https://github.com/Phillip9587/nx-stylelint/commit/1c3c44503371c3f2a10c5eb2c65368860f860a87))
+- **deps:** update Nx to 13.8.0 ([56876be](https://github.com/Phillip9587/nx-stylelint/commit/56876bec1d27de167e3632fca3910e42351f1431))
+- **deps:** update typescript-eslint monorepo to v5.10.2 ([a479f49](https://github.com/Phillip9587/nx-stylelint/commit/a479f49557ebc99dd1b596b47e545c02ff1d8e72))
+- removed e2e target that only runs the e2e target of the e2e project ([5761277](https://github.com/Phillip9587/nx-stylelint/commit/5761277e9350fca9677eff2d58dcf5caf7488b47))
+
 ## [13.2.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0-beta.3...v13.2.0) (2022-01-27)
 
 ### Documentation
