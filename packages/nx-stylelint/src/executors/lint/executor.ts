@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import type { LintExecutorSchema } from './schema';
 import { logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
@@ -29,6 +30,8 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
+  const files = options.uncommitted ? getUncommittedFiles() : options.lintFilePatterns;
+
   let resolvedFormatter;
   try {
     resolvedFormatter = loadFormatter(options.formatter, context.cwd);
@@ -39,7 +42,7 @@ export async function lintExecutor(
 
   const result = await stylelint.lint({
     ...options,
-    files: options.lintFilePatterns,
+    files: files,
     formatter: resolvedFormatter,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
   });
@@ -69,5 +72,19 @@ export async function lintExecutor(
         (options.maxWarnings === undefined || options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
   };
 }
+
+
+function getUncommittedFiles(): string[] {
+  return parseGitOutput(`git diff --name-only --relative HEAD .`);
+}
+
+function parseGitOutput(command: string): string[] {
+  return execSync(command, { maxBuffer: TEN_MEGABYTES })
+    .toString('utf-8')
+    .split('\n')
+    .map((a) => a.trim())
+    .filter((a) => a.length > 0);
+}
+
 
 export default lintExecutor;

@@ -18,4 +18,5 @@ export interface LintExecutorSchema {
   reportInvalidScopeDisables: boolean;
   reportNeedlessDisables: boolean;
   silent: boolean;
+  uncommitted: boolean;
 }

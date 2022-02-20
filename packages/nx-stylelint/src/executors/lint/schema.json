@@ -95,6 +95,11 @@
       "type": "boolean",
       "description": "Hide output text.",
       "default": false
+    },
+    "uncommitted": {
+      "type": "boolean",
+      "description": "Run stylelint for uncommitted files, usefule for pre-commit hook.",
+      "default": false
     }
   },
   "required": ["lintFilePatterns"]
