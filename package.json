@@ -56,7 +56,7 @@
     "@nrwl/nx-plugin": "13.8.0",
     "@nrwl/tao": "13.8.0",
     "@nrwl/workspace": "13.8.0",
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "@types/node": "16.11.25",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
