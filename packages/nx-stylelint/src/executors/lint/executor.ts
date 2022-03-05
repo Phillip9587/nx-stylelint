@@ -7,6 +7,8 @@ import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
 import { loadFormatter } from '../../utils/formatter';
 
+export const TEN_MEGABYTES = 1024 * 10000;
+
 export async function lintExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
@@ -30,7 +32,7 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  const files = options.uncommitted ? getUncommittedFiles() : options.lintFilePatterns;
+  const files = options.uncommitted ? getFilesToFormat(options.lintFilePatterns) : options.lintFilePatterns;
 
   let resolvedFormatter;
   try {
@@ -73,17 +75,26 @@ export async function lintExecutor(
   };
 }
 
-
-function getUncommittedFiles(): string[] {
-  return parseGitOutput(`git diff --name-only --relative HEAD .`);
+function getFilesToFormat(format: string) {
+  return [...getUncommittedFiles(format), ... getUntrackedFiles(format)];
 }
 
-function parseGitOutput(command: string): string[] {
+
+function getUncommittedFiles(format: string): string[] {
+  return parseGitOutput(`git diff --name-only --relative HEAD .`, format);
+}
+
+function getUntrackedFiles(format: string): string[] {
+  return parseGitOutput(`git ls-files --others --exclude-standard`, format);
+}
+
+function parseGitOutput(command: string, format: string): string[] {
+  var regex = new RegExp(format);
   return execSync(command, { maxBuffer: TEN_MEGABYTES })
     .toString('utf-8')
     .split('\n')
     .map((a) => a.trim())
-    .filter((a) => a.length > 0);
+    .filter((a) => a.length > 0 && regex.test(a));
 }
 
 
