@@ -244,7 +244,7 @@ describe('nx-stylelint:lint executor', () => {
     const tree = createTreeWithEmptyWorkspace(2);
     tree.write('/root/src/styles/main.css', 'body { color: red; }');
     const mockFiles = jest.spyOn(gitutil, 'getFilesToFormat').mockReturnValue(['/root/src/styles/main.css']);
-    const { success } = await executor({ ...defaultOptions, uncommitted: true }, mockContext);
+    await executor({ ...defaultOptions, uncommitted: true }, mockContext);
     expect(mockFiles).toBeCalled();
   });
 });
