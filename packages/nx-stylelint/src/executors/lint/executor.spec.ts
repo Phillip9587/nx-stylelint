@@ -1,10 +1,12 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
-import type { ExecutorContext } from '@nrwl/devkit';
+import { ExecutorContext } from '@nrwl/devkit';
 import type { LinterResult, PublicApi } from 'stylelint';
 import { logger } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { normalize } from 'path';
 import executor from './executor';
+import * as gitutil from '../../utils/gitutil';
 
 const defaultOptions: LintExecutorSchema = {
   allowEmptyInput: true,
@@ -19,6 +21,7 @@ const defaultOptions: LintExecutorSchema = {
   reportInvalidScopeDisables: false,
   quiet: false,
   cache: false,
+  uncommitted: false,
 };
 
 const defaultMockResult: LinterResult = {
@@ -234,5 +237,14 @@ describe('nx-stylelint:lint executor', () => {
 
     expect(success).toBeTruthy();
     expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should lint only precommitted files', async () => {
+    mockResult = mockResultWithErrorsAndWarnings;
+    const tree = createTreeWithEmptyWorkspace(2);
+    tree.write('/root/src/styles/main.css', 'body { color: red; }');
+    const mockFiles = jest.spyOn(gitutil, 'getFilesToFormat').mockReturnValue(['/root/src/styles/main.css']);
+    const { success } = await executor({ ...defaultOptions, uncommitted: true }, mockContext);
+    expect(mockFiles).toBeCalled();
   });
 });

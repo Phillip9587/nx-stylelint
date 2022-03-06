@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import type { LintExecutorSchema } from './schema';
 import { logger } from '@nrwl/devkit';
 import type { ExecutorContext } from '@nrwl/devkit';
@@ -6,8 +5,7 @@ import { join, dirname } from 'path';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';
 import { loadFormatter } from '../../utils/formatter';
-
-export const TEN_MEGABYTES = 1024 * 10000;
+import { getFilesToFormat } from '../../utils/gitutil';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
@@ -74,28 +72,5 @@ export async function lintExecutor(
         (options.maxWarnings === undefined || options.maxWarnings === -1 || totalWarnings <= options.maxWarnings)),
   };
 }
-
-function getFilesToFormat(format: string) {
-  return [...getUncommittedFiles(format), ... getUntrackedFiles(format)];
-}
-
-
-function getUncommittedFiles(format: string): string[] {
-  return parseGitOutput(`git diff --name-only --relative HEAD .`, format);
-}
-
-function getUntrackedFiles(format: string): string[] {
-  return parseGitOutput(`git ls-files --others --exclude-standard`, format);
-}
-
-function parseGitOutput(command: string, format: string): string[] {
-  var regex = new RegExp(format);
-  return execSync(command, { maxBuffer: TEN_MEGABYTES })
-    .toString('utf-8')
-    .split('\n')
-    .map((a) => a.trim())
-    .filter((a) => a.length > 0 && regex.test(a));
-}
-
 
 export default lintExecutor;
