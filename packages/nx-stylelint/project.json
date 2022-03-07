@@ -19,7 +19,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nx-stylelint",
@@ -28,8 +28,16 @@
         "packageJson": "packages/nx-stylelint/package.json",
         "main": "packages/nx-stylelint/src/index.ts",
         "assets": [
-          "README.md",
-          "LICENSE",
+          {
+            "input": ".",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
           {
             "input": "./packages/nx-stylelint/src",
             "glob": "**/schema.{json,d.ts}",
