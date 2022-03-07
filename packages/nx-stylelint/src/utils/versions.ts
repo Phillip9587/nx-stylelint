@@ -1,5 +1,5 @@
 // Versions
-export const stylelintVersion = '^14.4.0';
+export const stylelintVersion = '^14.5.3';
 export const stylelintConfigPrettierVersion = '^9.0.3';
 export const stylelintConfigStandardVersion = '^25.0.0';
 export const stylelintConfigStandardScssVersion = '^3.0.0';
