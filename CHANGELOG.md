@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.3.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.1...v13.3.0) (2022-03-07)
+
+### Features
+
+- **generators:** export generators from index.ts ([3a2f428](https://github.com/Phillip9587/nx-stylelint/commit/3a2f4282cd5e8ea033cc830de0fd261c6e1a112e))
+
+### Others
+
+- **deps:** migrate Nx to 13.8.5 ([c8b84df](https://github.com/Phillip9587/nx-stylelint/commit/c8b84df02b33c6e861a5dca731d75504f4fe9ea8))
+- **deps:** update actions/checkout action to v3 ([b8a0d11](https://github.com/Phillip9587/nx-stylelint/commit/b8a0d115affcbad445a9aeea60d236a1b36d2abd))
+- **deps:** update actions/setup-node action to v3 ([aa5b6d3](https://github.com/Phillip9587/nx-stylelint/commit/aa5b6d3ef95bf81a3cddfd9dcbc91d788ba5b556))
+- **deps:** update commitlint monorepo to v16.2.1 ([6047f44](https://github.com/Phillip9587/nx-stylelint/commit/6047f44b93e930f14e8fd218a4c2de2f2a60bbe3))
+- **deps:** update dependency @nrwl/nx-cloud to v13.1.5 ([c51bb4e](https://github.com/Phillip9587/nx-stylelint/commit/c51bb4eb4e2c40e35f3ded07bd05a87cb6bd3f79))
+- **deps:** update dependency @nrwl/nx-cloud to v13.1.6 ([87c870d](https://github.com/Phillip9587/nx-stylelint/commit/87c870de44927f1e9463b4e188a5af71587e1ba4))
+- **deps:** update dependency @types/jest to v27.4.1 ([15a893f](https://github.com/Phillip9587/nx-stylelint/commit/15a893fa9712d13cafde8db3b94c00fa8ce407ae))
+- **deps:** update dependency @types/node to v16.11.23 ([371c468](https://github.com/Phillip9587/nx-stylelint/commit/371c468d09f414f21ba1868c590fa1ff1f306dac))
+- **deps:** update dependency @types/node to v16.11.24 ([f4af1d9](https://github.com/Phillip9587/nx-stylelint/commit/f4af1d963360e9ff2ef590663f1067e76c68863c))
+- **deps:** update dependency @types/node to v16.11.25 ([14082f8](https://github.com/Phillip9587/nx-stylelint/commit/14082f88d972bbc95619d737190aa4b111888f26))
+- **deps:** update dependency @types/node to v16.11.26 ([1810178](https://github.com/Phillip9587/nx-stylelint/commit/181017844c506ea61665d2eb217354f10bfe64c3))
+- **deps:** update dependency eslint to v8.10.0 ([8df4b85](https://github.com/Phillip9587/nx-stylelint/commit/8df4b85c247d7a9a529e6e7b0f7733328091cdb8))
+- **deps:** update dependency eslint to v8.9.0 ([2db5aa0](https://github.com/Phillip9587/nx-stylelint/commit/2db5aa0cf1a1d7d9dd9608b84da8738b0c9efd2c))
+- **deps:** update dependency eslint-config-prettier to v8.4.0 ([1f34e06](https://github.com/Phillip9587/nx-stylelint/commit/1f34e066317579088acd97733407db5adb4c5fb9))
+- **deps:** update dependency eslint-config-prettier to v8.5.0 ([6482bfb](https://github.com/Phillip9587/nx-stylelint/commit/6482bfb92f1ac5d7b4906798954225fd362a0f16))
+- **deps:** update dependency stylelint to v14.5.0 ([e0191a7](https://github.com/Phillip9587/nx-stylelint/commit/e0191a72a16836d43c628bf07ca917dd5814e67c))
+- **deps:** update dependency stylelint to v14.5.1 ([ebd07ff](https://github.com/Phillip9587/nx-stylelint/commit/ebd07ff2bc7ea40c1b3384b1131b50b008481629))
+- **deps:** update dependency stylelint to v14.5.2 ([c70e8be](https://github.com/Phillip9587/nx-stylelint/commit/c70e8be69c7e98051e9233352dee697f33e7313d))
+- **deps:** update dependency stylelint to v14.5.3 ([483af63](https://github.com/Phillip9587/nx-stylelint/commit/483af639a6dcdd2ab6966529863d4c46e4aa1304))
+- **deps:** updated Nx to 13.8.3 ([bde63cd](https://github.com/Phillip9587/nx-stylelint/commit/bde63cd40014f2e58e388de9663a6264e84ae666))
+- **generators:** update stylelint and stylelint-config-standard versions for init generator ([66da6be](https://github.com/Phillip9587/nx-stylelint/commit/66da6be73f557c156bac11882f62c0cfd67b8575))
+- **init generator:** increase the stylelint version ([cecbf32](https://github.com/Phillip9587/nx-stylelint/commit/cecbf32d2bc03eb7ae1c05e63b1cd65ac3e06811))
+
 ### [13.2.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.2.0...v13.2.1) (2022-02-09)
 
 ### CI
