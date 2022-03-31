@@ -26,7 +26,7 @@ describe('nx-stylelint:configuration generator', () => {
   it('should add stylelint target, run init generator and create project .stylelinrrc.json', async () => {
     const projectStylelint = `libs/test/.stylelintrc.json`;
 
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await generator(tree, defaultOptions);
 
     const config = readProjectConfiguration(tree, 'test');
@@ -54,7 +54,7 @@ describe('nx-stylelint:configuration generator', () => {
   it('should add stylelint target alongside other targets, run init generator and create project .stylelinrrc.json', async () => {
     const projectStylelint = `libs/test/.stylelintrc.json`;
 
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
 
     let config = readProjectConfiguration(tree, 'test');
     config.targets = {
@@ -86,7 +86,7 @@ describe('nx-stylelint:configuration generator', () => {
   it('should fail when project already has a stylelint target', async () => {
     logger.error = jest.fn();
 
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await generator(tree, defaultOptions);
 
     const config = readProjectConfiguration(tree, 'test');
@@ -99,7 +99,7 @@ describe('nx-stylelint:configuration generator', () => {
 
   describe('--formatter', () => {
     it('should add a stylelint target with the specified formatter', async () => {
-      await libraryGenerator(tree, { name: 'test' });
+      await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
       await generator(tree, { ...defaultOptions, formatter: 'json' });
 
       const config = readProjectConfiguration(tree, 'test');
@@ -112,7 +112,7 @@ describe('nx-stylelint:configuration generator', () => {
 
     it('should print a error if the format is not defined', async () => {
       logger.error = jest.fn();
-      await libraryGenerator(tree, { name: 'test' });
+      await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
       await generator(tree, { ...defaultOptions, formatter: 'test' as unknown as FormatterType });
 
       const config = readProjectConfiguration(tree, 'test');

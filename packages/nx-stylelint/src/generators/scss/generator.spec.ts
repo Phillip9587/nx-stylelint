@@ -24,7 +24,7 @@ describe('scss generator', () => {
   });
 
   it('should add a a glob pattern for scss files to the target configuration', async () => {
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await configurationGenerator(tree, { project: 'test', skipFormat: true });
     await scssGenerator(tree, defaultOptions);
 
@@ -38,7 +38,7 @@ describe('scss generator', () => {
   });
 
   it('should add required dependencies to package.json', async () => {
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await configurationGenerator(tree, { project: 'test', skipFormat: true });
     await scssGenerator(tree, defaultOptions);
 
@@ -50,7 +50,7 @@ describe('scss generator', () => {
   it('should update root and project stylelint configurations', async () => {
     const projectStylelint = `libs/test/.stylelintrc.json`;
 
-    await libraryGenerator(tree, { name: 'test' });
+    await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await configurationGenerator(tree, { project: 'test', skipFormat: true });
 
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
