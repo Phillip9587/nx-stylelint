@@ -5,6 +5,7 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
+      "matchPackageNames": ["nx"],
       "matchPackagePrefixes": ["@nrwl/"],
       "excludePackageNames": ["@nrwl/nx-cloud"],
       "enabled": false
