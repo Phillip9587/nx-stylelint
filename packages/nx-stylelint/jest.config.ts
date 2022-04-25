@@ -1,6 +1,8 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
   displayName: 'nx-stylelint',
-  preset: '../../jest.preset.js',
+  preset: '../../jest.preset.ts',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -13,3 +15,5 @@ module.exports = {
   coverageDirectory: '../../coverage/packages/nx-stylelint',
   testEnvironment: 'node',
 };
+
+export default config;
