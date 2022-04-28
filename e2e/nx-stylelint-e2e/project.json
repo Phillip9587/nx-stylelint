@@ -7,7 +7,7 @@
       "executor": "@nrwl/nx-plugin:e2e",
       "options": {
         "target": "nx-stylelint:build",
-        "jestConfig": "e2e/nx-stylelint-e2e/jest.config.js"
+        "jestConfig": "e2e/nx-stylelint-e2e/jest.config.ts"
       }
     }
   },
