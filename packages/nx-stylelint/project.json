@@ -27,16 +27,8 @@
         "packageJson": "packages/nx-stylelint/package.json",
         "main": "packages/nx-stylelint/src/index.ts",
         "assets": [
-          {
-            "input": ".",
-            "glob": "README.md",
-            "output": "."
-          },
-          {
-            "input": ".",
-            "glob": "LICENSE",
-            "output": "."
-          },
+          "README.md",
+          "LICENSE",
           {
             "input": "./packages/nx-stylelint/src",
             "glob": "**/schema.{json,d.ts}",
