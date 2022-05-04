@@ -1,5 +1,4 @@
 {
-  "root": "packages/nx-stylelint",
   "sourceRoot": "packages/nx-stylelint/src",
   "projectType": "library",
   "targets": {
