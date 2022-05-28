@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.4.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0-beta.1...v13.4.0) (2022-05-28)
+
+### CI
+
+- **github:** e2e tests removed node 12 and 17 and added node 18 ([feee7b6](https://github.com/Phillip9587/nx-stylelint/commit/feee7b67c2c50e45d111aaf9e5516d8f10e2bd58))
+
+### Others
+
+- **deps:** update dependency stylelint to v14.8.5 ([b3b8756](https://github.com/Phillip9587/nx-stylelint/commit/b3b875621408bfc179416f2a1dd026fe1e971a66))
+
 ## [13.4.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0-beta.0...v13.4.0-beta.1) (2022-05-28)
 
 ### Tests
