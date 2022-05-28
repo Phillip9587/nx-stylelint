@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.4.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0-beta.0...v13.4.0-beta.1) (2022-05-28)
+
+### Tests
+
+- fixed failing test after version update ([762505e](https://github.com/Phillip9587/nx-stylelint/commit/762505e29084148b2f472af31d04e1bc46907531))
+
+### Others
+
+- updated shebang as in husky documentation ([7081970](https://github.com/Phillip9587/nx-stylelint/commit/7081970af979036c6bad6d28ee9203f954515a7d))
+
 ## [13.4.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.3.0...v13.4.0-beta.0) (2022-05-28)
 
 ### Features
