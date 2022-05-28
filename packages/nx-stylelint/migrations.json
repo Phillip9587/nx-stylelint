@@ -55,6 +55,18 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "13.4.0": {
+      "version": "13.4.0",
+      "packages": {
+        "stylelint": {
+          "version": "^14.4.0"
+        },
+        "stylelint-config-standard-scss": {
+          "version": "^4.0.0",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
