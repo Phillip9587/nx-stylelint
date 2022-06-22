@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.5.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0...v13.5.0) (2022-06-22)
+
+### Features
+
+- migrate to latest stylelint-config-standard ([bf82bd8](https://github.com/Phillip9587/nx-stylelint/commit/bf82bd81ab5db432a63020a58eab7b0ff06d5d60))
+- support new stylelint-config-\* versions ([c38bfad](https://github.com/Phillip9587/nx-stylelint/commit/c38bfad58b447f10b09c1eff0276011bc7d81b43))
+
+### Others
+
+- **deps:** update commitlint monorepo to v17.0.2 ([5f0d730](https://github.com/Phillip9587/nx-stylelint/commit/5f0d730cb44a95c777630aa12a57f56b49c520d1))
+- **deps:** update dependency @nrwl/nx-cloud to v14.0.8 ([29587e3](https://github.com/Phillip9587/nx-stylelint/commit/29587e31945001249ace5ae514de93d3ba5b880b))
+- **deps:** update dependency @nrwl/nx-cloud to v14.1.2 ([2268ab0](https://github.com/Phillip9587/nx-stylelint/commit/2268ab0daf44937513493596888ea39b94dadce5))
+- **deps:** update dependency @types/jest to v27.5.2 ([01f08a1](https://github.com/Phillip9587/nx-stylelint/commit/01f08a103fac2d2639fb9c8cc84270d24408cd54))
+- **deps:** update dependency @types/node to v16.11.38 ([ff57cf4](https://github.com/Phillip9587/nx-stylelint/commit/ff57cf4291e66be6e4296708d41daddc1116a42b))
+- **deps:** update dependency @types/node to v16.11.39 ([372fba4](https://github.com/Phillip9587/nx-stylelint/commit/372fba4418ce56e63ae883e2b8059551ae9042f5))
+- **deps:** update dependency @types/node to v16.11.41 ([155aadd](https://github.com/Phillip9587/nx-stylelint/commit/155aaddc649380572bd72a89f6a1ec3e6e5930fe))
+- **deps:** update dependency eslint to v8.17.0 ([8ea55c0](https://github.com/Phillip9587/nx-stylelint/commit/8ea55c04f838b8a45957f2d943db9d83df058437))
+- **deps:** update dependency eslint to v8.18.0 ([2f1b6bc](https://github.com/Phillip9587/nx-stylelint/commit/2f1b6bc5ebb7579771125a2eb7d9e442c5e2459e))
+- **deps:** update dependency prettier to v2.7.1 ([1ec12f3](https://github.com/Phillip9587/nx-stylelint/commit/1ec12f30ba2e44ecb33398f0c950eed80a29f135))
+- **deps:** update dependency stylelint to v14.9.0 ([28f8a94](https://github.com/Phillip9587/nx-stylelint/commit/28f8a94fc82fb542c949003285c3df5194635934))
+- **deps:** update dependency stylelint to v14.9.1 ([72a8601](https://github.com/Phillip9587/nx-stylelint/commit/72a8601242b4a6206188cd5238128cb7822abcd7))
+- **deps:** updated dependencies ([39ac01e](https://github.com/Phillip9587/nx-stylelint/commit/39ac01e6510bc1a6875c360af3a3af6721601b16))
+
 ## [13.4.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0-beta.1...v13.4.0) (2022-05-28)
 
 ### CI
