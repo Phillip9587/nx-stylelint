@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.5.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.0...v13.5.1) (2022-07-04)
+
+### Bug Fixes
+
+- lower node requirement to 16.10 ([701dc78](https://github.com/Phillip9587/nx-stylelint/commit/701dc78ceebc14c1ecb951cb5098d448a7c7e196))
+- Lower Node requirement to 16.10 ([cb147bf](https://github.com/Phillip9587/nx-stylelint/commit/cb147bf5d149671c01b39660687aca6e03127714))
+
+### Others
+
+- **deps:** update commitlint monorepo to v17.0.3 ([53a49fd](https://github.com/Phillip9587/nx-stylelint/commit/53a49fd2b8ffc44e627778d50c6ab1407e435c35))
+- **deps:** update dependency @nrwl/nx-cloud to v14.1.3 ([6aa2b7f](https://github.com/Phillip9587/nx-stylelint/commit/6aa2b7fee69d15f0bddf49389773598b48d41e32))
+- **deps:** update dependency @types/node to v16.11.42 ([f22cb1f](https://github.com/Phillip9587/nx-stylelint/commit/f22cb1fa66300b416cd688d5d5ed959333b1eb75))
+- **deps:** update dependency eslint to v8.19.0 ([e21e3a9](https://github.com/Phillip9587/nx-stylelint/commit/e21e3a9c6a8670bdfa8935b495bff564108ed8a0))
+- **deps:** update dependency ts-node to v10.8.2 ([8068f68](https://github.com/Phillip9587/nx-stylelint/commit/8068f683a607912f3b07b5e8c0f0f4f7167fc028))
+- **deps:** update to Nx 14.4.0 ([1509f35](https://github.com/Phillip9587/nx-stylelint/commit/1509f35a3977dac3d161ca4e96a033010affebda))
+
 ## [13.5.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.4.0...v13.5.0) (2022-06-22)
 
 ### Features
