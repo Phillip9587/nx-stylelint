@@ -3,7 +3,6 @@
   "cli": "nx",
   "title": "Stylelint Lint Target",
   "type": "object",
-  "additionalProperties": false,
   "properties": {
     "allowEmptyInput": {
       "type": "boolean",
