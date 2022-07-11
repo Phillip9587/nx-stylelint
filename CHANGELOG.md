@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.5.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.1...v13.5.2) (2022-07-11)
+
+### Bug Fixes
+
+- **executor:** accept unplanned positional arguments ([5d7444e](https://github.com/Phillip9587/nx-stylelint/commit/5d7444e5f706fa636658fd5322bd2d7383710c1e))
+
+### Others
+
+- **deps:** updated Nx ([4c27b4d](https://github.com/Phillip9587/nx-stylelint/commit/4c27b4d0c6bdc884546a4a967873dd1ebdee7f18))
+
 ### [13.5.1](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.0...v13.5.1) (2022-07-04)
 
 ### Bug Fixes
