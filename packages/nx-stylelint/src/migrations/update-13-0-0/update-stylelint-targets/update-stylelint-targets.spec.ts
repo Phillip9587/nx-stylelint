@@ -43,7 +43,8 @@ describe('update-stylelint-targets', () => {
   it('should update targets', async () => {
     await updateStylelintTargets(tree);
 
-    expect(readProjectConfiguration(tree, 'proj')).toStrictEqual<ProjectConfiguration>({
+    expect(readProjectConfiguration(tree, 'proj')).toStrictEqual<ProjectConfiguration & { $schema: string }>({
+      $schema: '../../node_modules/nx/schemas/project-schema.json',
       root: 'libs/proj',
       targets: {
         target1: {
