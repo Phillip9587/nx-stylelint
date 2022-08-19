@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [13.5.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.2...v13.5.3) (2022-08-19)
+
+### Bug Fixes
+
+- support all stylelint core formatters ([a8d3e48](https://github.com/Phillip9587/nx-stylelint/commit/a8d3e48b50dc2c766a4e37aee002c4863d48d0f6))
+
+### Tests
+
+- fix mocked stylelint result ([cef6c8a](https://github.com/Phillip9587/nx-stylelint/commit/cef6c8a339cb162b38c175276e6d03811d9ad4c5))
+
+### Others
+
+- **deps:** update dependency @nrwl/nx-cloud to v14.3.0 ([b302a5f](https://github.com/Phillip9587/nx-stylelint/commit/b302a5ff3b2e1ad514d0be7630c43e4eaf08f194))
+- **deps:** update dependency @nrwl/nx-cloud to v14.4.1 ([1da1010](https://github.com/Phillip9587/nx-stylelint/commit/1da1010d787a0466eeea32003e1c998db97ecf3f))
+- **deps:** update dependency commitizen to v4.2.5 ([d7163af](https://github.com/Phillip9587/nx-stylelint/commit/d7163af2f0f806a616cbf4ef4389edb17b97e673))
+- **deps:** update dependency eslint to v8.20.0 ([e2a3cc8](https://github.com/Phillip9587/nx-stylelint/commit/e2a3cc8e9efb07c1d811c7bae722716d32aab186))
+- **deps:** update dependency eslint to v8.21.0 ([494dc27](https://github.com/Phillip9587/nx-stylelint/commit/494dc27a3215236c628623e28689d18fe332e1f3))
+- **deps:** update dependency eslint to v8.22.0 ([0bf6018](https://github.com/Phillip9587/nx-stylelint/commit/0bf60187f256e4f4a0c3161d5ae837613766eede))
+- **deps:** update dependency stylelint to v14.10.0 ([d6a64c6](https://github.com/Phillip9587/nx-stylelint/commit/d6a64c6a310495a0c695148cdbbdd7877c9f8aa3))
+- **deps:** update dependency ts-node to v10.9.1 ([718e542](https://github.com/Phillip9587/nx-stylelint/commit/718e542ac234ee33a389f4b71d286676354ee9b2))
+- **deps:** update typescript-eslint monorepo to v5.30.6 ([62224c8](https://github.com/Phillip9587/nx-stylelint/commit/62224c8fcd03f4479f92dd73361bcad6c66517e1))
+- **deps:** update typescript-eslint monorepo to v5.30.7 ([59ca4a4](https://github.com/Phillip9587/nx-stylelint/commit/59ca4a444ecefeff0e8a310cd575a6e4bc9ea8af))
+- **deps:** update typescript-eslint monorepo to v5.31.0 ([5a7d56d](https://github.com/Phillip9587/nx-stylelint/commit/5a7d56d7cb2a7791efcfce8f926d97c991b51b8b))
+- **deps:** update typescript-eslint monorepo to v5.32.0 ([3d82afd](https://github.com/Phillip9587/nx-stylelint/commit/3d82afdb484cf7499880a2a491b25059bb0d41fe))
+- **deps:** update typescript-eslint monorepo to v5.33.1 ([3ad7ed4](https://github.com/Phillip9587/nx-stylelint/commit/3ad7ed4e28d144c6acf145f60e5ba33b79cc2b9e))
+- **deps:** updated Nx to 14.5.7 ([22773ae](https://github.com/Phillip9587/nx-stylelint/commit/22773aede78d67bd71e777aa16e2c65f0d8dfc4c))
+
 ### [13.5.2](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.1...v13.5.2) (2022-07-11)
 
 ### Bug Fixes
