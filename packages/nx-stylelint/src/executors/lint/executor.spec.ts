@@ -27,6 +27,7 @@ const defaultMockResult: LinterResult = {
   errored: false,
   output: 'Output',
   results: [],
+  ruleMetadata: {},
 };
 
 const mockResultWithWarnings: LinterResult = {
