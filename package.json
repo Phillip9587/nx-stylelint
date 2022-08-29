@@ -44,8 +44,8 @@
     "release:beta": "standard-version --no-verify --prerelease beta"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/cli": "17.1.2",
+    "@commitlint/config-conventional": "17.1.0",
     "@nrwl/devkit": "14.5.7",
     "@nrwl/eslint-plugin-nx": "14.5.7",
     "@nrwl/jest": "14.5.7",
