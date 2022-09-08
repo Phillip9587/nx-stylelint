@@ -73,7 +73,7 @@ jobs:
         run: npm ci
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@v3
 
       - name: E2E
         run: npx nx affected --target=e2e --skip-nx-cache
