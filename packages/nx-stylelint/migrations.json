@@ -79,6 +79,14 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "14.0.0": {
+      "version": "14.10.0-beta.0",
+      "packages": {
+        "stylelint": {
+          "version": "^14.10.0"
+        }
+      }
     }
   }
 }
