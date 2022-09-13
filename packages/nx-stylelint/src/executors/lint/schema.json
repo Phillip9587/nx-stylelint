@@ -38,7 +38,7 @@
       "default": "string",
       "anyOf": [
         {
-          "enum": ["compact", "json", "string", "tap", "unix", "verbose"]
+          "enum": ["compact", "github", "json", "string", "tap", "unix", "verbose"]
         },
         {
           "minLength": 1

@@ -1,10 +1,11 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
 import type { ExecutorContext } from '@nrwl/devkit';
-import type { LinterResult, PublicApi } from 'stylelint';
+import { formatters, LinterResult, PublicApi } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
 import executor from './executor';
+import path = require('path');
 
 const defaultOptions: LintExecutorSchema = {
   allowEmptyInput: true,
@@ -87,6 +88,18 @@ const mockResultWithErrorsAndWarnings: LinterResult = {
     },
   ],
 };
+
+describe('nx-stylelint:lint options', () => {
+  const schemaJson = JSON.parse(fs.readFileSync(path.join(__dirname, 'schema.json'), 'utf-8'));
+
+  it('formatter should contain all core formatters as enum', () => {
+    const formatterEnum = schemaJson.properties.formatter.anyOf[0].enum;
+
+    for (const formatterKey of Object.keys(formatters)) {
+      expect(formatterEnum).toContain(formatterKey);
+    }
+  });
+});
 
 describe('nx-stylelint:lint executor', () => {
   const mockContext: ExecutorContext = {
