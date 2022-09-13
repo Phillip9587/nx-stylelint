@@ -342,6 +342,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 | Nx Stylelint Version | Nx Version | Stylelint Version |
 | -------------------- | ---------- | ----------------- |
+| `^14.0.0`            | `>=14.0.0` | `^14.10.0`        |
 | `^13.0.0`            | `>=12.0.0` | `^14.0.0`         |
 | `^12.0.0`            | `>=12.0.0` | `^13.0.0`         |
 | `^11.0.0`            | `^11.0.0`  | `^13.0.0`         |
