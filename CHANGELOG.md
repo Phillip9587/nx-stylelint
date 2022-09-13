@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.3...v14.0.0) (2022-09-13)
+
+### ⚠ BREAKING CHANGES
+
+- Support for Nx v12 and v13 has been removed
+- Support for Stylelint < v14.10.0 has been removed.
+- Support for Node.js v12 and v17 has been removed.
+
+### Features
+
+- drop support for Node.js 12 and 17 ([3ffe2b5](https://github.com/Phillip9587/nx-stylelint/commit/3ffe2b51383516a47afcb7970021e1b31d0b05ad))
+- drop support for Nx v12 and v13 ([eb5b68b](https://github.com/Phillip9587/nx-stylelint/commit/eb5b68b4ed90c9fc9019c0e07924a6851108d3e1))
+- drop support for Stylelint < v14.10.0 ([76533a2](https://github.com/Phillip9587/nx-stylelint/commit/76533a27a0b55efec68df50eebb9822b8752c417))
+- updated tsconfig target version ([8bfc67a](https://github.com/Phillip9587/nx-stylelint/commit/8bfc67aeebddd716f9b244d282e95d92a50b2671))
+
+### Bug Fixes
+
+- **executor:** added github formatter to json schema ([fe33ddd](https://github.com/Phillip9587/nx-stylelint/commit/fe33dddd92e7f1bc4a188dbc3405482ea5f7b837))
+- **init:** update stylelint version to ^14.10.0 ([1d6512f](https://github.com/Phillip9587/nx-stylelint/commit/1d6512fe164aa926c12e7f66495cb69ff6fa28c1))
+
+### Others
+
+- **deps:** lock file maintenance ([863e066](https://github.com/Phillip9587/nx-stylelint/commit/863e066ea76bef56230aeeff20402a87af819574))
+- **deps:** lock file maintenance ([aa1d9f0](https://github.com/Phillip9587/nx-stylelint/commit/aa1d9f01f66e8b392496c7dbb2c2c67f908cb0b7))
+- **deps:** lock file maintenance ([79cffb7](https://github.com/Phillip9587/nx-stylelint/commit/79cffb75a2782497351184ec53937cb43a53bbed))
+- **deps:** remove dotenv from devDependencies ([2630b42](https://github.com/Phillip9587/nx-stylelint/commit/2630b42be9a0d81802d59dd9b313ab4eb5f89890))
+- **deps:** update commitlint monorepo ([eed1f8d](https://github.com/Phillip9587/nx-stylelint/commit/eed1f8d99a84b97d3d9d03b7ed18146d3b85eecb))
+- **deps:** update dependency @nrwl/nx-cloud to v14.5.2 ([2f3e622](https://github.com/Phillip9587/nx-stylelint/commit/2f3e6220f372dbdfc2a82d1b2ceb30bf55dc2c1e))
+- **deps:** update dependency @nrwl/nx-cloud to v14.5.4 ([6a1d7a8](https://github.com/Phillip9587/nx-stylelint/commit/6a1d7a899fc6014013ad637b64549d828c79d524))
+- **deps:** update dependency @nrwl/nx-cloud to v14.6.0 ([8d35a20](https://github.com/Phillip9587/nx-stylelint/commit/8d35a20e72cc3a17ef8a2a5377a4072e45b3cf5d))
+- **deps:** update dependency @nrwl/nx-cloud to v14.6.1 ([3aded71](https://github.com/Phillip9587/nx-stylelint/commit/3aded71f737c745b3d9642c9f74f51f91cff0990))
+- **deps:** update dependency @nrwl/nx-cloud to v14.6.2 ([4fe6f52](https://github.com/Phillip9587/nx-stylelint/commit/4fe6f522a8981729a7e1e2ad421aa2ae160665df))
+- **deps:** update dependency eslint to v8.23.0 ([d3f72fa](https://github.com/Phillip9587/nx-stylelint/commit/d3f72fa2ae1bc4565aeb54917520ec37ce61d5c0))
+- **deps:** update dependency eslint to v8.23.1 ([6f305df](https://github.com/Phillip9587/nx-stylelint/commit/6f305df186371c722160198028fca4f4354d0c47))
+- **deps:** update dependency stylelint to v14.11.0 ([00a6797](https://github.com/Phillip9587/nx-stylelint/commit/00a67971a83352d100153f6962aa944e23269a62))
+- **deps:** update dependency ts-jest to v27.1.5 ([d79839b](https://github.com/Phillip9587/nx-stylelint/commit/d79839bcf0edd740bca8db2a48e2dbc8ee7d1d55))
+- **deps:** update dependency typescript to v4.8.3 ([2c28a31](https://github.com/Phillip9587/nx-stylelint/commit/2c28a313aca472a2458c15cb52cf389dcf21901e))
+- **deps:** update nrwl/nx-set-shas action to v3 ([043adf2](https://github.com/Phillip9587/nx-stylelint/commit/043adf22e6f2967b1ab30cf229b1b1de58474702))
+- **deps:** update nx to 14.6.0 ([b4429f0](https://github.com/Phillip9587/nx-stylelint/commit/b4429f0d5e20d0dbf3c3a479bad1aea1e5be9513))
+- **deps:** update nx to v14.5.10 ([5beab54](https://github.com/Phillip9587/nx-stylelint/commit/5beab54551c9140c2e050149165add681aa59852))
+- **deps:** update Nx to v14.7.5 ([d500f2a](https://github.com/Phillip9587/nx-stylelint/commit/d500f2a4c3b7648ac20797556922f63473a02f3e))
+- **deps:** update typescript-eslint monorepo ([9513cb3](https://github.com/Phillip9587/nx-stylelint/commit/9513cb3d3594bf1fc56ea9d8aaad21f08625050e))
+- **deps:** update typescript-eslint monorepo to v5.34.0 ([d728054](https://github.com/Phillip9587/nx-stylelint/commit/d728054431d8efa1c06ed860a2566cf69a9d0d21))
+- **deps:** update typescript-eslint monorepo to v5.35.1 ([8d50191](https://github.com/Phillip9587/nx-stylelint/commit/8d50191b7ec47182d54023a7d99140f15362bba8))
+- **deps:** update typescript-eslint monorepo to v5.36.2 ([46737a9](https://github.com/Phillip9587/nx-stylelint/commit/46737a91344feffc19be844498e0277f62db8d52))
+- **deps:** update typescript-eslint monorepo to v5.37.0 ([454338a](https://github.com/Phillip9587/nx-stylelint/commit/454338ad535bea474bfccbe1340a1c4ccc351fbf))
+- **deps:** updated Nx to v14.7.4 ([9cf06b2](https://github.com/Phillip9587/nx-stylelint/commit/9cf06b214c2b6e550be5ba49ad4322472217233a))
+- **renovate:** enable lock file maintenance ([eec2050](https://github.com/Phillip9587/nx-stylelint/commit/eec20509feb86212d76c07e18d11b85493c191e4))
+
+### Documentation
+
+- updated compatibility table ([0115b5f](https://github.com/Phillip9587/nx-stylelint/commit/0115b5fccbd0eadb2bbf8fc76b3d68ef8551f3a0))
+
 ### [13.5.3](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.2...v13.5.3) (2022-08-19)
 
 ### Bug Fixes
