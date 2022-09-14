@@ -101,7 +101,7 @@ Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#format
 
 Type: `string`
 
-Possible values: `compact`, `json`, `string`, `tap`, `unix`, `verbose`
+Possible values: `compact`, `github`, `json`, `string`, `tap`, `unix`, `verbose`
 
 Default: `string`
 
@@ -205,7 +205,7 @@ Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#format
 
 Type: `string`
 
-Possible values: `compact`, `json`, `string`, `tap`, `unix`, `verbose`, a npm package (e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty)) or a path to a local formatter (e.g. `tools/stylelint-formatter.js`)
+Possible values: `compact`, `github`, `json`, `string`, `tap`, `unix`, `verbose`, a npm package (e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty)) or a path to a local formatter (e.g. `tools/stylelint-formatter.js`)
 
 Default: `string`
 
