@@ -2,7 +2,9 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
 import { libraryGenerator } from '@nrwl/js';
-import { Config, ConfigOverride, FormatterType } from 'stylelint';
+import { Config, ConfigOverride, formatters, FormatterType } from 'stylelint';
+import { readFileSync } from 'fs';
+import path = require('path');
 
 import generator from './generator';
 import { ConfigurationGeneratorSchema } from './schema';
@@ -11,6 +13,29 @@ const defaultOptions: ConfigurationGeneratorSchema = {
   project: 'test',
   skipFormat: false,
 };
+
+describe('nx-stylelint:configuration options', () => {
+  const schemaJson = JSON.parse(readFileSync(path.join(__dirname, 'schema.json'), 'utf-8'));
+
+  it('formatter should contain all core formatters as enum', () => {
+    const formatterEnum = schemaJson.properties.formatter.enum;
+
+    for (const formatterKey of Object.keys(formatters)) {
+      expect(formatterEnum).toContain(formatterKey);
+    }
+  });
+
+  it('formatter x-prompt should contain all core formatters as items', () => {
+    const items = schemaJson.properties.formatter['x-prompt'].items;
+
+    for (const formatterKey of Object.keys(formatters)) {
+      expect(items).toContainEqual({
+        value: formatterKey,
+        label: formatterKey === 'string' ? `${formatterKey} (default)` : formatterKey,
+      });
+    }
+  });
+});
 
 describe('nx-stylelint:configuration generator', () => {
   let tree: Tree;

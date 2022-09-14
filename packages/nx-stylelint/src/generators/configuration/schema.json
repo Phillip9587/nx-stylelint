@@ -10,7 +10,7 @@
       "type": "string",
       "description": "Stylelint output formatter (https://stylelint.io/user-guide/usage/options#formatter).",
       "default": "string",
-      "enum": ["compact", "json", "string", "tap", "unix", "verbose"],
+      "enum": ["compact", "github", "json", "string", "tap", "unix", "verbose"],
       "x-prompt": {
         "message": "Which formatter would you like to use?",
         "type": "list",
@@ -18,6 +18,10 @@
           {
             "value": "compact",
             "label": "compact"
+          },
+          {
+            "value": "github",
+            "label": "github"
           },
           {
             "value": "json",
