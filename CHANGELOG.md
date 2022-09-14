@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v14.0.0...v14.0.1) (2022-09-14)
+
+### Bug Fixes
+
+- **generator:** add `github` formatter to generator schema ([907b17c](https://github.com/Phillip9587/nx-stylelint/commit/907b17c35fc1e969982073ac8f2d2d03c27ad9de))
+
+### Documentation
+
+- add `github` formatter to `formatter` options ([f60e2d3](https://github.com/Phillip9587/nx-stylelint/commit/f60e2d35dc823e8ff507203bd2713ec83a880311))
+
+### Others
+
+- add `@nrwl/nx/nx-plugin-checks` ([040b86c](https://github.com/Phillip9587/nx-stylelint/commit/040b86c765baf02bef0d1da183e8f2a8786e24d5))
+- **deps:** remove unnecessary @nrwl/node ([d322c40](https://github.com/Phillip9587/nx-stylelint/commit/d322c40192a9578e7e532bed0b1cf74c2a9bcb14))
+
 ## [14.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v13.5.3...v14.0.0) (2022-09-13)
 
 ### ⚠ BREAKING CHANGES
