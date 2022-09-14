@@ -51,7 +51,6 @@
     "@nrwl/jest": "14.7.5",
     "@nrwl/js": "14.7.5",
     "@nrwl/linter": "14.7.5",
-    "@nrwl/node": "14.7.5",
     "@nrwl/nx-cloud": "14.6.2",
     "@nrwl/nx-plugin": "14.7.5",
     "@nrwl/workspace": "14.7.5",

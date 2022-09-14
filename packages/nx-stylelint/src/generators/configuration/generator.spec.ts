@@ -1,7 +1,7 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/node';
+import { libraryGenerator } from '@nrwl/js';
 import { Config, ConfigOverride, FormatterType } from 'stylelint';
 
 import generator from './generator';
