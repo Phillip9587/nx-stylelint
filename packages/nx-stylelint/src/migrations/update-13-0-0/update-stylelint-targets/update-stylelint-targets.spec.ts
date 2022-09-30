@@ -45,6 +45,7 @@ describe('update-stylelint-targets', () => {
 
     expect(readProjectConfiguration(tree, 'proj')).toStrictEqual<ProjectConfiguration & { $schema: string }>({
       $schema: '../../node_modules/nx/schemas/project-schema.json',
+      name: 'proj',
       root: 'libs/proj',
       targets: {
         target1: {
