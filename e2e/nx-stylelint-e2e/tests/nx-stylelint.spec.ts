@@ -15,7 +15,7 @@ describe('nx-stylelint-e2e', () => {
     it('should initialize nx-stylelint', async () => {
       await runNxCommandAsync(`generate nx-stylelint:init`);
 
-      expect(() => checkFilesExist('.stylelintrc.json', 'package.json', 'workspace.json', 'nx.json')).not.toThrow();
+      expect(() => checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json')).not.toThrow();
 
       const packageJson = readJson('package.json');
 
@@ -51,13 +51,7 @@ describe('nx-stylelint-e2e', () => {
       await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
 
       expect(() =>
-        checkFilesExist(
-          '.stylelintrc.json',
-          'package.json',
-          'workspace.json',
-          'nx.json',
-          `libs/${projName}/.stylelintrc.json`
-        )
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projName}/.stylelintrc.json`)
       ).not.toThrow();
 
       const packageJson = readJson('package.json');
@@ -116,13 +110,7 @@ describe('nx-stylelint-e2e', () => {
         await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName} --formatter json`);
 
         expect(() =>
-          checkFilesExist(
-            '.stylelintrc.json',
-            'package.json',
-            'workspace.json',
-            'nx.json',
-            `libs/${projName}/.stylelintrc.json`
-          )
+          checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projName}/.stylelintrc.json`)
         ).not.toThrow();
 
         const packageJson = readJson('package.json');
@@ -185,13 +173,7 @@ describe('nx-stylelint-e2e', () => {
       await runNxCommandAsync(`generate nx-stylelint:scss --project ${projName}`);
 
       expect(() =>
-        checkFilesExist(
-          '.stylelintrc.json',
-          'package.json',
-          'workspace.json',
-          'nx.json',
-          `libs/${projName}/.stylelintrc.json`
-        )
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projName}/.stylelintrc.json`)
       ).not.toThrow();
 
       const packageJson = readJson('package.json');
