@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.0.2](https://github.com/Phillip9587/nx-stylelint/compare/v14.0.1...v14.0.2) (2022-10-08)
+
+### Bug Fixes
+
+- remove peer dependency on @nrwl/workspace ([f74ebc1](https://github.com/Phillip9587/nx-stylelint/commit/f74ebc157973073b2260aeb3b8ca8eec5d8e819a))
+
+### Tests
+
+- **e2e:** fixed failing e2e test caused by nx making workspace.json otpional ([894793d](https://github.com/Phillip9587/nx-stylelint/commit/894793d526018893cb88f655bf1f72d6e3659da6))
+- fix failing test related to Nx update ([0a398f4](https://github.com/Phillip9587/nx-stylelint/commit/0a398f45847a7a00a4becef88338d607e1196f60))
+
+### Others
+
+- **deps:** downgrade @types/node to v14.18.31 ([ace9d79](https://github.com/Phillip9587/nx-stylelint/commit/ace9d79b5590ce81ad76b6df5d53a277db4336df))
+- **deps:** lock file maintenance ([4d3e536](https://github.com/Phillip9587/nx-stylelint/commit/4d3e536a15ee673048082d19facc497d1362b217))
+- **deps:** lock file maintenance ([58ee87e](https://github.com/Phillip9587/nx-stylelint/commit/58ee87ee0d856800b83761ca5bffe72009d3635b))
+- **deps:** lock file maintenance ([c0451a8](https://github.com/Phillip9587/nx-stylelint/commit/c0451a80597542d613cdf6863735c96eedc27aff))
+- **deps:** lock file maintenance ([796c7b5](https://github.com/Phillip9587/nx-stylelint/commit/796c7b53371f015f5649977837bc23d46b34d3fa))
+- **deps:** pin dependency jsonc-eslint-parser to 2.1.0 ([11c0181](https://github.com/Phillip9587/nx-stylelint/commit/11c018117c20e53b5b277bf6dcdb2159eb1c5c66))
+- **deps:** update dependency @nrwl/nx-cloud to v14.7.0 ([dab86cb](https://github.com/Phillip9587/nx-stylelint/commit/dab86cb66d4a888dd2f9a4c5adb22fe401627223))
+- **deps:** update dependency eslint to v8.24.0 ([f03c045](https://github.com/Phillip9587/nx-stylelint/commit/f03c0456067fa3c169d3f05c6c6fc37668d2f223))
+- **deps:** update dependency eslint to v8.25.0 ([af3dcbd](https://github.com/Phillip9587/nx-stylelint/commit/af3dcbd2d4b412856c5f3791c94d2ae8fd5ebe03))
+- **deps:** update dependency stylelint to v14.12.0 ([220c2c2](https://github.com/Phillip9587/nx-stylelint/commit/220c2c233531cd1fff0f73b675c82996316f094f))
+- **deps:** update dependency stylelint to v14.12.1 ([f5091d3](https://github.com/Phillip9587/nx-stylelint/commit/f5091d33c16488bf46f7d5714971c9a24a313f88))
+- **deps:** update dependency stylelint to v14.13.0 ([31c3249](https://github.com/Phillip9587/nx-stylelint/commit/31c324982017822a7593c91c544a8c5a18504a26))
+- **deps:** update dependency typescript to v4.8.4 ([89a5387](https://github.com/Phillip9587/nx-stylelint/commit/89a538776c2d61cc626418fd2a4f987fdb407f1e))
+- **deps:** update Nx to v14.7.13 ([1749b04](https://github.com/Phillip9587/nx-stylelint/commit/1749b04c9cd710f39b6d10ec15202bbbd1d5bba6))
+- **deps:** update Nx to v14.7.6 ([e91d11a](https://github.com/Phillip9587/nx-stylelint/commit/e91d11a3dde04b2a55024a279d3ea445267fe0ae))
+- **deps:** update typescript-eslint monorepo to v5.38.0 ([8801414](https://github.com/Phillip9587/nx-stylelint/commit/880141487672a7748e89784576c2e6d77573f30f))
+- **deps:** update typescript-eslint monorepo to v5.38.1 ([e6cd3a4](https://github.com/Phillip9587/nx-stylelint/commit/e6cd3a4e4257fbe6e7af9bfe9e5448db118f3c10))
+- **deps:** update typescript-eslint monorepo to v5.39.0 ([d6e7fe9](https://github.com/Phillip9587/nx-stylelint/commit/d6e7fe954eef076919261414f5e441c6825e83c3))
+- **deps:** updated Nx to v14.7.8 ([89da571](https://github.com/Phillip9587/nx-stylelint/commit/89da5716e29e998f7f471f82c8c28d0b53e71685))
+- **deps:** updated Nx to v14.8.2 ([b5dd84d](https://github.com/Phillip9587/nx-stylelint/commit/b5dd84df269d4ce403ea43b7de9198df31a8b7a1))
+- **deps:** updated Nx to v14.8.3 ([6864969](https://github.com/Phillip9587/nx-stylelint/commit/68649692801e39c5e9c9988ea7a2b915b8b3155d))
+
 ### [14.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v14.0.0...v14.0.1) (2022-09-14)
 
 ### Bug Fixes
