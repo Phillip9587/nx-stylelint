@@ -51,7 +51,7 @@
     "@nrwl/jest": "14.8.3",
     "@nrwl/js": "14.8.3",
     "@nrwl/linter": "14.8.3",
-    "@nrwl/nx-cloud": "14.7.0",
+    "@nrwl/nx-cloud": "15.0.0",
     "@nrwl/nx-plugin": "14.8.3",
     "@nrwl/workspace": "14.8.3",
     "@types/jest": "28.1.8",
