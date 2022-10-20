@@ -18,7 +18,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/nx-stylelint"],
+      "outputs": ["{workspaceRoot}/coverage/packages/nx-stylelint"],
       "options": {
         "jestConfig": "packages/nx-stylelint/jest.config.ts",
         "passWithNoTests": true
