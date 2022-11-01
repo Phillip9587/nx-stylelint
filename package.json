@@ -44,8 +44,8 @@
     "release:beta": "standard-version --no-verify --prerelease beta"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "17.1.0",
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "@nrwl/devkit": "15.0.3",
     "@nrwl/eslint-plugin-nx": "15.0.3",
     "@nrwl/jest": "15.0.3",
@@ -73,7 +73,7 @@
     "stylelint": "14.14.0",
     "ts-jest": "28.0.8",
     "ts-node": "10.9.1",
-    "tslib": "2.4.0",
+    "tslib": "2.4.1",
     "typescript": "4.8.4"
   }
 }
