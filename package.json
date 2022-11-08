@@ -62,7 +62,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.27.0",
     "eslint-config-prettier": "8.5.0",
-    "husky": "8.0.1",
+    "husky": "8.0.2",
     "is-ci": "3.0.1",
     "jest": "28.1.3",
     "jsonc-eslint-parser": "2.1.0",
