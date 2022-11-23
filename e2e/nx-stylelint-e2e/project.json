@@ -1,5 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "nx-stylelint-e2e",
   "projectType": "application",
   "sourceRoot": "e2e/nx-stylelint-e2e/src",
   "targets": {
@@ -11,6 +12,5 @@
       }
     }
   },
-  "tags": [],
   "implicitDependencies": ["nx-stylelint"]
 }

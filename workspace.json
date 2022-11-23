@@ -1,8 +1,0 @@
-{
-  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
-  "version": 2,
-  "projects": {
-    "nx-stylelint": "packages/nx-stylelint",
-    "nx-stylelint-e2e": "e2e/nx-stylelint-e2e"
-  }
-}
