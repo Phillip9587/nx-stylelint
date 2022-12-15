@@ -28,8 +28,8 @@
   "schematics": "./generators.json",
   "builders": "./executors.json",
   "dependencies": {
-    "@nrwl/devkit": ">=14.0.0",
-    "tslib": "^2.4.0"
+    "@nrwl/devkit": ">=15.0.0",
+    "tslib": "^2.4.1"
   },
   "peerDependencies": {
     "stylelint": "^14.10.0",
