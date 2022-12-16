@@ -8,6 +8,7 @@ import {
   stripIndents,
   updateWorkspaceConfiguration,
   readWorkspaceConfiguration,
+  joinPathFragments,
 } from '@nrwl/devkit';
 import type { Tree, GeneratorCallback, WorkspaceConfiguration } from '@nrwl/devkit';
 import {
@@ -81,7 +82,7 @@ function addStylelintInputs(host: Tree) {
   const workspaceConfiguration: WorkspaceConfiguration = readWorkspaceConfiguration(host);
 
   // remove stylelint config files from production inputs
-  const stylelintProjectConfigFilePattern = `!{projectRoot}/${stylelintConfigFilePattern}`;
+  const stylelintProjectConfigFilePattern = `!${joinPathFragments('{projectRoot}', stylelintConfigFilePattern)}`;
   if (
     workspaceConfiguration.namedInputs?.production &&
     !workspaceConfiguration.namedInputs?.production.includes(stylelintProjectConfigFilePattern)
@@ -92,10 +93,10 @@ function addStylelintInputs(host: Tree) {
   // Set targetDefault for stylelint
   workspaceConfiguration.targetDefaults ??= {};
   workspaceConfiguration.targetDefaults.stylelint ??= {};
-  workspaceConfiguration.targetDefaults.stylelint.inputs ??= [
-    'default',
-    `{workspaceRoot}/${stylelintConfigFilePattern}`,
-  ];
+  workspaceConfiguration.targetDefaults.stylelint.inputs ??= ['default'];
+  const rootStylelintConfigurationFile = joinPathFragments('{workspaceRoot}', stylelintConfigFilePattern);
+  if (!workspaceConfiguration.targetDefaults.stylelint.inputs.includes(rootStylelintConfigurationFile))
+    workspaceConfiguration.targetDefaults.stylelint.inputs.push(rootStylelintConfigurationFile);
 
   // Add stylelint target to cacheableOperations
   if (workspaceConfiguration.tasksRunnerOptions?.default) {
