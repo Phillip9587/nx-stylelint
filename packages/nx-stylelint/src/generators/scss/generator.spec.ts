@@ -20,7 +20,7 @@ describe('scss generator', () => {
   });
 
   beforeEach(() => {
-    tree = createTreeWithEmptyWorkspace();
+    tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it('should add a a glob pattern for scss files to the target configuration', async () => {

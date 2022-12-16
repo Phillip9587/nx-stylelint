@@ -18,6 +18,7 @@ import {
 } from '../../utils/versions';
 import type { InitGeneratorSchema } from './schema';
 import type { Config } from 'stylelint';
+import { stylelintConfigFilePattern } from '../../utils/config-file';
 
 /** nx-stylelint:init generator */
 export async function initGenerator(host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
@@ -35,7 +36,7 @@ You can then migrate your custom rule configuration into the created stylelint c
     );
   }
 
-  updateWorkspace(host);
+  addStylelintInputs(host);
   updateVSCodeExtensions(host);
 
   if (options.skipFormat !== true) await formatFiles(host);
@@ -75,17 +76,30 @@ function updateVSCodeExtensions(host: Tree): void {
   });
 }
 
-/** Adds the root .stylelintrc.json file to the implicit dependencies and stylelint targets to the cacheable operations of the default task runner */
-function updateWorkspace(host: Tree) {
-  const workspaceConfig: WorkspaceConfiguration = readWorkspaceConfiguration(host);
+/** Adds the root .stylelintrc.json file to the targetDefaults and stylelint target to the cacheable operations of the default task runner */
+function addStylelintInputs(host: Tree) {
+  const workspaceConfiguration: WorkspaceConfiguration = readWorkspaceConfiguration(host);
 
-  // Add root .stylelintrc.json to implicit dependencies
-  workspaceConfig.implicitDependencies ??= {};
-  workspaceConfig.implicitDependencies['.stylelintrc.json'] = '*';
+  // remove stylelint config files from production inputs
+  const stylelintProjectConfigFilePattern = `!{projectRoot}/${stylelintConfigFilePattern}`;
+  if (
+    workspaceConfiguration.namedInputs?.production &&
+    !workspaceConfiguration.namedInputs?.production.includes(stylelintProjectConfigFilePattern)
+  ) {
+    workspaceConfiguration.namedInputs?.production.push(stylelintProjectConfigFilePattern);
+  }
+
+  // Set targetDefault for stylelint
+  workspaceConfiguration.targetDefaults ??= {};
+  workspaceConfiguration.targetDefaults.stylelint ??= {};
+  workspaceConfiguration.targetDefaults.stylelint.inputs ??= [
+    'default',
+    `{workspaceRoot}/${stylelintConfigFilePattern}`,
+  ];
 
   // Add stylelint target to cacheableOperations
-  if (workspaceConfig.tasksRunnerOptions?.default) {
-    const taskRunner = workspaceConfig.tasksRunnerOptions?.default;
+  if (workspaceConfiguration.tasksRunnerOptions?.default) {
+    const taskRunner = workspaceConfiguration.tasksRunnerOptions?.default;
 
     taskRunner.options ??= {};
     taskRunner.options.cacheableOperations ??= [];
@@ -93,7 +107,7 @@ function updateWorkspace(host: Tree) {
     if (!taskRunner.options.cacheableOperations.includes('stylelint'))
       taskRunner.options.cacheableOperations.push('stylelint');
 
-    workspaceConfig.tasksRunnerOptions.default = taskRunner;
+    workspaceConfiguration.tasksRunnerOptions.default = taskRunner;
   } else {
     logger.warn(
       stripIndents`Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!
@@ -101,7 +115,7 @@ function updateWorkspace(host: Tree) {
     );
   }
 
-  updateWorkspaceConfiguration(host, workspaceConfig);
+  updateWorkspaceConfiguration(host, workspaceConfiguration);
 }
 
 function createRecommendedStylelintConfiguration(host: Tree) {

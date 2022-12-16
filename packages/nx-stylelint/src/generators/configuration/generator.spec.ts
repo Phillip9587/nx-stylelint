@@ -45,7 +45,7 @@ describe('nx-stylelint:configuration generator', () => {
   });
 
   beforeEach(async () => {
-    tree = createTreeWithEmptyWorkspace();
+    tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it('should add stylelint target, run init generator and create project .stylelinrrc.json', async () => {

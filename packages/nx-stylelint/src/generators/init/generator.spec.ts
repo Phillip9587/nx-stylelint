@@ -13,7 +13,7 @@ describe('nx-stylelint:init generator', () => {
   let tree: Tree;
 
   beforeEach(() => {
-    tree = createTreeWithEmptyWorkspace();
+    tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
   });
 
   it('should add dependencies and create recommended root configuration', async () => {
@@ -63,18 +63,37 @@ You can then migrate your custom rule configuration into the created stylelint c
     expect(packagejson.devDependencies['stylelint']).toBeUndefined();
   });
 
-  it('should add stylelint config to implicitDependencies in nx.json', async () => {
-    await generator(tree, defaultOptions);
+  describe('targetDefaults', () => {
+    it('should add targetDefaults for stylelint', async () => {
+      updateJson<NxJsonConfiguration>(tree, 'nx.json', (json) => {
+        json.namedInputs ??= {};
+        json.namedInputs.production = ['default'];
+        return json;
+      });
 
-    const nxConfig = readJson(tree, 'nx.json');
-    expect(nxConfig.implicitDependencies['.stylelintrc.json']).toBe('*');
-  });
+      await generator(tree, defaultOptions);
 
-  it('should add stylelint target to cacheableOperations in nx.json', async () => {
-    await generator(tree, defaultOptions);
+      const nxConfig = readJson<NxJsonConfiguration>(tree, 'nx.json');
 
-    const nxConfig = readJson(tree, 'nx.json');
-    expect(nxConfig.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
+      expect(nxConfig.targetDefaults?.stylelint).toStrictEqual({
+        inputs: ['default', `{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?`],
+      });
+      expect(nxConfig.namedInputs?.production).toContain(`!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?`);
+    });
+
+    it('should not create namedInputs production fileset if not present', async () => {
+      updateJson<NxJsonConfiguration>(tree, 'nx.json', (json) => {
+        json.namedInputs ??= {};
+        delete json.namedInputs.production;
+        return json;
+      });
+
+      await generator(tree, defaultOptions);
+
+      const nxConfig = readJson<NxJsonConfiguration>(tree, 'nx.json');
+
+      expect(nxConfig.namedInputs?.production).toBeUndefined();
+    });
   });
 
   describe('VSCode Extension', () => {
