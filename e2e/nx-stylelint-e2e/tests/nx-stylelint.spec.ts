@@ -38,16 +38,20 @@ describe('nx-stylelint-e2e', () => {
       });
 
       const nxJson: NxJsonConfiguration = readJson('nx.json');
+
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-      expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
+
+      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+      });
     }, 120000);
   });
 
   describe('nx-stylelint:configuration', () => {
     it('should add a stylelint configuration to a project', async () => {
       const projName = uniq('nx-stylelint');
-      await runNxCommandAsync(`generate @nrwl/workspace:library --name ${projName}`);
+      await runNxCommandAsync(`generate @nrwl/js:library --name ${projName}`);
       await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
 
       expect(() =>
@@ -87,10 +91,14 @@ describe('nx-stylelint-e2e', () => {
         ],
       });
 
-      const nxJson = readJson<NxJsonConfiguration>('nx.json');
+      const nxJson: NxJsonConfiguration = readJson('nx.json');
+
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-      expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
+
+      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+      });
 
       const projectJson = readJson<ProjectConfiguration>(`libs/${projName}/project.json`);
 
@@ -106,7 +114,7 @@ describe('nx-stylelint-e2e', () => {
     describe('--formatter', () => {
       it('should add a stylelint configuration to a project and set the specified formatter', async () => {
         const projName = uniq('nx-stylelint');
-        await runNxCommandAsync(`generate @nrwl/workspace:library --name ${projName}`);
+        await runNxCommandAsync(`generate @nrwl/js:library --name ${projName}`);
         await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName} --formatter json`);
 
         expect(() =>
@@ -146,10 +154,14 @@ describe('nx-stylelint-e2e', () => {
           ],
         });
 
-        const nxJson = readJson<NxJsonConfiguration>('nx.json');
+        const nxJson: NxJsonConfiguration = readJson('nx.json');
+
         expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
         expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-        expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
+
+        expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+          inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+        });
 
         const projectJson = readJson<ProjectConfiguration>(`libs/${projName}/project.json`);
 
@@ -168,7 +180,7 @@ describe('nx-stylelint-e2e', () => {
   describe('nx-stylelint:scss', () => {
     it('should add scss support to a target and configuration', async () => {
       const projName = uniq('nx-stylelint');
-      await runNxCommandAsync(`generate @nrwl/workspace:library --name ${projName}`);
+      await runNxCommandAsync(`generate @nrwl/js:library --name ${projName}`);
       await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
       await runNxCommandAsync(`generate nx-stylelint:scss --project ${projName}`);
 
@@ -219,9 +231,13 @@ describe('nx-stylelint-e2e', () => {
       });
 
       const nxJson: NxJsonConfiguration = readJson('nx.json');
+
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-      expect(nxJson.implicitDependencies['.stylelintrc.json']).toBe('*');
+
+      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+      });
 
       const projectJson: ProjectConfiguration = readJson(`libs/${projName}/project.json`);
 
