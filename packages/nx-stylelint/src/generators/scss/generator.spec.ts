@@ -31,10 +31,10 @@ describe('scss generator', () => {
     const config = readProjectConfiguration(tree, 'test');
 
     expect(config).toBeDefined();
-    expect(config.targets?.stylelint).toBeDefined();
-    expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
-    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.scss');
+    expect(config.targets?.['stylelint']).toBeDefined();
+    expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
+    expect(config.targets?.['stylelint'].options.lintFilePatterns).toContain('libs/test/**/*.css');
+    expect(config.targets?.['stylelint'].options.lintFilePatterns).toContain('libs/test/**/*.scss');
   });
 
   it('should add required dependencies to package.json', async () => {

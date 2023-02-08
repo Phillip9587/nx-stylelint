@@ -47,7 +47,7 @@ function normalizeSchema(tree: Tree, options: ScssGeneratorSchema): NormalizedSc
   return {
     ...options,
     projectConfig,
-    hasStylelintTarget: projectConfig.targets?.stylelint !== undefined,
+    hasStylelintTarget: projectConfig.targets?.['stylelint'] !== undefined,
   };
 }
 
@@ -86,7 +86,7 @@ function ensureRootScssConfiguration(tree: Tree) {
 
 function updateProjectConfig(tree: Tree, options: NormalizedSchema) {
   const projectConfig = options.projectConfig;
-  const stylelintTarget = projectConfig.targets?.stylelint;
+  const stylelintTarget = projectConfig.targets?.['stylelint'];
 
   if (!stylelintTarget) return;
 

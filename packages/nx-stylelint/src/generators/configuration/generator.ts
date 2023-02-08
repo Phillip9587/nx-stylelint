@@ -59,7 +59,7 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
     ...options,
     formatter: validFormatter ? options.formatter : defaultFormatter,
     projectRoot: projectConfig.root,
-    stylelintTargetExists: projectConfig.targets?.stylelint != null,
+    stylelintTargetExists: projectConfig.targets?.['stylelint'] != null,
   };
 }
 

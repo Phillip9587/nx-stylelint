@@ -57,10 +57,10 @@ describe('nx-stylelint:configuration generator', () => {
     const config = readProjectConfiguration(tree, 'test');
 
     expect(config).toBeDefined();
-    expect(config.targets?.stylelint).toBeDefined();
-    expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.stylelint.options.format).toBeUndefined();
-    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
+    expect(config.targets?.['stylelint']).toBeDefined();
+    expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
+    expect(config.targets?.['stylelint'].options.format).toBeUndefined();
+    expect(config.targets?.['stylelint'].options.lintFilePatterns).toContain('libs/test/**/*.css');
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
@@ -94,12 +94,12 @@ describe('nx-stylelint:configuration generator', () => {
     config = readProjectConfiguration(tree, 'test');
 
     expect(config).toBeDefined();
-    expect(config.targets?.package).toBeDefined();
-    expect(config.targets?.package.executor).toBe('@nrwl/node:package');
-    expect(config.targets?.stylelint).toBeDefined();
-    expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.stylelint.options.format).toBeUndefined();
-    expect(config.targets?.stylelint.options.lintFilePatterns).toContain('libs/test/**/*.css');
+    expect(config.targets?.['package']).toBeDefined();
+    expect(config.targets?.['package'].executor).toBe('@nrwl/node:package');
+    expect(config.targets?.['stylelint']).toBeDefined();
+    expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
+    expect(config.targets?.['stylelint'].options.format).toBeUndefined();
+    expect(config.targets?.['stylelint'].options.lintFilePatterns).toContain('libs/test/**/*.css');
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
@@ -115,7 +115,7 @@ describe('nx-stylelint:configuration generator', () => {
     await generator(tree, defaultOptions);
 
     const config = readProjectConfiguration(tree, 'test');
-    expect(config.targets?.stylelint).toBeDefined();
+    expect(config.targets?.['stylelint']).toBeDefined();
 
     await generator(tree, defaultOptions);
 
@@ -130,9 +130,9 @@ describe('nx-stylelint:configuration generator', () => {
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
-      expect(config.targets?.stylelint).toBeDefined();
-      expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets?.stylelint.options.formatter).toBe('json');
+      expect(config.targets?.['stylelint']).toBeDefined();
+      expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
+      expect(config.targets?.['stylelint'].options.formatter).toBe('json');
     });
 
     it('should print a error if the format is not defined', async () => {
@@ -143,9 +143,9 @@ describe('nx-stylelint:configuration generator', () => {
       const config = readProjectConfiguration(tree, 'test');
 
       expect(config).toBeDefined();
-      expect(config.targets?.stylelint).toBeDefined();
-      expect(config.targets?.stylelint.executor).toBe('nx-stylelint:lint');
-      expect(config.targets?.stylelint.options.formatter).toBeUndefined();
+      expect(config.targets?.['stylelint']).toBeDefined();
+      expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
+      expect(config.targets?.['stylelint'].options.formatter).toBeUndefined();
       expect(logger.error).toHaveBeenCalledWith(
         `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`
       );

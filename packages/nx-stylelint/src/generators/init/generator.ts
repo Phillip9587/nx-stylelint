@@ -51,7 +51,7 @@ function updateDependencies(host: Tree, rootConfigExists: boolean): GeneratorCal
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  if (!packageJson.dependencies.stylelint) devDependencies.stylelint = stylelintVersion;
+  if (!packageJson.dependencies.stylelint) devDependencies['stylelint'] = stylelintVersion;
 
   if (!rootConfigExists) {
     if (!packageJson.dependencies['stylelint-config-prettier'])
@@ -84,23 +84,23 @@ function addStylelintInputs(host: Tree) {
   // remove stylelint config files from production inputs
   const stylelintProjectConfigFilePattern = `!${joinPathFragments('{projectRoot}', stylelintConfigFilePattern)}`;
   if (
-    workspaceConfiguration.namedInputs?.production &&
-    !workspaceConfiguration.namedInputs?.production.includes(stylelintProjectConfigFilePattern)
+    workspaceConfiguration.namedInputs?.['production'] &&
+    !workspaceConfiguration.namedInputs?.['production'].includes(stylelintProjectConfigFilePattern)
   ) {
-    workspaceConfiguration.namedInputs?.production.push(stylelintProjectConfigFilePattern);
+    workspaceConfiguration.namedInputs?.['production'].push(stylelintProjectConfigFilePattern);
   }
 
   // Set targetDefault for stylelint
   workspaceConfiguration.targetDefaults ??= {};
-  workspaceConfiguration.targetDefaults.stylelint ??= {};
-  workspaceConfiguration.targetDefaults.stylelint.inputs ??= ['default'];
+  workspaceConfiguration.targetDefaults['stylelint'] ??= {};
+  workspaceConfiguration.targetDefaults['stylelint'].inputs ??= ['default'];
   const rootStylelintConfigurationFile = joinPathFragments('{workspaceRoot}', stylelintConfigFilePattern);
-  if (!workspaceConfiguration.targetDefaults.stylelint.inputs.includes(rootStylelintConfigurationFile))
-    workspaceConfiguration.targetDefaults.stylelint.inputs.push(rootStylelintConfigurationFile);
+  if (!workspaceConfiguration.targetDefaults['stylelint'].inputs.includes(rootStylelintConfigurationFile))
+    workspaceConfiguration.targetDefaults['stylelint'].inputs.push(rootStylelintConfigurationFile);
 
   // Add stylelint target to cacheableOperations
-  if (workspaceConfiguration.tasksRunnerOptions?.default) {
-    const taskRunner = workspaceConfiguration.tasksRunnerOptions?.default;
+  if (workspaceConfiguration.tasksRunnerOptions?.['default']) {
+    const taskRunner = workspaceConfiguration.tasksRunnerOptions?.['default'];
 
     taskRunner.options ??= {};
     taskRunner.options.cacheableOperations ??= [];
@@ -108,7 +108,7 @@ function addStylelintInputs(host: Tree) {
     if (!taskRunner.options.cacheableOperations.includes('stylelint'))
       taskRunner.options.cacheableOperations.push('stylelint');
 
-    workspaceConfiguration.tasksRunnerOptions.default = taskRunner;
+    workspaceConfiguration.tasksRunnerOptions['default'] = taskRunner;
   } else {
     logger.warn(
       stripIndents`Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!

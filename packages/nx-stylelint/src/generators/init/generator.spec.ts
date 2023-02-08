@@ -67,7 +67,7 @@ You can then migrate your custom rule configuration into the created stylelint c
     it('should add targetDefaults for stylelint', async () => {
       updateJson<NxJsonConfiguration>(tree, 'nx.json', (json) => {
         json.namedInputs ??= {};
-        json.namedInputs.production = ['default'];
+        json.namedInputs['production'] = ['default'];
         return json;
       });
 
@@ -75,16 +75,16 @@ You can then migrate your custom rule configuration into the created stylelint c
 
       const nxConfig = readJson<NxJsonConfiguration>(tree, 'nx.json');
 
-      expect(nxConfig.targetDefaults?.stylelint).toStrictEqual({
+      expect(nxConfig.targetDefaults?.['stylelint']).toStrictEqual({
         inputs: ['default', `{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?`],
       });
-      expect(nxConfig.namedInputs?.production).toContain(`!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?`);
+      expect(nxConfig.namedInputs?.['production']).toContain(`!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?`);
     });
 
     it('should not create namedInputs production fileset if not present', async () => {
       updateJson<NxJsonConfiguration>(tree, 'nx.json', (json) => {
         json.namedInputs ??= {};
-        delete json.namedInputs.production;
+        delete json.namedInputs['production'];
         return json;
       });
 
@@ -92,7 +92,7 @@ You can then migrate your custom rule configuration into the created stylelint c
 
       const nxConfig = readJson<NxJsonConfiguration>(tree, 'nx.json');
 
-      expect(nxConfig.namedInputs?.production).toBeUndefined();
+      expect(nxConfig.namedInputs?.['production']).toBeUndefined();
     });
   });
 

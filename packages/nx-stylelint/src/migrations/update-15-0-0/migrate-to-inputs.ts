@@ -19,16 +19,16 @@ export default async function (tree: Tree) {
   // remove stylelint config files from production inputs
   const stylelintProjectConfigFilePattern = `!{projectRoot}/${stylelintConfigFilePattern}`;
   if (
-    workspaceConfiguration.namedInputs?.production &&
-    !workspaceConfiguration.namedInputs?.production.includes(stylelintProjectConfigFilePattern)
+    workspaceConfiguration.namedInputs?.['production'] &&
+    !workspaceConfiguration.namedInputs?.['production'].includes(stylelintProjectConfigFilePattern)
   ) {
-    workspaceConfiguration.namedInputs?.production.push(stylelintProjectConfigFilePattern);
+    workspaceConfiguration.namedInputs?.['production'].push(stylelintProjectConfigFilePattern);
   }
 
   // Set targetDefault for stylelint
   workspaceConfiguration.targetDefaults ??= {};
-  workspaceConfiguration.targetDefaults.stylelint ??= {};
-  workspaceConfiguration.targetDefaults.stylelint.inputs ??= [
+  workspaceConfiguration.targetDefaults['stylelint'] ??= {};
+  workspaceConfiguration.targetDefaults['stylelint'].inputs ??= [
     'default',
     `{workspaceRoot}/${stylelintConfigFilePattern}`,
   ];
