@@ -27,8 +27,8 @@
     "release:beta": "standard-version --no-verify --prerelease beta"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.3.0",
-    "@commitlint/config-conventional": "17.3.0",
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
     "@nrwl/devkit": "15.6.3",
     "@nrwl/eslint-plugin-nx": "15.6.3",
     "@nrwl/jest": "15.6.3",
@@ -45,7 +45,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.29.0",
     "eslint-config-prettier": "8.6.0",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "is-ci": "3.0.1",
     "jest": "28.1.3",
     "jsonc-eslint-parser": "2.1.0",
