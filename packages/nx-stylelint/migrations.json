@@ -17,6 +17,12 @@
       "description": "Rename the config option to configFile to align with the stylelint Node.js API",
       "cli": "nx",
       "implementation": "./src/migrations/update-13-2-0/rename-config-option/rename-config-option"
+    },
+    "migrate-to-inputs": {
+      "version": "15.0.0-beta.0",
+      "description": "Rename the config option to configFile to align with the stylelint Node.js API",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-15-0-0/migrate-to-inputs"
     }
   },
   "packageJsonUpdates": {
