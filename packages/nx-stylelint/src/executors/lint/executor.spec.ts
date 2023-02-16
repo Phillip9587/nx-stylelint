@@ -121,10 +121,8 @@ describe('nx-stylelint:lint executor', () => {
 
   jest.mock('stylelint', (): Partial<typeof import('stylelint')> => {
     return {
-      default: {
-        lint: mockLint,
-      } as any,
-    };
+      lint: mockLint,
+    } as any;
   });
 
   beforeEach(() => {
