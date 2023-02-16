@@ -1,6 +1,6 @@
 {
   "name": "nx-stylelint",
-  "version": "14.0.2",
+  "version": "15.0.0-beta.0",
   "description": "Stylelint Plugin for Nx",
   "repository": {
     "type": "git",
