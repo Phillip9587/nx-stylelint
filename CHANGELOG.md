@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v15.0.0-beta.0...v15.0.0) (2023-02-16)
+
+### Features
+
+- export executor, generators and schemas ([d7e2a1c](https://github.com/Phillip9587/nx-stylelint/commit/d7e2a1c23ab58f9f6b14448908810afe47d7d3c2))
+
+### Documentation
+
+- update readme ([f9a8f5f](https://github.com/Phillip9587/nx-stylelint/commit/f9a8f5fe45afd8928f1f771a40153b84ef4433c5))
+
 ## [15.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v14.0.2...v15.0.0-beta.0) (2023-02-16)
 
 ### ⚠ BREAKING CHANGES
