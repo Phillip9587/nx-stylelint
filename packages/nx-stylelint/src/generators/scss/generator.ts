@@ -75,7 +75,7 @@ function ensureRootScssConfiguration(tree: Tree) {
     ) {
       config.overrides.push({
         files: ['**/*.scss'],
-        extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier'],
+        extends: ['stylelint-config-standard-scss'],
         rules: {},
       });
     }

@@ -5,7 +5,7 @@ import { libraryGenerator } from '@nrwl/js';
 import { configurationGenerator } from '../configuration/generator';
 import { scssGenerator } from './generator';
 import type { ScssGeneratorSchema } from './schema';
-import { Config, ConfigOverride } from 'stylelint';
+import { Config } from 'stylelint';
 
 const defaultOptions: ScssGeneratorSchema = {
   project: 'test',
@@ -44,7 +44,7 @@ describe('scss generator', () => {
 
     const packageJson = readJson(tree, 'package.json');
 
-    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBe('^4.0.0');
+    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBe('^7.0.0');
   });
 
   it('should update root and project stylelint configurations', async () => {
@@ -56,16 +56,16 @@ describe('scss generator', () => {
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
     let rootConfig = readJson<Config>(tree, '.stylelintrc.json');
-    expect(rootConfig.overrides).toStrictEqual<ConfigOverride[]>([
+    expect(rootConfig.overrides).toStrictEqual([
       {
         files: ['**/*.css'],
-        extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+        extends: ['stylelint-config-standard'],
         rules: {},
       },
     ]);
 
     let projectConfig = readJson<Config>(tree, projectStylelint);
-    expect(projectConfig.overrides).toStrictEqual<ConfigOverride[]>([
+    expect(projectConfig.overrides).toStrictEqual([
       {
         files: ['**/*.css'],
         rules: {},
@@ -75,21 +75,21 @@ describe('scss generator', () => {
     await scssGenerator(tree, defaultOptions);
 
     rootConfig = readJson<Config>(tree, '.stylelintrc.json');
-    expect(rootConfig.overrides).toStrictEqual<ConfigOverride[]>([
+    expect(rootConfig.overrides).toStrictEqual([
       {
         files: ['**/*.css'],
-        extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+        extends: ['stylelint-config-standard'],
         rules: {},
       },
       {
         files: ['**/*.scss'],
-        extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier'],
+        extends: ['stylelint-config-standard-scss'],
         rules: {},
       },
     ]);
 
     projectConfig = readJson<Config>(tree, projectStylelint);
-    expect(projectConfig.overrides).toStrictEqual<ConfigOverride[]>([
+    expect(projectConfig.overrides).toStrictEqual([
       {
         files: ['**/*.css'],
         rules: {},

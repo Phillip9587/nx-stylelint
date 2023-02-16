@@ -1,12 +1,13 @@
 import * as path from 'path';
-import { Formatter, FormatterType, formatters } from 'stylelint';
+import type { Formatter, FormatterType } from 'stylelint';
+import * as stylelint from 'stylelint';
 
 export const defaultFormatter: FormatterType = 'string';
 
-const formatterKeys: string[] = Object.keys(formatters);
+const formatterKeys = Object.keys((stylelint as any).formatters);
 export function isCoreFormatter(formatter: unknown): formatter is FormatterType {
   if (!formatter || typeof formatter !== 'string') return false;
-  return formatterKeys.includes(formatter as FormatterType);
+  return formatterKeys.includes(formatter);
 }
 
 const npmPackageRegex = /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/;

@@ -21,7 +21,6 @@ describe('nx-stylelint-e2e', () => {
 
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-prettier']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
 
       const stylelintRc = readJson<Config>('.stylelintrc.json');
@@ -30,7 +29,7 @@ describe('nx-stylelint-e2e', () => {
         overrides: [
           {
             files: ['**/*.css'],
-            extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+            extends: ['stylelint-config-standard'],
             rules: {},
           },
         ],
@@ -62,8 +61,6 @@ describe('nx-stylelint-e2e', () => {
 
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-prettier']).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
       const rootConfig = readJson<Config>('.stylelintrc.json');
@@ -72,7 +69,7 @@ describe('nx-stylelint-e2e', () => {
         overrides: [
           {
             files: ['**/*.css'],
-            extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+            extends: ['stylelint-config-standard'],
             rules: {},
           },
         ],
@@ -125,7 +122,6 @@ describe('nx-stylelint-e2e', () => {
 
         expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
         expect(packageJson.devDependencies.stylelint).toBeTruthy();
-        expect(packageJson.devDependencies['stylelint-config-prettier']).toBeTruthy();
         expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
         expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
@@ -135,7 +131,7 @@ describe('nx-stylelint-e2e', () => {
           overrides: [
             {
               files: ['**/*.css'],
-              extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+              extends: ['stylelint-config-standard'],
               rules: {},
             },
           ],
@@ -192,7 +188,6 @@ describe('nx-stylelint-e2e', () => {
 
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-prettier']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
 
@@ -202,12 +197,12 @@ describe('nx-stylelint-e2e', () => {
         overrides: [
           {
             files: ['**/*.css'],
-            extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+            extends: ['stylelint-config-standard'],
             rules: {},
           },
           {
             files: ['**/*.scss'],
-            extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier'],
+            extends: ['stylelint-config-standard-scss'],
             rules: {},
           },
         ],

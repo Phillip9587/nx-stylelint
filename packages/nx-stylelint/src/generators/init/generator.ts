@@ -11,12 +11,7 @@ import {
   joinPathFragments,
 } from '@nrwl/devkit';
 import type { Tree, GeneratorCallback, WorkspaceConfiguration } from '@nrwl/devkit';
-import {
-  stylelintConfigPrettierVersion,
-  stylelintConfigStandardVersion,
-  stylelintVersion,
-  stylelintVSCodeExtension,
-} from '../../utils/versions';
+import { stylelintConfigStandardVersion, stylelintVersion, stylelintVSCodeExtension } from '../../utils/versions';
 import type { InitGeneratorSchema } from './schema';
 import type { Config } from 'stylelint';
 import { stylelintConfigFilePattern } from '../../utils/config-file';
@@ -54,8 +49,6 @@ function updateDependencies(host: Tree, rootConfigExists: boolean): GeneratorCal
   if (!packageJson.dependencies.stylelint) devDependencies['stylelint'] = stylelintVersion;
 
   if (!rootConfigExists) {
-    if (!packageJson.dependencies['stylelint-config-prettier'])
-      devDependencies['stylelint-config-prettier'] = stylelintConfigPrettierVersion;
     if (!packageJson.dependencies['stylelint-config-standard'])
       devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
   }
@@ -125,7 +118,7 @@ function createRecommendedStylelintConfiguration(host: Tree) {
     overrides: [
       {
         files: ['**/*.css'],
-        extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+        extends: ['stylelint-config-standard'],
         rules: {},
       },
     ],

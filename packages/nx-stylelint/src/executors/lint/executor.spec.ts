@@ -1,7 +1,8 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
 import type { ExecutorContext } from '@nrwl/devkit';
-import { formatters, LinterResult, PublicApi } from 'stylelint';
+import * as stylelint from 'stylelint';
+import type { LinterResult } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
 import executor from './executor';
@@ -95,7 +96,7 @@ describe('nx-stylelint:lint options', () => {
   it('formatter should contain all core formatters as enum', () => {
     const formatterEnum = schemaJson.properties.formatter.anyOf[0].enum;
 
-    for (const formatterKey of Object.keys(formatters)) {
+    for (const formatterKey of Object.keys((stylelint as any).formatters)) {
       expect(formatterEnum).toContain(formatterKey);
     }
   });
@@ -118,9 +119,11 @@ describe('nx-stylelint:lint executor', () => {
 
   const mockLint = jest.fn().mockImplementation(() => mockResult);
 
-  jest.mock('stylelint', (): Partial<PublicApi> => {
+  jest.mock('stylelint', (): Partial<typeof import('stylelint')> => {
     return {
-      lint: mockLint,
+      default: {
+        lint: mockLint,
+      } as any,
     };
   });
 
