@@ -57,7 +57,7 @@ nx g nx-stylelint:configuration --project <projectName>
 
 The generator adds a `.stylelintrc.json` at the project root which extends the root `.stylelintrc.json` and adds a stylelint target to the project.
 
-At the first run the generator installs all required dependencies and creates a `.stylelintrc.json` file at the workspace root. It also adds the stylelint target to the cacheable operations of the default task runner and adds the root `.stylelintrc.json` to the implicit dependencies in the `nx.json` file.
+At the first run the generator installs all required dependencies and creates a `.stylelintrc.json` file at the workspace root. It also adds the stylelint target to the cacheable operations of the default task runner and configures the `namedInputs` for the stylelint targets.
 
 # 🎯 Run Stylelint for affected projects
 
@@ -342,7 +342,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 | Nx Stylelint Version | Nx Version | Stylelint Version |
 | -------------------- | ---------- | ----------------- |
-| `^15.0.0`            | `>=15.0.0` | `^14.10.0`        |
+| `^15.0.0`            | `>=15.0.0` | `^15.0.0`         |
 | `^14.0.0`            | `>=14.0.0` | `^14.10.0`        |
 | `^13.0.0`            | `>=12.0.0` | `^14.0.0`         |
 | `^12.0.0`            | `>=12.0.0` | `^13.0.0`         |
