@@ -12,9 +12,9 @@ export async function lintExecutor(
 ): Promise<{ success: boolean }> {
   process.chdir(context.cwd);
 
-  let stylelint: typeof import('stylelint').default;
+  let stylelint: typeof import('stylelint');
   try {
-    stylelint = (await loadStylelint()) as any;
+    stylelint = await loadStylelint();
   } catch (error) {
     logger.error(error instanceof Error ? error.message : error);
     return { success: false };

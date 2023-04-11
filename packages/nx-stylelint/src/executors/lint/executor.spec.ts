@@ -1,7 +1,7 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
 import type { ExecutorContext } from '@nrwl/devkit';
-import * as stylelint from 'stylelint';
+import { formatters } from 'stylelint';
 import type { LinterResult } from 'stylelint';
 import { logger } from '@nrwl/devkit';
 import { normalize } from 'path';
@@ -96,7 +96,7 @@ describe('nx-stylelint:lint options', () => {
   it('formatter should contain all core formatters as enum', () => {
     const formatterEnum = schemaJson.properties.formatter.anyOf[0].enum;
 
-    for (const formatterKey of Object.keys((stylelint as any).formatters)) {
+    for (const formatterKey of Object.keys(formatters)) {
       expect(formatterEnum).toContain(formatterKey);
     }
   });
@@ -122,7 +122,7 @@ describe('nx-stylelint:lint executor', () => {
   jest.mock('stylelint', (): Partial<typeof import('stylelint')> => {
     return {
       lint: mockLint,
-    } as any;
+    };
   });
 
   beforeEach(() => {

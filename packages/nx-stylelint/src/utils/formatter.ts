@@ -1,10 +1,10 @@
 import * as path from 'path';
 import type { Formatter, FormatterType } from 'stylelint';
-import * as stylelint from 'stylelint';
+import { formatters } from 'stylelint';
 
 export const defaultFormatter: FormatterType = 'string';
 
-const formatterKeys = Object.keys((stylelint as any).formatters);
+const formatterKeys = Object.keys(formatters);
 export function isCoreFormatter(formatter: unknown): formatter is FormatterType {
   if (!formatter || typeof formatter !== 'string') return false;
   return formatterKeys.includes(formatter);

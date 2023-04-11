@@ -2,7 +2,7 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
 import type { Tree } from '@nrwl/devkit';
 import { libraryGenerator } from '@nrwl/js';
-import * as stylelint from 'stylelint';
+import { formatters } from 'stylelint';
 import { Config, FormatterType } from 'stylelint';
 import { readFileSync } from 'fs';
 import path = require('path');
@@ -21,7 +21,7 @@ describe('nx-stylelint:configuration options', () => {
   it('formatter should contain all core formatters as enum', () => {
     const formatterEnum = schemaJson.properties.formatter.enum;
 
-    for (const formatterKey of Object.keys((stylelint as any).formatters)) {
+    for (const formatterKey of Object.keys(formatters)) {
       expect(formatterEnum).toContain(formatterKey);
     }
   });
@@ -29,7 +29,7 @@ describe('nx-stylelint:configuration options', () => {
   it('formatter x-prompt should contain all core formatters as items', () => {
     const items = schemaJson.properties.formatter['x-prompt'].items;
 
-    for (const formatterKey of Object.keys((stylelint as any).formatters)) {
+    for (const formatterKey of Object.keys(formatters)) {
       expect(items).toContainEqual({
         value: formatterKey,
         label: formatterKey === 'string' ? `${formatterKey} (default)` : formatterKey,
