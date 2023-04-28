@@ -227,7 +227,9 @@ describe('nx-stylelint:lint executor', () => {
   });
 
   it('should attempt to write the lint results to the output file, if specified', async () => {
+    jest.spyOn(fs, 'mkdirSync').mockImplementation();
     const spy = jest.spyOn(fs, 'writeFileSync').mockImplementation();
+
     mockResult = mockResultWithErrors;
 
     const { success } = await executor(
