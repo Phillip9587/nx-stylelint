@@ -55,7 +55,7 @@ function installRequiredPackages(tree: Tree) {
   const packageJson = readJson(tree, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  if (!packageJson.dependencies['stylelint-config-standard-scss'])
+  if (!packageJson.dependencies?.['stylelint-config-standard-scss'])
     devDependencies['stylelint-config-standard-scss'] = stylelintConfigStandardScssVersion;
 
   return addDependenciesToPackageJson(tree, {}, devDependencies);

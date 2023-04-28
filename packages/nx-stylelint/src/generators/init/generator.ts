@@ -46,10 +46,10 @@ function updateDependencies(host: Tree, rootConfigExists: boolean): GeneratorCal
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  if (!packageJson.dependencies.stylelint) devDependencies['stylelint'] = stylelintVersion;
+  if (!packageJson.dependencies?.stylelint) devDependencies['stylelint'] = stylelintVersion;
 
   if (!rootConfigExists) {
-    if (!packageJson.dependencies['stylelint-config-standard'])
+    if (!packageJson.dependencies?.['stylelint-config-standard'])
       devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
   }
 
