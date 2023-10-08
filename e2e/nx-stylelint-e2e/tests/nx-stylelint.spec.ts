@@ -50,20 +50,24 @@ describe('nx-stylelint-e2e', () => {
   describe('nx-stylelint:configuration', () => {
     it('should add a stylelint configuration to a project', async () => {
       const projName = uniq('nx-stylelint');
+      const proj2Name = uniq('nx-stylelint');
+
       await runNxCommandAsync(`generate @nx/js:library --name ${projName}`);
+      await runNxCommandAsync(`generate @nx/js:library --name ${proj2Name}`);
+
       await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
 
       expect(() =>
         checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projName}/.stylelintrc.json`)
       ).not.toThrow();
 
-      const packageJson = readJson('package.json');
+      let packageJson = readJson('package.json');
 
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
-      const rootConfig = readJson<Config>('.stylelintrc.json');
+      let rootConfig = readJson<Config>('.stylelintrc.json');
       expect(rootConfig).toStrictEqual<Config>({
         ignoreFiles: ['**/*'],
         overrides: [
@@ -76,7 +80,7 @@ describe('nx-stylelint-e2e', () => {
         rules: {},
       });
 
-      const projectConfig = readJson<Config>(`${projName}/.stylelintrc.json`);
+      let projectConfig = readJson<Config>(`${projName}/.stylelintrc.json`);
       expect(projectConfig).toStrictEqual<Config>({
         extends: ['../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
@@ -89,20 +93,68 @@ describe('nx-stylelint-e2e', () => {
       });
 
       const nxJson: NxJsonConfiguration = readJson('nx.json');
-
       expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
       expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-
       expect(nxJson.targetDefaults.stylelint).toStrictEqual({
         inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
       });
 
-      const projectJson = readJson<ProjectConfiguration>(`${projName}/project.json`);
-
+      let projectJson = readJson<ProjectConfiguration>(`${projName}/project.json`);
       expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
           lintFilePatterns: [`${projName}/**/*.css`],
+        },
+        outputs: ['{options.outputFile}'],
+      });
+
+      await runNxCommandAsync(`generate nx-stylelint:configuration --project ${proj2Name} --scss true`);
+
+      packageJson = readJson('package.json');
+
+      expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
+      expect(packageJson.devDependencies.stylelint).toBeTruthy();
+      expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
+
+      rootConfig = readJson<Config>('.stylelintrc.json');
+      expect(rootConfig).toStrictEqual<Config>({
+        ignoreFiles: ['**/*'],
+        overrides: [
+          {
+            files: ['**/*.css'],
+            extends: ['stylelint-config-standard'],
+            rules: {},
+          },
+          {
+            files: ['**/*.scss'],
+            extends: ['stylelint-config-standard-scss'],
+            rules: {},
+          },
+        ],
+        rules: {},
+      });
+
+      projectConfig = readJson<Config>(`${proj2Name}/.stylelintrc.json`);
+      expect(projectConfig).toStrictEqual<Config>({
+        extends: ['../.stylelintrc.json'],
+        ignoreFiles: ['!**/*'],
+        overrides: [
+          {
+            files: ['**/*.css'],
+            rules: {},
+          },
+          {
+            files: ['**/*.scss'],
+            rules: {},
+          },
+        ],
+      });
+
+      projectJson = readJson<ProjectConfiguration>(`${proj2Name}/project.json`);
+      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+        executor: 'nx-stylelint:lint',
+        options: {
+          lintFilePatterns: [`${proj2Name}/**/*.css`, `${proj2Name}/**/*.scss`],
         },
         outputs: ['{options.outputFile}'],
       });

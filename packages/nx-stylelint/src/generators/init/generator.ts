@@ -26,6 +26,7 @@ export async function initGenerator(host: Tree, options: InitGeneratorSchema): P
   const installTask = updateDependencies(host, !!options.scss);
 
   if (!host.exists('.stylelintrc.json')) createRecommendedStylelintConfiguration(host, !!options.scss);
+  else if (isCompatibleRootConfig(host)) addScssToStylelintConfiguration(host);
   else {
     logger.info(
       `Stylelint root configuration found! Skipping creation of root .stylelintrc.json!
@@ -143,4 +144,26 @@ function createRecommendedStylelintConfiguration(tree: Tree, scss: boolean) {
     });
 
   writeJson<Config>(tree, '.stylelintrc.json', config);
+}
+
+function isCompatibleRootConfig(tree: Tree): boolean {
+  const config = readJson<Config>(tree, '.stylelintrc.json');
+
+  return config.ignoreFiles === '**/*' || (Array.isArray(config.ignoreFiles) && config.ignoreFiles.includes('**/*'));
+}
+
+function addScssToStylelintConfiguration(tree: Tree) {
+  updateJson<Config, Config>(tree, '.stylelintrc.json', (value) => ({
+    ...value,
+    overrides: Array.from(
+      new Set([
+        ...(value.overrides ?? []),
+        {
+          files: ['**/*.scss'],
+          extends: ['stylelint-config-standard-scss'],
+          rules: {},
+        },
+      ])
+    ),
+  }));
 }
