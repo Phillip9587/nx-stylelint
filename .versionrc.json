@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/conventional-changelog/conventional-changelog-config-spec/master/versions/2.1.0/schema.json",
   "types": [
     { "type": "build", "hidden": true },
-    { "type": "chore", "section": "Others" },
-    { "type": "ci", "section": "CI" },
+    { "type": "chore", "hidden": true },
+    { "type": "ci", "hidden": true },
     { "type": "docs", "section": "Documentation" },
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
