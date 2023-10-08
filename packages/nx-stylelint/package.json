@@ -22,14 +22,14 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "^14.15.0 || ^16.10.0 || >= 18.0.0"
+    "node": "^18.13.0 || >=20.0.0"
   },
   "main": "src/index.js",
   "schematics": "./generators.json",
   "builders": "./executors.json",
   "dependencies": {
     "@nx/devkit": ">=16.0.0",
-    "tslib": "^2.5.0"
+    "tslib": "^2.6.2"
   },
   "peerDependencies": {
     "stylelint": "^15.0.0",
