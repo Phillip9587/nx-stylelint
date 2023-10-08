@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "NxStylelintScssConfiguration",
   "title": "Add scss support to a nx-stylelint configuration.",
   "type": "object",

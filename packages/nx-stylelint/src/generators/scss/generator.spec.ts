@@ -1,7 +1,7 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { readProjectConfiguration, readJson, logger } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/js';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { readProjectConfiguration, readJson, logger } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
+import { libraryGenerator } from '@nx/js';
 import { configurationGenerator } from '../configuration/generator';
 import { scssGenerator } from './generator';
 import type { ScssGeneratorSchema } from './schema';

@@ -1,11 +1,11 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "nx-stylelint",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/nx-stylelint/src",
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "packages/nx-stylelint/**/*.ts",
@@ -18,7 +18,7 @@
       "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/nx-stylelint"],
       "options": {
         "jestConfig": "packages/nx-stylelint/jest.config.ts",
@@ -26,7 +26,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/nx-stylelint",

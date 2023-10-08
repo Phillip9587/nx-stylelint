@@ -1,6 +1,6 @@
 import type { LintExecutorSchema } from './schema';
-import { logger } from '@nrwl/devkit';
-import type { ExecutorContext } from '@nrwl/devkit';
+import { logger } from '@nx/devkit';
+import type { ExecutorContext } from '@nx/devkit';
 import { join, dirname } from 'path';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { loadStylelint } from '../../utils/stylelint';

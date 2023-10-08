@@ -1,15 +1,16 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "nx-stylelint-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/nx-stylelint-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/nx-plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "nx-stylelint:build",
-        "jestConfig": "e2e/nx-stylelint-e2e/jest.config.ts"
-      }
+        "jestConfig": "e2e/nx-stylelint-e2e/jest.config.ts",
+        "runInBand": true
+      },
+      "dependsOn": ["nx-stylelint:build"]
     }
   },
   "implicitDependencies": ["nx-stylelint"]

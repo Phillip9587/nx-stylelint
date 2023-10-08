@@ -1,4 +1,4 @@
-import { convertNxGenerator } from '@nrwl/devkit';
+import { convertNxGenerator } from '@nx/devkit';
 
 import { scssGenerator } from './generator';
 
