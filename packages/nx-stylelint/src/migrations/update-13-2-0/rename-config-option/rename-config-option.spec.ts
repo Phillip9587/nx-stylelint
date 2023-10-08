@@ -1,6 +1,6 @@
-import { addProjectConfiguration, readProjectConfiguration } from '@nrwl/devkit';
-import type { ProjectConfiguration } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { addProjectConfiguration, readProjectConfiguration } from '@nx/devkit';
+import type { ProjectConfiguration } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import renameConfigOption from './rename-config-option';
 
 describe('update-stylelint-targets', () => {

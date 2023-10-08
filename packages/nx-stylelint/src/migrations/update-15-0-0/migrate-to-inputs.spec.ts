@@ -5,8 +5,8 @@ import {
   Tree,
   updateJson,
   updateWorkspaceConfiguration,
-} from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+} from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import migrateToInputs from './migrate-to-inputs';
 
 describe('migrate-to-inputs', () => {

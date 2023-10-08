@@ -1,6 +1,6 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { readJson, updateJson, writeJson, logger } from '@nrwl/devkit';
-import type { Tree, NxJsonConfiguration } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { readJson, updateJson, writeJson, logger } from '@nx/devkit';
+import type { Tree, NxJsonConfiguration } from '@nx/devkit';
 import type { Config } from 'stylelint';
 import generator from './generator';
 import type { InitGeneratorSchema } from './schema';

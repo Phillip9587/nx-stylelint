@@ -28,7 +28,7 @@
   "schematics": "./generators.json",
   "builders": "./executors.json",
   "dependencies": {
-    "@nrwl/devkit": ">=15.0.0",
+    "@nx/devkit": ">=16.0.0",
     "tslib": "^2.5.0"
   },
   "peerDependencies": {

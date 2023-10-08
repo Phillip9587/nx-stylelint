@@ -1,5 +1,5 @@
-import { formatFiles, getProjects, joinPathFragments, updateProjectConfiguration } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
+import { formatFiles, getProjects, joinPathFragments, updateProjectConfiguration } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
 
 function addOutputs(host: Tree) {
   for (const [projectName, project] of getProjects(host)) {

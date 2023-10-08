@@ -1,5 +1,5 @@
-import { formatFiles, getProjects, updateProjectConfiguration } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
+import { formatFiles, getProjects, updateProjectConfiguration } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
 
 export default async function update(host: Tree) {
   for (const [projectName, project] of getProjects(host)) {

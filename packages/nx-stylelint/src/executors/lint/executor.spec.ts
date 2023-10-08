@@ -1,9 +1,9 @@
 import type { LintExecutorSchema } from './schema';
 import * as fs from 'fs';
-import type { ExecutorContext } from '@nrwl/devkit';
+import type { ExecutorContext } from '@nx/devkit';
 import { formatters } from 'stylelint';
 import type { LinterResult } from 'stylelint';
-import { logger } from '@nrwl/devkit';
+import { logger } from '@nx/devkit';
 import { normalize } from 'path';
 import executor from './executor';
 import path = require('path');

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { formatFiles, getProjects, logger, updateJson } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
+import { formatFiles, getProjects, logger, updateJson } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
 import type { Config } from 'stylelint';
 
 export default async function updateConfigs(host: Tree): Promise<void> {

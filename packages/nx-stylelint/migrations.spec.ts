@@ -1,4 +1,4 @@
-import { readJsonFile } from '@nrwl/devkit';
+import { readJsonFile } from '@nx/devkit';
 import path = require('path');
 
 const migrationsFile = readJsonFile<{ generators: Record<string, { implementation: string }> }>(

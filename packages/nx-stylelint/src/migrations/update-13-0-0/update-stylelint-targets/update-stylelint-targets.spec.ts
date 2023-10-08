@@ -1,6 +1,6 @@
-import { addProjectConfiguration, readProjectConfiguration } from '@nrwl/devkit';
-import type { Tree, ProjectConfiguration } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { addProjectConfiguration, readProjectConfiguration } from '@nx/devkit';
+import type { Tree, ProjectConfiguration } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import updateStylelintTargets from './update-stylelint-targets';
 
 describe('update-stylelint-targets', () => {

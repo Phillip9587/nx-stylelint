@@ -1,7 +1,7 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/js';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
+import { libraryGenerator } from '@nx/js';
 import { formatters } from 'stylelint';
 import { Config, FormatterType } from 'stylelint';
 import { readFileSync } from 'fs';
