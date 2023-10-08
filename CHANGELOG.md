@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [16.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.0-beta.0...v16.0.0) (2023-10-08)
+
+### Features
+
+- add migration to bring stylelint-config-standard packages up to date ([c3292a9](https://github.com/Phillip9587/nx-stylelint/commit/c3292a9f4d43dcecaf14f6c7b19f066b38039314))
+- added a scss option to the configuration generator and deprecated the scss generator ([06d70a4](https://github.com/Phillip9587/nx-stylelint/commit/06d70a49a41f4f293383e41b91f7ce3a48012cc2))
+
+### Bug Fixes
+
+- fixed root stylelint creation ([bb05744](https://github.com/Phillip9587/nx-stylelint/commit/bb05744551e75e501a82a68fa7ccfa66df0479f7))
+
 ## [16.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v15.0.0...v16.0.0-beta.0) (2023-10-08)
 
 ### ⚠ BREAKING CHANGES
