@@ -6,8 +6,8 @@ import {
   updateProjectConfiguration,
   writeJson,
   logger,
-} from '@nrwl/devkit';
-import type { Tree, GeneratorCallback } from '@nrwl/devkit';
+} from '@nx/devkit';
+import type { Tree, GeneratorCallback } from '@nx/devkit';
 import type { Config } from 'stylelint';
 import type { ConfigurationGeneratorSchema } from './schema';
 import { initGenerator } from '../init/generator';
@@ -59,7 +59,7 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
     ...options,
     formatter: validFormatter ? options.formatter : defaultFormatter,
     projectRoot: projectConfig.root,
-    stylelintTargetExists: projectConfig.targets?.['stylelint'] != null,
+    stylelintTargetExists: !!projectConfig.targets?.['stylelint'],
   };
 }
 

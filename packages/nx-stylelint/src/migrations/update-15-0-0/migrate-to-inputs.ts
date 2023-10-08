@@ -1,5 +1,5 @@
-import { formatFiles, readWorkspaceConfiguration, updateWorkspaceConfiguration } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
+import { formatFiles, readWorkspaceConfiguration, updateWorkspaceConfiguration } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
 import { stylelintConfigFilePattern } from '../../utils/config-file';
 
 export default async function (tree: Tree) {

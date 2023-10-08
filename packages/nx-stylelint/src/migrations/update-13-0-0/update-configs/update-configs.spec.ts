@@ -1,6 +1,6 @@
-import { addProjectConfiguration, readJson, writeJson, logger } from '@nrwl/devkit';
-import type { Tree } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { addProjectConfiguration, readJson, writeJson, logger } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import updateConfigs from './update-configs';
 import type { Config } from 'stylelint';
 

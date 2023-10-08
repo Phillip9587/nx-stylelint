@@ -7,8 +7,8 @@ import {
   readProjectConfiguration,
   updateJson,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
-import type { ProjectConfiguration, Tree } from '@nrwl/devkit';
+} from '@nx/devkit';
+import type { ProjectConfiguration, Tree } from '@nx/devkit';
 import type { Config } from 'stylelint';
 import { stylelintConfigStandardScssVersion } from '../../utils/versions';
 import type { ScssGeneratorSchema } from './schema';
@@ -55,7 +55,7 @@ function installRequiredPackages(tree: Tree) {
   const packageJson = readJson(tree, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
-  if (!packageJson.dependencies['stylelint-config-standard-scss'])
+  if (!packageJson.dependencies?.['stylelint-config-standard-scss'])
     devDependencies['stylelint-config-standard-scss'] = stylelintConfigStandardScssVersion;
 
   return addDependenciesToPackageJson(tree, {}, devDependencies);
