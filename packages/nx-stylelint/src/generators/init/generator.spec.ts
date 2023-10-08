@@ -21,7 +21,7 @@ describe('nx-stylelint:init generator', () => {
 
     const packagejson = readJson(tree, 'package.json');
     expect(packagejson.devDependencies['stylelint']).toBe('^15.0.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^30.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^34.0.0');
 
     const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
     expect(stylelintrc.ignoreFiles?.length).toBe(1);

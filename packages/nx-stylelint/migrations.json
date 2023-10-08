@@ -109,6 +109,19 @@
           "alwaysAddToPackageJson": false
         }
       }
+    },
+    "16.0.0": {
+      "version": "16.0.0-beta.0",
+      "packages": {
+        "stylelint-config-standard": {
+          "version": "^34.0.0",
+          "alwaysAddToPackageJson": false
+        },
+        "stylelint-config-standard-scss": {
+          "version": "^11.0.0",
+          "alwaysAddToPackageJson": false
+        }
+      }
     }
   }
 }
