@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "nx-stylelint",
   "version": "0.0.1",
   "generators": {
@@ -19,7 +19,8 @@
     "scss": {
       "factory": "./src/generators/scss/generator",
       "schema": "./src/generators/scss/schema.json",
-      "description": "Add scss support to a nx-stylelint configuration"
+      "description": "Add scss support to a nx-stylelint configuration",
+      "x-deprecated": "This generator is deprecated and will be removed in v17. Use the configuration generator with the scss option instead."
     }
   },
   "schematics": {
@@ -39,7 +40,8 @@
     "scss": {
       "factory": "./src/generators/scss/compat",
       "schema": "./src/generators/scss/schema.json",
-      "description": "Add scss support to a nx-stylelint configuration"
+      "description": "Add scss support to a nx-stylelint configuration",
+      "x-deprecated": "This generator is deprecated and will be removed in v17. Use the configuration generator with the scss option instead."
     }
   }
 }

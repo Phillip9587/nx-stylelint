@@ -24,8 +24,44 @@ describe('nx-stylelint:init generator', () => {
     expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^34.0.0');
 
     const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
-    expect(stylelintrc.ignoreFiles?.length).toBe(1);
-    expect(stylelintrc.ignoreFiles).toContain('**/*');
+    expect(stylelintrc).toStrictEqual<Config>({
+      ignoreFiles: ['**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          extends: ['stylelint-config-standard'],
+          rules: {},
+        },
+      ],
+      rules: {},
+    });
+  });
+
+  it('should add dependencies and create recommended root configuration with scss support', async () => {
+    await generator(tree, { ...defaultOptions, scss: true });
+
+    const packagejson = readJson(tree, 'package.json');
+    expect(packagejson.devDependencies['stylelint']).toBe('^15.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^34.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^11.0.0');
+
+    const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
+    expect(stylelintrc).toStrictEqual<Config>({
+      ignoreFiles: ['**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          extends: ['stylelint-config-standard'],
+          rules: {},
+        },
+        {
+          files: ['**/*.scss'],
+          extends: ['stylelint-config-standard-scss'],
+          rules: {},
+        },
+      ],
+      rules: {},
+    });
   });
 
   it('should skip creation of .stylelintrc.json and recommended dependencies when already present', async () => {

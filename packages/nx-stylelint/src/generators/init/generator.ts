@@ -11,17 +11,21 @@ import {
   updateNxJson,
 } from '@nx/devkit';
 import type { Tree, GeneratorCallback } from '@nx/devkit';
-import { stylelintConfigStandardVersion, stylelintVersion, stylelintVSCodeExtension } from '../../utils/versions';
+import {
+  stylelintConfigStandardScssVersion,
+  stylelintConfigStandardVersion,
+  stylelintVersion,
+  stylelintVSCodeExtension,
+} from '../../utils/versions';
 import type { InitGeneratorSchema } from './schema';
 import type { Config } from 'stylelint';
 import { stylelintConfigFilePattern } from '../../utils/config-file';
 
 /** nx-stylelint:init generator */
 export async function initGenerator(host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
-  const rootConfigExists = host.exists('.stylelintrc.json');
-  const installTask = updateDependencies(host, rootConfigExists);
+  const installTask = updateDependencies(host, !!options.scss);
 
-  if (!rootConfigExists) createRecommendedStylelintConfiguration(host);
+  if (!host.exists('.stylelintrc.json')) createRecommendedStylelintConfiguration(host, !!options.scss);
   else {
     logger.info(
       `Stylelint root configuration found! Skipping creation of root .stylelintrc.json!
@@ -42,16 +46,16 @@ You can then migrate your custom rule configuration into the created stylelint c
 export default initGenerator;
 
 /** Adds Stylelint and shared configs to the devDependencies of the package.json if not present */
-function updateDependencies(host: Tree, rootConfigExists: boolean): GeneratorCallback {
+function updateDependencies(host: Tree, scss: boolean): GeneratorCallback {
   const packageJson = readJson(host, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
   if (!packageJson.dependencies?.stylelint) devDependencies['stylelint'] = stylelintVersion;
 
-  if (!rootConfigExists) {
-    if (!packageJson.dependencies?.['stylelint-config-standard'])
-      devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
-  }
+  if (!packageJson.dependencies?.['stylelint-config-standard'])
+    devDependencies['stylelint-config-standard'] = stylelintConfigStandardVersion;
+  if (scss && !packageJson.dependencies?.['stylelint-config-standard-scss'])
+    devDependencies['stylelint-config-standard-scss'] = stylelintConfigStandardScssVersion;
 
   return addDependenciesToPackageJson(host, {}, devDependencies);
 }
@@ -118,8 +122,8 @@ function addStylelintInputs(host: Tree) {
   updateNxJson(host, nxJson);
 }
 
-function createRecommendedStylelintConfiguration(host: Tree) {
-  writeJson<Config>(host, '.stylelintrc.json', {
+function createRecommendedStylelintConfiguration(tree: Tree, scss: boolean) {
+  const config = {
     ignoreFiles: ['**/*'],
     overrides: [
       {
@@ -129,5 +133,14 @@ function createRecommendedStylelintConfiguration(host: Tree) {
       },
     ],
     rules: {},
-  });
+  };
+
+  if (scss)
+    config.overrides.push({
+      files: ['**/*.scss'],
+      extends: ['stylelint-config-standard-scss'],
+      rules: {},
+    });
+
+  writeJson<Config>(tree, '.stylelintrc.json', config);
 }

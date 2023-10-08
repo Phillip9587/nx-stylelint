@@ -55,26 +55,34 @@ describe('nx-stylelint:configuration generator', () => {
     await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
     await generator(tree, defaultOptions);
 
-    const config = readProjectConfiguration(tree, 'test');
+    const packagejson = readJson(tree, 'package.json');
+    expect(packagejson.devDependencies['stylelint']).toBe('^15.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^34.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
-    expect(config).toBeDefined();
-    expect(config.targets?.['stylelint']).toBeDefined();
-    expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
-    expect(config.targets?.['stylelint'].options.format).toBeUndefined();
-    expect(config.targets?.['stylelint'].options.lintFilePatterns).toContain('libs/test/**/*.css');
+    const config = readProjectConfiguration(tree, 'test');
+    expect(config.targets?.['stylelint']).toStrictEqual({
+      executor: 'nx-stylelint:lint',
+      outputs: ['{options.outputFile}'],
+      options: {
+        lintFilePatterns: ['libs/test/**/*.css'],
+      },
+    });
+
     expect(tree.exists('.stylelintrc.json')).toBeTruthy();
     expect(tree.exists(projectStylelint)).toBeTruthy();
 
     const projectStylelintConfig = readJson<Config>(tree, projectStylelint);
-    expect(projectStylelintConfig.extends).toHaveLength(1);
-    expect(projectStylelintConfig.extends).toContain('../../.stylelintrc.json');
-    expect(projectStylelintConfig.ignoreFiles).toContain('!**/*');
-    expect(projectStylelintConfig.overrides).toStrictEqual([
-      {
-        files: ['**/*.css'],
-        rules: {},
-      },
-    ]);
+    expect(projectStylelintConfig).toStrictEqual({
+      extends: ['../../.stylelintrc.json'],
+      ignoreFiles: ['!**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          rules: {},
+        },
+      ],
+    });
   });
 
   it('should add stylelint target alongside other targets, run init generator and create project .stylelinrrc.json', async () => {
@@ -129,11 +137,14 @@ describe('nx-stylelint:configuration generator', () => {
       await generator(tree, { ...defaultOptions, formatter: 'json' });
 
       const config = readProjectConfiguration(tree, 'test');
-
-      expect(config).toBeDefined();
-      expect(config.targets?.['stylelint']).toBeDefined();
-      expect(config.targets?.['stylelint'].executor).toBe('nx-stylelint:lint');
-      expect(config.targets?.['stylelint'].options.formatter).toBe('json');
+      expect(config.targets?.['stylelint']).toStrictEqual({
+        executor: 'nx-stylelint:lint',
+        outputs: ['{options.outputFile}'],
+        options: {
+          formatter: 'json',
+          lintFilePatterns: ['libs/test/**/*.css'],
+        },
+      });
     });
 
     it('should print a error if the format is not defined', async () => {
@@ -150,6 +161,48 @@ describe('nx-stylelint:configuration generator', () => {
       expect(logger.error).toHaveBeenCalledWith(
         `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`
       );
+    });
+  });
+
+  describe('--scss', () => {
+    it('should add stylelint target, run init generator and create project .stylelinrrc.json with SCSS support', async () => {
+      const projectStylelint = `libs/test/.stylelintrc.json`;
+
+      await libraryGenerator(tree, { name: 'test', compiler: 'tsc' });
+      await generator(tree, { ...defaultOptions, scss: true });
+
+      const packagejson = readJson(tree, 'package.json');
+      expect(packagejson.devDependencies['stylelint']).toBe('^15.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^34.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^11.0.0');
+
+      const config = readProjectConfiguration(tree, 'test');
+      expect(config.targets?.['stylelint']).toStrictEqual({
+        executor: 'nx-stylelint:lint',
+        outputs: ['{options.outputFile}'],
+        options: {
+          lintFilePatterns: ['libs/test/**/*.css', 'libs/test/**/*.scss'],
+        },
+      });
+
+      expect(tree.exists('.stylelintrc.json')).toBeTruthy();
+      expect(tree.exists(projectStylelint)).toBeTruthy();
+
+      const projectStylelintConfig = readJson<Config>(tree, projectStylelint);
+      expect(projectStylelintConfig).toStrictEqual({
+        extends: ['../../.stylelintrc.json'],
+        ignoreFiles: ['!**/*'],
+        overrides: [
+          {
+            files: ['**/*.css'],
+            rules: {},
+          },
+          {
+            files: ['**/*.scss'],
+            rules: {},
+          },
+        ],
+      });
     });
   });
 });

@@ -24,7 +24,7 @@ export async function configurationGenerator(
   host: Tree,
   options: ConfigurationGeneratorSchema
 ): Promise<void | GeneratorCallback> {
-  const init = await initGenerator(host, { skipFormat: options.skipFormat });
+  const init = await initGenerator(host, { skipFormat: options.skipFormat, scss: options.scss });
 
   const normalizedOptions = normalizeSchema(host, options);
 
@@ -63,13 +63,18 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
   };
 }
 
-function addStylelintTarget(host: Tree, options: NormalizedSchema) {
-  const projectConfig = readProjectConfiguration(host, options.project);
+function addStylelintTarget(tree: Tree, options: NormalizedSchema) {
+  const projectConfig = readProjectConfiguration(tree, options.project);
 
   const targetOptions: Partial<LintExecutorSchema> = {
     lintFilePatterns: [joinPathFragments(options.projectRoot, '**', '*.css')],
     formatter: options.formatter === 'string' ? undefined : options.formatter,
   };
+
+  if (options.scss) {
+    targetOptions.lintFilePatterns ??= [];
+    targetOptions.lintFilePatterns.push(joinPathFragments(options.projectRoot, '**', '*.scss'));
+  }
 
   projectConfig.targets = {
     ...projectConfig.targets,
@@ -79,11 +84,11 @@ function addStylelintTarget(host: Tree, options: NormalizedSchema) {
       options: targetOptions,
     },
   };
-  updateProjectConfiguration(host, options.project, projectConfig);
+  updateProjectConfiguration(tree, options.project, projectConfig);
 }
 
-function createStylelintConfig(host: Tree, options: NormalizedSchema) {
-  writeJson<Config>(host, joinPathFragments(options.projectRoot, '.stylelintrc.json'), {
+function createStylelintConfig(tree: Tree, options: NormalizedSchema) {
+  const config = {
     extends: [joinPathFragments(offsetFromRoot(options.projectRoot), '.stylelintrc.json')],
     ignoreFiles: ['!**/*'],
     overrides: [
@@ -92,5 +97,14 @@ function createStylelintConfig(host: Tree, options: NormalizedSchema) {
         rules: {},
       },
     ],
-  });
+  };
+
+  if (options.scss) {
+    config.overrides.push({
+      files: ['**/*.scss'],
+      rules: {},
+    });
+  }
+
+  writeJson<Config>(tree, joinPathFragments(options.projectRoot, '.stylelintrc.json'), config);
 }

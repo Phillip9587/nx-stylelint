@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "NxStylelintProjectConfiguration",
   "title": "Add stylelint configuration to a project",
   "type": "object",
@@ -43,14 +43,22 @@
             "label": "verbose"
           }
         ]
-      }
+      },
+      "x-priority": "important"
     },
     "project": {
       "type": "string",
       "description": "The name of the project.",
       "$default": {
         "$source": "projectName"
-      }
+      },
+      "x-priority": "important"
+    },
+    "scss": {
+      "description": "Add SCSS Language support.",
+      "type": "boolean",
+      "default": false,
+      "x-priority": "important"
     },
     "skipFormat": {
       "description": "Skip formatting files.",

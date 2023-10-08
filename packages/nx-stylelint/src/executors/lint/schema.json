@@ -1,7 +1,7 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "version": 2,
   "outputCapture": "direct-nodejs",
-  "$schema": "http://json-schema.org/schema",
   "title": "Stylelint Lint Target",
   "type": "object",
   "properties": {

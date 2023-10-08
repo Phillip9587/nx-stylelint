@@ -1,3 +1,4 @@
 export interface InitGeneratorSchema {
-  skipFormat: boolean;
+  scss?: boolean;
+  skipFormat?: boolean;
 }

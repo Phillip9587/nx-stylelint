@@ -1,25 +1,27 @@
 import {
-  addDependenciesToPackageJson,
   formatFiles,
   joinPathFragments,
   logger,
-  readJson,
   readProjectConfiguration,
   updateJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import type { ProjectConfiguration, Tree } from '@nx/devkit';
 import type { Config } from 'stylelint';
-import { stylelintConfigStandardScssVersion } from '../../utils/versions';
 import type { ScssGeneratorSchema } from './schema';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
+import { initGenerator } from '../init/generator';
 
 interface NormalizedSchema extends ScssGeneratorSchema {
   projectConfig: ProjectConfiguration;
   hasStylelintTarget: boolean;
 }
-
+/** nx-stylelint:scss generator
+ * @deprecated Will be removed in v17. Use the nx-stylelint:configuration generator with the scss option
+ */
 export async function scssGenerator(tree: Tree, options: ScssGeneratorSchema) {
+  const init = await initGenerator(tree, { skipFormat: options.skipFormat, scss: true });
+
   const normalizedOptions = normalizeSchema(tree, options);
 
   if (!normalizedOptions.hasStylelintTarget) {
@@ -29,14 +31,12 @@ export async function scssGenerator(tree: Tree, options: ScssGeneratorSchema) {
     return;
   }
 
-  const installTask = installRequiredPackages(tree);
-
   ensureRootScssConfiguration(tree);
 
   updateProjectConfig(tree, normalizedOptions);
 
   if (options.skipFormat !== true) await formatFiles(tree);
-  return installTask;
+  return init;
 }
 
 export default scssGenerator;
@@ -49,16 +49,6 @@ function normalizeSchema(tree: Tree, options: ScssGeneratorSchema): NormalizedSc
     projectConfig,
     hasStylelintTarget: projectConfig.targets?.['stylelint'] !== undefined,
   };
-}
-
-function installRequiredPackages(tree: Tree) {
-  const packageJson = readJson(tree, 'package.json');
-  const devDependencies: { [index: string]: string } = {};
-
-  if (!packageJson.dependencies?.['stylelint-config-standard-scss'])
-    devDependencies['stylelint-config-standard-scss'] = stylelintConfigStandardScssVersion;
-
-  return addDependenciesToPackageJson(tree, {}, devDependencies);
 }
 
 function ensureRootScssConfiguration(tree: Tree) {
