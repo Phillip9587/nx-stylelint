@@ -15,30 +15,24 @@ jobs:
     name: Build, Lint and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js LTS 18.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           check-latest: true
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Lint
+      - run: npx nx lint nx-stylelint
         if: always()
-        run: npx nx lint nx-stylelint
 
-      - name: Test
+      - run: npx nx test nx-stylelint
         if: always()
-        run: npx nx test nx-stylelint
 
-      - name: Build
+      - run: npx nx build nx-stylelint
         if: always()
-        run: npx nx build nx-stylelint
 
   e2e:
     name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
@@ -51,13 +45,12 @@ jobs:
           - windows-latest
           - macos-latest
         node-version:
-          - 16
           - 18
+          - 20
       fail-fast: false
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -68,14 +61,11 @@ jobs:
           check-latest: true
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
+      - uses: nrwl/nx-set-shas@v3
 
-      - name: E2E
-        run: npx nx affected --target=e2e --skip-nx-cache
+      - run: npx nx affected --target=e2e --skip-nx-cache
 
   publish:
     name: Publish to NPM
@@ -87,22 +77,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js LTS 16.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
           check-latest: true
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Build
-        run: npx nx build nx-stylelint
+      - run: npx nx build nx-stylelint
 
       - name: Publish to NPM
         if: env.IS_BETA_RELEASE == 'false'
