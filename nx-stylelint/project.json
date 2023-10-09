@@ -19,10 +19,16 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/nx-stylelint"],
+      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
       "options": {
         "jestConfig": "nx-stylelint/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "build": {
@@ -30,7 +36,6 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/nx-stylelint",
-        "deleteOutputPath": true,
         "tsConfig": "nx-stylelint/tsconfig.lib.json",
         "packageJson": "nx-stylelint/package.json",
         "main": "nx-stylelint/src/index.ts",
@@ -58,6 +63,14 @@
             "output": "."
           }
         ]
+      }
+    },
+    "local-registry": {
+      "executor": "@nx/js:verdaccio",
+      "options": {
+        "port": 4873,
+        "config": ".verdaccio/config.yml",
+        "storage": "tmp/local-registry/storage"
       }
     }
   }

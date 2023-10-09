@@ -1,4 +1,4 @@
-import * as path from 'path';
+import { join } from 'node:path';
 import type { Formatter, FormatterType } from 'stylelint';
 import { formatters } from 'stylelint';
 
@@ -20,10 +20,10 @@ export function loadFormatter(formatter: unknown, cwd: string): FormatterType | 
   const isNpmPackage = npmPackageRegex.test(normalizedFormatter);
 
   try {
-    return require(isNpmPackage ? normalizedFormatter : path.join(cwd, normalizedFormatter));
+    return require(isNpmPackage ? normalizedFormatter : join(cwd, normalizedFormatter));
   } catch (err) {
     if (isNpmPackage && !normalizedFormatter.includes('@')) {
-      return require(path.join(cwd, normalizedFormatter));
+      return require(join(cwd, normalizedFormatter));
     }
     throw err;
   }

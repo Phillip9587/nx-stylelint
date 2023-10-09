@@ -1,30 +1,67 @@
-import { checkFilesExist, ensureNxProject, readJson, runNxCommandAsync, cleanup, uniq } from '@nx/plugin/testing';
-import { NxJsonConfiguration, ProjectConfiguration, TargetConfiguration } from '@nx/devkit';
+import { checkFilesExist, readJson, uniq, runNxCommand } from '@nx/plugin/testing';
+import { NxJsonConfiguration, ProjectConfiguration, TargetConfiguration, writeJsonFile } from '@nx/devkit';
 import type { Config } from 'stylelint';
+import { execSync } from 'node:child_process';
+import { mkdirSync, rmSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 
-describe('nx-stylelint E2E tests', () => {
+describe('nx-stylelint e2e', () => {
+  let projectDirectory: string;
+
   beforeAll(() => {
-    cleanup();
+    projectDirectory = createTestProject();
+
+    execSync(`npm install --save-dev nx-stylelint@e2e`, {
+      cwd: projectDirectory,
+      stdio: 'inherit',
+      env: process.env,
+    });
   });
 
-  beforeEach(() => {
-    ensureNxProject('nx-stylelint', 'dist/nx-stylelint');
+  afterAll(() => rmSync(projectDirectory, { recursive: true, force: true }));
+
+  it('should be installed', () => {
+    // npm ls will fail if the package is not installed properly
+    execSync('npm ls nx-stylelint', { cwd: projectDirectory, stdio: 'inherit' });
   });
 
-  describe('nx-stylelint:init', () => {
-    it('should initialize nx-stylelint', async () => {
-      await runNxCommandAsync(`generate nx-stylelint:init`);
+  it('nx-stylelint:init', () => {
+    runNxCommand('generate nx-stylelint:init');
 
-      expect(() => checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json')).not.toThrow();
+    expect(() => checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json')).not.toThrow();
 
-      const packageJson = readJson('package.json');
+    const packageJson = readJson('package.json');
+    expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
+    expect(packageJson.devDependencies.stylelint).toBeTruthy();
+    expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
+    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
-      expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
-      expect(packageJson.devDependencies.stylelint).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
+    expect(readJson<Config>('.stylelintrc.json')).toStrictEqual<Config>({
+      ignoreFiles: ['**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          extends: ['stylelint-config-standard'],
+          rules: {},
+        },
+      ],
+      rules: {},
+    });
 
-      const stylelintRc = readJson<Config>('.stylelintrc.json');
-      expect(stylelintRc).toStrictEqual<Config>({
+    const nxJson = readJson<NxJsonConfiguration>('nx.json');
+    expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
+    expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
+    expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+      inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+    });
+  });
+
+  describe('nx-stylelint:configuration', () => {
+    it('should add a stylelint configuration to a project', () => {
+      const projectName = uniq('lib-');
+      const project2Name = uniq('lib-');
+
+      writeJsonFile(join(projectDirectory, '.stylelintrc.json'), {
         ignoreFiles: ['**/*'],
         overrides: [
           {
@@ -36,35 +73,17 @@ describe('nx-stylelint E2E tests', () => {
         rules: {},
       });
 
-      const nxJson: NxJsonConfiguration = readJson('nx.json');
-
-      expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-      expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-
-      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
-        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
-      });
-    }, 120000);
-  });
-
-  describe('nx-stylelint:configuration', () => {
-    it('should add a stylelint configuration to a project', async () => {
-      const projName = uniq('nx-stylelint');
-      const proj2Name = uniq('nx-stylelint');
-
-      await runNxCommandAsync(`generate @nx/js:library --name ${projName}`);
-      await runNxCommandAsync(`generate @nx/js:library --name ${proj2Name}`);
-
-      await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
+      runNxCommand(`generate @nx/js:library --name ${projectName}`);
+      runNxCommand(`generate nx-stylelint:configuration --project ${projectName}`);
 
       expect(() =>
-        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projName}/.stylelintrc.json`)
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projectName}/.stylelintrc.json`)
       ).not.toThrow();
 
       let packageJson = readJson('package.json');
-
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
+      expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
       let rootConfig = readJson<Config>('.stylelintrc.json');
@@ -80,7 +99,7 @@ describe('nx-stylelint E2E tests', () => {
         rules: {},
       });
 
-      let projectConfig = readJson<Config>(`${projName}/.stylelintrc.json`);
+      let projectConfig = readJson<Config>(`${projectName}/.stylelintrc.json`);
       expect(projectConfig).toStrictEqual<Config>({
         extends: ['../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
@@ -92,28 +111,22 @@ describe('nx-stylelint E2E tests', () => {
         ],
       });
 
-      const nxJson: NxJsonConfiguration = readJson('nx.json');
-      expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-      expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
-        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
-      });
-
-      let projectJson = readJson<ProjectConfiguration>(`${projName}/project.json`);
+      let projectJson = readJson<ProjectConfiguration>(`${projectName}/project.json`);
       expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
-          lintFilePatterns: [`${projName}/**/*.css`],
+          lintFilePatterns: [`${projectName}/**/*.css`],
         },
         outputs: ['{options.outputFile}'],
       });
 
-      await runNxCommandAsync(`generate nx-stylelint:configuration --project ${proj2Name} --scss true`);
+      runNxCommand(`generate @nx/js:library --name ${project2Name}`);
+      runNxCommand(`generate nx-stylelint:configuration --project ${project2Name} --scss true`);
 
       packageJson = readJson('package.json');
-
       expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
       expect(packageJson.devDependencies.stylelint).toBeTruthy();
+      expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
 
       rootConfig = readJson<Config>('.stylelintrc.json');
@@ -134,7 +147,7 @@ describe('nx-stylelint E2E tests', () => {
         rules: {},
       });
 
-      projectConfig = readJson<Config>(`${proj2Name}/.stylelintrc.json`);
+      projectConfig = readJson<Config>(`${project2Name}/.stylelintrc.json`);
       expect(projectConfig).toStrictEqual<Config>({
         extends: ['../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
@@ -150,101 +163,22 @@ describe('nx-stylelint E2E tests', () => {
         ],
       });
 
-      projectJson = readJson<ProjectConfiguration>(`${proj2Name}/project.json`);
+      projectJson = readJson<ProjectConfiguration>(`${project2Name}/project.json`);
       expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
-          lintFilePatterns: [`${proj2Name}/**/*.css`, `${proj2Name}/**/*.scss`],
+          lintFilePatterns: [`${project2Name}/**/*.css`, `${project2Name}/**/*.scss`],
         },
         outputs: ['{options.outputFile}'],
       });
-    }, 120000);
 
-    describe('--formatter', () => {
-      it('should add a stylelint configuration to a project and set the specified formatter', async () => {
-        const projName = uniq('nx-stylelint');
-        await runNxCommandAsync(`generate @nx/js:library --name ${projName}`);
-        await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName} --formatter json`);
+      execSync('npm uninstall stylelint-config-standard-scss', {
+        cwd: projectDirectory,
+        stdio: 'inherit',
+        env: process.env,
+      });
 
-        expect(() =>
-          checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projName}/.stylelintrc.json`)
-        ).not.toThrow();
-
-        const packageJson = readJson('package.json');
-
-        expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
-        expect(packageJson.devDependencies.stylelint).toBeTruthy();
-        expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
-        expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
-
-        const rootConfig = readJson<Config>('.stylelintrc.json');
-        expect(rootConfig).toStrictEqual({
-          ignoreFiles: ['**/*'],
-          overrides: [
-            {
-              files: ['**/*.css'],
-              extends: ['stylelint-config-standard'],
-              rules: {},
-            },
-          ],
-          rules: {},
-        });
-
-        const projectConfig = readJson<Config>(`${projName}/.stylelintrc.json`);
-        expect(projectConfig).toStrictEqual<Config>({
-          extends: ['../.stylelintrc.json'],
-          ignoreFiles: ['!**/*'],
-          overrides: [
-            {
-              files: ['**/*.css'],
-              rules: {},
-            },
-          ],
-        });
-
-        const nxJson: NxJsonConfiguration = readJson('nx.json');
-
-        expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-        expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-
-        expect(nxJson.targetDefaults.stylelint).toStrictEqual({
-          inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
-        });
-
-        const projectJson = readJson<ProjectConfiguration>(`${projName}/project.json`);
-
-        expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
-          executor: 'nx-stylelint:lint',
-          options: {
-            lintFilePatterns: [`${projName}/**/*.css`],
-            formatter: 'json',
-          },
-          outputs: ['{options.outputFile}'],
-        });
-      }, 120000);
-    });
-  });
-
-  describe('nx-stylelint:scss', () => {
-    it('should add scss support to a target and configuration', async () => {
-      const projName = uniq('nx-stylelint');
-      await runNxCommandAsync(`generate @nx/js:library --name ${projName}`);
-      await runNxCommandAsync(`generate nx-stylelint:configuration --project ${projName}`);
-      await runNxCommandAsync(`generate nx-stylelint:scss --project ${projName}`);
-
-      expect(() =>
-        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projName}/.stylelintrc.json`)
-      ).not.toThrow();
-
-      const packageJson = readJson('package.json');
-
-      expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
-      expect(packageJson.devDependencies.stylelint).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
-      expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
-
-      const rootConfig = readJson<Config>('.stylelintrc.json');
-      expect(rootConfig).toStrictEqual<Config>({
+      writeJsonFile(join(projectDirectory, '.stylelintrc.json'), {
         ignoreFiles: ['**/*'],
         overrides: [
           {
@@ -252,17 +186,22 @@ describe('nx-stylelint E2E tests', () => {
             extends: ['stylelint-config-standard'],
             rules: {},
           },
-          {
-            files: ['**/*.scss'],
-            extends: ['stylelint-config-standard-scss'],
-            rules: {},
-          },
         ],
         rules: {},
       });
+    });
 
-      const projectConfig = readJson<Config>(`${projName}/.stylelintrc.json`);
-      expect(projectConfig).toStrictEqual<Config>({
+    it('should add a stylelint configuration to a project and set the specified formatter', () => {
+      const projectName = uniq('lib-');
+
+      runNxCommand(`generate @nx/js:library --name ${projectName}`);
+      runNxCommand(`generate nx-stylelint:configuration --project ${projectName} --formatter json`);
+
+      expect(() =>
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projectName}/.stylelintrc.json`)
+      ).not.toThrow();
+
+      expect(readJson<Config>(`${projectName}/.stylelintrc.json`)).toStrictEqual<Config>({
         extends: ['../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
         overrides: [
@@ -270,31 +209,111 @@ describe('nx-stylelint E2E tests', () => {
             files: ['**/*.css'],
             rules: {},
           },
-          {
-            files: ['**/*.scss'],
-            rules: {},
-          },
         ],
       });
 
-      const nxJson: NxJsonConfiguration = readJson('nx.json');
-
-      expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-      expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
-
-      expect(nxJson.targetDefaults.stylelint).toStrictEqual({
-        inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
-      });
-
-      const projectJson: ProjectConfiguration = readJson(`${projName}/project.json`);
-
-      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+      expect(
+        readJson<ProjectConfiguration>(`${projectName}/project.json`).targets.stylelint
+      ).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
-          lintFilePatterns: [`${projName}/**/*.css`, `${projName}/**/*.scss`],
+          formatter: 'json',
+          lintFilePatterns: [`${projectName}/**/*.css`],
         },
         outputs: ['{options.outputFile}'],
       });
-    }, 150000);
+    });
+  });
+
+  it('nx-stylelint:scss', () => {
+    const projectName = uniq('lib');
+    runNxCommand(`generate @nx/js:library --name ${projectName}`);
+    runNxCommand(`generate nx-stylelint:configuration --project ${projectName}`);
+    runNxCommand(`generate nx-stylelint:scss --project ${projectName}`);
+
+    expect(() =>
+      checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `${projectName}/.stylelintrc.json`)
+    ).not.toThrow();
+
+    const packageJson = readJson('package.json');
+
+    expect(packageJson.devDependencies['nx-stylelint']).toBeTruthy();
+    expect(packageJson.devDependencies.stylelint).toBeTruthy();
+    expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
+    expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
+
+    expect(readJson<Config>('.stylelintrc.json')).toStrictEqual<Config>({
+      ignoreFiles: ['**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          extends: ['stylelint-config-standard'],
+          rules: {},
+        },
+        {
+          files: ['**/*.scss'],
+          extends: ['stylelint-config-standard-scss'],
+          rules: {},
+        },
+      ],
+      rules: {},
+    });
+
+    expect(readJson<Config>(`${projectName}/.stylelintrc.json`)).toStrictEqual<Config>({
+      extends: ['../.stylelintrc.json'],
+      ignoreFiles: ['!**/*'],
+      overrides: [
+        {
+          files: ['**/*.css'],
+          rules: {},
+        },
+        {
+          files: ['**/*.scss'],
+          rules: {},
+        },
+      ],
+    });
+
+    const nxJson = readJson<NxJsonConfiguration>('nx.json');
+    expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
+    expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
+    expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+      inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+    });
+
+    expect(
+      readJson<ProjectConfiguration>(`${projectName}/project.json`).targets.stylelint
+    ).toStrictEqual<TargetConfiguration>({
+      executor: 'nx-stylelint:lint',
+      options: {
+        lintFilePatterns: [`${projectName}/**/*.css`, `${projectName}/**/*.scss`],
+      },
+      outputs: ['{options.outputFile}'],
+    });
   });
 });
+
+/**
+ * Creates a test project with create-nx-workspace and installs the plugin
+ * @returns The directory where the test project was created
+ */
+function createTestProject() {
+  const projectName = 'proj';
+  const projectDirectory = join(process.cwd(), 'tmp', 'nx-e2e', projectName);
+
+  rmSync(projectDirectory, {
+    recursive: true,
+    force: true,
+  });
+  mkdirSync(dirname(projectDirectory), {
+    recursive: true,
+  });
+
+  execSync(`npx --yes create-nx-workspace@latest ${projectName} --preset apps --no-nxCloud --no-interactive`, {
+    cwd: dirname(projectDirectory),
+    stdio: 'inherit',
+    env: process.env,
+  });
+
+  return projectDirectory;
+}
