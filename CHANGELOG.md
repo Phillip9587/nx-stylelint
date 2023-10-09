@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.0...v16.0.1) (2023-10-09)
+
+### Bug Fixes
+
+- scss config has been added to root stylelintrc on second init run ([349feb3](https://github.com/Phillip9587/nx-stylelint/commit/349feb3bda530af91587ebc24893891280e42680))
+
+### Refactorings
+
+- move files to a near standalone setup ([5258257](https://github.com/Phillip9587/nx-stylelint/commit/5258257d2366a21256add2f7348ecb902dc0c053))
+- refactor e2e tests to use verdaccio ([76cab3b](https://github.com/Phillip9587/nx-stylelint/commit/76cab3bed2a07e3303f326eb01c1e979c5e7fdca))
+
 ## [16.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.0-beta.0...v16.0.0) (2023-10-08)
 
 ### Features
