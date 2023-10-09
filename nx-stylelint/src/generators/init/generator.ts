@@ -26,7 +26,7 @@ export async function initGenerator(host: Tree, options: InitGeneratorSchema): P
   const installTask = updateDependencies(host, !!options.scss);
 
   if (!host.exists('.stylelintrc.json')) createRecommendedStylelintConfiguration(host, !!options.scss);
-  else if (isCompatibleRootConfig(host)) addScssToStylelintConfiguration(host);
+  else if (options.scss === true && isCompatibleRootConfig(host)) addScssToStylelintConfiguration(host);
   else {
     logger.info(
       `Stylelint root configuration found! Skipping creation of root .stylelintrc.json!
