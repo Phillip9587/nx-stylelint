@@ -32,7 +32,7 @@
       "type": "json"
     },
     {
-      "filename": "packages/nx-stylelint/package.json",
+      "filename": "nx-stylelint/package.json",
       "type": "json"
     }
   ]

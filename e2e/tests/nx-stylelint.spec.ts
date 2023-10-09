@@ -2,13 +2,13 @@ import { checkFilesExist, ensureNxProject, readJson, runNxCommandAsync, cleanup,
 import { NxJsonConfiguration, ProjectConfiguration, TargetConfiguration } from '@nx/devkit';
 import type { Config } from 'stylelint';
 
-describe('nx-stylelint-e2e', () => {
+describe('nx-stylelint E2E tests', () => {
   beforeAll(() => {
     cleanup();
   });
 
   beforeEach(() => {
-    ensureNxProject('nx-stylelint', 'dist/packages/nx-stylelint');
+    ensureNxProject('nx-stylelint', 'dist/nx-stylelint');
   });
 
   describe('nx-stylelint:init', () => {

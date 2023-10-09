@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "nx-stylelint": ["packages/nx-stylelint/src/index.ts"]
+      "nx-stylelint": ["nx-stylelint/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

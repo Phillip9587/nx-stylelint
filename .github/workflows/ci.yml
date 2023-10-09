@@ -93,7 +93,7 @@ jobs:
       - name: Publish to NPM
         if: env.IS_BETA_RELEASE == 'false'
         run: |
-          cd dist/packages/nx-stylelint/
+          cd dist/nx-stylelint/
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -101,7 +101,7 @@ jobs:
       - name: Publish Beta to NPM
         if: env.IS_BETA_RELEASE == 'true'
         run: |
-          cd dist/packages/nx-stylelint/
+          cd dist/nx-stylelint/
           npm publish --access public --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,6 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "nx-stylelint",
   "affected": {
     "defaultBase": "main"
   },
@@ -14,10 +13,6 @@
         "accessToken": "ZWYwZDQ0M2ItOWVhZi00OWQwLWExMzctZjA5MDllMTIzMzFlfHJlYWQtd3JpdGU="
       }
     }
-  },
-  "workspaceLayout": {
-    "appsDir": "e2e",
-    "libsDir": "packages"
   },
   "targetDefaults": {
     "build": {

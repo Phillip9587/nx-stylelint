@@ -2,8 +2,8 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  displayName: 'nx-stylelint',
-  preset: '../../jest.preset.js',
+  displayName: 'e2e',
+  preset: '../jest.preset.js',
   globals: {},
   transform: {
     '^.+\\.[tj]s$': [
@@ -13,8 +13,8 @@ const config: Config.InitialOptions = {
       },
     ],
   },
-  moduleFileExtensions: ['ts', 'js'],
-  coverageDirectory: '../../coverage/packages/nx-stylelint',
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../coverage/e2e',
   testEnvironment: 'node',
 };
 

@@ -1,27 +1,27 @@
 {
   "name": "nx-stylelint",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/nx-stylelint/src",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "nx-stylelint/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "packages/nx-stylelint/**/*.ts",
-          "packages/nx-stylelint/generators.json",
-          "packages/nx-stylelint/executors.json",
-          "packages/nx-stylelint/package.json",
-          "packages/nx-stylelint/migrations.json"
+          "nx-stylelint/**/*.ts",
+          "nx-stylelint/generators.json",
+          "nx-stylelint/executors.json",
+          "nx-stylelint/package.json",
+          "nx-stylelint/migrations.json"
         ]
       },
       "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/packages/nx-stylelint"],
+      "outputs": ["{workspaceRoot}/coverage/nx-stylelint"],
       "options": {
-        "jestConfig": "packages/nx-stylelint/jest.config.ts",
+        "jestConfig": "nx-stylelint/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -29,31 +29,31 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/nx-stylelint",
+        "outputPath": "dist/nx-stylelint",
         "deleteOutputPath": true,
-        "tsConfig": "packages/nx-stylelint/tsconfig.lib.json",
-        "packageJson": "packages/nx-stylelint/package.json",
-        "main": "packages/nx-stylelint/src/index.ts",
+        "tsConfig": "nx-stylelint/tsconfig.lib.json",
+        "packageJson": "nx-stylelint/package.json",
+        "main": "nx-stylelint/src/index.ts",
         "assets": [
           "README.md",
           "LICENSE",
           {
-            "input": "./packages/nx-stylelint/src",
+            "input": "./nx-stylelint/src",
             "glob": "**/schema.{json,d.ts}",
             "output": "./src"
           },
           {
-            "input": "./packages/nx-stylelint",
+            "input": "./nx-stylelint",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./packages/nx-stylelint",
+            "input": "./nx-stylelint",
             "glob": "executors.json",
             "output": "."
           },
           {
-            "input": "./packages/nx-stylelint",
+            "input": "./nx-stylelint",
             "glob": "migrations.json",
             "output": "."
           }

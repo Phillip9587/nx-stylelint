@@ -1,5 +1,5 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -13,7 +13,9 @@
         "@nx/nx-plugin-checks": "error",
         "@nx/dependency-checks": [
           "error",
-          { "ignoredDependencies": ["stylelint-config-standard", "stylelint-config-standard-scss"] }
+          {
+            "ignoredDependencies": ["stylelint-config-standard", "stylelint-config-standard-scss"]
+          }
         ]
       }
     }
