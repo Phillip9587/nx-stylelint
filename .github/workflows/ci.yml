@@ -28,7 +28,7 @@ jobs:
       - run: npx nx lint nx-stylelint
         if: always()
 
-      - run: npx nx test nx-stylelint
+      - run: npx nx test nx-stylelint --configuration=ci
         if: always()
 
       - run: npx nx build nx-stylelint
@@ -65,7 +65,7 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx affected --target=e2e --skip-nx-cache
+      - run: npx nx affected --target=e2e --configuration=ci --skip-nx-cache
 
   publish:
     name: Publish to NPM
