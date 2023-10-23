@@ -150,7 +150,6 @@ You can provide a path to your custom formatter:
 ```json
 {
   "projectType": "library",
-  "root": "libs/styles",
   "sourceRoot": "libs/styles/src",
   "targets": {
     "stylelint": {
@@ -170,7 +169,6 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 ```json
 {
   "projectType": "library",
-  "root": "libs/styles",
   "sourceRoot": "libs/styles/src",
   "targets": {
     "stylelint": {
