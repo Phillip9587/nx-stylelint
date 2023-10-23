@@ -8,7 +8,7 @@ import {
   stripIndents,
   joinPathFragments,
   readNxJson,
-  updateNxJson,
+  updateNxJson as devkitUpdateNxJson,
 } from '@nx/devkit';
 import type { Tree, GeneratorCallback } from '@nx/devkit';
 import {
@@ -22,11 +22,11 @@ import type { Config } from 'stylelint';
 import { stylelintConfigFilePattern } from '../../utils/config-file';
 
 /** nx-stylelint:init generator */
-export async function initGenerator(host: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
-  const installTask = updateDependencies(host, !!options.scss);
+export async function initGenerator(tree: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {
+  const installTask = updateDependencies(tree, !!options.scss);
 
-  if (!host.exists('.stylelintrc.json')) createRecommendedStylelintConfiguration(host, !!options.scss);
-  else if (options.scss === true && isCompatibleRootConfig(host)) addScssToStylelintConfiguration(host);
+  if (!tree.exists('.stylelintrc.json')) createRecommendedStylelintConfiguration(tree, !!options.scss);
+  else if (options.scss === true && isCompatibleRootConfig(tree)) addScssToStylelintConfiguration(tree);
   else {
     logger.info(
       `Stylelint root configuration found! Skipping creation of root .stylelintrc.json!
@@ -37,18 +37,18 @@ You can then migrate your custom rule configuration into the created stylelint c
     );
   }
 
-  addStylelintInputs(host);
-  updateVSCodeExtensions(host);
+  updateNxJson(tree);
+  updateVSCodeExtensions(tree);
 
-  if (options.skipFormat !== true) await formatFiles(host);
+  if (options.skipFormat !== true) await formatFiles(tree);
   return installTask;
 }
 
 export default initGenerator;
 
 /** Adds Stylelint and shared configs to the devDependencies of the package.json if not present */
-function updateDependencies(host: Tree, scss: boolean): GeneratorCallback {
-  const packageJson = readJson(host, 'package.json');
+function updateDependencies(tree: Tree, scss: boolean): GeneratorCallback {
+  const packageJson = readJson(tree, 'package.json');
   const devDependencies: { [index: string]: string } = {};
 
   if (!packageJson.dependencies?.stylelint) devDependencies['stylelint'] = stylelintVersion;
@@ -58,14 +58,14 @@ function updateDependencies(host: Tree, scss: boolean): GeneratorCallback {
   if (scss && !packageJson.dependencies?.['stylelint-config-standard-scss'])
     devDependencies['stylelint-config-standard-scss'] = stylelintConfigStandardScssVersion;
 
-  return addDependenciesToPackageJson(host, {}, devDependencies);
+  return addDependenciesToPackageJson(tree, {}, devDependencies);
 }
 
 /** Adds the Stylelint VSCode Extension to the recommenden Extensions if the file exists */
-function updateVSCodeExtensions(host: Tree): void {
-  if (!host.exists('.vscode/extensions.json')) return;
+function updateVSCodeExtensions(tree: Tree): void {
+  if (!tree.exists('.vscode/extensions.json')) return;
 
-  updateJson(host, '.vscode/extensions.json', (json) => {
+  updateJson(tree, '.vscode/extensions.json', (json) => {
     json.recommendations ??= [];
 
     if (Array.isArray(json.recommendations) && !json.recommendations.includes(stylelintVSCodeExtension))
@@ -76,8 +76,8 @@ function updateVSCodeExtensions(host: Tree): void {
 }
 
 /** Adds the root .stylelintrc.json file to the targetDefaults and stylelint target to the cacheable operations of the default task runner */
-function addStylelintInputs(host: Tree) {
-  const nxJson = readNxJson(host);
+function updateNxJson(tree: Tree) {
+  const nxJson = readNxJson(tree);
   if (!nxJson) {
     logger.warn(
       stripIndents`nx.json not found. Create a nx.json file and rerun the generator with 'nx run nx-stylelint:init' to configure nx-stylelint inputs and taskrunner options.`
@@ -98,29 +98,13 @@ function addStylelintInputs(host: Tree) {
   nxJson.targetDefaults ??= {};
   nxJson.targetDefaults['stylelint'] ??= {};
   nxJson.targetDefaults['stylelint'].inputs ??= ['default'];
+  nxJson.targetDefaults['stylelint'].cache = true;
+
   const rootStylelintConfigurationFile = joinPathFragments('{workspaceRoot}', stylelintConfigFilePattern);
   if (!nxJson.targetDefaults['stylelint'].inputs.includes(rootStylelintConfigurationFile))
     nxJson.targetDefaults['stylelint'].inputs.push(rootStylelintConfigurationFile);
 
-  // Add stylelint target to cacheableOperations
-  if (nxJson.tasksRunnerOptions?.['default']) {
-    const taskRunner = nxJson.tasksRunnerOptions?.['default'];
-
-    taskRunner.options ??= {};
-    taskRunner.options.cacheableOperations ??= [];
-
-    if (!taskRunner.options.cacheableOperations.includes('stylelint'))
-      taskRunner.options.cacheableOperations.push('stylelint');
-
-    nxJson.tasksRunnerOptions['default'] = taskRunner;
-  } else {
-    logger.warn(
-      stripIndents`Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!
-        See: https://nx.dev/latest/node/core-concepts/configuration#tasks-runner-options`
-    );
-  }
-
-  updateNxJson(host, nxJson);
+  devkitUpdateNxJson(tree, nxJson);
 }
 
 function createRecommendedStylelintConfiguration(tree: Tree, scss: boolean) {

@@ -49,10 +49,9 @@ describe('nx-stylelint e2e', () => {
     });
 
     const nxJson = readJson<NxJsonConfiguration>('nx.json');
-    expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-    expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
     expect(nxJson.targetDefaults.stylelint).toStrictEqual({
       inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+      cache: true,
     });
   });
 
@@ -275,10 +274,9 @@ describe('nx-stylelint e2e', () => {
     });
 
     const nxJson = readJson<NxJsonConfiguration>('nx.json');
-    expect(nxJson.tasksRunnerOptions.default).toBeTruthy();
-    expect(nxJson.tasksRunnerOptions.default.options.cacheableOperations).toContain('stylelint');
     expect(nxJson.targetDefaults.stylelint).toStrictEqual({
       inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
+      cache: true,
     });
 
     expect(

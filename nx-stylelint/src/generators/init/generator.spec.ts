@@ -112,6 +112,7 @@ You can then migrate your custom rule configuration into the created stylelint c
 
       expect(nxConfig.targetDefaults?.['stylelint']).toStrictEqual({
         inputs: ['default', `{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?`],
+        cache: true,
       });
       expect(nxConfig.namedInputs?.['production']).toContain(`!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?`);
     });
@@ -158,48 +159,6 @@ You can then migrate your custom rule configuration into the created stylelint c
       const extensions = readJson(tree, '.vscode/extensions.json');
       expect(extensions.recommendations).toHaveLength(1);
       expect(extensions.recommendations).toContain('stylelint.vscode-stylelint');
-    });
-  });
-
-  describe('Task Runner', () => {
-    it('should add cacheableOperations array with stylelint target to default taks runner in nx.json if it does not exist', async () => {
-      updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
-        const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
-        if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = undefined;
-        return json;
-      });
-      await generator(tree, defaultOptions);
-
-      const nxjson: NxJsonConfiguration = readJson(tree, 'nx.json');
-      expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toContain('stylelint');
-    });
-
-    it('should not add stylelint target to cacheableOperations when it already exists', async () => {
-      updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
-        const defaultTaskRunner = json.tasksRunnerOptions?.['default'];
-        if (defaultTaskRunner) defaultTaskRunner.options.cacheableOperations = ['stylelint'];
-        return json;
-      });
-
-      await generator(tree, defaultOptions);
-
-      const nxjson: NxJsonConfiguration = readJson(tree, 'nx.json');
-      expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toHaveLength(1);
-      expect(nxjson.tasksRunnerOptions?.['default'].options.cacheableOperations).toContain('stylelint');
-    });
-
-    it('should print warning when the default task runner in nx.json does not exist', async () => {
-      logger.warn = jest.fn();
-      updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
-        if (json.tasksRunnerOptions) json.tasksRunnerOptions = undefined;
-        return json;
-      });
-
-      await generator(tree, defaultOptions);
-
-      expect(logger.warn).toBeCalledWith(
-        "Default Task Runner not found. Please add 'stylelint' to the Cacheable Operations of your task runner!\nSee: https://nx.dev/latest/node/core-concepts/configuration#tasks-runner-options"
-      );
     });
   });
 });
