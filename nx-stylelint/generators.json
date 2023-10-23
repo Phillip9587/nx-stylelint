@@ -1,34 +1,16 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "name": "nx-stylelint",
-  "version": "0.0.1",
+  "$schema": "https://json-schema.org/draft-07/schema",
   "generators": {
     "init": {
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
-      "description": "Add stylelint configuration and dependencies to the workspace",
-      "aliases": ["ng-add"],
+      "description": "Add stylelint configuration and dependencies to the workspace.",
       "hidden": true
     },
     "configuration": {
       "factory": "./src/generators/configuration/generator",
       "schema": "./src/generators/configuration/schema.json",
-      "description": "Add stylelint configuration to a project",
-      "aliases": ["config"]
-    }
-  },
-  "schematics": {
-    "init": {
-      "factory": "./src/generators/init/compat",
-      "schema": "./src/generators/init/schema.json",
-      "description": "Add stylelint configuration and dependencies to the workspace",
-      "aliases": ["ng-add"],
-      "hidden": true
-    },
-    "configuration": {
-      "factory": "./src/generators/configuration/compat",
-      "schema": "./src/generators/configuration/schema.json",
-      "description": "Add stylelint configuration to a project",
+      "description": "Add stylelint configuration to a project.",
       "aliases": ["config"]
     }
   }

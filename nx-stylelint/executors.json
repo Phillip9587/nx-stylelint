@@ -1,17 +1,10 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-schema.org/draft-07/schema",
   "executors": {
     "lint": {
       "implementation": "./src/executors/lint/executor",
       "schema": "./src/executors/lint/schema.json",
-      "description": "Run stylelint on a project"
-    }
-  },
-  "builders": {
-    "lint": {
-      "implementation": "./src/executors/lint/compat",
-      "schema": "./src/executors/lint/schema.json",
-      "description": "Run stylelint on a project"
+      "description": "Run stylelint on a project."
     }
   }
 }

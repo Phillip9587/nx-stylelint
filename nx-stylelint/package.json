@@ -26,8 +26,8 @@
   },
   "main": "./src/index.js",
   "typings": "./src/index.d.ts",
-  "schematics": "./generators.json",
-  "builders": "./executors.json",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
   "dependencies": {
     "@nx/devkit": ">=17.0.0",
     "tslib": "^2.6.2"
