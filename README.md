@@ -1,10 +1,10 @@
-<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/banner.svg" alt="Nx Stylelint Banner"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/Phillip9587/nx-stylelint/main/banner.svg" alt="nx-stylelint Banner"/></p>
 
 <div align="center">
 
-# Nx Stylelint
+# nx-stylelint
 
-**Nx plugin to use [Stylelint](https://stylelint.io) in your Nx workspace.**
+**[Nx](https://nx.dev) plugin to use [Stylelint](https://stylelint.io) in your Nx workspace.**
 
 [![Nx peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/@nx/devkit?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
 [![Stylelint peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/stylelint?label=Stylelint&logo=stylelint&style=flat-square)](https://stylelint.io)
@@ -19,7 +19,7 @@
 
 # 🚀 Features
 
-Nx Stylelint provides a set of power-ups for [Nx](https://nx.dev) to lint your projects with [Stylelint](https://stylelint.io).
+nx-stylelint provides a set of power-ups for [Nx](https://nx.dev) to lint your projects with [Stylelint](https://stylelint.io).
 
 - **Executor**: Provides an executor to lint your styles with Stylelint.
 - **Generators**: Helping you to configure your projects.
@@ -57,31 +57,29 @@ nx g nx-stylelint:configuration --project <projectName>
 
 The generator adds a `.stylelintrc.json` at the project root which extends the root `.stylelintrc.json` and adds a stylelint target to the project.
 
-At the first run the generator installs all required dependencies and creates a `.stylelintrc.json` file at the workspace root. It also adds the stylelint target to the cacheable operations of the default task runner and configures the `namedInputs` for the stylelint targets.
+At the first run the generator installs all required dependencies and creates a `.stylelintrc.json` file at the workspace root. It also configures the `namedInputs` for the stylelint targets.
 
-# 🎯 Run Stylelint for affected projects
+# Examples
 
-To run Stylelint for all affected projects run:
+Run nx-stylelint for a project
+
+```shell
+nx stylelint {{projectName}}
+```
+
+Run nx-stylelint for all projects
+
+```shell
+nx run-many --target=stylelint
+```
+
+Run nx-stylelint for affected projects
 
 ```shell
 nx affected --target=stylelint
 ```
 
 # 📖 Documentation
-
-## `nx-stylelint:init` generator
-
-Add stylelint configuration and dependencies to the workspace.
-
-### Options
-
-#### `skipFormat`
-
-Skip formatting files.
-
-Type: `boolean`
-
-Default: `false`
 
 ## `nx-stylelint:configuration` generator
 
@@ -95,179 +93,46 @@ Add configuration to a project:
 
 ### Options
 
-#### `formatter`
-
-Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).
-
-Type: `string`
-
-Possible values: `compact`, `github`, `json`, `string`, `tap`, `unix`, `verbose`
-
-Default: `string`
-
-#### `project`
-
-The name of the project.
-
-Type: `string`
-
-#### `scss`
-
-Add SCSS Language support.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `skipFormat`
-
-Skip formatting files.
-
-Type: `boolean`
-
-Default: `false`
+| Option       | Value                                                                       | Description                                                                           |
+| ------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `formatter`  | `compact` \| `github` \| `json` \| `string` \| `tap` \| `unix` \| `verbose` | Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter). |
+| `project`    | `string`                                                                    | The name of the project.                                                              |
+| `scss`       | `boolean`                                                                   | Add SCSS Language support.                                                            |
+| `skipFormat` | `boolean`                                                                   | Skip formatting files.                                                                |
 
 ## `nx-stylelint:lint` executor
 
 Run stylelint on a project.
 
-Target Options can be configured in `project.json` or `workspace.json`/`angular.json` when defining the target, or when invoking it.
+Target Options can be configured in `project.json` or when the executor is invoked.
 
 See: https://nx.dev/configuration/projectjson#targets
 
 ### Options
 
-#### `allowEmptyInput`
-
-The executor exits without throwing an error when 'lintFilePatterns' match no files.
-
-Type: `boolean`
-
-Default: `true`
-
-#### `cache`
-
-Store the results of processed files so that Stylelint only operates on the changed ones.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `cacheLocation`
-
-Path to a file or directory for the cache location.
-
-Type: `string`
-
-#### `configFile`
-
-Path of the stylelint configuration file.
-
-Type: `string`
-
-Example: `packages/lib/.stylelintrc.json`
-
-#### `fix`
-
-Fixes linting errors (may overwrite linted files).
-
-Type: `boolean`
-
-Default: `false`
-
-#### `force`
-
-Succeeds even if there were linting errors.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `formatter`
-
-Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter).
-
-Type: `string`
-
-Possible values: `compact`, `github`, `json`, `string`, `tap`, `unix`, `verbose`, a npm package (e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty)) or a path to a local formatter (e.g. `tools/stylelint-formatter.js`)
-
-Default: `string`
-
-#### `ignoreDisables`
-
-Ignore `stylelint-disable` comments.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `ignorePath`
-
-A path to a file containing patterns describing files to ignore. The path can be absolute or relative to `process.cwd()`. By default, Stylelint looks for `.stylelintignore` in `process.cwd()`.
-
-Type: `string`
-
-#### `lintFilePatterns`
-
-One or more files/dirs/globs to pass directly to Stylelint's lint() method.
-
-Type: `array`
-
-#### `maxWarnings`
-
-Number of warnings to trigger a nonzero exit code.
-
-Type: `number`
-
-#### `outputFile`
-
-File to write the report to.
-
-Type: `string`
-
-#### `quiet`
-
-Only register problems for rules with an "error"-level severity (ignore "warning"-level).
-
-Type: `boolean`
-
-Default: `false`
-
-#### `reportDescriptionlessDisables`
-
-Report `stylelint-disable` comments without a description.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `reportInvalidScopeDisables`
-
-Report `stylelint-disable` comments that don't match rules that are specified in the configuration object.
-
-Type: `boolean`
-
-Default: `false`
-
-#### `reportNeedlessDisables`
-
-Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.
-
-Type: `boolean`
-
-Default: `true`
-
-#### `silent`
-
-Hide output text.
-
-Type: `boolean`
-
-Default: `false`
+| Option                          | Value      | Default  | Description                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowEmptyInput`               | `boolean`  | `true`   | The executor exits without throwing an error when 'lintFilePatterns' match no files.                                                                                                                                                                                                                                                                                                        |
+| `cache`                         | `boolean`  | `false`  | Store the results of processed files so that Stylelint only operates on the changed ones.                                                                                                                                                                                                                                                                                                   |
+| `cacheLocation`                 | `string`   |          | Path to a file or directory for the cache location.                                                                                                                                                                                                                                                                                                                                         |
+| `configFile`                    | `string`   |          | Path to a stylelint configuration file.                                                                                                                                                                                                                                                                                                                                                     |
+| `fix`                           | `boolean`  | `false`  | Fixes linting errors (may overwrite linted files).                                                                                                                                                                                                                                                                                                                                          |
+| `force`                         | `boolean`  | `false`  | Succeeds even if there were linting errors.                                                                                                                                                                                                                                                                                                                                                 |
+| `formatter`                     | `string`   | `string` | Specify the formatter to format your results ([Stylelint Docs](https://stylelint.io/user-guide/usage/options#formatter)). `compact` \| `github` \| `json` \| `string` \| `tap` \| `unix` \| `verbose` or a npm package (e.g. [`stylelint-formatter-pretty`](https://www.npmjs.com/package/stylelint-formatter-pretty)) or a path to a local formatter (e.g. `tools/stylelint-formatter.js`) |
+| `ignoreDisables`                | `boolean`  | `false`  | Ignore `stylelint-disable` comments.                                                                                                                                                                                                                                                                                                                                                        |
+| `ignorePath`                    | `string`   |          | A path to a file containing patterns describing files to ignore. The path can be absolute or relative to `process.cwd()`. By default, Stylelint looks for `.stylelintignore` in `process.cwd()`.                                                                                                                                                                                            |
+| `lintFilePatterns`              | `string[]` |          | One or more files/dirs/globs to pass directly to Stylelint's lint() method.                                                                                                                                                                                                                                                                                                                 |
+| `maxWarnings`                   | `number`   |          | Number of warnings to trigger a nonzero exit code.                                                                                                                                                                                                                                                                                                                                          |
+| `outputFile`                    | `string`   |          | File to write the report to.                                                                                                                                                                                                                                                                                                                                                                |
+| `quiet`                         | `boolean`  | `false`  | Only register problems for rules with an "error"-level severity (ignore "warning"-level).                                                                                                                                                                                                                                                                                                   |
+| `reportDescriptionlessDisables` | `boolean`  | `false`  | Report `stylelint-disable` comments without a description.                                                                                                                                                                                                                                                                                                                                  |
+| `reportInvalidScopeDisables`    | `boolean`  | `false`  | Report `stylelint-disable` comments that don't match rules that are specified in the configuration object.                                                                                                                                                                                                                                                                                  |
+| `reportNeedlessDisables`        | `boolean`  | `false`  | Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.                                                                                                                                                                                                                                                                                           |
+| `silent`                        | `boolean`  | `false`  | Hide output text.                                                                                                                                                                                                                                                                                                                                                                           |
 
 # Custom Formatters
 
-Nx Stylelint supports custom Stylelint Formatters. You can either install them with your Package Manager or write your own formatter.
+nx-stylelint supports custom stylelint formatters. You can either install them with your package manager or write your own formatter.
 
 For a guide on writing custom formatters see: https://stylelint.io/developer-guide/formatters
 
@@ -278,7 +143,7 @@ For a list of installable formatters take a look at:
 
 ## Usage
 
-To use a custom formatter you have to configure the `formatter` option of your `stylelint` target. Target Options can be configured in the `project.json` file of your project or `workspace.json`/`angular.json`, when defining the target or when invoking it (https://nx.dev/configuration/projectjson#targets).
+To use a custom formatter you have to configure the `formatter` option of your `stylelint` target. Target Options can be configured in the `project.json` file of your project or when invoking it (https://nx.dev/configuration/projectjson#targets).
 
 You can provide a path to your custom formatter:
 
@@ -322,9 +187,9 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 # Compatibility with Nx and Stylelint
 
-**Nx Stylelint** depends on **Nx** and **Stylelint**. This table provides the compatibility matrix between versions of **Nx Stylelint**, **Nx** and **Stylelint**.
+**nx-stylelint** depends on **Nx** and **Stylelint**. This table provides the compatibility matrix between versions of **nx-stylelint**, **Nx** and **Stylelint**.
 
-| Nx Stylelint Version | Nx Version | Stylelint Version |
+| nx-stylelint Version | Nx Version | Stylelint Version |
 | -------------------- | ---------- | ----------------- |
 | `^17.0.0`            | `>=17.0.0` | `^15.0.0`         |
 | `^16.0.0`            | `>=16.0.0` | `^15.0.0`         |
