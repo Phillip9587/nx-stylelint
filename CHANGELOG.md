@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.1...v17.0.0) (2023-10-23)
+
+### ⚠ BREAKING CHANGES
+
+- Dropped angular cli usage support. nx-stylelint can only be used with Nx.
+- Support for Nx v16 has been removed
+- **generators:** Removed the nx-stylelint:scss generator
+
+### Features
+
+- drop support for Nx 16 ([16cc9eb](https://github.com/Phillip9587/nx-stylelint/commit/16cc9eb6152abfd826917fc879a93ad0743fd3bb))
+- dropped angular cli usage support ([ada1d07](https://github.com/Phillip9587/nx-stylelint/commit/ada1d07518c3819c02583d35d948824d9392bafb))
+- **generators:** remove deprecated nx-stylelint:scss generator ([e48aa6c](https://github.com/Phillip9587/nx-stylelint/commit/e48aa6c63308e44f51a053cabb55b9a814ed6c51))
+- **generators:** use new targetDefaults cache property instead of taskRunner cacheableOperations ([da554a5](https://github.com/Phillip9587/nx-stylelint/commit/da554a5c4668e6836360338be6cd7d9f92e500b0))
+
+### Bug Fixes
+
+- remove migrations older than 1 major version ([523a9f2](https://github.com/Phillip9587/nx-stylelint/commit/523a9f2e3f41e10151a3611e155d06132fc00bb3))
+- remove scss generator reexport ([8384f82](https://github.com/Phillip9587/nx-stylelint/commit/8384f82b9bf595d65f4a7aa629e7d7ac85aac635))
+
+### Tests
+
+- fix failing test ([50930ca](https://github.com/Phillip9587/nx-stylelint/commit/50930ca525f0e9013ebc8fb80eb0fbb2188fe388))
+
+### Refactorings
+
+- code cleanup ([9a30948](https://github.com/Phillip9587/nx-stylelint/commit/9a30948536f7725ade90a97d3ef769e4911f547d))
+
+### Documentation
+
+- update compatibility matrix ([ca69b20](https://github.com/Phillip9587/nx-stylelint/commit/ca69b2031f6ac1aafaed8a7e852d799941f1e83d))
+- updated readme ([9cae95f](https://github.com/Phillip9587/nx-stylelint/commit/9cae95ff335c12d6c8af84792bdfcbf568cd2920))
+
 ### [16.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.0...v16.0.1) (2023-10-09)
 
 ### Bug Fixes
