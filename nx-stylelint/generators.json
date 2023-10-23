@@ -15,12 +15,6 @@
       "schema": "./src/generators/configuration/schema.json",
       "description": "Add stylelint configuration to a project",
       "aliases": ["config"]
-    },
-    "scss": {
-      "factory": "./src/generators/scss/generator",
-      "schema": "./src/generators/scss/schema.json",
-      "description": "Add scss support to a nx-stylelint configuration",
-      "x-deprecated": "This generator is deprecated and will be removed in v17. Use the configuration generator with the scss option instead."
     }
   },
   "schematics": {
@@ -36,12 +30,6 @@
       "schema": "./src/generators/configuration/schema.json",
       "description": "Add stylelint configuration to a project",
       "aliases": ["config"]
-    },
-    "scss": {
-      "factory": "./src/generators/scss/compat",
-      "schema": "./src/generators/scss/schema.json",
-      "description": "Add scss support to a nx-stylelint configuration",
-      "x-deprecated": "This generator is deprecated and will be removed in v17. Use the configuration generator with the scss option instead."
     }
   }
 }

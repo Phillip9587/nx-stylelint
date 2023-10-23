@@ -127,32 +127,6 @@ Type: `boolean`
 
 Default: `false`
 
-## DEPRECATED `nx-stylelint:scss` generator
-
-**This generator is deprecated and will be removed in v17. Use the configuration generator with the scss option instead**
-
-Add scss support to a nx-stylelint configuration.
-
-### Usage
-
-`nx g nx-stylelint:scss --project projectName`
-
-### Options
-
-#### `project`
-
-The name of the project.
-
-Type: `string`
-
-#### `skipFormat`
-
-Skip formatting files.
-
-Type: `boolean`
-
-Default: `false`
-
 ## `nx-stylelint:lint` executor
 
 Run stylelint on a project.
