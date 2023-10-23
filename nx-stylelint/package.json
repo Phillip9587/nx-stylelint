@@ -4,7 +4,7 @@
   "description": "Stylelint Plugin for Nx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Phillip9587/nx-stylelint.git"
+    "url": "git+https://github.com/Phillip9587/nx-stylelint.git"
   },
   "keywords": [
     "Nx",
