@@ -1,11 +1,10 @@
-import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { readProjectConfiguration, readJson, logger, updateProjectConfiguration } from '@nx/devkit';
 import type { Tree } from '@nx/devkit';
+import { logger, readJson, readProjectConfiguration, updateProjectConfiguration } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { libraryGenerator } from '@nx/js';
-import { formatters } from 'stylelint';
-import { Config, FormatterType } from 'stylelint';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { Config, FormatterType, formatters } from 'stylelint';
 
 import generator from './generator';
 import { ConfigurationGeneratorSchema } from './schema';

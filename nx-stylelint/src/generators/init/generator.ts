@@ -1,25 +1,25 @@
+import type { GeneratorCallback, Tree } from '@nx/devkit';
 import {
-  updateJson,
   addDependenciesToPackageJson,
-  writeJson,
+  updateNxJson as devkitUpdateNxJson,
   formatFiles,
+  joinPathFragments,
   logger,
   readJson,
-  stripIndents,
-  joinPathFragments,
   readNxJson,
-  updateNxJson as devkitUpdateNxJson,
+  stripIndents,
+  updateJson,
+  writeJson,
 } from '@nx/devkit';
-import type { Tree, GeneratorCallback } from '@nx/devkit';
+import type { Config } from 'stylelint';
+import { stylelintConfigFilePattern } from '../../utils/config-file';
 import {
   stylelintConfigStandardScssVersion,
   stylelintConfigStandardVersion,
-  stylelintVersion,
   stylelintVSCodeExtension,
+  stylelintVersion,
 } from '../../utils/versions';
 import type { InitGeneratorSchema } from './schema';
-import type { Config } from 'stylelint';
-import { stylelintConfigFilePattern } from '../../utils/config-file';
 
 /** nx-stylelint:init generator */
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema): Promise<GeneratorCallback> {

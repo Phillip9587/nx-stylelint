@@ -1,12 +1,11 @@
 import type { LintExecutorSchema } from './schema';
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import type { ExecutorContext } from '@nx/devkit';
 import { formatters } from 'stylelint';
 import type { LinterResult } from 'stylelint';
 import { logger } from '@nx/devkit';
-import { normalize } from 'path';
+import { normalize, join } from 'node:path';
 import executor from './executor';
-import path = require('path');
 
 const defaultOptions: LintExecutorSchema = {
   allowEmptyInput: true,
@@ -91,7 +90,7 @@ const mockResultWithErrorsAndWarnings: LinterResult = {
 };
 
 describe('nx-stylelint:lint options', () => {
-  const schemaJson = JSON.parse(fs.readFileSync(path.join(__dirname, 'schema.json'), 'utf-8'));
+  const schemaJson = JSON.parse(fs.readFileSync(join(__dirname, 'schema.json'), 'utf-8'));
 
   it('formatter should contain all core formatters as enum', () => {
     const formatterEnum = schemaJson.properties.formatter.anyOf[0].enum;

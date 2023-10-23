@@ -1,9 +1,9 @@
-import { checkFilesExist, readJson, uniq, runNxCommand } from '@nx/plugin/testing';
 import { NxJsonConfiguration, ProjectConfiguration, TargetConfiguration, writeJsonFile } from '@nx/devkit';
-import type { Config } from 'stylelint';
+import { checkFilesExist, readJson, runNxCommand, uniq } from '@nx/plugin/testing';
 import { execSync } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import type { Config } from 'stylelint';
 
 describe('nx-stylelint e2e', () => {
   let projectDirectory: string;

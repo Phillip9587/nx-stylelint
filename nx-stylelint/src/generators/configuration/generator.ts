@@ -1,18 +1,18 @@
+import type { GeneratorCallback, Tree } from '@nx/devkit';
 import {
   formatFiles,
   joinPathFragments,
+  logger,
   offsetFromRoot,
   readProjectConfiguration,
   updateProjectConfiguration,
   writeJson,
-  logger,
 } from '@nx/devkit';
-import type { Tree, GeneratorCallback } from '@nx/devkit';
 import type { Config } from 'stylelint';
-import type { ConfigurationGeneratorSchema } from './schema';
-import { initGenerator } from '../init/generator';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
-import { isCoreFormatter, defaultFormatter } from '../../utils/formatter';
+import { defaultFormatter, isCoreFormatter } from '../../utils/formatter';
+import { initGenerator } from '../init/generator';
+import type { ConfigurationGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends ConfigurationGeneratorSchema {
   projectRoot: string;

@@ -1,10 +1,10 @@
-import type { LintExecutorSchema } from './schema';
-import { logger } from '@nx/devkit';
 import type { ExecutorContext } from '@nx/devkit';
-import { join, dirname } from 'path';
-import { existsSync, writeFileSync, mkdirSync } from 'fs';
-import { loadStylelint } from '../../utils/stylelint';
+import { logger } from '@nx/devkit';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { loadFormatter } from '../../utils/formatter';
+import { loadStylelint } from '../../utils/stylelint';
+import type { LintExecutorSchema } from './schema';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
