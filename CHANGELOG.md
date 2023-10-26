@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.0.1](https://github.com/Phillip9587/nx-stylelint/compare/v17.0.0...v17.0.1) (2023-10-26)
+
+### Bug Fixes
+
+- fix repository url ([427f210](https://github.com/Phillip9587/nx-stylelint/commit/427f210ba9cda402940db67f47ba9b972c8f0b25))
+- **generator:** fix configuration generator adding scss config to root stylelintrc multiple times ([93d7b02](https://github.com/Phillip9587/nx-stylelint/commit/93d7b0204f2a548683472415c4d8948c86c8461e))
+
+### Documentation
+
+- remove root property from readme examples ([556b31c](https://github.com/Phillip9587/nx-stylelint/commit/556b31c9ee05056af96e6f42a5ba0ddd3a9bd1cd))
+
 ## [17.0.0](https://github.com/Phillip9587/nx-stylelint/compare/v16.0.1...v17.0.0) (2023-10-23)
 
 ### ⚠ BREAKING CHANGES
