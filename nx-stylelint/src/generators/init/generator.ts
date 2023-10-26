@@ -132,22 +132,33 @@ function createRecommendedStylelintConfiguration(tree: Tree, scss: boolean) {
 
 function isCompatibleRootConfig(tree: Tree): boolean {
   const config = readJson<Config>(tree, '.stylelintrc.json');
-
   return config.ignoreFiles === '**/*' || (Array.isArray(config.ignoreFiles) && config.ignoreFiles.includes('**/*'));
 }
 
 function addScssToStylelintConfiguration(tree: Tree) {
-  updateJson<Config, Config>(tree, '.stylelintrc.json', (value) => ({
-    ...value,
-    overrides: Array.from(
-      new Set([
-        ...(value.overrides ?? []),
-        {
-          files: ['**/*.scss'],
-          extends: ['stylelint-config-standard-scss'],
-          rules: {},
-        },
-      ])
-    ),
-  }));
+  updateJson<Config, Config>(tree, '.stylelintrc.json', (value) => {
+    if (
+      value.overrides?.find(
+        (item) =>
+          (item.files === '**/*.scss' || (Array.isArray(item.files) && item.files.includes('**/*.scss'))) &&
+          (item.extends === 'stylelint-config-standard-scss' ||
+            (Array.isArray(item.files) && item.files.includes('stylelint-config-standard-scss')))
+      )
+    )
+      return value;
+
+    return {
+      ...value,
+      overrides: Array.from(
+        new Set([
+          ...(value.overrides ?? []),
+          {
+            files: ['**/*.scss'],
+            extends: ['stylelint-config-standard-scss'],
+            rules: {},
+          },
+        ])
+      ),
+    };
+  });
 }
