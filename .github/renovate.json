@@ -7,8 +7,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["nx"],
-      "matchPackagePrefixes": ["@nrwl/"],
-      "excludePackageNames": ["@nrwl/nx-cloud"],
+      "matchPackagePrefixes": ["@nx/"],
       "enabled": false
     }
   ],
