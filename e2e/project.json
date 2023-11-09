@@ -11,12 +11,6 @@
         "jestConfig": "e2e/jest.config.ts",
         "runInBand": true
       },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      },
       "dependsOn": ["^build"]
     },
     "lint": {
