@@ -13,11 +13,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "scripts": {
     "nx": "nx",
     "build": "nx build",
@@ -43,8 +38,6 @@
     "@types/node": "18.19.3",
     "@typescript-eslint/eslint-plugin": "6.14.0",
     "@typescript-eslint/parser": "6.14.0",
-    "commitizen": "4.3.0",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "8.55.0",
     "eslint-config-prettier": "9.1.0",
     "husky": "8.0.3",
