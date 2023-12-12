@@ -27,6 +27,7 @@ const defaultMockResult: LinterResult = {
   reportedDisables: [],
   errored: false,
   output: 'Output',
+  report: 'Report',
   results: [],
   ruleMetadata: {},
 };
