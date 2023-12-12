@@ -33,7 +33,7 @@
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "stylelint": "^15.0.0",
+    "stylelint": "^15.0.0 || ^16.0.0",
     "stylelint-config-standard": ">=30.0.0",
     "stylelint-config-standard-scss": ">=7.0.0"
   },
