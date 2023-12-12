@@ -42,6 +42,7 @@ export async function lintExecutor(
     files: options.lintFilePatterns,
     formatter: resolvedFormatter,
     maxWarnings: options.maxWarnings ? options.maxWarnings : undefined,
+    quietDeprecationWarnings: true,
   });
 
   const totalWarnings = result.results
