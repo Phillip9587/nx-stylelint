@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [17.1.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.0-beta.1...v17.1.0-beta.2) (2023-12-12)
+
+### Bug Fixes
+
+- stylelint quietDeprecationWarnings ([0a757c4](https://github.com/Phillip9587/nx-stylelint/commit/0a757c443b73646f8bca962c2d3b217c0730e3fa))
+
+### Tests
+
+- fixed LintResult Mock ([bb5923c](https://github.com/Phillip9587/nx-stylelint/commit/bb5923c65a88b83e3a85e769772e1adea5b4842c))
+
 ## [17.1.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.0-beta.0...v17.1.0-beta.1) (2023-12-12)
 
 ## [17.1.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v17.0.1...v17.1.0-beta.0) (2023-12-12)
