@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [17.1.0](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.0-beta.2...v17.1.0) (2023-12-12)
 
+### Features
+
+- support stylelint v16 ([a826087](https://github.com/Phillip9587/nx-stylelint/commit/a826087441d84dc165b0b1aa31716a54f4dfb732))
+
 ### Bug Fixes
 
+- stylelint quietDeprecationWarnings ([0a757c4](https://github.com/Phillip9587/nx-stylelint/commit/0a757c443b73646f8bca962c2d3b217c0730e3fa))
 - use stylelint result.report when stylelint v16 ([34d6ac7](https://github.com/Phillip9587/nx-stylelint/commit/34d6ac7a6f6e288feaed2ded229617ae8b533c60))
 
 ## [17.1.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.0-beta.1...v17.1.0-beta.2) (2023-12-12)
