@@ -142,7 +142,7 @@ function addScssToStylelintConfiguration(tree: Tree) {
         (item) =>
           (item.files === '**/*.scss' || (Array.isArray(item.files) && item.files.includes('**/*.scss'))) &&
           (item.extends === 'stylelint-config-standard-scss' ||
-            (Array.isArray(item.files) && item.files.includes('stylelint-config-standard-scss')))
+            (Array.isArray(item.extends) && item.extends.includes('stylelint-config-standard-scss')))
       )
     )
       return value;
