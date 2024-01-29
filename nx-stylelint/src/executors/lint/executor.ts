@@ -9,7 +9,7 @@ import type { LintExecutorSchema } from './schema';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
-  context: ExecutorContext
+  context: ExecutorContext,
 ): Promise<{ success: boolean }> {
   process.chdir(context.cwd);
 

@@ -22,7 +22,7 @@ interface NormalizedSchema extends ConfigurationGeneratorSchema {
 /** nx-stylelint:configuration generator */
 export async function configurationGenerator(
   host: Tree,
-  options: ConfigurationGeneratorSchema
+  options: ConfigurationGeneratorSchema,
 ): Promise<void | GeneratorCallback> {
   const init = await initGenerator(host, { skipFormat: options.skipFormat, scss: options.scss });
 
@@ -51,7 +51,7 @@ function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): Nor
   const validFormatter = isCoreFormatter(options.formatter);
   if (options.formatter && !validFormatter) {
     logger.error(
-      `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to 'string' formatter.`
+      `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to 'string' formatter.`,
     );
   }
 

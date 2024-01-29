@@ -230,7 +230,7 @@ describe('nx-stylelint:lint executor', () => {
         ...defaultOptions,
         outputFile: 'output.json',
       },
-      mockContext
+      mockContext,
     );
 
     expect(success).toBeFalsy();
