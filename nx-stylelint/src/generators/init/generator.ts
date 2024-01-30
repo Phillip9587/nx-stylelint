@@ -49,7 +49,7 @@ export default initGenerator;
 /** Adds Stylelint and shared configs to the devDependencies of the package.json if not present */
 function updateDependencies(tree: Tree, scss: boolean): GeneratorCallback {
   const packageJson = readJson(tree, 'package.json');
-  const devDependencies: { [index: string]: string } = {};
+  const devDependencies: Record<string, string> = {};
 
   if (!packageJson.dependencies?.stylelint) devDependencies['stylelint'] = stylelintVersion;
 
