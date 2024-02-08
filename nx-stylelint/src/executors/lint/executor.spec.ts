@@ -235,7 +235,7 @@ describe('nx-stylelint:lint executor', () => {
 
     expect(success).toBeFalsy();
     expect(logger.error).toHaveBeenCalledWith('\nLint errors found in the listed files.');
-    expect(spy).toHaveBeenCalledWith(normalize('/root/output.json'), 'Output');
+    expect(spy).toHaveBeenCalledWith(normalize('/root/output.json'), 'Report');
   });
 
   it('should not attempt to write the lint results to the output file, if not specified', async () => {

@@ -53,7 +53,7 @@ export async function lintExecutor(
   if (options.outputFile) {
     const outputFilePath = join(context.root, options.outputFile);
     mkdirSync(dirname(outputFilePath), { recursive: true });
-    writeFileSync(outputFilePath, result.output);
+    writeFileSync(outputFilePath, 'report' in result ? result.report : (result as LinterResult).output);
   } else if (!options.silent) {
     logger.info('report' in result ? result.report : (result as LinterResult).output);
   }
