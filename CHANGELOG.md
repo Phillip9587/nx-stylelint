@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.1...v17.1.2) (2024-02-08)
+
+### Bug Fixes
+
+- update @nx/devkit version range to clarify version compatibility ([106b097](https://github.com/Phillip9587/nx-stylelint/commit/106b097c2e79444f23d21b99fbbce1efb304d7a2))
+
+### Tests
+
+- **e2e:** fix createTestProject ([33f642b](https://github.com/Phillip9587/nx-stylelint/commit/33f642b0d5ab241aa316f1b6693cf47d91417f43))
+
+### Documentation
+
+- update compatibility table ([7ea8cc2](https://github.com/Phillip9587/nx-stylelint/commit/7ea8cc291fb8d1810ffbe60a7984b7ee3a23a1e5))
+
 ### [17.1.1](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.0...v17.1.1) (2024-01-09)
 
 ### Bug Fixes
