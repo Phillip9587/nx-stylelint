@@ -1,4 +1,6 @@
-import { join } from 'node:path';
+import { existsSync } from 'node:fs';
+import { isAbsolute, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import type { Formatter, FormatterType } from 'stylelint';
 import { formatters } from 'stylelint';
 
@@ -10,21 +12,14 @@ export function isCoreFormatter(formatter: unknown): formatter is FormatterType 
   return formatterKeys.includes(formatter);
 }
 
-const npmPackageRegex = /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/;
-
-export function loadFormatter(formatter: unknown, cwd: string): FormatterType | Formatter {
+export async function importFormatter(formatter: unknown): Promise<FormatterType | Formatter> {
   if (!formatter || typeof formatter !== 'string') throw new Error('Formatter must be a string!');
-  const normalizedFormatter: string = formatter.trim().replace(/\\/gu, '/');
-  if (isCoreFormatter(normalizedFormatter)) return normalizedFormatter;
+  if (isCoreFormatter(formatter)) return formatter;
 
-  const isNpmPackage = npmPackageRegex.test(normalizedFormatter);
+  let moduleOrFilePath = formatter;
+  if (existsSync(moduleOrFilePath)) moduleOrFilePath = resolve(moduleOrFilePath);
 
-  try {
-    return require(isNpmPackage ? normalizedFormatter : join(cwd, normalizedFormatter));
-  } catch (err) {
-    if (isNpmPackage && !normalizedFormatter.includes('@')) {
-      return require(join(cwd, normalizedFormatter));
-    }
-    throw err;
-  }
+  return await import(
+    isAbsolute(moduleOrFilePath) ? pathToFileURL(moduleOrFilePath).toString() : moduleOrFilePath
+  ).then((m) => m.default);
 }

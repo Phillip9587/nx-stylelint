@@ -42,6 +42,8 @@ describe('nx-stylelint:configuration generator', () => {
 
   beforeAll(async () => {
     logger.info = jest.fn();
+
+    console.warn = jest.fn();
   });
 
   beforeEach(async () => {

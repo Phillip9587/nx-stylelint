@@ -14,6 +14,8 @@ describe('nx-stylelint:init generator', () => {
 
   beforeEach(() => {
     tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
+
+    console.warn = jest.fn();
   });
 
   it('should add dependencies and create recommended root configuration', async () => {

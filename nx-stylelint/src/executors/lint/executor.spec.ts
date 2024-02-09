@@ -130,6 +130,8 @@ describe('nx-stylelint:lint executor', () => {
     logger.error = jest.fn();
     logger.info = jest.fn();
 
+    console.warn = jest.fn();
+
     mockResult = defaultMockResult;
   });
 

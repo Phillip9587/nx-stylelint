@@ -2,9 +2,8 @@ import type { ExecutorContext } from '@nx/devkit';
 import { logger } from '@nx/devkit';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import type { LinterResult } from 'stylelint';
-import { loadFormatter } from '../../utils/formatter';
-import { loadStylelint } from '../../utils/stylelint';
+import type { Formatter, FormatterType, LinterResult } from 'stylelint';
+import { importFormatter } from '../../utils/formatter';
 import type { LintExecutorSchema } from './schema';
 
 export async function lintExecutor(
@@ -15,9 +14,9 @@ export async function lintExecutor(
 
   let stylelint: typeof import('stylelint');
   try {
-    stylelint = await loadStylelint();
+    stylelint = await import('stylelint');
   } catch (error) {
-    logger.error(error instanceof Error ? error.message : error);
+    logger.error('Unable to find Stylelint. Please ensure Stylelint is installed.');
     return { success: false };
   }
 
@@ -30,9 +29,9 @@ export async function lintExecutor(
 
   if (!options.silent) logger.info(`\nLinting Styles "${projectName}"...`);
 
-  let resolvedFormatter;
+  let resolvedFormatter: FormatterType | Formatter;
   try {
-    resolvedFormatter = loadFormatter(options.formatter, context.cwd);
+    resolvedFormatter = await importFormatter(options.formatter);
   } catch (err) {
     logger.error(`Invalid Formatter. More Details: \n`);
     throw err;
