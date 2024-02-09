@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.1.3](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.2...v17.1.3) (2024-02-09)
+
+### Bug Fixes
+
+- **executor:** fix deprecation warning when using outputFile ([9c02cda](https://github.com/Phillip9587/nx-stylelint/commit/9c02cda239e2513df4a29b205dc757a2424f6519))
+- **executor:** fix resolving custom formatters ([4112d41](https://github.com/Phillip9587/nx-stylelint/commit/4112d41b741bdc9cfafa4a077e5430dd07b51228))
+
 ### [17.1.2](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.1...v17.1.2) (2024-02-08)
 
 ### Bug Fixes
