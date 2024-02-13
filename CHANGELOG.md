@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [17.1.4](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.3...v17.1.4) (2024-02-13)
+
+### Bug Fixes
+
+- fix resolving custom formatters with no default export ([229470e](https://github.com/Phillip9587/nx-stylelint/commit/229470ed4d5c0998a14d08a28e243b7882e58627))
+
 ### [17.1.3](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.2...v17.1.3) (2024-02-09)
 
 ### Bug Fixes
