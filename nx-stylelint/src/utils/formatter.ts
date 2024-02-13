@@ -21,5 +21,5 @@ export async function importFormatter(formatter: unknown): Promise<FormatterType
 
   return await import(
     isAbsolute(moduleOrFilePath) ? pathToFileURL(moduleOrFilePath).toString() : moduleOrFilePath
-  ).then((m) => m.default);
+  ).then((m) => ('default' in m ? m.default : m));
 }
