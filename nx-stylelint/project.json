@@ -19,7 +19,7 @@
         "outputPath": "dist/nx-stylelint",
         "tsConfig": "nx-stylelint/tsconfig.lib.json",
         "packageJson": "nx-stylelint/package.json",
-        "main": "nx-stylelint/src/index.ts",
+        "main": "nx-stylelint/index.ts",
         "assets": [
           "README.md",
           "LICENSE",
