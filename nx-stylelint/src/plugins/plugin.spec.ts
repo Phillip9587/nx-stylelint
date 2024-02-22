@@ -71,8 +71,8 @@ describe('nx-stylelint/plugin', () => {
                 "inputs": [
                   "default",
                   "{projectRoot}/.stylelintrc.json",
-                  "{workspaceRoot}/apps/.stylelintrc.yaml",
                   "{workspaceRoot}/.stylelintrc.json",
+                  "{workspaceRoot}/apps/.stylelintrc.yaml",
                   {
                     "externalDependencies": [
                       "stylelint",

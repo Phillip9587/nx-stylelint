@@ -1,7 +1,7 @@
-import { CreateNodes, joinPathFragments, workspaceRoot } from '@nx/devkit';
+import { CreateNodes } from '@nx/devkit';
 import { existsSync } from 'node:fs';
 import * as nodePath from 'node:path';
-import { readAffectingStylelintConfigFiles } from '../utils/config-file';
+import { getInputConfigFiles } from '../utils/config-file';
 
 export interface StylelintPluginOptions {
   targetName?: string;
@@ -43,24 +43,6 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
     };
   },
 ];
-
-async function getInputConfigFiles(configFilePath: string, projectRoot: string): Promise<string[]> {
-  return [...(await readAffectingStylelintConfigFiles(configFilePath))]
-    .filter((p) => p.startsWith(workspaceRoot))
-    .map((configFilePath) => {
-      if (configFilePath.startsWith(workspaceRoot)) {
-        configFilePath = nodePath.relative(workspaceRoot, configFilePath);
-
-        if (configFilePath.startsWith(projectRoot)) {
-          configFilePath = joinPathFragments('{projectRoot}', configFilePath.substring(projectRoot.length));
-        } else {
-          configFilePath = joinPathFragments('{workspaceRoot}', configFilePath);
-        }
-      }
-
-      return configFilePath;
-    });
-}
 
 function normalizeOptions(options: StylelintPluginOptions | undefined) {
   return {
