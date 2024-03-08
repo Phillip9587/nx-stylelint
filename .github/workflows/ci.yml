@@ -110,7 +110,7 @@ jobs:
         run: npx -y extract-changelog-release > RELEASE-BODY.md
 
       - name: Create Github Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           body_path: RELEASE-BODY.md
           prerelease: ${{ env.IS_BETA_RELEASE == 'true' }}
