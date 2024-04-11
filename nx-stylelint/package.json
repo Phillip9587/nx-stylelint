@@ -24,8 +24,8 @@
   "engines": {
     "node": "^18.13.0 || >=20.0.0"
   },
-  "main": "./src/index.js",
-  "typings": "./src/index.d.ts",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {
