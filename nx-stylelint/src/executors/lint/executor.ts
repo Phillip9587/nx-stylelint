@@ -2,7 +2,7 @@ import type { ExecutorContext } from '@nx/devkit';
 import { logger } from '@nx/devkit';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import type { Formatter, FormatterType, LinterResult } from 'stylelint';
+import type { Formatter, FormatterType } from 'stylelint';
 import { importFormatter } from '../../utils/formatter';
 import type { LintExecutorSchema } from './schema';
 
@@ -52,9 +52,9 @@ export async function lintExecutor(
   if (options.outputFile) {
     const outputFilePath = join(context.root, options.outputFile);
     mkdirSync(dirname(outputFilePath), { recursive: true });
-    writeFileSync(outputFilePath, 'report' in result ? result.report : (result as LinterResult).output);
+    writeFileSync(outputFilePath, result.report);
   } else if (!options.silent) {
-    logger.info('report' in result ? result.report : (result as LinterResult).output);
+    logger.info(result.report);
   }
 
   if (totalWarnings > 0 && !options.silent) logger.warn('\nLint warnings found in the listed files.');
