@@ -9,7 +9,7 @@ export interface StylelintPluginOptions {
 }
 
 export const createNodes: CreateNodes<StylelintPluginOptions> = [
-  '**/.stylelintrc.{json,yml,yaml,js,cjs,mjs}',
+  '**/.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts}',
   async (configFilePath, options, context) => {
     const { targetName, lintFilePatterns } = normalizeOptions(options);
 
