@@ -35,6 +35,7 @@ describe('nx-stylelint/plugin', () => {
         },
       },
       workspaceRoot: '',
+      configFiles: [],
     };
   });
 
