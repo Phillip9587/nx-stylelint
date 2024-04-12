@@ -8,6 +8,37 @@ All notable changes to this project will be documented in this file. See [standa
 
 - add Nx 19 to supported version ([75c3cc7](https://github.com/Phillip9587/nx-stylelint/commit/75c3cc7765b22d518ea70b330a5d6cb1dfd2d1ce))
 
+## [18.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.4...v18.0.0-beta.0) (2024-04-12)
+
+### ⚠ BREAKING CHANGES
+
+- Support for Stylelint v15 has been removed
+- Support for Nx v17 has been removed
+
+### Features
+
+- add create-nodes plugin ([ad3c262](https://github.com/Phillip9587/nx-stylelint/commit/ad3c262e261663921d31b65b1d313ef8bce43c31))
+- drop support for Nx 17 ([61f47b3](https://github.com/Phillip9587/nx-stylelint/commit/61f47b37bef40882f03f1d8fa87a775bde42fb37))
+- drop support for Stylelint 15 ([ba7c118](https://github.com/Phillip9587/nx-stylelint/commit/ba7c1187c719f595abaf0d18e36eaa9457a98294))
+- plugin target cache ([faa0320](https://github.com/Phillip9587/nx-stylelint/commit/faa03202743b303de25560ce5143fcdacf528f68))
+- support stylelint config overrides.extends ([9f48e1b](https://github.com/Phillip9587/nx-stylelint/commit/9f48e1bb1213a0d10a3bb73d7c0c00daa2bb8a54))
+
+### Bug Fixes
+
+- support .stylelintrc.ts files in plugin ([35424c6](https://github.com/Phillip9587/nx-stylelint/commit/35424c68db8847e3bfaceff576708060352ebd83))
+
+### Tests
+
+- fix plugin tests ([f3849b5](https://github.com/Phillip9587/nx-stylelint/commit/f3849b5ac7a1e158d6d4217b9611f03bc48201e1))
+- update nx commands to use ([d46eb89](https://github.com/Phillip9587/nx-stylelint/commit/d46eb891719dbbd684c6224a50e7c4f39d9b2a36))
+- update vscode extension adding tests ([0fbbcb4](https://github.com/Phillip9587/nx-stylelint/commit/0fbbcb4f0b408c9c740d37889ee7f4227e460666))
+
+### Refactorings
+
+- move index.ts to project root ([7f01e98](https://github.com/Phillip9587/nx-stylelint/commit/7f01e98a6c6870588a6a12ef0c0bf53f93e479ea))
+- **plugin:** refactor lintFilePatterns to extensions ([3bffadd](https://github.com/Phillip9587/nx-stylelint/commit/3bffadde4eee1fd810ddcccea01bfa971ff67cd1))
+- restructure generators ([d60e49a](https://github.com/Phillip9587/nx-stylelint/commit/d60e49ab09d6bb123496e6cd9396f641ecbad18d))
+
 ### [17.1.4](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.3...v17.1.4) (2024-02-13)
 
 ### Bug Fixes
