@@ -1,14 +1,11 @@
-import type { Tree } from '@nx/devkit';
-import { readJson, writeJson } from '@nx/devkit';
-import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readJson, writeJson } from '@nx/devkit';
+import { createTree } from '@nx/devkit/testing';
 import { addStylelintVSCodeExtension } from './vscode';
 
 describe(addStylelintVSCodeExtension.name, () => {
   let tree: Tree;
 
-  beforeEach(() => {
-    tree = createTreeWithEmptyWorkspace({ layout: 'apps-libs' });
-  });
+  beforeEach(() => (tree = createTree()));
 
   it('should add stylelint vscode extension to vscode extension recommendations when they exist', async () => {
     writeJson(tree, '.vscode/extensions.json', { recommendations: [] });
