@@ -47,6 +47,7 @@ jobs:
         node-version:
           - 18
           - 20
+          - 21
       fail-fast: false
 
     steps:
