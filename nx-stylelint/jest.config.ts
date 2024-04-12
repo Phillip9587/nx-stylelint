@@ -16,6 +16,7 @@ const config: Config.InitialOptions = {
   moduleFileExtensions: ['ts', 'js'],
   coverageDirectory: '../coverage/nx-stylelint',
   testEnvironment: 'node',
+  prettierPath: require.resolve('prettier-2'),
 };
 
 export default config;
