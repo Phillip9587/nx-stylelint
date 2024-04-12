@@ -65,6 +65,7 @@ describe('nx-stylelint/plugin', () => {
       {
         "projects": {
           "apps/my-app": {
+            "root": "apps/my-app",
             "targets": {
               "stylelint": {
                 "cache": true,

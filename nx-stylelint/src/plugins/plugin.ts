@@ -1,4 +1,12 @@
-import { CreateNodes } from '@nx/devkit';
+import {
+  CreateDependencies,
+  CreateNodes,
+  TargetConfiguration,
+  readJsonFile,
+  writeJsonFile,
+  cacheDir,
+} from '@nx/devkit';
+import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
 import { existsSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file';
@@ -8,10 +16,28 @@ export interface StylelintPluginOptions {
   lintFilePatterns?: string | string[];
 }
 
+const cachePath = nodePath.join(cacheDir, 'stylelint.hash');
+const targetsCache = existsSync(cachePath) ? readTargetsCache() : {};
+
+const calculatedTargets: Record<string, Record<string, TargetConfiguration>> = {};
+
+function readTargetsCache(): Record<string, Record<string, TargetConfiguration>> {
+  return readJsonFile(cachePath);
+}
+
+function writeTargetsToCache(targets: Record<string, Record<string, TargetConfiguration>>) {
+  writeJsonFile(cachePath, targets);
+}
+
+export const createDependencies: CreateDependencies = () => {
+  writeTargetsToCache(calculatedTargets);
+  return [];
+};
+
 export const createNodes: CreateNodes<StylelintPluginOptions> = [
   '**/.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts}',
   async (configFilePath, options, context) => {
-    const { targetName, lintFilePatterns } = normalizeOptions(options);
+    const normalizedOptions = normalizeOptions(options);
 
     const projectRoot = nodePath.dirname(configFilePath);
 
@@ -22,29 +48,48 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
     )
       return {};
 
-    const inputConfigFiles = await getInputConfigFiles(configFilePath, projectRoot);
+    const hash = calculateHashForCreateNodes(projectRoot, normalizedOptions, context);
+    const targets = targetsCache[hash] ?? (await buildStylelintTargets(configFilePath, projectRoot, normalizedOptions));
+
+    calculatedTargets[hash] = targets;
 
     return {
       projects: {
         [projectRoot]: {
-          targets: {
-            [targetName]: {
-              command: `stylelint`,
-              cache: true,
-              options: {
-                cwd: projectRoot,
-                args: [...lintFilePatterns.map((pattern) => `"${pattern}"`)],
-              },
-              inputs: ['default', ...inputConfigFiles, { externalDependencies: ['stylelint'] }],
-            },
-          },
+          root: projectRoot,
+          targets: targets,
         },
       },
     };
   },
 ];
 
-function normalizeOptions(options: StylelintPluginOptions | undefined) {
+async function buildStylelintTargets(
+  configFilePath: string,
+  projectRoot: string,
+  options: NormalizedStylelintPluginOptions,
+): Promise<Record<string, TargetConfiguration>> {
+  const inputConfigFiles = await getInputConfigFiles(configFilePath, projectRoot);
+
+  return {
+    [options.targetName]: {
+      command: `stylelint`,
+      cache: true,
+      options: {
+        cwd: projectRoot,
+        args: [...options.lintFilePatterns.map((pattern) => `"${pattern}"`)],
+      },
+      inputs: ['default', ...inputConfigFiles, { externalDependencies: ['stylelint'] }],
+    },
+  };
+}
+
+interface NormalizedStylelintPluginOptions {
+  targetName: string;
+  lintFilePatterns: string[];
+}
+
+function normalizeOptions(options: StylelintPluginOptions | undefined): NormalizedStylelintPluginOptions {
   return {
     targetName: options?.targetName ?? 'stylelint',
     lintFilePatterns: options?.lintFilePatterns ? [options?.lintFilePatterns].flat() : ['**/*.css'],

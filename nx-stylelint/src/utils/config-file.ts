@@ -1,10 +1,10 @@
 import { joinPathFragments, offsetFromRoot, readJson, workspaceRoot, writeJson, type Tree } from '@nx/devkit';
-import { cosmiconfig } from 'cosmiconfig';
 import { existsSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative } from 'node:path';
 import type { Config, Config as StylelintConfig } from 'stylelint';
 import { PROJECT_STYLELINT_CONFIG_SCSS_OVERRIDE, ROOT_STYLELINT_CONFIG, ROOT_STYLELINT_CONFIG_SCSS } from './config';
 import { isRelativePath } from './path';
+import { loadStylelintConfig } from './cosmiconfig';
 
 export const STYLELINT_CONFIG_FILE_PATTERN = '.stylelintrc(.(json|yml|yaml|js))?';
 
@@ -38,8 +38,6 @@ export function isCompatibleRootConfig(tree: Tree): boolean {
   return config.ignoreFiles === '**/*' || (Array.isArray(config.ignoreFiles) && config.ignoreFiles.includes('**/*'));
 }
 
-const explorer = cosmiconfig('stylelint', { cache: false, stopDir: workspaceRoot });
-
 export async function getInputConfigFiles(configFilePath: string, projectRoot: string): Promise<string[]> {
   return [...(await readAffectingStylelintConfigFiles(configFilePath))]
     .map((configFilePath) => {
@@ -61,7 +59,7 @@ export async function readAffectingStylelintConfigFiles(configFilePath: string):
   if (!existsSync(configFilePath)) return new Set();
 
   try {
-    const result = await explorer.load(configFilePath);
+    const result = await loadStylelintConfig(configFilePath);
     if (!result) return new Set();
 
     const stylelintConfigFiles = new Set<string>([result.filepath]);
