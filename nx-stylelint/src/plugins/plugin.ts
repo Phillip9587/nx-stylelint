@@ -13,7 +13,7 @@ import { getInputConfigFiles } from '../utils/config-file';
 
 export interface StylelintPluginOptions {
   targetName?: string;
-  lintFilePatterns?: string | string[];
+  extensions?: string[];
 }
 
 const cachePath = nodePath.join(cacheDir, 'stylelint.hash');
@@ -67,7 +67,7 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
 async function buildStylelintTargets(
   configFilePath: string,
   projectRoot: string,
-  options: NormalizedStylelintPluginOptions,
+  options: Required<StylelintPluginOptions>,
 ): Promise<Record<string, TargetConfiguration>> {
   const inputConfigFiles = await getInputConfigFiles(configFilePath, projectRoot);
 
@@ -77,21 +77,21 @@ async function buildStylelintTargets(
       cache: true,
       options: {
         cwd: projectRoot,
-        args: [...options.lintFilePatterns.map((pattern) => `"${pattern}"`)],
+        args: [`"${getLintFileGlob(options.extensions)}"`],
       },
       inputs: ['default', ...inputConfigFiles, { externalDependencies: ['stylelint'] }],
     },
   };
 }
 
-interface NormalizedStylelintPluginOptions {
-  targetName: string;
-  lintFilePatterns: string[];
-}
-
-function normalizeOptions(options: StylelintPluginOptions | undefined): NormalizedStylelintPluginOptions {
+function normalizeOptions(options: StylelintPluginOptions | undefined): Required<StylelintPluginOptions> {
   return {
     targetName: options?.targetName ?? 'stylelint',
-    lintFilePatterns: options?.lintFilePatterns ? [options?.lintFilePatterns].flat() : ['**/*.css'],
+    extensions: [...new Set(options?.extensions ?? ['css'])].filter(Boolean),
   };
+}
+
+function getLintFileGlob(extensions: string[]): string {
+  if (extensions.length === 1) return `**/*.${extensions[0]}`;
+  return `**/*.{${extensions.join(',')}}`;
 }
