@@ -4,7 +4,6 @@
   "sourceRoot": "nx-stylelint/src",
   "projectType": "library",
   "targets": {
-    "lint": {},
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectName}"],

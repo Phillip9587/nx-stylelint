@@ -12,8 +12,7 @@
         "runInBand": true
       },
       "dependsOn": ["^build"]
-    },
-    "lint": {}
+    }
   },
   "implicitDependencies": ["nx-stylelint"]
 }
