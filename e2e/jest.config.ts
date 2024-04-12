@@ -13,6 +13,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',
   globalSetup: './start-local-registry.ts',
   globalTeardown: './stop-local-registry.ts',
+  prettierPath: require.resolve('prettier-2'),
 };
 
 export default config;
