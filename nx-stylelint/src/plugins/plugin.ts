@@ -85,9 +85,15 @@ async function buildStylelintTargets(
 }
 
 function normalizeOptions(options: StylelintPluginOptions | undefined): Required<StylelintPluginOptions> {
+  // Normalize user input for extensions (strip leading . characters)
+  let extensions: string[] | undefined;
+  if (Array.isArray(options?.extensions)) {
+    extensions = [...new Set(options.extensions.map((f) => f.replace(/^\.+/, '')))];
+  }
+
   return {
     targetName: options?.targetName ?? 'stylelint',
-    extensions: [...new Set(options?.extensions ?? ['css'])].filter(Boolean),
+    extensions: extensions ?? ['css'],
   };
 }
 
