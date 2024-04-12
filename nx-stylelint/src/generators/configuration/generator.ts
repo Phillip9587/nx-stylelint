@@ -3,18 +3,17 @@ import {
   formatFiles,
   joinPathFragments,
   logger,
-  offsetFromRoot,
   readProjectConfiguration,
   updateProjectConfiguration,
-  writeJson,
 } from '@nx/devkit';
-import type { Config } from 'stylelint';
+import type { FormatterType } from 'stylelint';
 import type { LintExecutorSchema } from '../../executors/lint/schema';
+import { createProjectStylelintConfigFile } from '../../utils/config-file';
 import { defaultFormatter, isCoreFormatter } from '../../utils/formatter';
 import { initGenerator } from '../init/generator';
 import type { ConfigurationGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends ConfigurationGeneratorSchema {
+interface NormalizedSchema extends Required<ConfigurationGeneratorSchema> {
   projectRoot: string;
   stylelintTargetExists: boolean;
 }
@@ -35,8 +34,8 @@ export async function configurationGenerator(
 
   logger.info(`Adding Stylelint configuration and target to '${options.project}' ...\n`);
 
-  createStylelintConfig(host, normalizedOptions);
-  addStylelintTarget(host, normalizedOptions);
+  createProjectStylelintConfigFile(host, normalizedOptions.projectRoot, normalizedOptions.scss);
+  addTarget(host, normalizedOptions);
 
   if (options.skipFormat !== true) await formatFiles(host);
 
@@ -48,33 +47,34 @@ export default configurationGenerator;
 function normalizeSchema(tree: Tree, options: ConfigurationGeneratorSchema): NormalizedSchema {
   const projectConfig = readProjectConfiguration(tree, options.project);
 
-  const validFormatter = isCoreFormatter(options.formatter);
-  if (options.formatter && !validFormatter) {
+  let formatter: FormatterType = defaultFormatter;
+  if (isCoreFormatter(options.formatter)) {
+    formatter = options.formatter;
+  } else if (options.formatter) {
     logger.error(
-      `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to 'string' formatter.`,
+      `Given formatter '${options.formatter}' is not a stylelint core formatter. Falling back to '${defaultFormatter}' formatter.`,
     );
   }
 
   return {
-    ...options,
-    formatter: validFormatter ? options.formatter : defaultFormatter,
+    project: options.project,
+    formatter,
+    scss: !!options.scss,
+    skipFormat: !!options.skipFormat,
     projectRoot: projectConfig.root,
     stylelintTargetExists: !!projectConfig.targets?.['stylelint'],
   };
 }
 
-function addStylelintTarget(tree: Tree, options: NormalizedSchema) {
+function addTarget(tree: Tree, options: NormalizedSchema) {
   const projectConfig = readProjectConfiguration(tree, options.project);
 
-  const targetOptions: Partial<LintExecutorSchema> = {
+  const targetOptions = {
     lintFilePatterns: [joinPathFragments(options.projectRoot, '**', '*.css')],
     formatter: options.formatter === 'string' ? undefined : options.formatter,
-  };
+  } satisfies Partial<LintExecutorSchema>;
 
-  if (options.scss) {
-    targetOptions.lintFilePatterns ??= [];
-    targetOptions.lintFilePatterns.push(joinPathFragments(options.projectRoot, '**', '*.scss'));
-  }
+  if (options.scss) targetOptions.lintFilePatterns.push(joinPathFragments(options.projectRoot, '**', '*.scss'));
 
   projectConfig.targets = {
     ...projectConfig.targets,
@@ -85,26 +85,4 @@ function addStylelintTarget(tree: Tree, options: NormalizedSchema) {
     },
   };
   updateProjectConfiguration(tree, options.project, projectConfig);
-}
-
-function createStylelintConfig(tree: Tree, options: NormalizedSchema) {
-  const config = {
-    extends: [joinPathFragments(offsetFromRoot(options.projectRoot), '.stylelintrc.json')],
-    ignoreFiles: ['!**/*'],
-    overrides: [
-      {
-        files: ['**/*.css'],
-        rules: {},
-      },
-    ],
-  };
-
-  if (options.scss) {
-    config.overrides.push({
-      files: ['**/*.scss'],
-      rules: {},
-    });
-  }
-
-  writeJson<Config>(tree, joinPathFragments(options.projectRoot, '.stylelintrc.json'), config);
 }
