@@ -79,11 +79,10 @@ async function buildStylelintTargets(
 
   return {
     [options.targetName]: {
-      command: `stylelint`,
+      command: `stylelint "${getLintFileGlob(options.extensions)}"`,
       cache: true,
       options: {
         cwd: projectRoot,
-        args: [`"${getLintFileGlob(options.extensions)}"`],
       },
       inputs: [
         'default',
