@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.2...v18.0.0-beta.3) (2024-04-15)
+
+### Bug Fixes
+
+- **plugin:** move lintFileGlob to command ([91e6016](https://github.com/Phillip9587/nx-stylelint/commit/91e60165b830be17d1c026d717cde8f4caf411ee))
+
 ## [18.0.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.1...v18.0.0-beta.2) (2024-04-15)
 
 ### Bug Fixes
