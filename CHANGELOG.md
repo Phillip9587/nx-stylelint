@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 - add Nx 19 to supported version ([75c3cc7](https://github.com/Phillip9587/nx-stylelint/commit/75c3cc7765b22d518ea70b330a5d6cb1dfd2d1ce))
+## [18.0.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.2...v18.0.0-beta.3) (2024-04-15)
+
+### Bug Fixes
+
+- **plugin:** move lintFileGlob to command ([91e6016](https://github.com/Phillip9587/nx-stylelint/commit/91e60165b830be17d1c026d717cde8f4caf411ee))
 
 ## [18.0.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.1...v18.0.0-beta.2) (2024-04-15)
 
