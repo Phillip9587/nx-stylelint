@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 - add Nx 19 to supported version ([75c3cc7](https://github.com/Phillip9587/nx-stylelint/commit/75c3cc7765b22d518ea70b330a5d6cb1dfd2d1ce))
 
+## [18.0.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.0...v18.0.0-beta.1) (2024-04-15)
+
+### Bug Fixes
+
+- **plugin:** export createDependencies ([d90f4ed](https://github.com/Phillip9587/nx-stylelint/commit/d90f4ed2214d68e7e5eff2c4235091924615ac06))
+- **plugin:** normalize user input for extensions ([756a18c](https://github.com/Phillip9587/nx-stylelint/commit/756a18c4b17835f1d6f3b1df7be905138e63dd9f))
+
 ## [18.0.0-beta.0](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.4...v18.0.0-beta.0) (2024-04-12)
 
 ### ⚠ BREAKING CHANGES
