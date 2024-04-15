@@ -69,7 +69,7 @@ describe('nx-stylelint/plugin', () => {
             "targets": {
               "stylelint": {
                 "cache": true,
-                "command": "stylelint",
+                "command": "stylelint "**/*.css"",
                 "inputs": [
                   "default",
                   "^default",
@@ -83,9 +83,6 @@ describe('nx-stylelint/plugin', () => {
                   },
                 ],
                 "options": {
-                  "args": [
-                    ""**/*.css"",
-                  ],
                   "cwd": "apps/my-app",
                 },
               },
