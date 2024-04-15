@@ -2,9 +2,9 @@ import {
   CreateDependencies,
   CreateNodes,
   TargetConfiguration,
+  cacheDir,
   readJsonFile,
   writeJsonFile,
-  cacheDir,
 } from '@nx/devkit';
 import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
 import { existsSync } from 'node:fs';
@@ -37,8 +37,6 @@ export const createDependencies: CreateDependencies = () => {
 export const createNodes: CreateNodes<StylelintPluginOptions> = [
   '**/.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts}',
   async (configFilePath, options, context) => {
-    const normalizedOptions = normalizeOptions(options);
-
     const projectRoot = nodePath.dirname(configFilePath);
 
     // Do not create a project if package.json and project.json isn't there.
@@ -48,6 +46,14 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
     )
       return {};
 
+    const isStandaloneWorkspace =
+      projectRoot === '.' &&
+      existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'src')) &&
+      existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
+
+    if (projectRoot === '.' && !isStandaloneWorkspace) return {};
+
+    const normalizedOptions = normalizeOptions(options);
     const hash = calculateHashForCreateNodes(projectRoot, normalizedOptions, context);
     const targets = targetsCache[hash] ?? (await buildStylelintTargets(configFilePath, projectRoot, normalizedOptions));
 
@@ -79,7 +85,13 @@ async function buildStylelintTargets(
         cwd: projectRoot,
         args: [`"${getLintFileGlob(options.extensions)}"`],
       },
-      inputs: ['default', ...inputConfigFiles, { externalDependencies: ['stylelint'] }],
+      inputs: [
+        'default',
+        // Certain lint rules can be impacted by changes to dependencies
+        '^default',
+        ...inputConfigFiles,
+        { externalDependencies: ['stylelint'] },
+      ],
     },
   };
 }
