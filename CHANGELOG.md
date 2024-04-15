@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file. See [standa
 
 - add Nx 19 to supported version ([75c3cc7](https://github.com/Phillip9587/nx-stylelint/commit/75c3cc7765b22d518ea70b330a5d6cb1dfd2d1ce))
 
+## [18.0.0-beta.2](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.1...v18.0.0-beta.2) (2024-04-15)
+
+### Bug Fixes
+
+- **plugin:** fixed root target creation ([3dd848d](https://github.com/Phillip9587/nx-stylelint/commit/3dd848d49a3d8f048016f240aed53d88f4252bc8))
+
+### Tests
+
+- **plugin:** fix failing test ([32fc838](https://github.com/Phillip9587/nx-stylelint/commit/32fc8389d88b9aac1340469c6c7eb9ffe8bd1c18))
+
 ## [18.0.0-beta.1](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.0...v18.0.0-beta.1) (2024-04-15)
 
 ### Bug Fixes
