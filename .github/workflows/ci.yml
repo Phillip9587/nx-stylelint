@@ -14,6 +14,9 @@ jobs:
   build:
     name: Build, Lint and Test
     runs-on: ubuntu-latest
+    env:
+      NX_BRANCH: ${{ github.event.number || github.ref_name }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,6 +40,9 @@ jobs:
   e2e:
     name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
     runs-on: ${{ matrix.os }}
+    env:
+      NX_BRANCH: ${{ github.event.number || github.ref_name }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
     needs: build
     strategy:
       matrix:
@@ -74,6 +80,8 @@ jobs:
     needs: [build, e2e]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     env:
+      NX_BRANCH: ${{ github.event.number || github.ref_name }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       IS_BETA_RELEASE: ${{ contains(github.ref_name, 'beta') }}
     permissions:
       contents: write
