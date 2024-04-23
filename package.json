@@ -22,7 +22,7 @@
     "release:beta": "standard-version --no-verify --prerelease beta"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.2.2",
+    "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
     "@nx/devkit": "18.2.4",
     "@nx/eslint": "18.2.4",
