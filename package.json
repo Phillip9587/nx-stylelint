@@ -33,7 +33,7 @@
     "@nx/workspace": "18.2.4",
     "@swc-node/register": "1.9.0",
     "@swc/cli": "0.3.12",
-    "@swc/core": "1.4.14",
+    "@swc/core": "1.5.0",
     "@swc/helpers": "0.5.10",
     "@types/jest": "29.5.12",
     "@types/node": "18.19.31",
