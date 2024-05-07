@@ -62,8 +62,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
@@ -73,7 +72,7 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx affected --target=e2e --configuration=ci
+      - run: npx nx run e2e:e2e --configuration=ci
 
   publish:
     name: Publish to NPM
