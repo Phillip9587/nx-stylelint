@@ -31,7 +31,7 @@ jobs:
       - run: npx nx lint nx-stylelint
         if: always()
 
-      - run: npx nx test nx-stylelint --configuration=ci
+      - run: npx nx test nx-stylelint --ci
         if: always()
 
       - run: npx nx build nx-stylelint
