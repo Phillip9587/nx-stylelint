@@ -56,7 +56,7 @@ describe('nx-stylelint/plugin', () => {
         '.stylelintrc.json': JSON.stringify({ extends: ['stylelint-config-standard'] }),
         'package.json': `{}`,
       },
-      '',
+      ''
     );
 
     const nodes = await createNodesFunction('apps/my-app/.stylelintrc.json', {}, context);
@@ -102,7 +102,7 @@ describe('nx-stylelint/plugin', () => {
         '.stylelintrc.json': JSON.stringify({ extends: ['stylelint-config-standard'] }),
         'package.json': `{}`,
       },
-      '',
+      ''
     );
 
     const nodes = await createNodesFunction('apps/my-app/.stylelintrc.json', {}, context);

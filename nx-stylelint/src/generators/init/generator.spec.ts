@@ -77,7 +77,7 @@ describe('nx-stylelint:init generator', () => {
 
 Please be aware that your own configuration can lead to problems with nx-stylelint's behavior!
 We recommend renaming your custom '.stylelintrc.json' file and running the generator again with 'nx g nx-stylelint:init'.
-You can then migrate your custom rule configuration into the created stylelint configuration.`,
+You can then migrate your custom rule configuration into the created stylelint configuration.`
     );
 
     const packagejson = readJson(tree, 'package.json');

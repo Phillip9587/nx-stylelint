@@ -39,7 +39,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema): P
 
 Please be aware that your own configuration can lead to problems with nx-stylelint's behavior!
 We recommend renaming your custom '.stylelintrc.json' file and running the generator again with 'nx g nx-stylelint:init'.
-You can then migrate your custom rule configuration into the created stylelint configuration.`,
+You can then migrate your custom rule configuration into the created stylelint configuration.`
     );
   }
 
@@ -95,7 +95,10 @@ function updateProductionFileset(tree: Tree) {
     return;
   }
 
-  const negatedStylelintProjectConfigFilePattern = `!${joinPathFragments('{projectRoot}', STYLELINT_CONFIG_FILE_PATTERN)}`;
+  const negatedStylelintProjectConfigFilePattern = `!${joinPathFragments(
+    '{projectRoot}',
+    STYLELINT_CONFIG_FILE_PATTERN
+  )}`;
   if (
     nxJson.namedInputs?.['production'] &&
     !nxJson.namedInputs?.['production'].includes(negatedStylelintProjectConfigFilePattern)
@@ -112,7 +115,7 @@ function addScssToStylelintConfiguration(tree: Tree) {
         (item) =>
           (item.files === '**/*.scss' || (Array.isArray(item.files) && item.files.includes('**/*.scss'))) &&
           (item.extends === 'stylelint-config-standard-scss' ||
-            (Array.isArray(item.extends) && item.extends.includes('stylelint-config-standard-scss'))),
+            (Array.isArray(item.extends) && item.extends.includes('stylelint-config-standard-scss')))
       )
     )
       return value;

@@ -73,12 +73,12 @@ describe('nx-stylelint e2e', () => {
       });
 
       runNxCommand(
-        `generate @nx/js:library --name ${projectName} --directory libs/${projectName} --projectNameAndRootFormat as-provided --no-interactive`,
+        `generate @nx/js:library --name ${projectName} --directory libs/${projectName} --projectNameAndRootFormat as-provided --no-interactive`
       );
       runNxCommand(`generate nx-stylelint:configuration --project ${projectName}`);
 
       expect(() =>
-        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projectName}/.stylelintrc.json`),
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projectName}/.stylelintrc.json`)
       ).not.toThrow();
 
       let packageJson = readJson('package.json');
@@ -122,7 +122,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       runNxCommand(
-        `generate @nx/js:library --name ${project2Name} --directory libs/${project2Name} --projectNameAndRootFormat as-provided --no-interactive`,
+        `generate @nx/js:library --name ${project2Name} --directory libs/${project2Name} --projectNameAndRootFormat as-provided --no-interactive`
       );
       runNxCommand(`generate nx-stylelint:configuration --project ${project2Name} --scss true`);
 
@@ -198,12 +198,12 @@ describe('nx-stylelint e2e', () => {
       const projectName = uniq('lib-');
 
       runNxCommand(
-        `generate @nx/js:library --name ${projectName} --directory libs/${projectName} --projectNameAndRootFormat as-provided --no-interactive`,
+        `generate @nx/js:library --name ${projectName} --directory libs/${projectName} --projectNameAndRootFormat as-provided --no-interactive`
       );
       runNxCommand(`generate nx-stylelint:configuration --project ${projectName} --formatter json`);
 
       expect(() =>
-        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projectName}/.stylelintrc.json`),
+        checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projectName}/.stylelintrc.json`)
       ).not.toThrow();
 
       expect(readJson<Config>(`libs/${projectName}/.stylelintrc.json`)).toStrictEqual<Config>({
@@ -218,7 +218,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       expect(
-        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets.stylelint,
+        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets.stylelint
       ).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {

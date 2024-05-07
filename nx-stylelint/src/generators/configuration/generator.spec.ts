@@ -157,7 +157,7 @@ describe('nx-stylelint:configuration generator', () => {
         },
       });
       expect(logger.error).toHaveBeenCalledWith(
-        `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`,
+        `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`
       );
     });
   });

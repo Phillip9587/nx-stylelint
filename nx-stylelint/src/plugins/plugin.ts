@@ -73,7 +73,7 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
 async function buildStylelintTargets(
   configFilePath: string,
   projectRoot: string,
-  options: Required<StylelintPluginOptions>,
+  options: Required<StylelintPluginOptions>
 ): Promise<Record<string, TargetConfiguration>> {
   const inputConfigFiles = await getInputConfigFiles(configFilePath, projectRoot);
 
