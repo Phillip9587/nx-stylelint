@@ -42,7 +42,7 @@ describe(getInputConfigFiles.name, () => {
         '.stylelintrc': sc({ extends: 'stylelint-config-recommended' }),
         'package.json': `{}`,
       },
-      '',
+      ''
     );
 
     const configFiles = await getInputConfigFiles('apps/my-app/.stylelintrc.json', 'apps/my-app');
