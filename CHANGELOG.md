@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 - add Nx 19 to supported version ([75c3cc7](https://github.com/Phillip9587/nx-stylelint/commit/75c3cc7765b22d518ea70b330a5d6cb1dfd2d1ce))
+
+## [18.0.0-beta.4](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.3...v18.0.0-beta.4) (2024-05-13)
+
 ## [18.0.0-beta.3](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.2...v18.0.0-beta.3) (2024-04-15)
 
 ### Bug Fixes
