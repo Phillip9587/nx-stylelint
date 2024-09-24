@@ -1,1 +1,1 @@
-export { createNodes, createDependencies, type StylelintPluginOptions } from './src/plugins/plugin';
+export { createNodes, createNodesV2, type StylelintPluginOptions } from './src/plugins/plugin';

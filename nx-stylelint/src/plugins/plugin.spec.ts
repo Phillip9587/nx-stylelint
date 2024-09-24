@@ -1,6 +1,6 @@
 import { CreateNodesContext } from '@nx/devkit';
 import { vol } from 'memfs';
-import { createNodes } from './plugin';
+import { createNodesV2 } from './plugin';
 
 jest.mock('node:fs', () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -16,7 +16,7 @@ jest.mock('fs/promises', () => {
 });
 
 describe('nx-stylelint/plugin', () => {
-  const createNodesFunction = createNodes[1];
+  const createNodesFunction = createNodesV2[1];
   let context: CreateNodesContext;
 
   beforeEach(async () => {
@@ -59,37 +59,52 @@ describe('nx-stylelint/plugin', () => {
       ''
     );
 
-    const nodes = await createNodesFunction('apps/my-app/.stylelintrc.json', {}, context);
+    const nodes = await createNodesFunction(['apps/my-app/.stylelintrc.json'], {}, context);
 
     expect(nodes).toMatchInlineSnapshot(`
-      {
-        "projects": {
-          "apps/my-app": {
-            "root": "apps/my-app",
-            "targets": {
-              "stylelint": {
-                "cache": true,
-                "command": "stylelint "**/*.css"",
-                "inputs": [
-                  "default",
-                  "^default",
-                  "{projectRoot}/.stylelintrc.json",
-                  "{workspaceRoot}/.stylelintrc.json",
-                  "{workspaceRoot}/apps/.stylelintrc.yaml",
-                  {
-                    "externalDependencies": [
-                      "stylelint",
+      [
+        [
+          "apps/my-app/.stylelintrc.json",
+          {
+            "projects": {
+              "apps/my-app": {
+                "root": "apps/my-app",
+                "targets": {
+                  "stylelint": {
+                    "cache": true,
+                    "command": "stylelint "**/*.css"",
+                    "inputs": [
+                      "default",
+                      "^default",
+                      "{projectRoot}/.stylelintrc.json",
+                      "{workspaceRoot}/.stylelintrc.json",
+                      "{workspaceRoot}/apps/.stylelintrc.yaml",
+                      {
+                        "externalDependencies": [
+                          "stylelint",
+                        ],
+                      },
                     ],
+                    "metadata": {
+                      "description": "Runs Stylelint on project",
+                      "help": {
+                        "command": "npx stylelint --help",
+                        "example": {},
+                      },
+                      "technologies": [
+                        "stylelint",
+                      ],
+                    },
+                    "options": {
+                      "cwd": "apps/my-app",
+                    },
                   },
-                ],
-                "options": {
-                  "cwd": "apps/my-app",
                 },
               },
             },
           },
-        },
-      }
+        ],
+      ]
     `);
   });
 
@@ -105,8 +120,8 @@ describe('nx-stylelint/plugin', () => {
       ''
     );
 
-    const nodes = await createNodesFunction('apps/my-app/.stylelintrc.json', {}, context);
+    const nodes = await createNodesFunction(['apps/my-app/.stylelintrc.json'], {}, context);
 
-    expect(nodes).toStrictEqual({});
+    expect(nodes).toStrictEqual([['apps/my-app/.stylelintrc.json', {}]]);
   });
 });

@@ -1,96 +1,134 @@
 import {
-  CreateDependencies,
   CreateNodes,
+  CreateNodesContext,
+  CreateNodesV2,
+  ProjectConfiguration,
   TargetConfiguration,
-  cacheDir,
+  createNodesFromFiles,
+  getPackageManagerCommand,
+  logger,
   readJsonFile,
   writeJsonFile,
 } from '@nx/devkit';
 import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file';
+import { hashObject } from 'nx/src/hasher/file-hasher';
+import { workspaceDataDirectory } from 'nx/src/utils/cache-directory';
+
+const pmc = getPackageManagerCommand();
+
+const STYLELINT_CONFIG_FILES_GLOB =
+  '**/{.stylelintrc,.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts,cts,mts},stylelint.config.{js,cjs,mjs,ts,cts,mts}}';
 
 export interface StylelintPluginOptions {
   targetName?: string;
   extensions?: string[];
 }
 
-const cachePath = nodePath.join(cacheDir, 'stylelint.hash');
-const targetsCache = existsSync(cachePath) ? readTargetsCache() : {};
-
-const calculatedTargets: Record<string, Record<string, TargetConfiguration>> = {};
-
-function readTargetsCache(): Record<string, Record<string, TargetConfiguration>> {
-  return readJsonFile(cachePath);
+function readTargetsCache(cachePath: string): Record<string, TargetConfiguration> {
+  return existsSync(cachePath) ? readJsonFile(cachePath) : {};
 }
 
-function writeTargetsToCache(targets: Record<string, Record<string, TargetConfiguration>>) {
-  writeJsonFile(cachePath, targets);
+function writeTargetsToCache(cachePath: string, results: Record<string, TargetConfiguration>) {
+  writeJsonFile(cachePath, results);
 }
 
-export const createDependencies: CreateDependencies = () => {
-  writeTargetsToCache(calculatedTargets);
-  return [];
-};
+export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
+  STYLELINT_CONFIG_FILES_GLOB,
+  async (projectConfigurationFiles, options, context) => {
+    const optionsHash = hashObject(options ?? {});
+    const cachePath = nodePath.join(workspaceDataDirectory, `jest-${optionsHash}.hash`);
+    const targetsCache = readTargetsCache(cachePath);
 
-export const createNodes: CreateNodes<StylelintPluginOptions> = [
-  '**/.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts}',
-  async (configFilePath, options, context) => {
-    const projectRoot = nodePath.dirname(configFilePath);
-
-    // Do not create a project if package.json and project.json isn't there.
-    if (
-      !existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json')) &&
-      !existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'project.json'))
-    )
-      return {};
-
-    const isStandaloneWorkspace =
-      projectRoot === '.' &&
-      existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'src')) &&
-      existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
-
-    if (projectRoot === '.' && !isStandaloneWorkspace) return {};
-
-    const normalizedOptions = normalizeOptions(options);
-    const hash = await calculateHashForCreateNodes(projectRoot, normalizedOptions, context);
-    const targets = targetsCache[hash] ?? (await buildStylelintTargets(configFilePath, projectRoot, normalizedOptions));
-
-    calculatedTargets[hash] = targets;
-
-    return {
-      projects: {
-        [projectRoot]: {
-          root: projectRoot,
-          targets: targets,
-        },
-      },
-    };
+    try {
+      return await createNodesFromFiles(
+        (configFile, options, context) => createNodesInternal(configFile, options, context, targetsCache),
+        projectConfigurationFiles,
+        options,
+        context
+      );
+    } finally {
+      writeTargetsToCache(cachePath, targetsCache);
+    }
   },
 ];
 
-async function buildStylelintTargets(
+export const createNodes: CreateNodes<StylelintPluginOptions> = [
+  STYLELINT_CONFIG_FILES_GLOB,
+  async (configFilePath, options, context) => {
+    logger.warn(
+      '`createNodes` is deprecated. Update your plugin to utilize createNodesV2 instead. In Nx 20, this will change to the createNodesV2 API.'
+    );
+    return createNodesInternal(configFilePath, options, context, {});
+  },
+];
+
+async function createNodesInternal(
+  configFilePath: string,
+  options: StylelintPluginOptions | undefined,
+  context: CreateNodesContext,
+  targetsCache: Record<string, TargetConfiguration>
+) {
+  const projectRoot = nodePath.dirname(configFilePath);
+  // Do not create a project if package.json and project.json isn't there.
+  const siblingFiles = readdirSync(nodePath.join(context.workspaceRoot, projectRoot));
+  if (!siblingFiles.includes('package.json') && !siblingFiles.includes('project.json')) {
+    return {};
+  }
+
+  const normalizedOptions = normalizeOptions(options);
+
+  const hash = (await calculateHashForCreateNodes(projectRoot, normalizedOptions, context)) + configFilePath;
+
+  targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, normalizedOptions);
+  const target = targetsCache[hash];
+
+  const project: ProjectConfiguration = {
+    root: projectRoot,
+    targets: {
+      [normalizedOptions.targetName]: target,
+    },
+  };
+
+  return {
+    projects: {
+      [projectRoot]: project,
+    },
+  };
+}
+
+async function stylelintTarget(
   configFilePath: string,
   projectRoot: string,
   options: Required<StylelintPluginOptions>
-): Promise<Record<string, TargetConfiguration>> {
+): Promise<TargetConfiguration> {
   const inputConfigFiles = await getInputConfigFiles(configFilePath, projectRoot);
 
+  const glob =
+    options.extensions.length === 1 ? `**/*.${options.extensions[0]}` : `**/*.{${options.extensions.join(',')}}`;
+
   return {
-    [options.targetName]: {
-      command: `stylelint "${getLintFileGlob(options.extensions)}"`,
-      cache: true,
-      options: {
-        cwd: projectRoot,
+    command: `stylelint "${glob}"`,
+    cache: true,
+    options: {
+      cwd: projectRoot,
+    },
+    inputs: [
+      'default',
+      // Certain lint rules can be impacted by changes to dependencies
+      '^default',
+      ...inputConfigFiles,
+      { externalDependencies: ['stylelint'] },
+    ],
+    metadata: {
+      technologies: ['stylelint'],
+      description: 'Runs Stylelint on project',
+      help: {
+        command: `${pmc.exec} stylelint --help`,
+        example: {},
       },
-      inputs: [
-        'default',
-        // Certain lint rules can be impacted by changes to dependencies
-        '^default',
-        ...inputConfigFiles,
-        { externalDependencies: ['stylelint'] },
-      ],
     },
   };
 }
@@ -106,9 +144,4 @@ function normalizeOptions(options: StylelintPluginOptions | undefined): Required
     targetName: options?.targetName ?? 'stylelint',
     extensions: extensions ?? ['css'],
   };
-}
-
-function getLintFileGlob(extensions: string[]): string {
-  if (extensions.length === 1) return `**/*.${extensions[0]}`;
-  return `**/*.{${extensions.join(',')}}`;
 }
