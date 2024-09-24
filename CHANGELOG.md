@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0-beta.5](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.5...v18.0.0-beta.5) (2024-09-24)
+
+### ⚠ BREAKING CHANGES
+
+- Support for Nx v18 has been removed
+- Support for Stylelint v15 has been removed
+- Support for Nx v17 has been removed
+
+### Features
+
+- add create-nodes plugin ([ac1d892](https://github.com/Phillip9587/nx-stylelint/commit/ac1d892bbbd3e6feffeb0bb0a2b09e23087c327b))
+- drop support for Nx 17 ([e192713](https://github.com/Phillip9587/nx-stylelint/commit/e192713afeb97a14ad0bf43256e6233e798df0cf))
+- drop support for Nx 18 ([47fdd61](https://github.com/Phillip9587/nx-stylelint/commit/47fdd61218b81b8e0f58ce0399a8c127745f0d78))
+- drop support for Stylelint 15 ([d2fe516](https://github.com/Phillip9587/nx-stylelint/commit/d2fe5164f6ea108a0e28394c0e1309cd86fff330))
+- plugin target cache ([93c6bdd](https://github.com/Phillip9587/nx-stylelint/commit/93c6bddce5ee99a7b80077951b72f60f9cf736bb))
+- **plugin:** add createNodesV2 ([b9086a1](https://github.com/Phillip9587/nx-stylelint/commit/b9086a1aaf2612047677e22b6b5d06320e84d2be))
+- support stylelint config overrides.extends ([7002ce1](https://github.com/Phillip9587/nx-stylelint/commit/7002ce12c4c3b90a5d591e41077ba7d4f6c8d7fc))
+
+### Bug Fixes
+
+- **plugin:** export createDependencies ([f07e9b5](https://github.com/Phillip9587/nx-stylelint/commit/f07e9b51a5a87365ec9da00ce9fa69d833605499))
+- **plugin:** fix targetsCache path ([013c499](https://github.com/Phillip9587/nx-stylelint/commit/013c499517e557045e1c0d3211853f5587a83325))
+- **plugin:** fixed root target creation ([11144e8](https://github.com/Phillip9587/nx-stylelint/commit/11144e8af566946780a2b4ee4244a00e8eb26f4a))
+- **plugin:** move lintFileGlob to command ([a3fc787](https://github.com/Phillip9587/nx-stylelint/commit/a3fc787bc8571afa3db36bffb3357598d4fcce9d))
+- **plugin:** normalize user input for extensions ([0145812](https://github.com/Phillip9587/nx-stylelint/commit/0145812d0a6ae8e3a299414e02fdf137d82d0595))
+- support .stylelintrc.ts files in plugin ([9e5ea5c](https://github.com/Phillip9587/nx-stylelint/commit/9e5ea5cc55d495f43cbfdef8d120210d60119fc1))
+
+### Tests
+
+- fix plugin tests ([3628f13](https://github.com/Phillip9587/nx-stylelint/commit/3628f13ec12392d6c4e593909daa501a38c41a3c))
+- **plugin:** fix failing test ([5bbad9f](https://github.com/Phillip9587/nx-stylelint/commit/5bbad9f68e8b61010f766a3c6d0b4fd7ce6129f2))
+- update nx commands to use ([d7161d3](https://github.com/Phillip9587/nx-stylelint/commit/d7161d3e78f935aeed69cf6c53791f4cccda216f))
+- update vscode extension adding tests ([9e2199d](https://github.com/Phillip9587/nx-stylelint/commit/9e2199da8f6943c0e05e86ff9359a26d3f03f860))
+
+### Refactorings
+
+- move index.ts to project root ([302accb](https://github.com/Phillip9587/nx-stylelint/commit/302accb3c083c01c1025058050664b767fdf7216))
+- **plugin:** refactor lintFilePatterns to extensions ([0f4c810](https://github.com/Phillip9587/nx-stylelint/commit/0f4c8107939f9155f0b23e483494178a6df92872))
+- **plugin:** remove deep imports from nx package ([d9b3f1d](https://github.com/Phillip9587/nx-stylelint/commit/d9b3f1d62f94938e43809ec64b70b383d24d4435))
+- restructure generators ([7ddb11a](https://github.com/Phillip9587/nx-stylelint/commit/7ddb11a76f46625d8873d7663af10ff9d383127f))
+
 ### [17.1.5](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.4...v17.1.5) (2024-06-04)
 
 ### Bug Fixes
