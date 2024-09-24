@@ -91,11 +91,18 @@ async function createNodesInternal(
   targetsCache: Record<string, TargetConfiguration>
 ) {
   const projectRoot = nodePath.dirname(configFilePath);
+
   // Do not create a project if package.json and project.json isn't there.
   const siblingFiles = readdirSync(nodePath.join(context.workspaceRoot, projectRoot));
   if (!siblingFiles.includes('package.json') && !siblingFiles.includes('project.json')) {
     return {};
   }
+
+  const isStandaloneWorkspace =
+    projectRoot === '.' &&
+    existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'src')) &&
+    existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
+  if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
   const hash = (await calculateHashForCreateNodes(projectRoot, options, context)) + configFilePath;
 
