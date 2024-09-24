@@ -9,13 +9,13 @@ import {
   logger,
   readJsonFile,
   writeJsonFile,
+  hashArray,
 } from '@nx/devkit';
 import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file';
-import { hashObject } from 'nx/src/hasher/file-hasher';
-import { workspaceDataDirectory } from 'nx/src/utils/cache-directory';
+import { workspaceDataDirectory } from '../utils/workspace-data-directory';
 
 const pmc = getPackageManagerCommand();
 
@@ -38,15 +38,16 @@ function writeTargetsToCache(cachePath: string, results: Record<string, TargetCo
 export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
   STYLELINT_CONFIG_FILES_GLOB,
   async (projectConfigurationFiles, options, context) => {
-    const optionsHash = hashObject(options ?? {});
+    const normalizedOptions = normalizeOptions(options);
+    const optionsHash = hashArray(Object.entries(normalizedOptions).map(([key, value]) => key + JSON.stringify(value)));
     const cachePath = nodePath.join(workspaceDataDirectory, `stylelint-${optionsHash}.hash`);
     const targetsCache = readTargetsCache(cachePath);
 
     try {
       return await createNodesFromFiles(
-        (configFile, options, context) => createNodesInternal(configFile, options, context, targetsCache),
+        (configFile, _, context) => createNodesInternal(configFile, normalizedOptions, context, targetsCache),
         projectConfigurationFiles,
-        options,
+        normalizedOptions,
         context
       );
     } finally {
@@ -61,13 +62,13 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
     logger.warn(
       '`createNodes` is deprecated. Update your plugin to utilize createNodesV2 instead. In Nx 20, this will change to the createNodesV2 API.'
     );
-    return createNodesInternal(configFilePath, options, context, {});
+    return createNodesInternal(configFilePath, normalizeOptions(options), context, {});
   },
 ];
 
 async function createNodesInternal(
   configFilePath: string,
-  options: StylelintPluginOptions | undefined,
+  options: Required<StylelintPluginOptions>,
   context: CreateNodesContext,
   targetsCache: Record<string, TargetConfiguration>
 ) {
@@ -78,17 +79,15 @@ async function createNodesInternal(
     return {};
   }
 
-  const normalizedOptions = normalizeOptions(options);
+  const hash = (await calculateHashForCreateNodes(projectRoot, options, context)) + configFilePath;
 
-  const hash = (await calculateHashForCreateNodes(projectRoot, normalizedOptions, context)) + configFilePath;
-
-  targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, normalizedOptions);
+  targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, options);
   const target = targetsCache[hash];
 
   const project: ProjectConfiguration = {
     root: projectRoot,
     targets: {
-      [normalizedOptions.targetName]: target,
+      [options.targetName]: target,
     },
   };
 

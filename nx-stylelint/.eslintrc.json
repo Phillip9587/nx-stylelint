@@ -10,7 +10,7 @@
         "@nx/dependency-checks": [
           "error",
           {
-            "ignoredDependencies": ["stylelint-config-standard", "stylelint-config-standard-scss", "nx"]
+            "ignoredDependencies": ["stylelint-config-standard", "stylelint-config-standard-scss"]
           }
         ]
       }
