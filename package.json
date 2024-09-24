@@ -42,7 +42,7 @@
     "cosmiconfig": "9.0.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "husky": "9.0.11",
+    "husky": "9.1.6",
     "is-ci": "3.0.1",
     "jest": "29.7.0",
     "jest-environment-node": "29.7.0",
