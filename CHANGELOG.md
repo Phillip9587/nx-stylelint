@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0-beta.6](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.5...v18.0.0-beta.6) (2024-09-24)
+
+### Bug Fixes
+
+- **plugin:** fixed stylelint config files glob ([43b0dec](https://github.com/Phillip9587/nx-stylelint/commit/43b0decc3ba2042728b1bbbb82d41214363b2f19))
+
 ## [18.0.0-beta.5](https://github.com/Phillip9587/nx-stylelint/compare/v17.1.5...v18.0.0-beta.5) (2024-09-24)
 
 ### ⚠ BREAKING CHANGES
