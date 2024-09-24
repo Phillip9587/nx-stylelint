@@ -19,8 +19,26 @@ import { workspaceDataDirectory } from '../utils/workspace-data-directory';
 
 const pmc = getPackageManagerCommand();
 
-const STYLELINT_CONFIG_FILES_GLOB =
-  '**/{.stylelintrc,.stylelintrc.{json,yml,yaml,js,cjs,mjs,ts,cts,mts},stylelint.config.{js,cjs,mjs,ts,cts,mts}}';
+const STYLELINT_CONFIG_FILES = [
+  '.stylelintrc',
+  '.stylelintrc.json',
+  '.stylelintrc.yml',
+  '.stylelintrc.yaml',
+  '.stylelintrc.js',
+  '.stylelintrc.cjs',
+  '.stylelintrc.mjs',
+  '.stylelintrc.ts',
+  '.stylelintrc.cts',
+  '.stylelintrc.mts',
+  'stylelint.config.js',
+  'stylelint.config.cjs',
+  'stylelint.config.mjs',
+  'stylelint.config.ts',
+  'stylelint.config.cts',
+  'stylelint.config.mts',
+];
+
+const STYLELINT_CONFIG_FILES_GLOB = `{${STYLELINT_CONFIG_FILES.map((f) => `**/${f}`).join(',')}}`;
 
 export interface StylelintPluginOptions {
   targetName?: string;
