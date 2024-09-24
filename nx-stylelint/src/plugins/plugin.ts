@@ -104,7 +104,7 @@ async function createNodesInternal(
     existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
   if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
-  const hash = (await calculateHashForCreateNodes(projectRoot, options, context)) + configFilePath;
+  const hash = await calculateHashForCreateNodes(projectRoot, options, context);
 
   targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, options);
   const target = targetsCache[hash];
