@@ -39,7 +39,7 @@ export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
   STYLELINT_CONFIG_FILES_GLOB,
   async (projectConfigurationFiles, options, context) => {
     const optionsHash = hashObject(options ?? {});
-    const cachePath = nodePath.join(workspaceDataDirectory, `jest-${optionsHash}.hash`);
+    const cachePath = nodePath.join(workspaceDataDirectory, `stylelint-${optionsHash}.hash`);
     const targetsCache = readTargetsCache(cachePath);
 
     try {
