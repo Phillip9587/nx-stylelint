@@ -1,4 +1,4 @@
-npx pretty-quick --staged
-npx nx build nx-stylelint
-npx nx run-many -t lint
-npx nx test nx-stylelint
+pretty-quick --staged
+nx build nx-stylelint
+nx run-many -t lint
+nx test nx-stylelint
