@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [18.0.0-beta.7](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.6...v18.0.0-beta.7) (2024-09-24)
+
+### Features
+
+- **plugin:** inputs should only be the files with specified extensions in the projectRoot ([bf4cd4f](https://github.com/Phillip9587/nx-stylelint/commit/bf4cd4f6fa10df47d357baf583786f090a9216ca))
+
+### Bug Fixes
+
+- **plugin:** bring back isStandaloneWorkspace check ([f2e0f54](https://github.com/Phillip9587/nx-stylelint/commit/f2e0f54f4dc975acb6f6e27ed169f1eff57794f7))
+- **plugin:** remove the configFilePath from the targetHash ([9ac9789](https://github.com/Phillip9587/nx-stylelint/commit/9ac9789e430457604341029e5ca75666d82c6373))
+
 ## [18.0.0-beta.6](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.5...v18.0.0-beta.6) (2024-09-24)
 
 ### Bug Fixes
