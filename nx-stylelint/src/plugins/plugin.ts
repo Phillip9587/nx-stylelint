@@ -140,9 +140,7 @@ async function stylelintTarget(
       cwd: projectRoot,
     },
     inputs: [
-      'default',
-      // Certain lint rules can be impacted by changes to dependencies
-      '^default',
+      `{projectRoot}/**/*.(${options.extensions.join('|')})`,
       ...inputConfigFiles,
       { externalDependencies: ['stylelint'] },
     ],

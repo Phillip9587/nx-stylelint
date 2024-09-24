@@ -74,8 +74,7 @@ describe('nx-stylelint/plugin', () => {
                     "cache": true,
                     "command": "stylelint "**/*.css"",
                     "inputs": [
-                      "default",
-                      "^default",
+                      "{projectRoot}/**/*.(css)",
                       "{projectRoot}/.stylelintrc.json",
                       "{workspaceRoot}/.stylelintrc.json",
                       "{workspaceRoot}/apps/.stylelintrc.yaml",
