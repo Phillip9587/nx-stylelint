@@ -54,7 +54,7 @@ export const createNodes: CreateNodes<StylelintPluginOptions> = [
     if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
     const normalizedOptions = normalizeOptions(options);
-    const hash = calculateHashForCreateNodes(projectRoot, normalizedOptions, context);
+    const hash = await calculateHashForCreateNodes(projectRoot, normalizedOptions, context);
     const targets = targetsCache[hash] ?? (await buildStylelintTargets(configFilePath, projectRoot, normalizedOptions));
 
     calculatedTargets[hash] = targets;
