@@ -1,17 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "prHourlyLimit": 0,
-  "prConcurrentLimit": 0,
+  "configMigration": true,
+  "extends": [
+    "config:recommended",
+    ":maintainLockFilesWeekly",
+    ":pinOnlyDevDependencies",
+    ":enableVulnerabilityAlerts",
+    "helpers:disableTypesNodeMajor"
+  ],
+  "timezone": "Europe/Vienna",
   "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchPackageNames": ["nx"],
-      "matchPackagePrefixes": ["@nx/"],
+      "extends": ["monorepo:nrwl"],
       "enabled": false
+    },
+    {
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["*", "!typescript"]
     }
-  ],
-  "lockFileMaintenance": {
-    "enabled": true
-  }
+  ]
 }
