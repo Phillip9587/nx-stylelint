@@ -103,11 +103,39 @@ describe('nx-stylelint:lint options', () => {
 });
 
 describe('nx-stylelint:lint executor', () => {
+  const projectName = 'proj';
   const mockContext: ExecutorContext = {
     projectName: undefined,
     root: '/root',
     cwd: '/root',
     isVerbose: false,
+    projectGraph: {
+      nodes: {
+        [projectName]: {
+          type: 'app',
+          name: projectName,
+          data: {
+            root: `apps/${projectName}`,
+            sourceRoot: `apps/${projectName}/src`,
+            targets: {},
+          },
+        },
+      },
+      dependencies: {
+        [projectName]: [],
+      },
+    },
+    projectsConfigurations: {
+      version: 2,
+      projects: {
+        [projectName]: {
+          root: `apps/${projectName}`,
+          sourceRoot: `apps/${projectName}/src`,
+          targets: {},
+        },
+      },
+    },
+    nxJsonConfiguration: {},
   };
 
   let mockResult: LinterResult;
