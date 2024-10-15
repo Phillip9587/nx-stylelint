@@ -5,6 +5,7 @@
   "projectType": "library",
   "targets": {
     "nx-release-publish": {
+      "dependsOn": ["build"],
       "options": {
         "packageRoot": "dist/nx-stylelint"
       }
