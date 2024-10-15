@@ -1,3 +1,17 @@
+## 18.0.0-beta.8 (2024-10-15)
+
+### 🚀 Features
+
+- ⚠️ drop support for Node.js 21 ([1ea3ace](https://github.com/Phillip9587/nx-stylelint/commit/1ea3ace))
+
+### ⚠️ Breaking Changes
+
+- Support for Node.js v21 has been removed.
+
+### ❤️ Thank You
+
+- Phillip9587 @Phillip9587
+
 ## [18.0.0-beta.7](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.6...v18.0.0-beta.7) (2024-09-24)
 
 ### Features
