@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@eslint/eslintrc": "2.1.4",
+    "@eslint/eslintrc": "3.1.0",
     "@nx/devkit": "19.8.0",
     "@nx/eslint": "19.8.0",
     "@nx/eslint-plugin": "19.8.0",
