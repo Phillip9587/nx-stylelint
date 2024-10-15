@@ -44,6 +44,7 @@ jobs:
       NX_BRANCH: ${{ github.event.number || github.ref_name }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
     needs: build
+    if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
     strategy:
       matrix:
         os:
