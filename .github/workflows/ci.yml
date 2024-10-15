@@ -94,7 +94,16 @@ jobs:
       - run: npm ci
 
       - name: Publish
+        if: env.IS_BETA_RELEASE == 'false'
         run: npx nx release publish
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Publish Beta
+        if: env.IS_BETA_RELEASE == 'true'
+        run: npx nx release publish --tag beta
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
