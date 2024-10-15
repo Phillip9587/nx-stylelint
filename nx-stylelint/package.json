@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "^18.13.0 || >=20.0.0"
+    "node": "^18.13.0 || ^20.9.0 || >=22.0.0"
   },
   "main": "index.js",
   "typings": "index.d.ts",
