@@ -4,6 +4,9 @@
   "defaultProject": "nx-stylelint",
   "release": {
     "projects": ["nx-stylelint"],
+    "git": {
+      "commitArgs": "--no-verify"
+    },
     "changelog": {
       "workspaceChangelog": {
         "createRelease": "github"
