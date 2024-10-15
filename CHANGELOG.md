@@ -1,3 +1,7 @@
+## 18.0.0-beta.12 (2024-10-15)
+
+This was a version bump only, there were no code changes.
+
 ### 17.1.6 (2024-10-15)
 
 This release is intended to replace the incorrectly published 18.0.0-beta.11 version, which was mistakenly tagged as the 'latest' version.
