@@ -79,7 +79,8 @@ jobs:
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       IS_BETA_RELEASE: ${{ contains(github.ref_name, 'beta') }}
     permissions:
-      contents: write
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -91,8 +92,6 @@ jobs:
           cache: npm
 
       - run: npm ci
-
-      - run: npx nx build nx-stylelint
 
       - name: Publish
         run: npx nx release publish
