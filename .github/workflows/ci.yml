@@ -94,27 +94,9 @@ jobs:
 
       - run: npx nx build nx-stylelint
 
-      - name: Publish to NPM
-        if: env.IS_BETA_RELEASE == 'false'
-        run: |
-          cd dist/nx-stylelint/
-          npm publish --access public
+      - name: Publish
+        run: npx nx release publish
+        shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish Beta to NPM
-        if: env.IS_BETA_RELEASE == 'true'
-        run: |
-          cd dist/nx-stylelint/
-          npm publish --access public --tag beta
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Extract Changelog for Release
-        run: npx -y extract-changelog-release > RELEASE-BODY.md
-
-      - name: Create Github Release
-        uses: softprops/action-gh-release@v2
-        with:
-          body_path: RELEASE-BODY.md
-          prerelease: ${{ env.IS_BETA_RELEASE == 'true' }}
+          NPM_CONFIG_PROVENANCE: true

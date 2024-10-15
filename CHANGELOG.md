@@ -1,7 +1,3 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ## [18.0.0-beta.7](https://github.com/Phillip9587/nx-stylelint/compare/v18.0.0-beta.6...v18.0.0-beta.7) (2024-09-24)
 
 ### Features

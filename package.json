@@ -18,8 +18,8 @@
     "build": "nx build",
     "test": "nx test",
     "prepare": "is-ci || husky",
-    "release": "standard-version --no-verify",
-    "release:beta": "standard-version --no-verify --prerelease beta"
+    "release": "nx release --skip-publish --dry-run",
+    "release:beta": "nx release prerelease --skip-publish --dry-run"
   },
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
@@ -50,7 +50,6 @@
     "nx": "20.0.0",
     "prettier": "2.8.8",
     "pretty-quick": "3.3.1",
-    "standard-version": "9.5.0",
     "stylelint": "16.10.0",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
