@@ -4,6 +4,11 @@
   "sourceRoot": "nx-stylelint/src",
   "projectType": "library",
   "targets": {
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/nx-stylelint"
+      }
+    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
