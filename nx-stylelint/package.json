@@ -31,7 +31,7 @@
   "dependencies": {
     "@nx/devkit": ">=19.0.0",
     "cosmiconfig": "^9.0.0",
-    "tslib": "^2.6.2"
+    "tslib": "^2.8.0"
   },
   "peerDependencies": {
     "stylelint": "^16.0.0",
