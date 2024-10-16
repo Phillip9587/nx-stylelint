@@ -21,6 +21,7 @@
 
 nx-stylelint provides a set of power-ups for [Nx](https://nx.dev) to lint your projects with [Stylelint](https://stylelint.io).
 
+- **Plugin**: Provides a experimental plugin to infer your stylelint target when a configuration file exists.
 - **Executor**: Provides an executor to lint your styles with Stylelint.
 - **Generators**: Helping you to configure your projects.
 - **Configuration**: Per Project configuration of Stylelint extending a workspace configuration.
@@ -58,6 +59,54 @@ nx g nx-stylelint:configuration --project <projectName>
 The generator adds a `.stylelintrc.json` at the project root which extends the root `.stylelintrc.json` and adds a stylelint target to the project.
 
 At the first run the generator installs all required dependencies and creates a `.stylelintrc.json` file at the workspace root. It also configures the `namedInputs` for the stylelint targets.
+
+## Using the Experimental Plugin
+
+Read the official NX docs to understand Infered Tasks: https://nx.dev/concepts/inferred-tasks
+
+Adding the plugin is currently not supported by the generators.
+
+To add the plugin add the following to your `nx.json`:
+
+```json
+{
+  "plugins": [
+    {
+      "plugin": "nx-stylelint/plugin",
+      "options": {
+        "targetName": "stylelint",
+        "extensions": ["css"]
+      }
+    }
+  ]
+}
+```
+
+targetDefaults can be configured e.g. `--allow-empty-input`:
+
+```json
+"targetDefaults": {
+    "stylelint": {
+        "options": {
+            "args": ["--allow-empty-input"]
+        }
+    }
+}
+```
+
+You don't need a `stylelint` target in your `project.json` files anymore. If you want to configure options for a single project provide the target and add the stylelint CLI arguments as documented at https://stylelint.io/user-guide/cli#options.
+
+```json
+"targets": {
+    "stylelint": {
+        "options": {
+            "args": [
+                "--report-descriptionless-disables"
+            ]
+        }
+    }
+}
+```
 
 # Examples
 
@@ -189,6 +238,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 | nx-stylelint Version | Nx Version                          | Stylelint Version      |
 | -------------------- | ----------------------------------- | ---------------------- |
+| `^18.0.0`            | `^19.0.0 \|\| ^20.0.0`              | `^16.0.0`              |
 | `^17.1.0`            | `^17.0.0 \|\| ^18.0.0 \|\| ^19.0.0` | `^15.0.0 \|\| ^16.0.0` |
 | `^17.0.0`            | `^17.0.0 \|\| ^18.0.0`              | `^15.0.0`              |
 | `^16.0.0`            | `^16.0.0`                           | `^15.0.0`              |
