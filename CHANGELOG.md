@@ -1,3 +1,41 @@
+# 18.0.0 (2024-10-16)
+
+### ⚠️ Breaking Changes
+
+- Support for Node.js v21 has been removed.
+- Support for Nx v18 has been removed
+- Support for Stylelint v15 has been removed
+- Support for Nx v17 has been removed
+
+### 🚀 Features
+
+- ⚠️ drop support for Node.js 21 ([1ea3ace](https://github.com/Phillip9587/nx-stylelint/commit/1ea3ace))
+- **plugin:** inputs should only be the files with specified extensions in the projectRoot ([bf4cd4f](https://github.com/Phillip9587/nx-stylelint/commit/bf4cd4f6fa10df47d357baf583786f090a9216ca))
+- add create-nodes plugin ([ac1d892](https://github.com/Phillip9587/nx-stylelint/commit/ac1d892bbbd3e6feffeb0bb0a2b09e23087c327b))
+- drop support for Nx 17 ([e192713](https://github.com/Phillip9587/nx-stylelint/commit/e192713afeb97a14ad0bf43256e6233e798df0cf))
+- drop support for Nx 18 ([47fdd61](https://github.com/Phillip9587/nx-stylelint/commit/47fdd61218b81b8e0f58ce0399a8c127745f0d78))
+- drop support for Stylelint 15 ([d2fe516](https://github.com/Phillip9587/nx-stylelint/commit/d2fe5164f6ea108a0e28394c0e1309cd86fff330))
+- plugin target cache ([93c6bdd](https://github.com/Phillip9587/nx-stylelint/commit/93c6bddce5ee99a7b80077951b72f60f9cf736bb))
+- **plugin:** add createNodesV2 ([b9086a1](https://github.com/Phillip9587/nx-stylelint/commit/b9086a1aaf2612047677e22b6b5d06320e84d2be))
+- support stylelint config overrides.extends ([7002ce1](https://github.com/Phillip9587/nx-stylelint/commit/7002ce12c4c3b90a5d591e41077ba7d4f6c8d7fc))
+
+### 🩹 Fixes
+
+- update versions to latest ([4c2d84b](https://github.com/Phillip9587/nx-stylelint/commit/4c2d84b))
+- **plugin:** bring back isStandaloneWorkspace check ([f2e0f54](https://github.com/Phillip9587/nx-stylelint/commit/f2e0f54f4dc975acb6f6e27ed169f1eff57794f7))
+- **plugin:** remove the configFilePath from the targetHash ([9ac9789](https://github.com/Phillip9587/nx-stylelint/commit/9ac9789e430457604341029e5ca75666d82c6373))
+- **plugin:** fixed stylelint config files glob ([43b0dec](https://github.com/Phillip9587/nx-stylelint/commit/43b0decc3ba2042728b1bbbb82d41214363b2f19))
+- **plugin:** export createDependencies ([f07e9b5](https://github.com/Phillip9587/nx-stylelint/commit/f07e9b51a5a87365ec9da00ce9fa69d833605499))
+- **plugin:** fix targetsCache path ([013c499](https://github.com/Phillip9587/nx-stylelint/commit/013c499517e557045e1c0d3211853f5587a83325))
+- **plugin:** fixed root target creation ([11144e8](https://github.com/Phillip9587/nx-stylelint/commit/11144e8af566946780a2b4ee4244a00e8eb26f4a))
+- **plugin:** move lintFileGlob to command ([a3fc787](https://github.com/Phillip9587/nx-stylelint/commit/a3fc787bc8571afa3db36bffb3357598d4fcce9d))
+- **plugin:** normalize user input for extensions ([0145812](https://github.com/Phillip9587/nx-stylelint/commit/0145812d0a6ae8e3a299414e02fdf137d82d0595))
+- support .stylelintrc.ts files in plugin ([9e5ea5c](https://github.com/Phillip9587/nx-stylelint/commit/9e5ea5cc55d495f43cbfdef8d120210d60119fc1))
+
+### ❤️ Thank You
+
+- Phillip9587 @Phillip9587
+
 ## 18.0.0-beta.12 (2024-10-15)
 
 This was a version bump only, there were no code changes.
