@@ -12,6 +12,8 @@
 [![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
 [![npm](https://img.shields.io/npm/dt/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/Phillip9587/nx-stylelint?style=flat-square&label=openssf%20scorecard)](https://scorecard.dev/viewer/?uri=github.com/Phillip9587/nx-stylelint)
+
 
 </div>
 
