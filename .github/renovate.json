@@ -6,7 +6,8 @@
     ":maintainLockFilesWeekly",
     ":pinOnlyDevDependencies",
     ":enableVulnerabilityAlerts",
-    "helpers:disableTypesNodeMajor"
+    "helpers:disableTypesNodeMajor",
+    "helpers:pinGitHubActionDigests"
   ],
   "timezone": "Europe/Vienna",
   "labels": ["dependencies"],
