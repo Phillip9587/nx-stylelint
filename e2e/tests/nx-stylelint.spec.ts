@@ -58,7 +58,7 @@ describe('nx-stylelint e2e', () => {
   describe('nx-stylelint:configuration', () => {
     it('should add a stylelint configuration to a project', () => {
       const projectName = uniq('lib-');
-      const project2Name = uniq('lib-');
+      const project2Name = uniq('lib2-');
 
       writeJsonFile(join(projectDirectory, '.stylelintrc.json'), {
         ignoreFiles: ['**/*'],
