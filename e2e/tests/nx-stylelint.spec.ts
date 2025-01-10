@@ -1,14 +1,9 @@
 import { NxJsonConfiguration, ProjectConfiguration, TargetConfiguration, writeJsonFile } from '@nx/devkit';
-import { checkFilesExist, readJson, runNxCommand } from '@nx/plugin/testing';
+import { checkFilesExist, readJson, runNxCommand, uniq } from '@nx/plugin/testing';
 import { execSync } from 'node:child_process';
-import { randomInt } from 'node:crypto';
 import { mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import type { Config } from 'stylelint';
-
-function uniq(prefix: string) {
-  return `${prefix}${randomInt(100000, 999999)}`;
-}
 
 describe('nx-stylelint e2e', () => {
   let projectDirectory: string;
