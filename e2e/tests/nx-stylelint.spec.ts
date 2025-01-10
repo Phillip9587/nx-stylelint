@@ -247,11 +247,14 @@ function createTestProject() {
     recursive: true,
   });
 
-  execSync(`npx --yes create-nx-workspace@latest ${projectName} --preset apps --nxCloud skip --no-interactive`, {
-    cwd: dirname(projectDirectory),
-    stdio: 'inherit',
-    env: process.env,
-  });
+  execSync(
+    `pnpm dlx create-nx-workspace@latest ${projectName} --preset apps --nxCloud skip --no-interactive --packageManager pnpm`,
+    {
+      cwd: dirname(projectDirectory),
+      stdio: 'inherit',
+      env: process.env,
+    }
+  );
 
   return projectDirectory;
 }
