@@ -1,7 +1,6 @@
-/* eslint-disable */
-import type { Config } from '@jest/types';
+import type { Config } from 'jest';
 
-const config: Config.InitialOptions = {
+const config: Config = {
   displayName: 'e2e',
   preset: '../jest.preset.js',
   globals: {},
