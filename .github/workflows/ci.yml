@@ -23,21 +23,25 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version-file: .nvmrc
           check-latest: true
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install
 
-      - run: npx nx lint nx-stylelint
+      - run: pnpm exec nx lint nx-stylelint
         if: always()
 
-      - run: npx nx test nx-stylelint --ci
+      - run: pnpm exec nx test nx-stylelint --ci
         if: always()
 
-      - run: npx nx build nx-stylelint
+      - run: pnpm exec nx build nx-stylelint
         if: always()
 
   e2e:
@@ -63,15 +67,19 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install
 
-      - run: npx nx run e2e:e2e --configuration=ci
+      - run: pnpm exec nx run e2e:e2e --configuration=ci
 
   publish:
     name: Publish to NPM
@@ -88,18 +96,22 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
+      - uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
           check-latest: true
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install
 
       - name: Publish
         if: env.IS_BETA_RELEASE == 'false'
-        run: npx nx release publish
+        run: pnpm exec nx release publish
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -107,7 +119,7 @@ jobs:
 
       - name: Publish Beta
         if: env.IS_BETA_RELEASE == 'true'
-        run: npx nx release publish --tag beta
+        run: pnpm exec nx release publish --tag beta
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

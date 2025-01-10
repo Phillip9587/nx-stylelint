@@ -14,7 +14,7 @@
     { "type": "test", "section": "Tests" }
   ],
   "scripts": {
-    "postchangelog": "npx nx format"
+    "postchangelog": "pnpm exec nx format"
   },
   "packageFiles": [
     {
