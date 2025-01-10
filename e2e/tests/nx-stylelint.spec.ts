@@ -11,7 +11,7 @@ describe('nx-stylelint e2e', () => {
   beforeAll(() => {
     projectDirectory = createTestProject();
 
-    execSync(`npm install --save-dev nx-stylelint@e2e`, {
+    execSync(`pnpm install --save-dev nx-stylelint@e2e`, {
       cwd: projectDirectory,
       stdio: 'inherit',
       env: process.env,
