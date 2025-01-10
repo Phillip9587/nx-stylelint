@@ -18,7 +18,9 @@ describe('nx-stylelint e2e', () => {
     });
   });
 
-  afterAll(() => rmSync(projectDirectory, { recursive: true, force: true }));
+  afterAll(() => {
+    if (projectDirectory) rmSync(projectDirectory, { recursive: true, force: true });
+  });
 
   it('should be installed', () => {
     // npm ls will fail if the package is not installed properly
