@@ -175,7 +175,7 @@ describe('nx-stylelint e2e', () => {
         outputs: ['{options.outputFile}'],
       });
 
-      execSync('npm uninstall stylelint-config-standard-scss', {
+      execSync('pnpm remove stylelint-config-standard-scss', {
         cwd: projectDirectory,
         stdio: 'inherit',
         env: process.env,
@@ -248,7 +248,7 @@ function createTestProject() {
   });
 
   execSync(
-    `pnpm dlx create-nx-workspace@latest ${projectName} --preset apps --nxCloud skip --no-interactive --packageManager pnpm`,
+    `pnpm dlx create-nx-workspace@latest ${projectName} --preset apps --nxCloud skip --no-interactive --packageManager pnpm --skipGit`,
     {
       cwd: dirname(projectDirectory),
       stdio: 'inherit',
