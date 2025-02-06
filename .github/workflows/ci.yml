@@ -36,7 +36,7 @@ jobs:
           check-latest: true
           cache: pnpm
 
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
 
       - run: pnpm exec nx lint nx-stylelint
         if: always()
@@ -81,7 +81,7 @@ jobs:
           check-latest: true
           cache: pnpm
 
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
 
       - run: pnpm exec nx run e2e:e2e --configuration=ci
 
@@ -111,7 +111,7 @@ jobs:
           check-latest: true
           cache: pnpm
 
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
 
       - name: Publish
         if: env.IS_BETA_RELEASE == 'false'
