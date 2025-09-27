@@ -6,7 +6,7 @@
 
 **[Nx](https://nx.dev) plugin to use [Stylelint](https://stylelint.io) in your Nx workspace.**
 
-[![Nx peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/@nx/devkit?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
+[![Nx peer dependency version](https://img.shields.io/badge/%3E%3D19.0.0-blue?label=Nx&logo=nx&style=flat-square)](https://nx.dev)
 [![Stylelint peer dependency version](https://img.shields.io/npm/dependency-version/nx-stylelint/peer/stylelint?label=Stylelint&logo=stylelint&style=flat-square)](https://stylelint.io)
 [![CI](https://img.shields.io/github/actions/workflow/status/Phillip9587/nx-stylelint/ci.yml?branch=main&label=CI&style=flat-square&logo=github)](https://github.com/Phillip9587/nx-stylelint/actions/workflows/ci.yml)
 [![LICENSE](https://img.shields.io/github/license/phillip9587/nx-stylelint?style=flat-square)](https://github.com/phillip9587/nx-stylelint/blob/main/LICENSE)
@@ -239,7 +239,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 | nx-stylelint Version | Nx Version                          | Stylelint Version      |
 | -------------------- | ----------------------------------- | ---------------------- |
-| `^18.0.0`            | `^19.0.0 \|\| ^20.0.0`              | `^16.0.0`              |
+| `^18.0.0`            | `^19.0.0 \|\| ^20.0.0 \|\| ^21.0.0` | `^16.0.0`              |
 | `^17.1.0`            | `^17.0.0 \|\| ^18.0.0 \|\| ^19.0.0` | `^15.0.0 \|\| ^16.0.0` |
 | `^17.0.0`            | `^17.0.0 \|\| ^18.0.0`              | `^15.0.0`              |
 | `^16.0.0`            | `^16.0.0`                           | `^15.0.0`              |
