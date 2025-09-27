@@ -1,3 +1,14 @@
+## 18.0.1 (2025-09-27)
+
+### 🩹 Fixes
+
+- updated stylelint package versions for generators ([6386a1e](https://github.com/Phillip9587/nx-stylelint/commit/6386a1e))
+- updated @nx/devkit and updated compatibility matrix ([e723f81](https://github.com/Phillip9587/nx-stylelint/commit/e723f81))
+
+### ❤️ Thank You
+
+- Phillip Barta @Phillip9587
+
 # 18.0.0 (2024-10-16)
 
 ### ⚠️ Breaking Changes
