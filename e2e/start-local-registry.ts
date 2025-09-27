@@ -19,5 +19,9 @@ export default async () => {
   } catch {
     console.error(`Error reading package.json file from library build output.`);
   }
-  execSync(`pnpm publish --access public --tag e2e --no-git-checks`, { cwd: './dist/nx-stylelint', env: process.env, stdio: 'inherit' });
+  execSync(`pnpm publish --access public --tag e2e --no-git-checks`, {
+    cwd: './dist/nx-stylelint',
+    env: process.env,
+    stdio: 'inherit',
+  });
 };

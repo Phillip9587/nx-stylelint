@@ -40,6 +40,6 @@ function workspaceDataDirectoryForWorkspace(workspaceRoot: string) {
     workspaceRoot,
     process.env['NX_WORKSPACE_DATA_DIRECTORY'] ??
       process.env['NX_PROJECT_GRAPH_CACHE_DIRECTORY'] ??
-      defaultWorkspaceDataDirectory(workspaceRoot)
+      defaultWorkspaceDataDirectory(workspaceRoot),
   );
 }

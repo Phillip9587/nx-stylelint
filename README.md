@@ -14,7 +14,6 @@
 [![npm](https://img.shields.io/npm/dt/nx-stylelint?style=flat-square&logo=npm)](https://www.npmjs.com/package/nx-stylelint)
 [![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/Phillip9587/nx-stylelint?style=flat-square&label=openssf%20scorecard)](https://scorecard.dev/viewer/?uri=github.com/Phillip9587/nx-stylelint)
 
-
 </div>
 
 <hr/>
@@ -178,7 +177,7 @@ See: https://nx.dev/configuration/projectjson#targets
 | `quiet`                         | `boolean`  | `false`  | Only register problems for rules with an "error"-level severity (ignore "warning"-level).                                                                                                                                                                                                                                                                                                   |
 | `reportDescriptionlessDisables` | `boolean`  | `false`  | Report `stylelint-disable` comments without a description.                                                                                                                                                                                                                                                                                                                                  |
 | `reportInvalidScopeDisables`    | `boolean`  | `false`  | Report `stylelint-disable` comments that don't match rules that are specified in the configuration object.                                                                                                                                                                                                                                                                                  |
-| `reportNeedlessDisables`        | `boolean`  | `true`  | Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.                                                                                                                                                                                                                                                                                           |
+| `reportNeedlessDisables`        | `boolean`  | `true`   | Report `stylelint-disable` comments that don't actually match any lints that need to be disabled.                                                                                                                                                                                                                                                                                           |
 | `silent`                        | `boolean`  | `false`  | Hide output text.                                                                                                                                                                                                                                                                                                                                                                           |
 
 # Custom Formatters

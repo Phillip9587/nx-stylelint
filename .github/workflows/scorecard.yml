@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '25 7 * * 0'
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
 permissions: read-all
 
@@ -17,19 +17,19 @@ jobs:
       id-token: write
 
     steps:
-      - name: "Checkout code"
+      - name: 'Checkout code'
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           persist-credentials: false
 
-      - name: "Run analysis"
+      - name: 'Run analysis'
         uses: ossf/scorecard-action@05b42c624433fc40578a4040d5cf5e36ddca8cde # v2.4.2
         with:
           results_file: results.sarif
           results_format: sarif
           publish_results: true
 
-      - name: "Upload to code-scanning"
+      - name: 'Upload to code-scanning'
         uses: github/codeql-action/upload-sarif@a4e1a019f5e24960714ff6296aee04b736cbc3cf # v3
         with:
           sarif_file: results.sarif

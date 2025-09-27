@@ -67,7 +67,7 @@ export async function readAffectingStylelintConfigFiles(configFilePath: string):
 
     if (stylelintConfig && (stylelintConfig.extends || stylelintConfig.overrides)) {
       const extendsItems = new Set<string>(
-        stylelintConfig.extends ? [stylelintConfig.extends].flat().filter((v) => typeof v === 'string') : []
+        stylelintConfig.extends ? [stylelintConfig.extends].flat().filter((v) => typeof v === 'string') : [],
       );
 
       if (stylelintConfig.overrides) {

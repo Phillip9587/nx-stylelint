@@ -11,7 +11,7 @@ import { ConfigurationGeneratorSchema } from './schema';
 
 const defaultOptions: ConfigurationGeneratorSchema = {
   project: 'test',
-  skipFormat: false,
+  skipFormat: true,
 };
 
 describe('nx-stylelint:configuration options', () => {
@@ -51,7 +51,13 @@ describe('nx-stylelint:configuration generator', () => {
   });
 
   it('should add stylelint target, run init generator and create project .stylelinrrc.json', async () => {
-    await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+    await libraryGenerator(tree, {
+      name: 'test',
+      compiler: 'tsc',
+      directory: 'libs/test',
+      skipFormat: true,
+      skipPackageJson: true,
+    });
     await generator(tree, defaultOptions);
 
     const packagejson = readJson(tree, 'package.json');
@@ -81,7 +87,13 @@ describe('nx-stylelint:configuration generator', () => {
   });
 
   it('should add stylelint target alongside other targets, run init generator and create project .stylelinrrc.json', async () => {
-    await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+    await libraryGenerator(tree, {
+      name: 'test',
+      compiler: 'tsc',
+      directory: 'libs/test',
+      skipFormat: true,
+      skipPackageJson: true,
+    });
 
     let config = readProjectConfiguration(tree, 'test');
     config.targets = {
@@ -119,7 +131,13 @@ describe('nx-stylelint:configuration generator', () => {
   it('should fail when project already has a stylelint target', async () => {
     logger.error = jest.fn();
 
-    await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+    await libraryGenerator(tree, {
+      name: 'test',
+      compiler: 'tsc',
+      directory: 'libs/test',
+      skipFormat: true,
+      skipPackageJson: true,
+    });
     await generator(tree, defaultOptions);
 
     expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toBeDefined();
@@ -131,7 +149,13 @@ describe('nx-stylelint:configuration generator', () => {
 
   describe('--formatter', () => {
     it('should add a stylelint target with the specified formatter', async () => {
-      await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+      await libraryGenerator(tree, {
+        name: 'test',
+        compiler: 'tsc',
+        directory: 'libs/test',
+        skipFormat: true,
+        skipPackageJson: true,
+      });
       await generator(tree, { ...defaultOptions, formatter: 'json' });
 
       expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toStrictEqual({
@@ -146,7 +170,13 @@ describe('nx-stylelint:configuration generator', () => {
 
     it('should print an error if the format is not defined', async () => {
       logger.error = jest.fn();
-      await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+      await libraryGenerator(tree, {
+        name: 'test',
+        compiler: 'tsc',
+        directory: 'libs/test',
+        skipFormat: true,
+        skipPackageJson: true,
+      });
       await generator(tree, { ...defaultOptions, formatter: 'test' as unknown as FormatterType });
 
       expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toStrictEqual({
@@ -157,14 +187,20 @@ describe('nx-stylelint:configuration generator', () => {
         },
       });
       expect(logger.error).toHaveBeenCalledWith(
-        `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`
+        `Given formatter 'test' is not a stylelint core formatter. Falling back to 'string' formatter.`,
       );
     });
   });
 
   describe('--scss', () => {
     it('should add stylelint target, run init generator and create project .stylelinrrc.json with SCSS support', async () => {
-      await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+      await libraryGenerator(tree, {
+        name: 'test',
+        compiler: 'tsc',
+        directory: 'libs/test',
+        skipFormat: true,
+        skipPackageJson: true,
+      });
       await generator(tree, defaultOptions);
 
       let packagejson = readJson(tree, 'package.json');
@@ -202,10 +238,16 @@ describe('nx-stylelint:configuration generator', () => {
         ],
       });
 
-      await libraryGenerator(tree, { name: 'test2', compiler: 'tsc', directory: 'libs/test2' });
+      await libraryGenerator(tree, {
+        name: 'test2',
+        compiler: 'tsc',
+        directory: 'libs/test2',
+        skipFormat: true,
+        skipPackageJson: true,
+      });
       await generator(tree, {
         project: 'test2',
-        skipFormat: false,
+        skipFormat: true,
         scss: true,
       });
 
@@ -255,7 +297,13 @@ describe('nx-stylelint:configuration generator', () => {
     });
 
     it('should add stylelint target, run init generator and create project .stylelinrrc.json with SCSS support', async () => {
-      await libraryGenerator(tree, { name: 'test', compiler: 'tsc', directory: 'libs/test' });
+      await libraryGenerator(tree, {
+        name: 'test',
+        compiler: 'tsc',
+        directory: 'libs/test',
+        skipFormat: true,
+        skipPackageJson: true,
+      });
       await generator(tree, defaultOptions);
 
       let packagejson = readJson(tree, 'package.json');
@@ -334,7 +382,7 @@ describe('nx-stylelint:configuration generator', () => {
       await libraryGenerator(tree, { name: 'test3', compiler: 'tsc', directory: 'libs/test3' });
       await generator(tree, {
         project: 'test3',
-        skipFormat: false,
+        skipFormat: true,
         scss: true,
       });
 
