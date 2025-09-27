@@ -3,6 +3,7 @@
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "e2e/tests",
+  "implicitDependencies": ["nx-stylelint"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
@@ -13,6 +14,5 @@
       },
       "dependsOn": ["^build"]
     }
-  },
-  "implicitDependencies": ["nx-stylelint"]
+  }
 }
