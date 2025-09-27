@@ -111,20 +111,17 @@ jobs:
           check-latest: true
           cache: pnpm
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - run: pnpm install --frozen-lockfile
 
       - name: Publish
         if: env.IS_BETA_RELEASE == 'false'
         run: pnpm exec nx release publish
         shell: bash
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
 
       - name: Publish Beta
         if: env.IS_BETA_RELEASE == 'true'
         run: pnpm exec nx release publish --tag beta
         shell: bash
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
