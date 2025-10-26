@@ -8,13 +8,6 @@
   "engines": {
     "node": "^18.13.0 || ^20.9.0 || >=22.0.0"
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "10.19.0",
-      "onFail": "error"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
