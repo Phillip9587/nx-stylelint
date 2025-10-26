@@ -60,7 +60,8 @@ jobs:
           - 18
           - 20
           - 22
-          - 23
+          - 24
+          - 25
       fail-fast: false
 
     steps:
