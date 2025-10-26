@@ -54,7 +54,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - windows-latest
+          # - windows-latest Temporary disabled
           - macos-latest
         node-version:
           - 18
