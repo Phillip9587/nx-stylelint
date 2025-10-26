@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
   - '@swc/core'
-  - 'oxc-resolver'
-  - 'unrs-resolver'
+  - nx
+  - oxc-resolver
+  - unrs-resolver
