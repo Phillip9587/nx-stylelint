@@ -4,7 +4,7 @@
   "author": "Phillip Barta",
   "private": true,
   "license": "MIT",
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
     "node": "^18.13.0 || ^20.9.0 || >=22.0.0"
   },
@@ -35,8 +35,8 @@
     "@nx/workspace": "21.6.6",
     "@swc-node/register": "1.11.1",
     "@swc/cli": "0.7.9",
-    "@swc/core": "1.15.5",
-    "@swc/helpers": "0.5.17",
+    "@swc/core": "1.15.7",
+    "@swc/helpers": "0.5.18",
     "@types/jest": "30.0.0",
     "@types/node": "18.19.130",
     "cosmiconfig": "9.0.0",
@@ -57,7 +57,7 @@
     "ts-node": "10.9.2",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.50.0",
+    "typescript-eslint": "8.50.1",
     "verdaccio": "6.2.4"
   }
 }
