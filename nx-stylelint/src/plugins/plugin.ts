@@ -11,7 +11,10 @@ import {
   writeJsonFile,
   hashArray,
 } from '@nx/devkit';
-import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
+import {
+  calculateHashForCreateNodes,
+  calculateHashesForCreateNodes,
+} from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file';
@@ -61,9 +64,13 @@ export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
     const cachePath = nodePath.join(workspaceDataDirectory, `stylelint-${optionsHash}.hash`);
     const targetsCache = readTargetsCache(cachePath);
 
+    const projectRoots = projectConfigurationFiles.map((f) => nodePath.dirname(f));
+    const hashes = await calculateHashesForCreateNodes(projectRoots, normalizedOptions, context);
+    const hashByRoot = new Map(projectRoots.map((root, i) => [root, hashes[i]]));
+
     try {
       return await createNodesFromFiles(
-        (configFile, _, context) => createNodesInternal(configFile, normalizedOptions, context, targetsCache),
+        (configFile, _, context) => createNodesInternal(configFile, normalizedOptions, context, targetsCache, hashByRoot),
         projectConfigurationFiles,
         normalizedOptions,
         context,
@@ -89,6 +96,7 @@ async function createNodesInternal(
   options: Required<StylelintPluginOptions>,
   context: CreateNodesContext,
   targetsCache: Record<string, TargetConfiguration>,
+  hashByRoot?: Map<string, string>,
 ) {
   const projectRoot = nodePath.dirname(configFilePath);
 
@@ -104,7 +112,7 @@ async function createNodesInternal(
     existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
   if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
-  const hash = await calculateHashForCreateNodes(projectRoot, options, context);
+  const hash = hashByRoot?.get(projectRoot) ?? await calculateHashForCreateNodes(projectRoot, options, context);
 
   targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, options);
   const target = targetsCache[hash];
