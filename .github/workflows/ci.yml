@@ -57,8 +57,6 @@ jobs:
           # - windows-latest Temporary disabled
           - macos-latest
         node-version:
-          - 18
-          - 20
           - 22
           - 24
           - 25
