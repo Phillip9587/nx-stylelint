@@ -24,7 +24,10 @@ describe('nx-stylelint e2e', () => {
 
   it('should be installed', () => {
     // npm ls will fail if the package is not installed properly
-    execSync('npm ls nx-stylelint', { cwd: projectDirectory, stdio: 'inherit' });
+    execSync(`pnpm exec node -e "require.resolve('nx-stylelint/package.json')"`, {
+      cwd: projectDirectory,
+      stdio: 'inherit',
+    });
   });
 
   it('nx-stylelint:init', () => {
