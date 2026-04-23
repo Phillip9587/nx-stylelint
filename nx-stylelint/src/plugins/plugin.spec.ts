@@ -83,7 +83,7 @@ describe('nx-stylelint/plugin', () => {
                     "metadata": {
                       "description": "Runs Stylelint on project",
                       "help": {
-                        "command": "npx stylelint --help",
+                        "command": "pnpm exec stylelint --help",
                         "example": {},
                       },
                       "technologies": [
