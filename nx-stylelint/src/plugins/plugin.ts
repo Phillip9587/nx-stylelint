@@ -9,7 +9,10 @@ import {
   hashArray,
   CreateNodesContextV2,
 } from '@nx/devkit';
-import { calculateHashForCreateNodes } from '@nx/devkit/src/utils/calculate-hash-for-create-nodes.js';
+import {
+  calculateHashForCreateNodes,
+  calculateHashesForCreateNodes,
+} from '@nx/devkit/src/utils/calculate-hash-for-create-nodes.js';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file.js';
@@ -59,10 +62,14 @@ export const createNodes: CreateNodesV2<StylelintPluginOptions> = [
     const cachePath = nodePath.join(workspaceDataDirectory, `stylelint-${optionsHash}.hash`);
     const targetsCache = readTargetsCache(cachePath);
 
+    const projectRoots = projectConfigurationFiles.map((f) => nodePath.dirname(f));
+    const hashes = await calculateHashesForCreateNodes(projectRoots, normalizedOptions, context);
+    const hashByRoot = new Map(projectRoots.map((root, i) => [root, hashes[i]]));
+
     try {
       return await createNodesFromFiles(
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        (configFile, options, context) => createNodesInternal(configFile, options!, context, targetsCache),
+        (configFile, options, context) => createNodesInternal(configFile, options!, context, targetsCache, hashByRoot),
         projectConfigurationFiles,
         normalizedOptions,
         context,
@@ -80,6 +87,7 @@ async function createNodesInternal(
   options: Required<StylelintPluginOptions>,
   context: CreateNodesContextV2,
   targetsCache: Record<string, TargetConfiguration>,
+  hashByRoot?: Map<string, string>,
 ) {
   const projectRoot = nodePath.dirname(configFilePath);
 
@@ -95,7 +103,7 @@ async function createNodesInternal(
     existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
   if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
-  const hash = await calculateHashForCreateNodes(projectRoot, options, context);
+  const hash = hashByRoot?.get(projectRoot) ?? await calculateHashForCreateNodes(projectRoot, options, context);
 
   targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, options);
   const target = targetsCache[hash];
