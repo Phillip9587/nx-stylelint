@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
-          node-version-file: .nvmrc
+          node-version-file: package.json
           check-latest: true
           cache: pnpm
 
@@ -98,7 +98,7 @@ jobs:
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
-          node-version-file: .nvmrc
+          node-version-file: package.json
           registry-url: https://registry.npmjs.org
           check-latest: true
           cache: pnpm
