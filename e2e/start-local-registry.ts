@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -6,7 +7,7 @@ export default async () => {
   const localRegistryTarget = 'nx-stylelint:local-registry';
   const storage = './tmp/local-registry/storage';
 
-  global.stopLocalRegistry = await startLocalRegistry({
+  (global as any).stopLocalRegistry = await startLocalRegistry({
     localRegistryTarget,
     storage,
     verbose: false,

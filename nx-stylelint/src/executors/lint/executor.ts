@@ -2,9 +2,10 @@ import type { ExecutorContext } from '@nx/devkit';
 import { logger } from '@nx/devkit';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import type { Formatter, FormatterType } from 'stylelint';
-import { importFormatter } from '../../utils/formatter';
-import type { LintExecutorSchema } from './schema';
+import type { Formatter, FormatterType, lint } from 'stylelint';
+import { importFormatter } from '../../utils/formatter.js';
+import { loadStylelintLint } from '../../utils/stylelint.js';
+import type { LintExecutorSchema } from './schema.js';
 
 export async function lintExecutor(
   options: LintExecutorSchema,
@@ -12,10 +13,10 @@ export async function lintExecutor(
 ): Promise<{ success: boolean }> {
   process.chdir(context.cwd);
 
-  let stylelint: typeof import('stylelint');
+  let stylelint: typeof lint;
   try {
-    stylelint = await import('stylelint');
-  } catch (error) {
+    stylelint = await loadStylelintLint();
+  } catch {
     logger.error('Unable to find Stylelint. Please ensure Stylelint is installed.');
     return { success: false };
   }
@@ -37,7 +38,7 @@ export async function lintExecutor(
     throw err;
   }
 
-  const result = await stylelint.lint({
+  const result = await stylelint({
     ...options,
     files: options.lintFilePatterns,
     formatter: resolvedFormatter,

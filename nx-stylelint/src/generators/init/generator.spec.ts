@@ -1,9 +1,9 @@
 import type { NxJsonConfiguration, Tree } from '@nx/devkit';
 import { logger, readJson, updateJson, writeJson } from '@nx/devkit';
-import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { createTreeWithEmptyWorkspace } from 'nx/src/devkit-testing-exports.js';
 import type { Config } from 'stylelint';
-import generator from './generator';
-import type { InitGeneratorSchema } from './schema';
+import generator from './generator.js';
+import type { InitGeneratorSchema } from './schema.js';
 
 const defaultOptions: InitGeneratorSchema = {
   skipFormat: true,
@@ -22,8 +22,8 @@ describe('nx-stylelint:init generator', () => {
     await generator(tree, defaultOptions);
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^16.24.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^39.0.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
 
     const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
     expect(stylelintrc).toStrictEqual<Config>({
@@ -43,9 +43,9 @@ describe('nx-stylelint:init generator', () => {
     await generator(tree, { ...defaultOptions, scss: true });
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^16.24.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^39.0.0');
-    expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^16.0.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^17.0.0');
 
     const stylelintrc = readJson<Config>(tree, '.stylelintrc.json');
     expect(stylelintrc).toStrictEqual<Config>({
@@ -81,7 +81,7 @@ You can then migrate your custom rule configuration into the created stylelint c
     );
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^16.24.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
   });
 
   it('should not add stylelint to devDependencies when present in dependencies', async () => {

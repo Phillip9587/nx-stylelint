@@ -1,4 +1,4 @@
-pretty-quick --staged
-nx build nx-stylelint
-nx run-many -t lint
-nx test nx-stylelint
+pnpm exec pretty-quick --staged
+pnpm exec nx build nx-stylelint
+pnpm exec nx run-many -t lint
+pnpm exec nx test nx-stylelint

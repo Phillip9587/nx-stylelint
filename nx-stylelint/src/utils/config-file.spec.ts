@@ -3,15 +3,12 @@ import { Config } from 'stylelint';
 import { getInputConfigFiles } from './config-file';
 
 jest.mock('node:fs', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs;
 });
 jest.mock('fs', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs;
 });
 jest.mock('fs/promises', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs.promises;
 });
 

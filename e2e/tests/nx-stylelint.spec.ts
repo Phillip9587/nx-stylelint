@@ -3,7 +3,6 @@ import { checkFilesExist, readJson, runNxCommand, uniq } from '@nx/plugin/testin
 import { execSync } from 'node:child_process';
 import { mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import type { Config } from 'stylelint';
 
 describe('nx-stylelint e2e', () => {
   let projectDirectory: string;
@@ -24,7 +23,10 @@ describe('nx-stylelint e2e', () => {
 
   it('should be installed', () => {
     // npm ls will fail if the package is not installed properly
-    execSync('npm ls nx-stylelint', { cwd: projectDirectory, stdio: 'inherit' });
+    execSync(`pnpm exec node -e "require.resolve('nx-stylelint/package.json')"`, {
+      cwd: projectDirectory,
+      stdio: 'inherit',
+    });
   });
 
   it('nx-stylelint:init', () => {
@@ -38,7 +40,7 @@ describe('nx-stylelint e2e', () => {
     expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
     expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
-    expect(readJson<Config>('.stylelintrc.json')).toStrictEqual<Config>({
+    expect(readJson('.stylelintrc.json')).toStrictEqual({
       ignoreFiles: ['**/*'],
       overrides: [
         {
@@ -51,7 +53,7 @@ describe('nx-stylelint e2e', () => {
     });
 
     const nxJson = readJson<NxJsonConfiguration>('nx.json');
-    expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+    expect(nxJson.targetDefaults?.stylelint).toStrictEqual({
       inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
       cache: true,
     });
@@ -89,8 +91,8 @@ describe('nx-stylelint e2e', () => {
       expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
-      let rootConfig = readJson<Config>('.stylelintrc.json');
-      expect(rootConfig).toStrictEqual<Config>({
+      let rootConfig = readJson('.stylelintrc.json');
+      expect(rootConfig).toStrictEqual({
         ignoreFiles: ['**/*'],
         overrides: [
           {
@@ -102,8 +104,8 @@ describe('nx-stylelint e2e', () => {
         rules: {},
       });
 
-      let projectConfig = readJson<Config>(`libs/${projectName}/.stylelintrc.json`);
-      expect(projectConfig).toStrictEqual<Config>({
+      let projectConfig = readJson(`libs/${projectName}/.stylelintrc.json`);
+      expect(projectConfig).toStrictEqual({
         extends: ['../../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
         overrides: [
@@ -115,7 +117,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       let projectJson = readJson<ProjectConfiguration>(`libs/${projectName}/project.json`);
-      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+      expect(projectJson.targets?.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
           lintFilePatterns: [`libs/${projectName}/**/*.css`],
@@ -134,8 +136,8 @@ describe('nx-stylelint e2e', () => {
       expect(packageJson.devDependencies['stylelint-config-standard']).toBeTruthy();
       expect(packageJson.devDependencies['stylelint-config-standard-scss']).toBeTruthy();
 
-      rootConfig = readJson<Config>('.stylelintrc.json');
-      expect(rootConfig).toStrictEqual<Config>({
+      rootConfig = readJson('.stylelintrc.json');
+      expect(rootConfig).toStrictEqual({
         ignoreFiles: ['**/*'],
         overrides: [
           {
@@ -152,8 +154,8 @@ describe('nx-stylelint e2e', () => {
         rules: {},
       });
 
-      projectConfig = readJson<Config>(`libs/${project2Name}/.stylelintrc.json`);
-      expect(projectConfig).toStrictEqual<Config>({
+      projectConfig = readJson(`libs/${project2Name}/.stylelintrc.json`);
+      expect(projectConfig).toStrictEqual({
         extends: ['../../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
         overrides: [
@@ -169,7 +171,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       projectJson = readJson<ProjectConfiguration>(`libs/${project2Name}/project.json`);
-      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+      expect(projectJson.targets?.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
           lintFilePatterns: [`libs/${project2Name}/**/*.css`, `libs/${project2Name}/**/*.scss`],
@@ -208,7 +210,7 @@ describe('nx-stylelint e2e', () => {
         checkFilesExist('.stylelintrc.json', 'package.json', 'nx.json', `libs/${projectName}/.stylelintrc.json`),
       ).not.toThrow();
 
-      expect(readJson<Config>(`libs/${projectName}/.stylelintrc.json`)).toStrictEqual<Config>({
+      expect(readJson(`libs/${projectName}/.stylelintrc.json`)).toStrictEqual({
         extends: ['../../.stylelintrc.json'],
         ignoreFiles: ['!**/*'],
         overrides: [
@@ -220,7 +222,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       expect(
-        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets.stylelint,
+        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets?.stylelint,
       ).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {

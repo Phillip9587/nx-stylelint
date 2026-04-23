@@ -1,23 +1,20 @@
-import { CreateNodesContext } from '@nx/devkit';
+import { CreateNodesContextV2 } from '@nx/devkit';
 import { vol } from 'memfs';
 import { createNodesV2 } from './plugin';
 
 jest.mock('node:fs', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs;
 });
 jest.mock('fs', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs;
 });
 jest.mock('fs/promises', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require('memfs').fs.promises;
 });
 
 describe('nx-stylelint/plugin', () => {
   const createNodesFunction = createNodesV2[1];
-  let context: CreateNodesContext;
+  let context: CreateNodesContextV2;
 
   beforeEach(async () => {
     context = {
@@ -35,7 +32,6 @@ describe('nx-stylelint/plugin', () => {
         },
       },
       workspaceRoot: '',
-      configFiles: [],
     };
   });
 
@@ -87,7 +83,7 @@ describe('nx-stylelint/plugin', () => {
                     "metadata": {
                       "description": "Runs Stylelint on project",
                       "help": {
-                        "command": "npx stylelint --help",
+                        "command": "pnpm exec stylelint --help",
                         "example": {},
                       },
                       "technologies": [
