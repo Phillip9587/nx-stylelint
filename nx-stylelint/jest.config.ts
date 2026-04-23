@@ -1,6 +1,4 @@
-import type { Config } from 'jest';
-
-const config: Config = {
+module.exports = {
   displayName: 'nx-stylelint',
   preset: '../jest.preset.js',
   globals: {},
@@ -16,5 +14,3 @@ const config: Config = {
   coverageDirectory: '../coverage/nx-stylelint',
   testEnvironment: 'node',
 };
-
-export default config;

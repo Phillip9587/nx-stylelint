@@ -58,8 +58,9 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.mjs"
     ]
   },
-  "nxCloudId": "6524357a142961716f3f0a6b"
+  "nxCloudId": "6524357a142961716f3f0a6b",
+  "analytics": false
 }

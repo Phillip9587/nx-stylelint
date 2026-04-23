@@ -10,20 +10,20 @@ import {
   updateJson,
 } from '@nx/devkit';
 import type { Config } from 'stylelint';
-import { ROOT_STYLELINT_CONFIG_SCSS_OVERRIDE } from '../../utils/config';
+import { ROOT_STYLELINT_CONFIG_SCSS_OVERRIDE } from '../../utils/config.js';
 import {
   STYLELINT_CONFIG_FILE,
   STYLELINT_CONFIG_FILE_PATTERN,
   createRootStylelintConfigFile,
   isCompatibleRootConfig,
-} from '../../utils/config-file';
+} from '../../utils/config-file.js';
 import {
   stylelintConfigStandardScssVersion,
   stylelintConfigStandardVersion,
   stylelintVersion,
-} from '../../utils/versions';
-import { addStylelintVSCodeExtension } from '../../utils/vscode';
-import type { InitGeneratorSchema } from './schema';
+} from '../../utils/versions.js';
+import { addStylelintVSCodeExtension } from '../../utils/vscode.js';
+import type { InitGeneratorSchema } from './schema.js';
 
 const NX_JSON_WARNING = `nx.json not found. Create a nx.json file and rerun the generator with 'nx g nx-stylelint:init'.`;
 

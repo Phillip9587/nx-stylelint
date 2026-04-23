@@ -7,11 +7,11 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import type { FormatterType } from 'stylelint';
-import type { LintExecutorSchema } from '../../executors/lint/schema';
-import { createProjectStylelintConfigFile } from '../../utils/config-file';
-import { defaultFormatter, isCoreFormatter } from '../../utils/formatter';
-import { initGenerator } from '../init/generator';
-import type { ConfigurationGeneratorSchema } from './schema';
+import type { LintExecutorSchema } from '../../executors/lint/schema.js';
+import { createProjectStylelintConfigFile } from '../../utils/config-file.js';
+import { defaultFormatter, isCoreFormatter } from '../../utils/formatter.js';
+import { initGenerator } from '../init/generator.js';
+import type { ConfigurationGeneratorSchema } from './schema.js';
 
 interface NormalizedSchema extends Required<ConfigurationGeneratorSchema> {
   projectRoot: string;

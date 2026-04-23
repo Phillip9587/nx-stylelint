@@ -2,9 +2,9 @@ import { joinPathFragments, offsetFromRoot, readJson, workspaceRoot, writeJson, 
 import { existsSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative } from 'node:path';
 import type { Config, Config as StylelintConfig } from 'stylelint';
-import { PROJECT_STYLELINT_CONFIG_SCSS_OVERRIDE, ROOT_STYLELINT_CONFIG, ROOT_STYLELINT_CONFIG_SCSS } from './config';
-import { isRelativePath } from './path';
-import { loadStylelintConfig } from './cosmiconfig';
+import { PROJECT_STYLELINT_CONFIG_SCSS_OVERRIDE, ROOT_STYLELINT_CONFIG, ROOT_STYLELINT_CONFIG_SCSS } from './config.js';
+import { isRelativePath } from './path.js';
+import { loadStylelintConfig } from './cosmiconfig.js';
 
 export const STYLELINT_CONFIG_FILE_PATTERN = '.stylelintrc(.(json|yml|yaml|js))?';
 

@@ -4,18 +4,17 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "node16",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2020",
-    "module": "esnext",
-    "lib": ["es2020"],
+    "target": "es2022",
+    "lib": ["es2024"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
-      "nx-stylelint": ["nx-stylelint/src/index.ts"]
+      "nx-stylelint": ["./nx-stylelint/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

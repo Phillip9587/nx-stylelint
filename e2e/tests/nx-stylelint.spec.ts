@@ -51,7 +51,7 @@ describe('nx-stylelint e2e', () => {
     });
 
     const nxJson = readJson<NxJsonConfiguration>('nx.json');
-    expect(nxJson.targetDefaults.stylelint).toStrictEqual({
+    expect(nxJson.targetDefaults?.stylelint).toStrictEqual({
       inputs: ['default', '{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?'],
       cache: true,
     });
@@ -115,7 +115,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       let projectJson = readJson<ProjectConfiguration>(`libs/${projectName}/project.json`);
-      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+      expect(projectJson.targets?.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
           lintFilePatterns: [`libs/${projectName}/**/*.css`],
@@ -169,7 +169,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       projectJson = readJson<ProjectConfiguration>(`libs/${project2Name}/project.json`);
-      expect(projectJson.targets.stylelint).toStrictEqual<TargetConfiguration>({
+      expect(projectJson.targets?.stylelint).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
           lintFilePatterns: [`libs/${project2Name}/**/*.css`, `libs/${project2Name}/**/*.scss`],
@@ -220,7 +220,7 @@ describe('nx-stylelint e2e', () => {
       });
 
       expect(
-        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets.stylelint,
+        readJson<ProjectConfiguration>(`libs/${projectName}/project.json`).targets?.stylelint,
       ).toStrictEqual<TargetConfiguration>({
         executor: 'nx-stylelint:lint',
         options: {
