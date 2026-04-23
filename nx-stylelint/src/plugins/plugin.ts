@@ -1,24 +1,22 @@
 import {
-  CreateNodes,
-  CreateNodesContext,
   CreateNodesV2,
   ProjectConfiguration,
   TargetConfiguration,
   createNodesFromFiles,
   getPackageManagerCommand,
-  logger,
   readJsonFile,
   writeJsonFile,
   hashArray,
+  CreateNodesContextV2,
 } from '@nx/devkit';
 import {
   calculateHashForCreateNodes,
   calculateHashesForCreateNodes,
-} from '@nx/devkit/src/utils/calculate-hash-for-create-nodes';
+} from '@nx/devkit/src/utils/calculate-hash-for-create-nodes.js';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
-import { getInputConfigFiles } from '../utils/config-file';
-import { workspaceDataDirectory } from '../utils/workspace-data-directory';
+import { getInputConfigFiles } from '../utils/config-file.js';
+import { workspaceDataDirectory } from '../utils/workspace-data-directory.js';
 
 const pmc = getPackageManagerCommand();
 
@@ -56,7 +54,7 @@ function writeTargetsToCache(cachePath: string, results: Record<string, TargetCo
   writeJsonFile(cachePath, results);
 }
 
-export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
+export const createNodes: CreateNodesV2<StylelintPluginOptions> = [
   STYLELINT_CONFIG_FILES_GLOB,
   async (projectConfigurationFiles, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -70,7 +68,8 @@ export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
 
     try {
       return await createNodesFromFiles(
-        (configFile, _, context) => createNodesInternal(configFile, normalizedOptions, context, targetsCache, hashByRoot),
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        (configFile, options, context) => createNodesInternal(configFile, options!, context, targetsCache, hashByRoot),
         projectConfigurationFiles,
         normalizedOptions,
         context,
@@ -81,20 +80,12 @@ export const createNodesV2: CreateNodesV2<StylelintPluginOptions> = [
   },
 ];
 
-export const createNodes: CreateNodes<StylelintPluginOptions> = [
-  STYLELINT_CONFIG_FILES_GLOB,
-  async (configFilePath, options, context) => {
-    logger.warn(
-      '`createNodes` is deprecated. Update your plugin to utilize createNodesV2 instead. In Nx 20, this will change to the createNodesV2 API.',
-    );
-    return createNodesInternal(configFilePath, normalizeOptions(options), context, {});
-  },
-];
+export const createNodesV2 = createNodes;
 
 async function createNodesInternal(
   configFilePath: string,
   options: Required<StylelintPluginOptions>,
-  context: CreateNodesContext,
+  context: CreateNodesContextV2,
   targetsCache: Record<string, TargetConfiguration>,
   hashByRoot?: Map<string, string>,
 ) {

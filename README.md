@@ -143,12 +143,12 @@ Add configuration to a project:
 
 ### Options
 
-| Option       | Value                                                                       | Description                                                                           |
-| ------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `formatter`  | `compact` \| `github` \| `json` \| `string` \| `tap` \| `unix` \| `verbose` | Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter). |
-| `project`    | `string`                                                                    | The name of the project.                                                              |
-| `scss`       | `boolean`                                                                   | Add SCSS Language support.                                                            |
-| `skipFormat` | `boolean`                                                                   | Skip formatting files.                                                                |
+| Option       | Value                                                           | Description                                                                           |
+| ------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `formatter`  | `compact` \| `json` \| `string` \| `tap` \| `unix` \| `verbose` | Stylelint Output formatter (https://stylelint.io/user-guide/usage/options#formatter). |
+| `project`    | `string`                                                        | The name of the project.                                                              |
+| `scss`       | `boolean`                                                       | Add SCSS Language support.                                                            |
+| `skipFormat` | `boolean`                                                       | Skip formatting files.                                                                |
 
 ## `nx-stylelint:lint` executor
 
@@ -239,6 +239,7 @@ Or the name of your installed formatter package e.g. [`stylelint-formatter-prett
 
 | nx-stylelint Version | Nx Version                          | Stylelint Version      |
 | -------------------- | ----------------------------------- | ---------------------- |
+| `^19.0.0`            | `^22.0.0`                           | `^17.0.0`              |
 | `^18.0.0`            | `^19.0.0 \|\| ^20.0.0 \|\| ^21.0.0` | `^16.0.0`              |
 | `^17.1.0`            | `^17.0.0 \|\| ^18.0.0 \|\| ^19.0.0` | `^15.0.0 \|\| ^16.0.0` |
 | `^17.0.0`            | `^17.0.0 \|\| ^18.0.0`              | `^15.0.0`              |

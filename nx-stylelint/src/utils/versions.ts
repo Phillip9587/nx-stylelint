@@ -1,3 +1,3 @@
-export const stylelintVersion = '^16.24.0';
-export const stylelintConfigStandardVersion = '^39.0.0';
-export const stylelintConfigStandardScssVersion = '^16.0.0';
+export const stylelintVersion = '^17.9.0';
+export const stylelintConfigStandardVersion = '^40.0.0';
+export const stylelintConfigStandardScssVersion = '^17.0.0';
