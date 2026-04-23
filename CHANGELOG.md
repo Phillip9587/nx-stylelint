@@ -1,3 +1,23 @@
+## 19.0.0-beta.0 (2026-04-23)
+
+### 🚀 Features
+
+- ⚠️  add Stylelint 17 support ([#876](https://github.com/Phillip9587/nx-stylelint/pull/876))
+
+### 🔥 Performance
+
+- **plugin:** batch hash computation in createNodesV2 ([#866](https://github.com/Phillip9587/nx-stylelint/pull/866))
+
+### ⚠️  Breaking Changes
+
+- add Stylelint 17 support  ([#876](https://github.com/Phillip9587/nx-stylelint/pull/876))
+  minimum supported versions are now Stylelint 17 and Nx 22
+
+### ❤️ Thank You
+
+- Omer
+- Phillip Barta @Phillip9587
+
 ## 18.0.2 (2025-09-27)
 
 This was a version bump only, there were no code changes.
