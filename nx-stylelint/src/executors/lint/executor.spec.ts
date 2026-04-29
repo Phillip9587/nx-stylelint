@@ -10,6 +10,7 @@ jest.mock('node:fs', () => ({
   ...jest.requireActual('node:fs'),
   existsSync: jest.fn(),
   writeFileSync: jest.fn(),
+  mkdirSync: jest.fn(),
 }));
 
 let mockResult: LinterResult;
