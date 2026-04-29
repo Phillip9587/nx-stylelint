@@ -1,3 +1,13 @@
+## 19.0.0-beta.1 (2026-04-29)
+
+### 🩹 Fixes
+
+- stylelint esm default import ([f3d6a0d](https://github.com/Phillip9587/nx-stylelint/commit/f3d6a0d))
+
+### ❤️ Thank You
+
+- jase @jase88
+
 ## 19.0.0-beta.0 (2026-04-23)
 
 ### 🚀 Features
