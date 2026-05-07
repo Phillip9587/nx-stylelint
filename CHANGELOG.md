@@ -1,3 +1,28 @@
+# 19.0.0 (2026-05-07)
+
+### 🚀 Features
+
+- ⚠️  add Stylelint 17 support ([#876](https://github.com/Phillip9587/nx-stylelint/pull/876))
+
+### 🩹 Fixes
+
+- stylelint esm default import ([f3d6a0d](https://github.com/Phillip9587/nx-stylelint/commit/f3d6a0d))
+
+### 🔥 Performance
+
+- **plugin:** batch hash computation in createNodesV2 ([#866](https://github.com/Phillip9587/nx-stylelint/pull/866))
+
+### ⚠️  Breaking Changes
+
+- add Stylelint 17 support  ([#876](https://github.com/Phillip9587/nx-stylelint/pull/876))
+  minimum supported versions are now Stylelint 17 and Nx 22
+
+### ❤️ Thank You
+
+- jase @jase88
+- Omer
+- Phillip Barta @Phillip9587
+
 ## 19.0.0-beta.1 (2026-04-29)
 
 ### 🩹 Fixes
