@@ -4,7 +4,7 @@
   "author": "Phillip Barta",
   "private": true,
   "license": "MIT",
-  "packageManager": "pnpm@10.34.1",
+  "packageManager": "pnpm@11.5.2",
   "devEngines": {
     "runtime": {
       "name": "node",
