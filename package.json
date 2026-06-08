@@ -31,8 +31,8 @@
     "release:beta": "nx release prerelease --skip-publish --dry-run"
   },
   "devDependencies": {
-    "@commitlint/cli": "20.5.3",
-    "@commitlint/config-conventional": "20.5.3",
+    "@commitlint/cli": "21.0.2",
+    "@commitlint/config-conventional": "21.0.2",
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "9.39.4",
     "@nx/devkit": "22.7.1",
