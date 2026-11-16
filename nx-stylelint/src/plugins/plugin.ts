@@ -1,5 +1,5 @@
 import {
-  CreateNodesV2,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
   createNodesFromFiles,
@@ -7,12 +7,9 @@ import {
   readJsonFile,
   writeJsonFile,
   hashArray,
-  CreateNodesContextV2,
+  CreateNodesContext,
 } from '@nx/devkit';
-import {
-  calculateHashForCreateNodes,
-  calculateHashesForCreateNodes,
-} from '@nx/devkit/internal';
+import { calculateHashesForCreateNodes } from '@nx/devkit/internal';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file.js';
@@ -54,7 +51,7 @@ function writeTargetsToCache(cachePath: string, results: Record<string, TargetCo
   writeJsonFile(cachePath, results);
 }
 
-export const createNodes: CreateNodesV2<StylelintPluginOptions> = [
+export const createNodes: CreateNodes<StylelintPluginOptions> = [
   STYLELINT_CONFIG_FILES_GLOB,
   async (projectConfigurationFiles, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -80,14 +77,12 @@ export const createNodes: CreateNodesV2<StylelintPluginOptions> = [
   },
 ];
 
-export const createNodesV2 = createNodes;
-
 async function createNodesInternal(
   configFilePath: string,
   options: Required<StylelintPluginOptions>,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
   targetsCache: Record<string, TargetConfiguration>,
-  hashByRoot?: Map<string, string>,
+  hashByRoot: Map<string, string>,
 ) {
   const projectRoot = nodePath.dirname(configFilePath);
 
@@ -103,7 +98,8 @@ async function createNodesInternal(
     existsSync(nodePath.join(context.workspaceRoot, projectRoot, 'package.json'));
   if (projectRoot === '.' && !isStandaloneWorkspace) return {};
 
-  const hash = hashByRoot?.get(projectRoot) ?? await calculateHashForCreateNodes(projectRoot, options, context);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const hash = hashByRoot.get(projectRoot)!;
 
   targetsCache[hash] ??= await stylelintTarget(configFilePath, projectRoot, options);
   const target = targetsCache[hash];
