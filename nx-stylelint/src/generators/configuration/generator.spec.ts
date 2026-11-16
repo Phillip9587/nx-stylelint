@@ -344,7 +344,13 @@ describe('nx-stylelint:configuration generator', () => {
         ],
       });
 
-      await libraryGenerator(tree, { name: 'test2', compiler: 'tsc', directory: 'libs/test2' });
+      await libraryGenerator(tree, {
+        name: 'test2',
+        compiler: 'tsc',
+        directory: 'libs/test2',
+        skipFormat: true,
+        formatter: 'none',
+      });
       await generator(tree, { ...defaultOptions, project: 'test2' });
 
       packagejson = readJson(tree, 'package.json');
@@ -382,7 +388,13 @@ describe('nx-stylelint:configuration generator', () => {
         ],
       });
 
-      await libraryGenerator(tree, { name: 'test3', compiler: 'tsc', directory: 'libs/test3' });
+      await libraryGenerator(tree, {
+        name: 'test3',
+        compiler: 'tsc',
+        directory: 'libs/test3',
+        skipFormat: true,
+        formatter: 'none',
+      });
       await generator(tree, {
         project: 'test3',
         skipFormat: true,

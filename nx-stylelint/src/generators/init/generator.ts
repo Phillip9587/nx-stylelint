@@ -9,6 +9,7 @@ import {
   readNxJson,
   updateJson,
 } from '@nx/devkit';
+import { findTargetDefault, upsertTargetDefault } from '@nx/devkit/internal';
 import type { Config } from 'stylelint';
 import { ROOT_STYLELINT_CONFIG_SCSS_OVERRIDE } from '../../utils/config.js';
 import {
@@ -76,14 +77,11 @@ function addTargetDefaults(tree: Tree): void {
     return;
   }
 
-  nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults['stylelint'] ??= {};
-  nxJson.targetDefaults['stylelint'].inputs ??= ['default'];
-  nxJson.targetDefaults['stylelint'].cache = true;
-
   const rootStylelintConfigurationFile = joinPathFragments('{workspaceRoot}', STYLELINT_CONFIG_FILE_PATTERN);
-  if (!nxJson.targetDefaults['stylelint'].inputs.includes(rootStylelintConfigurationFile))
-    nxJson.targetDefaults['stylelint'].inputs.push(rootStylelintConfigurationFile);
+  const inputs = [...(findTargetDefault(nxJson.targetDefaults, { target: 'stylelint' })?.inputs ?? ['default'])];
+  if (!inputs.includes(rootStylelintConfigurationFile)) inputs.push(rootStylelintConfigurationFile);
+
+  upsertTargetDefault(tree, nxJson, { target: 'stylelint', inputs, cache: true });
 
   updateNxJson(tree, nxJson);
 }

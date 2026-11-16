@@ -12,7 +12,7 @@ import {
 import {
   calculateHashForCreateNodes,
   calculateHashesForCreateNodes,
-} from '@nx/devkit/src/utils/calculate-hash-for-create-nodes.js';
+} from '@nx/devkit/internal';
 import { existsSync, readdirSync } from 'node:fs';
 import * as nodePath from 'node:path';
 import { getInputConfigFiles } from '../utils/config-file.js';
