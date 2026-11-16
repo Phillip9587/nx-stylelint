@@ -64,8 +64,8 @@ describe('nx-stylelint:configuration generator', () => {
     await generator(tree, defaultOptions);
 
     const packagejson = readJson(tree, 'package.json');
-    expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
+    expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+    expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
     expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
     expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toStrictEqual({
@@ -207,8 +207,8 @@ describe('nx-stylelint:configuration generator', () => {
       await generator(tree, defaultOptions);
 
       let packagejson = readJson(tree, 'package.json');
-      expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
+      expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
       expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
       expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toStrictEqual({
@@ -255,9 +255,9 @@ describe('nx-stylelint:configuration generator', () => {
       });
 
       packagejson = readJson(tree, 'package.json');
-      expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
-      expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^17.0.0');
+      expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^18.0.0');
 
       expect(readProjectConfiguration(tree, 'test2').targets?.['stylelint']).toStrictEqual({
         executor: 'nx-stylelint:lint',
@@ -310,8 +310,8 @@ describe('nx-stylelint:configuration generator', () => {
       await generator(tree, defaultOptions);
 
       let packagejson = readJson(tree, 'package.json');
-      expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
+      expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
       expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
       expect(readProjectConfiguration(tree, 'test').targets?.['stylelint']).toStrictEqual({
@@ -348,8 +348,8 @@ describe('nx-stylelint:configuration generator', () => {
       await generator(tree, { ...defaultOptions, project: 'test2' });
 
       packagejson = readJson(tree, 'package.json');
-      expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
+      expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
       expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBeUndefined();
 
       expect(readProjectConfiguration(tree, 'test2').targets?.['stylelint']).toStrictEqual({
@@ -390,9 +390,9 @@ describe('nx-stylelint:configuration generator', () => {
       });
 
       packagejson = readJson(tree, 'package.json');
-      expect(packagejson.devDependencies['stylelint']).toBe('^17.9.0');
-      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^40.0.0');
-      expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^17.0.0');
+      expect(packagejson.devDependencies['stylelint']).toBe('^18.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard']).toBe('^41.0.0');
+      expect(packagejson.devDependencies['stylelint-config-standard-scss']).toBe('^18.0.0');
 
       expect(readProjectConfiguration(tree, 'test3').targets?.['stylelint']).toStrictEqual({
         executor: 'nx-stylelint:lint',
