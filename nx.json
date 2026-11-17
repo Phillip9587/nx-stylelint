@@ -28,26 +28,6 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"],
       "cache": true
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js",
-        {
-          "runtime": "node -v"
-        }
-      ],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
   },
   "namedInputs": {

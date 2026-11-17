@@ -1,6 +1,6 @@
-import { CreateNodesContextV2 } from '@nx/devkit';
+import { CreateNodesContext } from '@nx/devkit';
 import { vol } from 'memfs';
-import { createNodesV2 } from './plugin';
+import { createNodes } from './plugin';
 
 jest.mock('node:fs', () => {
   return require('memfs').fs;
@@ -13,8 +13,8 @@ jest.mock('fs/promises', () => {
 });
 
 describe('nx-stylelint/plugin', () => {
-  const createNodesFunction = createNodesV2[1];
-  let context: CreateNodesContextV2;
+  const createNodesFunction = createNodes[1];
+  let context: CreateNodesContext;
 
   beforeEach(async () => {
     context = {

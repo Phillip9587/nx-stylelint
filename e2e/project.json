@@ -6,11 +6,25 @@
   "implicitDependencies": ["nx-stylelint"],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js",
+        {
+          "runtime": "node -v"
+        }
+      ],
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "e2e/jest.config.ts",
-        "runInBand": true
+        "command": "jest --config e2e/jest.config.ts --runInBand --passWithNoTests",
+        "cwd": "{workspaceRoot}"
+      },
+      "configurations": {
+        "ci": {
+          "command": "jest --config e2e/jest.config.ts --runInBand --passWithNoTests --ci --coverage"
+        }
       },
       "dependsOn": ["^build"]
     }
